@@ -1,8 +1,9 @@
 const fs = require('fs-extra')
 
-import {sourcePropsDir} from './createTopProjectDirs'
 import {StackInfo} from '../../constants/types'
 import {allCaps, singularName} from '../../inflections'
+
+import {sourcePropsDir} from './createTopProjectDirs'
 
 export async function createFragmentsFile(currentStack: StackInfo) {
   // console.log('in createFragmentsFile')

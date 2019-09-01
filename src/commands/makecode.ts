@@ -32,4 +32,3 @@ export default class Makecode extends Command {
     await generateAppCode(appName)
   }
 }
-

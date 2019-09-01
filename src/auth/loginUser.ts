@@ -1,6 +1,8 @@
 import {GraphQLClient} from 'graphql-request'
-import {UserInfo} from '../constants/types'
+
 import {liveServer} from '../constants'
+import {UserInfo} from '../constants/types'
+
 import {setUserInfo} from './setUserInfo'
 
 require('dotenv').config({path: __dirname + '/./../.env'})

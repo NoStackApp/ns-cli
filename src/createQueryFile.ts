@@ -4,7 +4,7 @@ const fs = require('fs-extra')
 
 import {sourcePropsDir} from './codeGeneration/generation/createTopProjectDirs'
 import {StackInfo} from './constants/types'
-import {allCaps, queryForSource, relationshipsForSource, singularName} from './inflections'
+import {allCaps, queryForSource, relationshipsForSource} from './inflections'
 
 // interface QueryTree {
 //   [node: string]: QueryTree

@@ -27,7 +27,7 @@ export default class Spinstack extends Command {
 
   async run() {
     const {flags} = this.parse(Spinstack)
-    const appName = flags.appName ||  isRequired('appName')
+    const appName = flags.appName || isRequired('appName')
     const user = flags.user || isRequired('user')
     const template = flags.template || isRequired('template')
     const stack = flags.stack || isRequired('stack')

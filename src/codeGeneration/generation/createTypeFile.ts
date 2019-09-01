@@ -5,6 +5,7 @@ import {boilerplateDir, boilerPlates, boilerPlateTypes} from '../../constants'
 import {StackInfo} from '../../constants/types'
 import {pluralName, singularName} from '../../inflections'
 import {makeDirs} from '../../makeDirs'
+
 import {createReplacementOptions, ReplacementOptions} from './createReplacementOptions'
 import {compDir} from './createTopProjectDirs'
 import {generateFromBoilerPlate} from './generateFromBoilerPlate'

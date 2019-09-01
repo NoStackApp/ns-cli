@@ -1,13 +1,12 @@
-import {srcDir} from './createTopProjectDirs'
 import {associationTypes, boilerPlateTypes} from '../../constants'
 import {StackInfo} from '../../constants/types'
 import {createQueryFile} from '../../createQueryFile'
-import {createTypeFile} from './createTypeFile'
+
 import {createConfigFile} from './createConfigFile'
 import {createFragmentsFile} from './createFragmentsFile'
-
 import {createHighestLevelFiles} from './createHighestLevelFiles'
-import {createTopProjectDirs} from './createTopProjectDirs'
+import {createTopProjectDirs, srcDir} from './createTopProjectDirs'
+import {createTypeFile} from './createTypeFile'
 
 const fs = require('fs-extra')
 

@@ -6,7 +6,7 @@ export function userFilePath(userName: string, stack: string) {
 }
 
 export async function getUserInfo(userInfo: UserInfo) {
-  const stackDirectory = `${stacksDirectory}/${userInfo.stack}`
+  // const stackDirectory = `${stacksDirectory}/${userInfo.stack}`
   const userFile = userFilePath(userInfo.name, userInfo.stack)
   // console.log('stackDirectory=', stackDirectory)
 
