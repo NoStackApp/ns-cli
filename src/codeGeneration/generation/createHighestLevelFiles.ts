@@ -2,10 +2,8 @@ import {noNameError} from '../../commands/makecode'
 import {associationTypes, boilerplateDir} from '../../constants'
 import {StackInfo} from '../../constants/types'
 import {pluralName, singularName} from '../../inflections'
-import appDir from './createTopProjectDirs'
-import srcDir from './createTopProjectDirs'
-import compDir from './createTopProjectDirs'
 
+import {appDir, compDir, srcDir} from './createTopProjectDirs'
 import {generateFromBoilerPlate} from './generateFromBoilerPlate'
 
 const fs = require('fs-extra')

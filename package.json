@@ -79,7 +79,8 @@
     "posttest": "tslint -p test -t stylish",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "updateReadme": "oclif-dev readme",
-    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "test": "echo \"No test specified\"",
+    "oldtest": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "createNoStack": "bin/create-no-stack-app",
     "version": "oclif-dev readme && git add README.md"
   },
