@@ -27,7 +27,7 @@ $ npm install -g no-stack-cli
 $ nostack COMMAND
 running command...
 $ nostack (-v|--version|version)
-no-stack-cli/0.0.0 linux-x64 node-v12.8.1
+no-stack-cli/0.0.1 linux-x64 node-v12.8.1
 $ nostack --help [COMMAND]
 USAGE
   $ nostack COMMAND
@@ -60,7 +60,7 @@ OPTIONS
   -v, --value=value    value to create
 ```
 
-_See code: [src/commands/create.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.0/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.1/src/commands/create.ts)_
 
 ## `nostack help [COMMAND]`
 
@@ -77,7 +77,7 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.0/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.1/src/commands/help.ts)_
 
 ## `nostack makecode`
 
@@ -93,7 +93,7 @@ OPTIONS
   -h, --help             show CLI help
 ```
 
-_See code: [src/commands/makecode.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.0/src/commands/makecode.ts)_
+_See code: [src/commands/makecode.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.1/src/commands/makecode.ts)_
 
 ## `nostack newapp`
 
@@ -108,7 +108,7 @@ OPTIONS
   -h, --help             show CLI help
 ```
 
-_See code: [src/commands/newapp.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.0/src/commands/newapp.ts)_
+_See code: [src/commands/newapp.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.1/src/commands/newapp.ts)_
 
 ## `nostack quickstarter [FILE]`
 
@@ -131,7 +131,7 @@ EXAMPLE
   $ nostack quickstarter -u franky -s tempstack, -e franky@gmail.com -w franky12$
 ```
 
-_See code: [src/commands/quickstarter.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.0/src/commands/quickstarter.ts)_
+_See code: [src/commands/quickstarter.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.1/src/commands/quickstarter.ts)_
 
 ## `nostack spinstack`
 
@@ -151,5 +151,5 @@ OPTIONS
   -x, --addedSuffix=addedSuffix  added suffix for sample instances generated
 ```
 
-_See code: [src/commands/spinstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.0/src/commands/spinstack.ts)_
+_See code: [src/commands/spinstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.1/src/commands/spinstack.ts)_
 <!-- commandsstop -->
