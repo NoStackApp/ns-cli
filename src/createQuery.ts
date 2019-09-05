@@ -1,5 +1,5 @@
 // import {PJSON} from '@oclif/config'
-import {liveServer} from './constants'
+// import {liveServer} from './constants'
 import {CreateOptions} from './constants/types'
 import {genericApiCall} from './genericApiCall'
 import {isRequired} from './tools/isRequired'
@@ -7,7 +7,7 @@ import {isRequired} from './tools/isRequired'
 // tslint:disable-next-line:no-http-string
 require('dotenv').config({path: __dirname + '/./../.env'})
 
-const isDev = process.env.NODE_ENV === 'development'
+// const isDev = process.env.NODE_ENV === 'development'
 // console.log(`process.env.LOCAL_SERVER=${process.env.LOCAL_SERVER}`)
 
 // const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
