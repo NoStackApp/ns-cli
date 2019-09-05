@@ -10,7 +10,7 @@ require('dotenv').config({path: __dirname + '/./../.env'})
 const isDev = process.env.NODE_ENV === 'development'
 // console.log(`process.env.LOCAL_SERVER=${process.env.LOCAL_SERVER}`)
 
-const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
+// const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
 // console.log(`server=${server}`)
 // const server = 'http://localhost:3000/graphql'
 
