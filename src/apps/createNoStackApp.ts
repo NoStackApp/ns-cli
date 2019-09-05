@@ -47,14 +47,14 @@ const installationList = [
   'no-stack',
 ]
 
-const errorMessage = (details: string) => `installation error: ${details}. check out the error log noStackLog.txt.  If needed, please contact NoStack support.`
+const errorMessage = (details: string) => `installation error: ${details}. Check out the error log noStackLog.txt.  If needed, please contact NoStack support.`
 
 export async function createNoStackApp(appName: string) {
   // shell.echo('-ne', '                          (0% installed.  installing react...)\r);
   // cli.action.start('starting installation', {stdout: true})
   logProgress('installing create-react-app... this could take a few minutes...')
   if (shell.exec(`npx create-react-app ${appName} >> ${LOGFILE}`, {silent: true}).code !== 0) {
-    throw new Error(errorMessage('problem installing create-react-app'))
+    throw new Error(errorMessage(`problem installing create-react-app.  You may try calling 'create-react-app ${appName}' directly and see what messages are reported.`))
   }
 
   shell.exec(`mv ${LOGFILE} ${appName}`)
