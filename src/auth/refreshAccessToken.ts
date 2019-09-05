@@ -9,7 +9,7 @@ const isDev = process.env.NODE_ENV === 'development'
 // console.log(`process.env.LOCAL_SERVER=${process.env.LOCAL_SERVER}`)
 
 const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
-console.log(`server=${server}`)
+// console.log(`server=${server}`)
 
 export async function refreshAccessToken(userInfo: UserInfo) {
   const REFRESH_ACTION_ID = '9039e9c4-5b88-4575-8ed4-1fa1b27dc7a7'

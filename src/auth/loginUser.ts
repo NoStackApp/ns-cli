@@ -11,7 +11,7 @@ const isDev = process.env.NODE_ENV === 'development'
 // console.log(`process.env.LOCAL_SERVER=${process.env.LOCAL_SERVER}`)
 
 const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
-console.log(`server=${server}`)
+// console.log(`server=${server}`)
 
 export async function loginUser(userInfo: UserInfo) {
   const LOGIN_ACTION_ID = 'fe1c52df-9efc-4432-bbd0-7dc411cb8ed8'

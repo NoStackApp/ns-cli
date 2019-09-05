@@ -4,12 +4,14 @@ no-stack-cli
 Tools for stack generation from templates and an api.
 
 The standard steps for creating an app are the following:
-1. create the no-stack-app `ns2 newapp -a app275`
-2. create a new moderator and stack `ns2 quickstarter -e rlj613@gmail.com -w letMeIn1! -l <licencId>  -u irnold275 -s TestStack275`
-3. spin up stack: `ns2 spinstack -u irnold275 -t /home/yisrael/projects/ns-cli/test/testData/websiteTemplate.txt -s TestStack275 -e sampleEmail@gmail.com`
-4. generate code: `ns2 makecode -a app275`
+1. create a no-stack-app `nostack newapp -a <appName>`
+2. create a new moderator and stack `nostack quickstarter -e <moderatorEmail> -w <password> -l <licenceId>  -u <moderatorName> -s <stackName>`
+3. spin up stack (call from the same directory as step 1): `nostack spinstack -u <moderatorName> -t dir/to/template/<templateFile> -s <stackName> -e <emailFor Moderator>`
+4. generate code (call from the same directory as step 1): `ns2 makecode -a <appName>`
 
-To do this, you'll need a licence.  You can apply for one at www.nostack.net.
+The test directory contains a few sample templates in /test/testData/.
+
+To do step 3, you'll need a licence.  You can apply for one at www.nostack.net.
 
 
 [![Version](https://img.shields.io/npm/v/no-stack-cli.svg)](https://npmjs.org/package/no-stack-cli)

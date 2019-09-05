@@ -11,7 +11,7 @@ const isDev = process.env.NODE_ENV === 'development'
 // console.log(`process.env.LOCAL_SERVER=${process.env.LOCAL_SERVER}`)
 
 const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
-console.log(`server=${server}`)
+// console.log(`server=${server}`)
 // const server = 'http://localhost:3000/graphql'
 
 const queryForLevel = {
