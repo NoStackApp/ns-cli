@@ -2,10 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/auth/loginUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/loginUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/refreshAccessToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/refreshAccessToken.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/createQuery.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/createQuery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apps/createNoStackApp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/createNoStackApp.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/generateFromBoilerPlate.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generation/generateFromBoilerPlate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/constants/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/boilerplates/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/boilerplates/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/NavBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/boilerplates/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/boilerplates/flattenData.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/flattenData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/boilerplates/genericCreationForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericCreationForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/boilerplates/genericPlural.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericPlural.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/boilerplates/genericPluralNonRoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericPluralNonRoot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/boilerplates/genericSingularBoolean.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericSingularBoolean.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/boilerplates/genericSingularString.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericSingularString.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/boilerplates/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/generateFromBoilerPlate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generation/generateFromBoilerPlate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/index.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,8 +39,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="297">
-                <caret line="11" selection-start-line="11" selection-end-line="11" />
+              <first_editor relative-caret-position="216">
+                <caret line="8" column="68" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
               </first_editor>
               <second_editor />
             </state>
@@ -45,84 +59,79 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/codeGeneration/generation/createHighestLevelFiles.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/constants/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="392">
+              <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/boilerplates/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/codeGeneration/generation/generateFromBoilerPlate.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/apps/createNoStackApp.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/src/commands/makecode.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/testData/testingTemplate.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/auth/loginUser.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/auth/refreshAccessToken.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
-              <folding>
-                <element signature="e#0#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/createQuery.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#81#128#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/auth/loginUser.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/createQuery.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+            <state relative-caret-position="162">
+              <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -139,8 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>--save'</find>
-      <find>cli</find>
       <find>userinfo=</find>
       <find>build</find>
       <find>promis</find>
@@ -169,6 +176,8 @@
       <find>isRe</find>
       <find>server</find>
       <find>${server}</find>
+      <find>navbar</find>
+      <find>app.js</find>
     </findStrings>
     <replaceStrings>
       <replace>__SingularNameAllCaps__</replace>
@@ -197,7 +206,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_10.js" />
         <option value="$PROJECT_DIR$/bin/create-no-stack-app" />
         <option value="$PROJECT_DIR$/test/testData/websiteTemplate.txt" />
         <option value="$PROJECT_DIR$/src/commands/quickstarter.ts" />
@@ -219,7 +227,6 @@
         <option value="$PROJECT_DIR$/src/boilerplateGeneration/boilerplates/genericCreationForm.js" />
         <option value="$PROJECT_DIR$/src/boilerplateGeneration/boilerplates/genericSingularBoolean.js" />
         <option value="$PROJECT_DIR$/src/codeGeneration/generateFromBoilerPlate.ts" />
-        <option value="$PROJECT_DIR$/src/constants/index.ts" />
         <option value="$PROJECT_DIR$/src/codeGeneration/generation/createConfigFile.ts" />
         <option value="$PROJECT_DIR$/src/codeGeneration/generation/createFragmentsFile.ts" />
         <option value="$PROJECT_DIR$/src/codeGeneration/generation/createTopProjectDirs.ts" />
@@ -232,7 +239,6 @@
         <option value="$PROJECT_DIR$/src/genericApiCall.ts" />
         <option value="$PROJECT_DIR$/src/stacks/quickStartForModerator.ts" />
         <option value="$PROJECT_DIR$/src/commands/newapp.ts" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/codeGeneration/generation/createHighestLevelFiles.ts" />
         <option value="$PROJECT_DIR$/src/auth/getUserInfo.ts" />
         <option value="$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts" />
@@ -244,10 +250,13 @@
         <option value="$PROJECT_DIR$/lib/createQuery.js" />
         <option value="$PROJECT_DIR$/src/auth/loginUser.ts" />
         <option value="$PROJECT_DIR$/src/auth/refreshAccessToken.ts" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/createQuery.ts" />
         <option value="$PROJECT_DIR$/src/apps/createNoStackApp.ts" />
+        <option value="$PROJECT_DIR$/src/codeGeneration/generation/generateFromBoilerPlate.ts" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/constants/index.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -341,10 +350,12 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/test/testData" />
-      <recent name="$PROJECT_DIR$/src/stacks" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources" />
+      <recent name="$PROJECT_DIR$/src/codeGeneration/generation" />
+      <recent name="$PROJECT_DIR$/src/auth" />
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/boilerplateGeneration" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createReplacementOptions.ts" />
@@ -353,11 +364,10 @@
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createConfigFile.ts" />
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/codeGeneration/generation" />
-      <recent name="$PROJECT_DIR$/src/auth" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/testData" />
+      <recent name="$PROJECT_DIR$/src/stacks" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/boilerplateGeneration" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -390,23 +400,22 @@
       <workItem from="1564575504765" duration="107143000" />
       <workItem from="1567342023259" duration="1964000" />
       <workItem from="1567351759326" duration="3497000" />
-      <workItem from="1567690226933" duration="9178000" />
+      <workItem from="1567690226933" duration="13659000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="417965000" />
+    <option name="totallyTimeSpent" value="422446000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.24410313" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.40468228" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.40468228" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
@@ -428,7 +437,7 @@
       <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.24410313" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="1" weight="0.40503672" />
+      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.40468228" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
@@ -439,7 +448,7 @@
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="bottom" id="GraphQL" order="12" weight="0.32937366" />
+      <window_info anchor="bottom" id="GraphQL" order="12" weight="0.32887402" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.016008537" />
@@ -449,13 +458,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/auth/config.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/stacks/createStack.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
@@ -476,7 +478,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/codeGeneration/boilerplates/genericPluralNonRoot.js">
+    <entry file="file://$PROJECT_DIR$/resources/boilerplates/genericPluralNonRoot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
@@ -486,7 +488,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/codeGeneration/boilerplates/flattenData.js">
+    <entry file="file://$PROJECT_DIR$/resources/boilerplates/flattenData.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
@@ -507,7 +509,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/codeGeneration/boilerplates/genericPlural.js">
+    <entry file="file://$PROJECT_DIR$/resources/boilerplates/genericPlural.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="581">
           <caret line="50" column="67" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="67" />
@@ -517,7 +519,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/codeGeneration/boilerplates/genericSingularString.js">
+    <entry file="file://$PROJECT_DIR$/resources/boilerplates/genericSingularString.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="7" lean-forward="true" selection-start-line="5" selection-end-line="7" />
@@ -527,24 +529,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/codeGeneration/boilerplates/genericSingularBoolean.js">
+    <entry file="file://$PROJECT_DIR$/resources/boilerplates/genericSingularBoolean.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="5" column="50" lean-forward="true" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/codeGeneration/generation/generateFromBoilerPlate.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/constants/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -562,7 +550,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/codeGeneration/boilerplates/genericCreationForm.js">
+    <entry file="file://$PROJECT_DIR$/resources/boilerplates/genericCreationForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="20" column="88" lean-forward="true" selection-start-line="20" selection-start-column="88" selection-end-line="20" selection-end-column="114" />
@@ -652,13 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="69" column="16" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/commands/spinstack.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
@@ -666,20 +647,6 @@
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/codeGeneration/generation/createHighestLevelFiles.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -714,13 +681,6 @@
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/commands/makecode.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
@@ -799,7 +759,7 @@
     <entry file="file://$PROJECT_DIR$/src/createQuery.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
-          <caret line="6" column="25" lean-forward="true" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#81#128#0" expanded="true" />
@@ -817,16 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="297">
-            <caret line="11" selection-start-line="11" selection-end-line="11" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/commands/newapp.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -840,7 +790,71 @@
     <entry file="file://$PROJECT_DIR$/src/apps/createNoStackApp.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commands/makecode.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/boilerplates/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/codeGeneration/generation/generateFromBoilerPlate.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="216">
+            <caret line="8" column="68" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="68" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/codeGeneration/generation/createHighestLevelFiles.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/constants/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="82" selection-end-column="4" />
         </state>
       </provider>
     </entry>

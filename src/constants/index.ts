@@ -26,5 +26,5 @@ export const boilerPlates = {
   [boilerPlateTypes.SINGLE_BOOLEAN]: 'genericSingularBoolean',
 }
 
-export const boilerplateDir = `${__dirname}/../codeGeneration/boilerplates`
+export const boilerplateDir = `${__dirname}/../../resources/boilerplates`
 // console.log(`boilerplateDir =${boilerplateDir}`)
