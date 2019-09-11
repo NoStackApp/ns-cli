@@ -2,45 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/commands/createStack.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/run" beforeDir="false" afterPath="$PROJECT_DIR$/bin/run" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apps/createNoStackApp.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/apps/createNoStackApp.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/loginUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/loginUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createReplacementOptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generation/createReplacementOptions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createTypeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generation/createTypeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/generateAppCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generation/generateAppCode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/generateFromBoilerPlate.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generation/generateFromBoilerPlate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commands/newapp.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/newapp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commands/quickstarter.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/quickstarter.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commands/quickstarter.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/quickstarter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commands/spinstack.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/spinstack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/stacks/createModerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/stacks/createModerator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/stacks/createStack.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/stacks/createStack.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/stacks/quickStartForModerator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/stacks/quickStartForModerator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oclif.manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/oclif.manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apps/createNoStackApp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/createNoStackApp.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/getUserInfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/getUserInfo.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/loginUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/loginUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/createReplacementOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generation/createReplacementOptions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/createTypeFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generation/createTypeFile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/generateFromBoilerPlate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generation/generateFromBoilerPlate.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/newapp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/newapp.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/quickstarter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/quickstarter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commands/spinstack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/spinstack.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stacks/createModerator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stacks/createModerator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stacks/createStack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stacks/create-stack-query.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/stacks/quickStartForModerator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stacks/create-stack-and-moderator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/tempTest.sh" beforeDir="false" afterPath="$PROJECT_DIR$/test/tempTest.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/testData/sampleTemplate.sh" beforeDir="false" afterPath="$PROJECT_DIR$/test/testData/sampleTemplate.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/testData/testingTemplate.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/testData/testingTemplate.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/testData/websiteTemplate.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/testData/websiteTemplate.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +99,7 @@
       <workItem from="1567949619122" duration="7510000" />
       <workItem from="1568019887862" duration="263000" />
       <workItem from="1568021488543" duration="9712000" />
-      <workItem from="1568060000590" duration="26003000" />
+      <workItem from="1568060000590" duration="26635000" />
     </task>
     <servers />
   </component>
