@@ -1,6 +1,6 @@
 import {UserInfo} from '../constants/types'
 import {genericApiCall} from '../genericApiCall'
-const chalk = require('chalk')
+// const chalk = require('chalk')
 
 export async function createModerator(userInfo: UserInfo) {
   // console.log(`options=${JSON.stringify(userInfo)}`)

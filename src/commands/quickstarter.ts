@@ -1,16 +1,16 @@
 import {Command, flags} from '@oclif/command'
+
 import {createNoStackApp} from '../apps/createNoStackApp'
 import {generateAppCode} from '../codeGeneration/generation/generateAppCode'
-// import {loginUser} from '../auth/loginUser'
-
-
 import {UserInfo} from '../constants/types'
 import {buildStackFromTemplate} from '../stacks/buildStackFromTemplate'
 // import {createModerator} from '../stacks/createModerator'
 import {createStackAndModerator} from '../stacks/create-stack-and-moderator'
+import {errorMessage} from '../tools/errorMessage'
 // import {createStackQuery} from '../stacks/create-stack-query'
 // import {createModerator} from '../stacks/createModerator'
 import {isRequired} from '../tools/isRequired'
+// import {loginUser} from '../auth/loginUser'
 
 const fs = require('fs-extra')
 const Listr = require('listr')

@@ -9,8 +9,8 @@ import {loginUser} from '../auth/loginUser'
 import {UserInfo} from '../constants/types'
 // import {genericApiCall} from '../genericApiCall'
 
-import {createModerator} from './createModerator'
 import {createStackQuery} from './create-stack-query'
+import {createModerator} from './createModerator'
 
 export async function createStackAndModerator(userInfo: UserInfo) {
 

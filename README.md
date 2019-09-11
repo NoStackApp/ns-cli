@@ -3,16 +3,24 @@ no-stack-cli
 
 Tools for stack generation from templates and an api.
 
-The standard steps for creating an app are the following:
+If you are ever confused about the commands, run `nostack --help`. 
+If you want to know the parameters for any command, just run the command with '--help'.
+But relax--if you are missing one you will be told.  :) 
+
+The four standard steps for creating an app are the following:
 1. create a no-stack-app `nostack newapp -a <appName>`
 2. create a new moderator and stack `nostack quickstarter -e <moderatorEmail> -w <password> -l <licenceId>  -u <moderatorName> -s <stackName>`
 3. spin up stack (call from the same directory as step 1): `nostack spinstack -u <moderatorName> -t dir/to/template/<templateFile> -s <stackName> -e <emailFor Moderator>`
 4. generate code (call from the same directory as step 1): `nostack makecode -a <appName>`
 
+There is also a recommended shortcut command to get started:
+`nostack quickStarter -e ${email} -w ${password} -l ${license}  -u ${moderator} -s ${stackName} -a${appName} -t ${appTemplate}`
+
+That will give you everything you need for your first app.  Note that
+you will need to provide a license and a template.  You can apply for a license at www.nostack.net. Documentation for
+creating templates is in the pipeline right now.
+
 The test directory contains a few sample templates in /test/testData/.
-
-To do step 3, you'll need a licence.  You can apply for one at www.nostack.net.
-
 
 [![Version](https://img.shields.io/npm/v/no-stack-cli.svg)](https://npmjs.org/package/no-stack-cli)
 [![Downloads/week](https://img.shields.io/npm/dw/no-stack-cli.svg)](https://npmjs.org/package/no-stack-cli)

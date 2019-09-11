@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/tools/errorMessage.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/quickstarter.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/quickstarter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stacks/create-stack-and-moderator.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/stacks/create-stack-and-moderator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stacks/createModerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/stacks/createModerator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apps/createNoStackApp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/createNoStackApp.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/quickstarter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/quickstarter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stacks/create-stack-and-moderator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stacks/create-stack-and-moderator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stacks/createModerator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stacks/createModerator.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,11 +60,11 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/tools/errorMessage.ts" />
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createReplacementOptions.ts" />
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createTopProjectDirs.ts" />
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createFragmentsFile.ts" />
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createConfigFile.ts" />
-      <recent name="$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources" />
@@ -99,7 +109,7 @@
       <workItem from="1567949619122" duration="7510000" />
       <workItem from="1568019887862" duration="263000" />
       <workItem from="1568021488543" duration="9712000" />
-      <workItem from="1568060000590" duration="26635000" />
+      <workItem from="1568060000590" duration="27538000" />
     </task>
     <servers />
   </component>

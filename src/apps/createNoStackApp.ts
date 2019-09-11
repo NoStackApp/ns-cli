@@ -1,5 +1,5 @@
-
 import chalk from 'chalk'
+import {errorMessage} from '../tools/errorMessage'
 
 // import {logProgress} from './logging'
 
@@ -50,8 +50,6 @@ const installationList = [
   'uuid',
   'no-stack',
 ]
-
-const errorMessage = (details: string) => `installation error: ${chalk.red(details)}. If needed, please contact NoStack support: info@nostack.net.`
 
 // const listOfCalls = installationList.map((item: string) => {
 //     return {
