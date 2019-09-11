@@ -13,7 +13,6 @@ import {createStackQuery} from './create-stack-query'
 import {createModerator} from './createModerator'
 
 export async function createStackAndModerator(userInfo: UserInfo) {
-
   const tasks = new Listr([
     {
       title: 'Create the moderator account',
