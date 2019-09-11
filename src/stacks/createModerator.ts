@@ -16,6 +16,6 @@ export async function createModerator(userInfo: UserInfo) {
   // console.log(`query=${query}`)
 
   const returnedData = await genericApiCall(query, userInfo)
-  console.log(chalk.red('moderatorInfo') + `=${JSON.stringify(returnedData)}`)
+  // console.log(chalk.red('moderatorInfo') + `=${JSON.stringify(returnedData)}`)
   userInfo.id = returnedData.CreateModerator.id
 }

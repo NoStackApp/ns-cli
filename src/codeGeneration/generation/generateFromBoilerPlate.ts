@@ -7,7 +7,7 @@ export async function generateFromBoilerPlate(
   newFile: string,
   substitutions: object
 ) {
-  console.log(`boilerPlate=${boilerPlate}, newFile=${newFile}`)
+  // console.log(`boilerPlate=${boilerPlate}, newFile=${newFile}`)
   try {
     await fs.copy(boilerPlate, newFile)
     // console.log('success!')

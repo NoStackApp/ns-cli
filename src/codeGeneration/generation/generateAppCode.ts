@@ -53,7 +53,7 @@ export async function generateAppCode(appName: string) {
           if (assnType === associationTypes.MULTIPLE) {  // currently just string is supported
             await createTypeFile(type, source, boilerPlateTypes.CREATION, currentStack)
             const {selectionRoot} = currentStack.sources[source]
-            console.log(`about to createTypeFile for a Multiple.  type=${type}, selectionRoot=${selectionRoot}`)
+            // console.log(`about to createTypeFile for a Multiple.  type=${type}, selectionRoot=${selectionRoot}`)
             if (selectionRoot === type) await createTypeFile(type, source, boilerPlateTypes.MULTIPLE_ROOT, currentStack)
             else await createTypeFile(type, source, boilerPlateTypes.MULTIPLE_STRING, currentStack)
           }

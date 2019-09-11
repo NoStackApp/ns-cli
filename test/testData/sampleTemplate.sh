@@ -1,9 +1,3 @@
-#!/bin/bash
-# toDoTemplate.sh
-
-currentModerator=$1
-currentStack=$2
-
 ### USER CLASS ###
 newUserClass user
 

@@ -22,7 +22,7 @@ export async function loginUser(userInfo: UserInfo) {
     platformId: userInfo.stackId
   }
   const embeddableExecutionParameters = JSON.stringify(executionParameters).replace(/"/g, '\\"')
-  console.log('embeddableExecutionParameters=', embeddableExecutionParameters)
+  // console.log('embeddableExecutionParameters=', embeddableExecutionParameters)
   const query = `mutation {
         ExecuteAction(actionId: "${LOGIN_ACTION_ID}",
         executionParameters: "${embeddableExecutionParameters}",
@@ -44,8 +44,9 @@ export async function loginUser(userInfo: UserInfo) {
     // console.log(`newAccessToken=${newAccessToken}`)
   })
     .catch(err => {
-      console.log(err.response.errors) // GraphQL response errors
-      console.log(err.response.data) // Response data if available
+      // console.log(err.response.errors) // GraphQL response errors
+      // console.log(err.response.data) // Response data if available
+      throw new Error(err)
     })
 
   /*

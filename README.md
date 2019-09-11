@@ -29,7 +29,7 @@ $ npm install -g no-stack-cli
 $ nostack COMMAND
 running command...
 $ nostack (-v|--version|version)
-no-stack-cli/0.0.4 linux-x64 node-v12.8.1
+no-stack-cli/0.0.4 linux-x64 node-v12.10.0
 $ nostack --help [COMMAND]
 USAGE
   $ nostack COMMAND
@@ -39,6 +39,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`nostack create`](#nostack-create)
+* [`nostack createStack [FILE]`](#nostack-createstack-file)
 * [`nostack help [COMMAND]`](#nostack-help-command)
 * [`nostack makecode`](#nostack-makecode)
 * [`nostack newapp`](#nostack-newapp)
@@ -63,6 +64,29 @@ OPTIONS
 ```
 
 _See code: [src/commands/create.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.4/src/commands/create.ts)_
+
+## `nostack createStack [FILE]`
+
+Creates a new moderator and stack.  Also logs in the moderator locally.
+
+```
+USAGE
+  $ nostack createStack [FILE]
+
+OPTIONS
+  -e, --email=email          moderator email
+  -f, --force
+  -h, --help                 show CLI help
+  -l, --licenseId=licenseId  license id for the organization of the user
+  -s, --stack=stack          stack
+  -u, --user=user            moderator to create
+  -w, --password=password    moderator password
+
+EXAMPLE
+  $ nostack createStack -u franky -s tempstack, -e franky@gmail.com -w franky12$
+```
+
+_See code: [src/commands/createStack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.4/src/commands/createStack.ts)_
 
 ## `nostack help [COMMAND]`
 
@@ -121,11 +145,13 @@ USAGE
   $ nostack quickstarter [FILE]
 
 OPTIONS
+  -a, --appName=appName      name of application
   -e, --email=email          moderator email
   -f, --force
   -h, --help                 show CLI help
   -l, --licenseId=licenseId  license id for the organization of the user
   -s, --stack=stack          stack
+  -t, --template=template    template from which to spin up a stack
   -u, --user=user            moderator to create
   -w, --password=password    moderator password
 

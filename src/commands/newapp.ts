@@ -25,7 +25,10 @@ export default class Newapp extends Command {
     const {flags} = this.parse(Newapp)
     const appName = flags.appName || isRequired('appName')
 
-    await createNoStackApp(appName)
+    const newAppTasks = await createNoStackApp(appName)
+    await newAppTasks.run().catch((err: any) => {
+      console.error(err)
+    })
     // shell.exec(`/home/yisrael/projects/ns-cli/bin/create-no-stack-app "${appName}"`)
 
   }

@@ -1,1 +1,1 @@
-export declare function createNoStackApp(appName: string): Promise<void>;
+export declare function createNoStackApp(appName: string): Promise<any>;

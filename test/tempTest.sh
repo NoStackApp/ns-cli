@@ -6,9 +6,9 @@ addedSuffix=$2
 template=/home/yisrael/projects/ns-cli/test/testData/sampleTemplate.sh
 email=rlj613@gmail.com
 
-ns2='/home/yisrael/projects/ns-cli/bin/run'
+ns='node ~/projects/nostack-cli/bin/run'
 
-#$ns2 newapp -a app${number}
+$ns newapp -a app${number}
 #
 #$ns2 quickstarter -e rlj613@gmail.com -w letMeIn1! -l secret1ABC  -u irnold${number} -s TestStack${number}
 #

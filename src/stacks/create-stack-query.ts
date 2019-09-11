@@ -1,7 +1,7 @@
 import {UserInfo} from '../constants/types'
 import {genericApiCall} from '../genericApiCall'
 
-export async function createStack(userInfo: UserInfo) {
+export async function createStackQuery(userInfo: UserInfo) {
   // console.log(`userInfo=${JSON.stringify(userInfo)}`)
 
   const query = `mutation {

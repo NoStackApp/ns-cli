@@ -1,9 +1,13 @@
-// import cli from 'cli-ux'
 
-import {logProgress} from './logging'
+import chalk from 'chalk'
 
+// import {logProgress} from './logging'
+
+const execa = require('execa')
 const fs = require('fs-extra')
-const shell = require('shelljs')
+const Listr = require('listr')
+// const {Observable} = require('rxjs')
+// const shell = require('shelljs')
 
 const LOGFILE = 'noStackLog.txt'
 
@@ -27,10 +31,10 @@ const LOGFILE = 'noStackLog.txt'
  */
 
 const installationList = [
-  // 'typescript',
+  // 'react-apollo@2.x',
   'apollo-client',
+  'react-apollo@2.x',
   'graphql',
-  'react-apollo',
   'apollo-link',
   'apollo-cache-inmemory',
   'apollo-fetch',
@@ -47,35 +51,144 @@ const installationList = [
   'no-stack',
 ]
 
-const errorMessage = (details: string) => `installation error: ${details}. Check out the error log noStackLog.txt.  If needed, please contact NoStack support.`
+const errorMessage = (details: string) => `installation error: ${chalk.red(details)}. If needed, please contact NoStack support: info@nostack.net.`
+
+// const listOfCalls = installationList.map((item: string) => {
+//     return {
+//       title: `install ${item}`,
+//       task: async () => {
+//         await execa(
+//           'npm',
+//           ['install', '--prefix', appName, item, '--save']
+//         ).catch(
+//           (error: any) => {
+//             throw new Error(`${chalk.red(`error installing ${item}.`)} You may try installing ${item} directly by running 'npm install --save ${item}' directly and see what messages are reported. Here is the error reported:\n${error}`)
+//           }
+//         )
+//       },
+//     }
+//   }
+// )
 
 export async function createNoStackApp(appName: string) {
   // shell.echo('-ne', '                          (0% installed.  installing react...)\r);
   // cli.action.start('starting installation', {stdout: true})
-  logProgress('installing create-react-app... this could take a few minutes...')
-  if (shell.exec(`npx create-react-app ${appName} >> ${LOGFILE}`, {silent: true}).code !== 0) {
-    throw new Error(errorMessage(`problem installing create-react-app.  You may try calling 'create-react-app ${appName}' directly and see what messages are reported.`))
-  }
 
-  shell.exec(`mv ${LOGFILE} ${appName}`)
-  console.log('A basic react app was created.  Now we need to add a lot of packages for Apollo.  This will take a while...')
+  // console.log(`listOfCalls: ${JSON.stringify(listOfCalls, null, 2)}`)
+  const tasks = new Listr([
+    {
+      title: 'Run create-react-app',
+      task: async () => {
+        // shell.exec(`npx create-react-app ${appName} >> ${LOGFILE}`)
 
-  shell.cd(appName)
+        const isAppFolder = await fs.pathExists(appName)
 
-  installationList.map((packageToInstall: string) => {
-    logProgress(`Installing ${packageToInstall}...`)
-    if (shell.exec(`npm install ${packageToInstall} --save >> ../${LOGFILE} 2>&1`).code !== 0) {
-      console.log(`problem reported installing ${packageToInstall}.  Will see whether fatal...`)
-      // throw new Error('problem installing material for Apollo.  Please contact NoStack support.')
-      // shell.exit(1)
-    }
-  })
+        if (isAppFolder) {
+          throw new Error(errorMessage(`a folder for ${appName} already exists. Please choose a different app name`))
+        }
+
+        await execa(
+          'npx',
+          ['create-react-app', appName, `>> ${LOGFILE}`]
+        ).catch(
+          (error: any) => {
+            throw new Error(`${chalk.red('error running create-react-app.')} You may try calling 'create-react-app ${appName}' directly and see what messages are reported. Here is the error reported:\n${error}`)
+          }
+        )
+      }
+    },
+    {
+      title: 'Install Additional Packages Locally...',
+      task:  async () => {
+        return new Listr(installationList.map((item: string) => {
+          return {
+            title: item,
+            task: async () => {
+              await execa(
+                'npm',
+                ['install', '--prefix', appName, '--save', item]
+              ).catch(
+                (error: any) => {
+                  throw new Error(`${chalk.red(`error installing ${item}.`)} You may try installing ${item} directly by running 'npm install --save ${item}' directly and see what messages are reported. Here is the error reported:\n${error}`)
+                }
+              )
+            },
+          }
+        }
+        ))
+      }
+    },
+    {
+      title: 'Confirm Installation',
+      task: async () => {
+        // shell.exec(`npx create-react-app ${appName} >> ${LOGFILE}`)
+
+        const noStackFile = `${appName}/node_modules/no-stack/dist/no-stack.esm.js`
+        const isNoStackFile = await fs.pathExists(noStackFile)
+
+        if (!isNoStackFile) {
+          throw new Error(errorMessage('no-stack did not install properly.'))
+        }
+
+      }
+    },
+
+  ])
+
+  // const tasks2 = new Listr(installationList.map((item: string) => {
+  //   return {
+  //     title: `install ${item}`,
+  //     task: async () => {
+  //       await execa(
+  //           'npm',
+  //           ['install', '--prefix', appName, '--save', item]
+  //         ).catch(
+  //           (error: any) => {
+  //             throw new Error(`${chalk.red(`error installing ${item}.`)} You may try installing ${item} directly by running 'npm install --save ${item}' directly and see what messages are reported. Here is the error reported:\n${error}`)
+  //           }
+  //         )
+  //     },
+  //   }
+  // }
+  // ))
+  // console.log('about to run tasks')
+  // await tasks.run().catch((err: any) => {
+  //   console.error(err)
+  // })
+  // console.log('ran tasks')
+  // await tasks2.run().catch((err: any) => {
+  //   console.error(err)
+  // })
+  // return
+  //
+  // tasks.run().catch(err => {
+  //   console.error(err)
+  // })
+  // logProgress('installing create-react-app... this could take a few minutes...')
+  // if (shell.exec(`npx create-react-app ${appName} >> ${LOGFILE}`, {silent: true}).code !== 0) {
+  //   throw new Error(errorMessage(`problem installing create-react-app.  You may try calling 'create-react-app ${appName}' directly and see what messages are reported.`))
+  // }
+
+  // shell.exec(`mv ${LOGFILE} ${appName}`)
+  // console.log('A basic react app was created.  Now we need to add a lot of packages for Apollo.  This will take a while...')
+  //
+  // shell.cd(appName)
+  //
+  // installationList.map((packageToInstall: string) => {
+  //   logProgress(`Installing ${packageToInstall}...`)
+  //   // cli.action.start()
+  //   if (shell.exec(`npm install ${packageToInstall} --save >> ../${LOGFILE} 2>&1`).code !== 0) {
+  //     console.log(`problem reported installing ${packageToInstall}.  Will see whether fatal...`)
+  //     // throw new Error('problem installing material for Apollo.  Please contact NoStack support.')
+  //     // shell.exit(1)
+  //   }
+  // })
 
   // if (shell.exec(`/home/yisrael/projects/ns-cli/bin/create-no-stack-app "${appName}"`).code !== 0) {
   //   throw new Error('problem installing material for Apollo.  Please contact NoStack support.')
   //   shell.exit(1)
   // }
-  logProgress("Apollo and no-stack packages have been added... installing'...")
+  // logProgress("Apollo and no-stack packages have been added... installing'...")
   // shell.exec(`jq " .dependencies=$(jq '.dependencies | .["no-stack"]="git+https://github.com/NoStackApp/no-stack.git"' package.json )" package.json | sponge package.json >> ${LOGFILE}`, {silent: true})
   // logProgress("Apollo packages have been added... now adding no-stack and installing'...")
 
@@ -87,31 +200,31 @@ should create: /home/yisrael/projects/temp/app275/node_modules/no-stack/dist/no-
    */
 
   // logProgress("now installing'...")
-  if (shell.exec(`npm install >> ${LOGFILE}`, {silent: true}).code !== 0) {
-    throw new Error(errorMessage('problem running npm install'))
-  }
+  // if (shell.exec(`npm install >> ${LOGFILE}`, {silent: true}).code !== 0) {
+  //   throw new Error(errorMessage('problem running npm install'))
+  // }
+  //
+  // if (shell.exec(`npm audit fix >> ${LOGFILE}`, {silent: true}).code !== 0) {
+  //   throw new Error(errorMessage('problem running npm install'))
+  // }
+  //
+  // if (shell.exec(`npm install >> ${LOGFILE}`, {silent: true}).code !== 0) {
+  //   throw new Error(errorMessage('problem running npm install'))
+  // }
 
-  if (shell.exec(`npm audit fix >> ${LOGFILE}`, {silent: true}).code !== 0) {
-    throw new Error(errorMessage('problem running npm install'))
-  }
-
-  if (shell.exec(`npm install >> ${LOGFILE}`, {silent: true}).code !== 0) {
-    throw new Error(errorMessage('problem running npm install'))
-  }
-
-  // check for existence of installed files...
-  const noStackInstalled = await fs.pathExists('node_modules/no-stack/dist/no-stack.esm.js')
-
-  if (!noStackInstalled) {
-    throw new Error(errorMessage('no-stack.js file not found'))
-  }
-
+  // // check for existence of installed files...
+  // const noStackInstalled = await fs.pathExists('node_modules/no-stack/dist/no-stack.esm.js')
+  //
+  // if (!noStackInstalled) {
+  //   throw new Error(errorMessage('no-stack.js file not found'))
+  // }
+  //
   // if (shell.exec(`npm install >> ${LOGFILE}`, {silent: true}).code !== 0) {
   //   throw new Error('problem with the installation.  Please contact NoStack support.')
   //   shell.exit(1)
   // }
   // cli.action.stop() // shows 'starting a process... done'
 
-  logProgress(`Installation is complete.  Enter 'cd ${appName}' and 'npm start' to try running the newly installed app locally`)
-
+  return tasks
+  // logProgress(`${chalk.green('Installation is complete!')} Run the other utilities to create the full app`)
 }

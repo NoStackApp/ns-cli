@@ -36,7 +36,9 @@ export default class Spinstack extends Command {
 
     let userInfo: UserInfo = newUserInfo(user)
     userInfo.stack = stack
+    // console.log(`in spinstack, userInfo:${JSON.stringify(userInfo)}`)
     userInfo = await getUserInfo(userInfo)
+    // console.log(`in spinstack after getUserInfo, userInfo:${JSON.stringify(userInfo)}`)
 
     const json = await buildStackFromTemplate(template, userInfo, email, addedSuffix)
 
@@ -46,6 +48,9 @@ export default class Spinstack extends Command {
         throw new Error(console.error(err))
       }
     })
+
+    this.log(`The stack ${stack} has been generated.
+    The file ${appName}/stack.json contains some information about it.`)
 
     // this.log(`json produced: ${JSON.stringify(JSON.parse(json), null, 2) }`)
   }

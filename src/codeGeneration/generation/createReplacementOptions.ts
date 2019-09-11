@@ -92,7 +92,7 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
 
     Object.keys(children).map(
       child => {
-        console.log(`child=${child}, children[child]=${children[child]}`)
+        // console.log(`child=${child}, children[child]=${children[child]}`)
         let childComponent
         if (children[child] === associationTypes.MULTIPLE) {
           childrenConstantDeclarations += `\n  const ${child} = ${type}.children;`
@@ -123,7 +123,7 @@ import ${childComponent} from '../${childComponent}'; `
         ...currentStack.sources[connectedSource].tree[type]
       }
 
-      console.log(`connectedChildren=${JSON.stringify(connectedChildren)}`)
+      // console.log(`connectedChildren=${JSON.stringify(connectedChildren)}`)
 
       Object.keys(connectedChildren).map(
         child => {
