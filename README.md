@@ -37,7 +37,7 @@ $ npm install -g no-stack-cli
 $ nostack COMMAND
 running command...
 $ nostack (-v|--version|version)
-no-stack-cli/0.0.4 linux-x64 node-v12.10.0
+no-stack-cli/0.0.5 linux-x64 node-v12.10.0
 $ nostack --help [COMMAND]
 USAGE
   $ nostack COMMAND
@@ -71,7 +71,7 @@ OPTIONS
   -v, --value=value    value to create
 ```
 
-_See code: [src/commands/create.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.4/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.5/src/commands/create.ts)_
 
 ## `nostack createStack [FILE]`
 
@@ -94,7 +94,7 @@ EXAMPLE
   $ nostack createStack -u franky -s tempstack, -e franky@gmail.com -w franky12$
 ```
 
-_See code: [src/commands/createStack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.4/src/commands/createStack.ts)_
+_See code: [src/commands/createStack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.5/src/commands/createStack.ts)_
 
 ## `nostack help [COMMAND]`
 
@@ -127,7 +127,7 @@ OPTIONS
   -h, --help             show CLI help
 ```
 
-_See code: [src/commands/makecode.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.4/src/commands/makecode.ts)_
+_See code: [src/commands/makecode.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.5/src/commands/makecode.ts)_
 
 ## `nostack newapp`
 
@@ -142,7 +142,7 @@ OPTIONS
   -h, --help             show CLI help
 ```
 
-_See code: [src/commands/newapp.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.4/src/commands/newapp.ts)_
+_See code: [src/commands/newapp.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.5/src/commands/newapp.ts)_
 
 ## `nostack quickstarter [FILE]`
 
@@ -167,7 +167,7 @@ EXAMPLE
   $ nostack quickstarter -u franky -s tempstack, -e franky@gmail.com -w franky12$
 ```
 
-_See code: [src/commands/quickstarter.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.4/src/commands/quickstarter.ts)_
+_See code: [src/commands/quickstarter.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.5/src/commands/quickstarter.ts)_
 
 ## `nostack spinstack`
 
@@ -187,5 +187,5 @@ OPTIONS
   -x, --addedSuffix=addedSuffix  added suffix for sample instances generated
 ```
 
-_See code: [src/commands/spinstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.4/src/commands/spinstack.ts)_
+_See code: [src/commands/spinstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.5/src/commands/spinstack.ts)_
 <!-- commandsstop -->
