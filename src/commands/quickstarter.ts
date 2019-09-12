@@ -64,6 +64,7 @@ export default class Quickstarter extends Command {
 
     const newAppTasks = await createNoStackApp(appName)
     const newStackTasks = await createStackAndModerator(userInfo)
+    const generateAppTasks = await generateAppCode(appName)
 
     // @ts-ignore
     const tasks = new Listr([
@@ -100,9 +101,7 @@ export default class Quickstarter extends Command {
       },
       {
         title: 'Generate Front End Code',
-        task: async () => {
-          await generateAppCode(appName)
-        }
+        task: async () => generateAppTasks,
       },
       // const json = await buildStackFromTemplate(template, userInfo, email, addedSuffix)
     ])

@@ -3,11 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createHighestLevelFiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generation/createHighestLevelFiles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericPlural.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericPlural.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericSingularString.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericSingularString.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/generateAppCode.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generation/generateAppCode.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/generateAppCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generation/generateAppCode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/makecode.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/makecode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/quickstarter.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/quickstarter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/makecode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/makecode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/quickstarter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/quickstarter.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +40,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../temp/app360" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../api-cli" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$/node_modules/tslint" />
@@ -104,7 +107,7 @@
       <workItem from="1567949619122" duration="7510000" />
       <workItem from="1568019887862" duration="263000" />
       <workItem from="1568021488543" duration="9712000" />
-      <workItem from="1568060000590" duration="46016000" />
+      <workItem from="1568060000590" duration="55308000" />
     </task>
     <servers />
   </component>

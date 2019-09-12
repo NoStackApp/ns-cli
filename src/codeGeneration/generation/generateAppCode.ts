@@ -1,6 +1,10 @@
+// import chalk from 'chalk'
+// import {loginUser} from '../../auth/loginUser'
 import {associationTypes, boilerPlateTypes} from '../../constants'
 import {StackInfo} from '../../constants/types'
 import {createQueryFile} from '../../createQueryFile'
+// import {createStackQuery} from '../../stacks/create-stack-query'
+// import {createModerator} from '../../stacks/createModerator'
 
 import {createConfigFile} from './createConfigFile'
 import {createFragmentsFile} from './createFragmentsFile'
@@ -8,9 +12,11 @@ import {createHighestLevelFiles} from './createHighestLevelFiles'
 import {createTopProjectDirs, srcDir} from './createTopProjectDirs'
 import {createTypeFile} from './createTypeFile'
 
+const execa = require('execa')
 const fs = require('fs-extra')
+const Listr = require('listr')
 
-export async function generateAppCode(appName: string) {
+async function generateCodeFiles(appName: string) {
   const currentStack: StackInfo = await fs.readJSON(`${appName}/stack.json`) // await generateJSON.bind(this)(template, appName)
   // console.log(`currentStack=${currentStack}`)
   await createTopProjectDirs(currentStack, appName)
@@ -61,4 +67,31 @@ export async function generateAppCode(appName: string) {
       ))
     }
   ))
+}
+
+export async function generateAppCode(appName: string) {
+  const tasks = new Listr([
+    {
+      title: 'Generate the Code Files',
+      task: async () => {
+        await generateCodeFiles(appName)
+      }
+    },
+    {
+      title: 'Make First Git Commit',
+      task: async () => {
+        await execa(
+          'git',
+          ['-C', appName, 'add', '.']
+        )
+        await execa(
+          'git',
+          ['-C', appName, 'commit', '-m', 'First no-stack commit :tada']
+        )
+      },
+    },
+  ])
+
+  return tasks
+
 }

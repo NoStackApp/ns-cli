@@ -3,6 +3,7 @@ const errorEx = require('error-ex')
 import {Command, flags} from '@oclif/command'
 
 import {generateAppCode} from '../codeGeneration/generation/generateAppCode'
+import {createStackAndModerator} from '../stacks/create-stack-and-moderator'
 
 export const noNameError = errorEx('noNameError')
 
@@ -29,6 +30,10 @@ export default class Makecode extends Command {
       this.log("no application name provided.  You must specify an app name with the flag '-a' or '-appName'")
       return
     }
-    await generateAppCode(appName)
+
+    const generateAppTasks = await generateAppCode(appName)
+    await generateAppTasks.run().catch((err: any) => {
+      console.error(err)
+    })
   }
 }
