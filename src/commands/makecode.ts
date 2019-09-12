@@ -3,7 +3,6 @@ const errorEx = require('error-ex')
 import {Command, flags} from '@oclif/command'
 
 import {generateAppCode} from '../codeGeneration/generation/generateAppCode'
-import {createStackAndModerator} from '../stacks/create-stack-and-moderator'
 
 export const noNameError = errorEx('noNameError')
 
