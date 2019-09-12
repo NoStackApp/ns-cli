@@ -7,32 +7,16 @@ import {errorMessage} from '../tools/errorMessage'
 const execa = require('execa')
 const fs = require('fs-extra')
 const Listr = require('listr')
-// const {Observable} = require('rxjs')
-// const shell = require('shelljs')
 
 const LOGFILE = 'noStackLog.txt'
 
 /*
-'yarn'
-'--save-dev typescript'
-'apollo-client',
-'graphql ',
-'react-apollo apollo-link ',
-'apollo-cache-inmemory',
-'apollo-fetch'
-'apollo-link-context',
-'apollo-link-http',
-'axios formik',
-'graphql-tag',
-'jsonwebtoken',
-'react-graph-vis',
-'react-spinkit uuid',
-'styled-components',
-'styled-components',
+npm install
+
  */
 
+/*
 const installationList = [
-  // 'react-apollo@2.x',
   'apollo-client',
   'react-apollo@2.x',
   'graphql',
@@ -50,6 +34,31 @@ const installationList = [
   'styled-components',
   'uuid',
   'no-stack',
+]
+
+ */
+const installationList = [
+  '@apollo/react-common',
+  '@apollo/react-components',
+  '@apollo/react-hoc',
+  '@apollo/react-hooks',
+  '@shopify/react-compose',
+  'apollo-cache-inmemory',
+  'apollo-client',
+  'graphql',
+  'apollo-link',
+  'apollo-fetch',
+  'apollo-link-context',
+  'apollo-link-http',
+  'axios',
+  'formik',
+  'graphql-tag',
+  'jsonwebtoken',
+  'react-graph-vis',
+  'react-spinkit',
+  'styled-components',
+  'uuid',
+  '@nostack/no-stack',
 ]
 
 // const listOfCalls = installationList.map((item: string) => {
@@ -122,7 +131,7 @@ export async function createNoStackApp(appName: string) {
       task: async () => {
         // shell.exec(`npx create-react-app ${appName} >> ${LOGFILE}`)
 
-        const noStackFile = `${appName}/node_modules/no-stack/dist/no-stack.esm.js`
+        const noStackFile = `${appName}/node_modules/@nostack/no-stack/dist/no-stack.esm.js`
         const isNoStackFile = await fs.pathExists(noStackFile)
 
         if (!isNoStackFile) {

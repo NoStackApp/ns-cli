@@ -1,5 +1,5 @@
 import React from 'react';
-import { Source } from 'no-stack';
+import { Source } from '@nostack/no-stack';
 import styled from 'styled-components';
 import flattenData  from '../../../flattenData';
 

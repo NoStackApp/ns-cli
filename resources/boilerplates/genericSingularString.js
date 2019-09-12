@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {EXECUTE_ACTION} from 'no-stack';
-import {graphql} from 'react-apollo';
+import {EXECUTE_ACTION} from '@nostack/no-stack';
+import {graphql} from '@apollo/react-hoc';
 
 import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID} from '../../../config';
 import {__SingularNameAllCaps___FRAGMENT} from '../../source-props/fragments';

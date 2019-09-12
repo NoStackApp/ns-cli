@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ApolloProvider } from 'react-apollo';
-import { NoStackProvider, Console } from 'no-stack';
+import { NoStackProvider, Console } from '@nostack/no-stack';
 
 import { PLATFORM_ID } from './config';
 import './index.css';
@@ -11,12 +10,10 @@ import * as serviceWorker from './serviceWorker';
 import client from './client';
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <NoStackProvider client={client} platformId={PLATFORM_ID}>
-      <App />
-      <Console />
-    </NoStackProvider>
-  </ApolloProvider>,
+  <NoStackProvider client={client} platformId={PLATFORM_ID}>
+    <App />
+    <Console />
+  </NoStackProvider>,
   document.getElementById('root')
 );
 

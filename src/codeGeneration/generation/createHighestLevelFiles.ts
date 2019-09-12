@@ -63,15 +63,32 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appName: 
     topComponent = singularName(topComponentType)
   }
 
+  let topComponentSetting = 'userId={ currentUser.id }'
+
+  /*
+"constraints": {"toDoSource":
+ {"constraintType": "ID", "type": "project", "value": "currentProjectId"}},
+
+   loop and for every constraint:
+   if value=__currentUser__
+      topComponentSetting += ' userId={ currentUser.id }'
+    if type==="ID"
+
+      topComponentSetting += ' ${type}Id={ ${value} }'
+    else
+      topComponentSetting += ' ${type}Value={ ${value} }'
+   */
   options = {
     files: '',
     from: [
       /__SourceName__/g,
       /__TopComponentName__/g,
+      /__TopComponentPropSetting__/g,
     ],
     to: [
       singularName(source),
-      topComponent
+      topComponent,
+      topComponentSetting,
     ]
   }
 

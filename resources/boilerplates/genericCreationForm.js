@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
-import { withNoStack, EXECUTE_ACTION } from 'no-stack';
+import { withNoStack, EXECUTE_ACTION } from '@nostack/no-stack';
+import compose from '@shopify/react-compose';
 
 import { CREATE___SingularForRelationshipAllCaps___ACTION_ID__ACTION_IDS_FOR_SINGLE_CHILDREN__ } from '../../../config';
 

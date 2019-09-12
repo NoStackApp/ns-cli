@@ -2,7 +2,7 @@ import { ApolloClient } from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-import { createAuthLink, httpLink } from 'no-stack';
+import { createAuthLink, httpLink } from '@nostack/no-stack';
 
 import { PLATFORM_ID } from '../config';
 

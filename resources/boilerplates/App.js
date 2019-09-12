@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import './App.css';
-import { NoStackConsumer, LoginForm } from 'no-stack';
+import { NoStackConsumer, LoginForm } from '@nostack/no-stack';
 
 import NavBar from './components/NavBar';
 import __TopComponentName__ from './components/__SourceName__/__TopComponentName__';
@@ -38,7 +38,7 @@ const App = () => (
           }
 
           return (
-            <__TopComponentName__ />
+            <__TopComponentName__ __TopComponentPropSetting__ />
           );
         }}
       </NoStackConsumer>

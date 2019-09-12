@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { LogoutButton } from 'no-stack';
+import { LogoutButton } from '@nostack/no-stack';
 
 // change styling here
 const Wrapper = styled.div`
