@@ -1,7 +1,7 @@
 {
   "name": "no-stack-cli",
   "description": "tools for stack generation from templates and an api",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "YizYah @YizYah",
   "bin": {
     "nostack": "./bin/run"
