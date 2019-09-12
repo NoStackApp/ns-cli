@@ -45,6 +45,7 @@ function __SingularName__CreationForm({ __SingularParentName__Id, create__Singul
         }),
         unrestricted: false,
       },
+      update: onAdd(),
     });
 
     const new__SingularName__Data = JSON.parse(create__SingularName__Response.data.ExecuteAction);

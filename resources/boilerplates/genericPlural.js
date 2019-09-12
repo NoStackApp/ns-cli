@@ -28,7 +28,7 @@ function __PluralName__({ __SingularParentName__Id }) {
       query={__SOURCE_QUERY_NAME__}
       parameters={parameters}
     >
-      {({loading, error, data, updateSourceAfterCreateAction, updateSourceAfterUpdateAction}) => {
+      {({loading, error, data, updateSourceAfterCreateAction, updateSourceAfterUpdateAction, updateSourceAfterDeleteAction}) => {
         if (loading) return 'Loading...';
 
         if (error) return `Error: ${error.graphQLErrors}`;
@@ -45,6 +45,7 @@ function __PluralName__({ __SingularParentName__Id }) {
                   parentId={__SingularParentName__Id}
                   __SingularNameLowercase__={__SingularNameLowercase__}
                   onUpdate={updateSourceAfterUpdateAction}
+                  onDelete={updateSourceAfterDeleteAction}
                 />
               ))
             }

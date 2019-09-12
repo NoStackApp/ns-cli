@@ -3,17 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oclif.manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericCreationForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericCreationForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createHighestLevelFiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generation/createHighestLevelFiles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericPlural.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericPlural.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericSingularBoolean.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericSingularBoolean.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericSingularString.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericSingularString.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apps/createNoStackApp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/createNoStackApp.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/createHighestLevelFiles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generation/createHighestLevelFiles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +104,7 @@
       <workItem from="1567949619122" duration="7510000" />
       <workItem from="1568019887862" duration="263000" />
       <workItem from="1568021488543" duration="9712000" />
-      <workItem from="1568060000590" duration="40982000" />
+      <workItem from="1568060000590" duration="46016000" />
     </task>
     <servers />
   </component>
