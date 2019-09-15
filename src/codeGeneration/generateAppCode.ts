@@ -2,15 +2,16 @@
 // import {loginUser} from '../../auth/loginUser'
 import {associationTypes, boilerPlateTypes} from '../constants'
 import {StackInfo} from '../constants/types'
-import {createQueryFile} from './createQueryFile'
-// import {createStackQuery} from '../../stacks/create-stack-query'
-// import {createModerator} from '../../stacks/createModerator'
 
 import {createConfigFile} from './createConfigFile'
 import {createFragmentsFile} from './createFragmentsFile'
 import {createHighestLevelFiles} from './createHighestLevelFiles'
+import {createQueryFile} from './createQueryFile'
 import {createTopProjectDirs, srcDir} from './createTopProjectDirs'
 import {createTypeFile} from './createTypeFile'
+// import {createStackQuery} from '../../stacks/create-stack-query'
+// import {createModerator} from '../../stacks/createModerator'
+
 
 const execa = require('execa')
 const fs = require('fs-extra')

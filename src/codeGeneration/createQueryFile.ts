@@ -2,9 +2,10 @@ const fs = require('fs-extra')
 
 // import {allCaps} from '../inflections'
 
-import {sourcePropsDir} from './createTopProjectDirs'
 import {StackInfo} from '../constants/types'
 import {allCaps, queryForSource, relationshipsForSource} from '../tools/inflections'
+
+import {sourcePropsDir} from './createTopProjectDirs'
 
 // interface QueryTree {
 //   [node: string]: QueryTree

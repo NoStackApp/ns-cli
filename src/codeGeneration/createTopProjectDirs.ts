@@ -1,5 +1,6 @@
 import {StackInfo} from '../constants/types'
 import {singularName} from '../tools/inflections'
+
 import {makeDirs} from './makeDirs'
 
 let appDir: string

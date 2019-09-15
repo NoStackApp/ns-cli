@@ -1,10 +1,9 @@
 const errorEx = require('error-ex')
 
 import {Command, flags} from '@oclif/command'
+
 import {getUserInfo} from '../auth/getUserInfo'
 import {newUserInfo} from '../auth/newUserInfo'
-
-import {generateAppCode} from '../codeGeneration/generateAppCode'
 import {UserInfo} from '../constants/types'
 import {callApiHelper} from '../tools/callApiHelper'
 import {isRequired} from '../tools/isRequired'
@@ -20,7 +19,6 @@ export default class Callapi extends Command {
   static examples = [
     '$ nostack callapi -u irnold1y -s TestStack1y -q ~/projects/no-stack-queries/queries/sourceData1y.graphql -v ~/projects/no-stack-queries/variables/sourceData1y.json\n',
   ]
-
 
   static flags = {
     user: flags.string({char: 'u', description: 'moderator for stack'}),
