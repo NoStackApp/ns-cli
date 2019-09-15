@@ -12,7 +12,6 @@ import {createTypeFile} from './createTypeFile'
 // import {createStackQuery} from '../../stacks/create-stack-query'
 // import {createModerator} from '../../stacks/createModerator'
 
-
 const execa = require('execa')
 const fs = require('fs-extra')
 const Listr = require('listr')
