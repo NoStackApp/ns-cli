@@ -2,7 +2,74 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/query.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/commands/callapi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tools/callApiHelper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/getUserInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/getUserInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/setUserInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/setUserInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createConfigFile.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createConfigFile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createFragmentsFile.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createFragmentsFile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createHighestLevelFiles.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createHighestLevelFiles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createReplacementOptions.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createReplacementOptions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createTopProjectDirs.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createTopProjectDirs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createTypeFile.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/createTypeFile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/generateAppCode.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/generateAppCode.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/generateFromBoilerPlate.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generation/generateFromBoilerPlate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/create.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/create.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/createStack.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/createStack.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/makecode.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/makecode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/quickstarter.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/quickstarter.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/quickstarter.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/quickstarter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/createQuery.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/createQuery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/createQueryFile.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/createQueryFile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generateJSON.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generateJSON.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/genericApiCall.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/genericApiCall.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/inflections.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/inflections.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/makeDirs.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/makeDirs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stacks/buildStackFromTemplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/stacks/buildStackFromTemplate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stacks/create-stack-query.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/stacks/create-stack-query.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/stacks/createModerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/stacks/createModerator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oclif.manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/oclif.manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/getUserInfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/getUserInfo.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/setUserInfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/setUserInfo.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/createConfigFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createConfigFile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/createFragmentsFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createFragmentsFile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/createHighestLevelFiles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createHighestLevelFiles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/createReplacementOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createReplacementOptions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/createTopProjectDirs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createTopProjectDirs.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/createTypeFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createTypeFile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/generateAppCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generateAppCode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generation/generateFromBoilerPlate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generateFromBoilerPlate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/create.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/createStack.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/createstack.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commands/makecode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/makecode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/quickstarter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/quickstarter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createQuery.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/createQuery.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createQueryFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createQueryFile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generateJSON.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/generateJSON.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/genericApiCall.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/genericApiCall.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inflections.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/inflections.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/makeDirs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/makeDirs.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stacks/buildStackFromTemplate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stacks/buildStackFromTemplate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stacks/create-stack-query.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stacks/create-stack-query.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stacks/createModerator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/stacks/createModerator.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +83,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -32,7 +99,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../api-cli" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../no-stack-queries/variables/sourceData1y.json" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$/node_modules/tslint" />
@@ -43,11 +110,12 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/commands" />
-      <recent name="$PROJECT_DIR$/test/testData" />
-      <recent name="$PROJECT_DIR$/src/stacks" />
-      <recent name="$PROJECT_DIR$/src" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/codeGeneration" />
+      <recent name="$PROJECT_DIR$/src/codeGeneration/generation" />
+      <recent name="$PROJECT_DIR$/src/tools" />
+      <recent name="$PROJECT_DIR$/resources" />
+      <recent name="$PROJECT_DIR$/src/auth" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="$PROJECT_DIR$/src/tools/errorMessage.ts" />
@@ -56,12 +124,12 @@
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createFragmentsFile.ts" />
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createConfigFile.ts" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources" />
-      <recent name="$PROJECT_DIR$/src/codeGeneration/generation" />
-      <recent name="$PROJECT_DIR$/src/auth" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/boilerplateGeneration" />
+      <recent name="$PROJECT_DIR$/src/commands" />
+      <recent name="$PROJECT_DIR$/temp" />
+      <recent name="$PROJECT_DIR$/test/testData" />
+      <recent name="$PROJECT_DIR$/src/stacks" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -99,7 +167,8 @@
       <workItem from="1567949619122" duration="7510000" />
       <workItem from="1568019887862" duration="263000" />
       <workItem from="1568021488543" duration="9712000" />
-      <workItem from="1568060000590" duration="55462000" />
+      <workItem from="1568060000590" duration="57851000" />
+      <workItem from="1568358131459" duration="11687000" />
     </task>
     <servers />
   </component>

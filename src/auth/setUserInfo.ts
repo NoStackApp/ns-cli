@@ -1,5 +1,5 @@
 import {UserInfo} from '../constants/types'
-import {stacksDirectory} from '../genericApiCall'
+import {stacksDirectory} from '../tools/genericApiCall'
 
 export const fs = require('fs-extra')
 

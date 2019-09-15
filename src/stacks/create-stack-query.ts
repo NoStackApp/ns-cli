@@ -1,5 +1,5 @@
 import {UserInfo} from '../constants/types'
-import {genericApiCall} from '../genericApiCall'
+import {genericApiCall} from '../tools/genericApiCall'
 
 export async function createStackQuery(userInfo: UserInfo) {
   // console.log(`userInfo=${JSON.stringify(userInfo)}`)

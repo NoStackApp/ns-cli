@@ -130,40 +130,43 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`nostack create`](#nostack-create)
-* [`nostack createStack [FILE]`](#nostack-createstack-file)
+* [`nostack callapi`](#nostack-callapi)
+* [`nostack createstack`](#nostack-createstack)
 * [`nostack help [COMMAND]`](#nostack-help-command)
 * [`nostack makecode`](#nostack-makecode)
 * [`nostack newapp`](#nostack-newapp)
-* [`nostack quickstarter [FILE]`](#nostack-quickstarter-file)
+* [`nostack quickstarter`](#nostack-quickstarter)
 * [`nostack spinstack`](#nostack-spinstack)
 
-## `nostack create`
+## `nostack callapi`
 
-A general command for creating stack elements.  Warning: not yet maintained.  The bash version was developed and this is planned for the near future...
+Make a call to the nostack api. Takes care of auth for the user. You need to specify a file with the graphql query and another one with a json of the variables, if anyare used.
 
 ```
 USAGE
-  $ nostack create
+  $ nostack callapi
 
 OPTIONS
-  -h, --help           show CLI help
-  -l, --level=level    level to create
-  -p, --parent=parent  the item in the level above for which we will create something on this level
-  -s, --stack=stack    stack
-  -u, --user=user      user making request
-  -v, --value=value    value to create
+  -h, --help                         show CLI help
+  -q, --queryFile=queryFile          graphql file containing a single query
+  -s, --stack=stack                  stack
+  -u, --user=user                    moderator for stack
+  -v, --variablesFile=variablesFile  json file with query variables
+
+EXAMPLE
+  $ nostack callapi -u irnold1y -s TestStack1y -q ~/projects/no-stack-queries/queries/sourceData1y.graphql -v 
+  ~/projects/no-stack-queries/variables/sourceData1y.json
 ```
 
-_See code: [src/commands/create.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.8/src/commands/create.ts)_
+_See code: [src/commands/callapi.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.8/src/commands/callapi.ts)_
 
-## `nostack createStack [FILE]`
+## `nostack createstack`
 
 Creates a new moderator and stack.  Also logs in the moderator locally.
 
 ```
 USAGE
-  $ nostack createStack [FILE]
+  $ nostack createstack
 
 OPTIONS
   -e, --email=email          moderator email
@@ -178,7 +181,7 @@ EXAMPLE
   $ nostack createStack -u franky -s tempstack, -e franky@gmail.com -w franky12$
 ```
 
-_See code: [src/commands/createStack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.8/src/commands/createStack.ts)_
+_See code: [src/commands/createstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.8/src/commands/createstack.ts)_
 
 ## `nostack help [COMMAND]`
 
@@ -228,13 +231,13 @@ OPTIONS
 
 _See code: [src/commands/newapp.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.8/src/commands/newapp.ts)_
 
-## `nostack quickstarter [FILE]`
+## `nostack quickstarter`
 
 Creates a new moderator and stack.  Also logs in the moderator locally.
 
 ```
 USAGE
-  $ nostack quickstarter [FILE]
+  $ nostack quickstarter
 
 OPTIONS
   -a, --appName=appName      name of application

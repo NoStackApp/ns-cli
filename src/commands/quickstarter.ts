@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 
 import {createNoStackApp} from '../apps/createNoStackApp'
-import {generateAppCode} from '../codeGeneration/generation/generateAppCode'
+import {generateAppCode} from '../codeGeneration/generateAppCode'
 import {UserInfo} from '../constants/types'
 import {buildStackFromTemplate} from '../stacks/buildStackFromTemplate'
 // import {createModerator} from '../stacks/createModerator'
@@ -36,7 +36,7 @@ export default class Quickstarter extends Command {
     force: flags.boolean({char: 'f'}),
   }
 
-  static args = [{name: 'file'}]
+  static args = []
 
   async run() {
     const {args, flags} = this.parse(Quickstarter)

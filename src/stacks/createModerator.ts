@@ -1,5 +1,5 @@
 import {UserInfo} from '../constants/types'
-import {genericApiCall} from '../genericApiCall'
+import {genericApiCall} from '../tools/genericApiCall'
 // const chalk = require('chalk')
 
 export async function createModerator(userInfo: UserInfo) {

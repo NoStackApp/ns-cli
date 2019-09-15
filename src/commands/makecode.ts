@@ -2,7 +2,7 @@ const errorEx = require('error-ex')
 
 import {Command, flags} from '@oclif/command'
 
-import {generateAppCode} from '../codeGeneration/generation/generateAppCode'
+import {generateAppCode} from '../codeGeneration/generateAppCode'
 
 export const noNameError = errorEx('noNameError')
 

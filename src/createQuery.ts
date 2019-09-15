@@ -1,7 +1,7 @@
 // import {PJSON} from '@oclif/config'
 // import {liveServer} from './constants'
 import {CreateOptions} from './constants/types'
-import {genericApiCall} from './genericApiCall'
+import {genericApiCall} from './tools/genericApiCall'
 import {isRequired} from './tools/isRequired'
 
 // tslint:disable-next-line:no-http-string

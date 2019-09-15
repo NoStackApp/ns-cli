@@ -1,5 +1,5 @@
 import {UserInfo} from '../constants/types'
-import {fs, stacksDirectory} from '../genericApiCall'
+import {fs, stacksDirectory} from '../tools/genericApiCall'
 
 export function userFilePath(userName: string, stack: string) {
   return `${stacksDirectory}/${stack}/${userName}.json`
