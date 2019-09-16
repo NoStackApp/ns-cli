@@ -7,9 +7,11 @@ import {liveServer} from '../constants'
 import {UserInfo} from '../constants/types'
 
 export const fs = require('fs-extra')
-require('dotenv').config({path: __dirname + '/./../.env'})
+require('dotenv').config({path: __dirname + '/./../../.env'})
+// console.log(`__dirname + '/./../.env'=${__dirname + '/./../../.env'}`)
 
 const isDev = process.env.NODE_ENV === 'development'
+// console.log(`isDev=${isDev}`)
 // console.log(`process.env.LOCAL_SERVER=${process.env.LOCAL_SERVER}`)
 
 const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
@@ -60,7 +62,7 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
         jwt: userInfo.accessToken
       }
     })
-    await clientAfterRefresh.request(query).then(data => {
+    await clientAfterRefresh.request(query, variables).then(data => {
       console.log(data)
       dataReturned = data
       finished = true
