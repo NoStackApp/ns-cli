@@ -7,6 +7,8 @@ import {setUserInfo} from './setUserInfo'
 
 require('dotenv').config({path: __dirname + '/./../.env'})
 
+const prompts = require('prompts')
+
 const isDev = process.env.NODE_ENV === 'development'
 // console.log(`process.env.LOCAL_SERVER=${process.env.LOCAL_SERVER}`)
 
@@ -16,6 +18,29 @@ const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
 export async function loginUser(userInfo: UserInfo) {
   const LOGIN_ACTION_ID = 'fe1c52df-9efc-4432-bbd0-7dc411cb8ed8'
   // '{userName: $un, password: $pw, platformId: $pid}' )
+
+  let response = {
+    password: '',
+    stackId: ''
+  }
+
+  if (!userInfo.password) {
+    response = await prompts({
+      type: 'text',
+      name: 'password',
+      message: `User ${userInfo.name} is not logged in. What is their password?`
+    })
+    userInfo.password = response.password
+  }
+
+  if (!userInfo.stackId) {
+    response = await prompts({
+      type: 'text',
+      name: 'stackId',
+      message: `What is the stack id for ${userInfo.stack}?`
+    })
+    userInfo.stackId = response.stackId
+  }
   const executionParameters = {
     userName: userInfo.name,
     password: userInfo.password,
@@ -39,6 +64,8 @@ export async function loginUser(userInfo: UserInfo) {
     const ExecuteAction = JSON.parse(data.ExecuteAction)  // .AuthenticationResult // AccessToken
     userInfo.accessToken = ExecuteAction.AuthenticationResult.AccessToken
     userInfo.refreshToken = ExecuteAction.AuthenticationResult.RefreshToken
+
+    // console.log(`userInfo=${JSON.stringify(userInfo)}`)
     await setUserInfo(userInfo)
 
     // console.log(`newAccessToken=${newAccessToken}`)

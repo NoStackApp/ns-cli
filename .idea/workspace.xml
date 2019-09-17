@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/test/testData/Marketplace.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/testData/TwoChildrenTemplate.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createQueryFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createQueryFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createTypeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createTypeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generateAppCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generateAppCode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oclif.manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tools/genericApiCall.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/genericApiCall.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tools/genericApiCall.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tools/genericApiCall.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/getUserInfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/getUserInfo.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/loginUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/loginUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/setUserInfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/setUserInfo.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tools/callApiHelper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/callApiHelper.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,10 +38,11 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../no-stack-queries/queries/unitData.graphql" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/testData" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$/node_modules/tslint" />
@@ -63,10 +68,10 @@
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createConfigFile.ts" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/testData" />
       <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/src/commands" />
       <recent name="$PROJECT_DIR$/temp" />
-      <recent name="$PROJECT_DIR$/test/testData" />
       <recent name="$PROJECT_DIR$/src/stacks" />
     </key>
   </component>
@@ -106,7 +111,7 @@
       <workItem from="1568019887862" duration="263000" />
       <workItem from="1568021488543" duration="9712000" />
       <workItem from="1568060000590" duration="57851000" />
-      <workItem from="1568358131459" duration="25937000" />
+      <workItem from="1568358131459" duration="36728000" />
     </task>
     <servers />
   </component>
