@@ -154,8 +154,8 @@ OPTIONS
   -v, --variablesFile=variablesFile  json file with query variables
 
 EXAMPLE
-  $ nostack callapi -u irnold1y -s TestStack1y -q ~/projects/no-stack-queries/queries/sourceData1y.graphql -v 
-  ~/projects/no-stack-queries/variables/sourceData1y.json
+  $ nostack callapi -u irnold1y -s TestStack1y -q ~/projects/no-stack-queries/queries/unitData1y.graphql -v 
+  ~/projects/no-stack-queries/variables/unitData1y.json
 ```
 
 _See code: [src/commands/callapi.ts](https://github.com/YizYah/no-stack-cli/blob/v0.0.11/src/commands/callapi.ts)_

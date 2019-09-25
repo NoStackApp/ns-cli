@@ -1,0 +1,23 @@
+### USER CLASS ###
+newUserClass user
+
+### SOURCES ###
+newSource  projectsForUser user
+newSource  toDoSource user
+connectSources toDoSource projectsForUser project
+
+### TYPES ###
+newType project projectsForUser user
+newType toDo toDoSource project
+newType isCompleted toDoSource toDo boolean singleRequired
+newType steps toDoSource toDo
+
+### SELECTIONS ###
+newSelection projectsForUser project
+newSelection toDoSource toDo
+newSelection toDoSource isCompleted
+newSelection toDoSource steps
+
+### CONSTRAINTS ###
+newConstraint __currentUser__ projectsForUser user ID
+newConstraint currentProjectId toDoSource project ID

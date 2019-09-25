@@ -137,18 +137,17 @@ export async function createQueryFile(currentStack: StackInfo, source: string) {
 
   const queryFragmentsList = '\n' + selections.map(selection => `$\{${allCaps(selection)}_FRAGMENT\}`).join('\n')
   const queryBody = `\n\nexport const ${queryName} = gql\`
-  query SOURCE(
+  query UNIT(
     $id: ID!
     $typeRelationships: String!
     $parameters: String
   ) {
-    sourceData(
-      sourceId: $id
+    unitData(
+      unitId: $id
       typeRelationships: $typeRelationships
       parameters: $parameters
-    ) {
+    )
       ${sourceInfo.props.queryBody}
-    }
   }
   ${queryFragmentsList}
 \`;

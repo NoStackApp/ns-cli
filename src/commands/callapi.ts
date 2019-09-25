@@ -17,7 +17,7 @@ export default class Callapi extends Command {
     'are used.'
 
   static examples = [
-    '$ nostack callapi -u irnold1y -s TestStack1y -q ~/projects/no-stack-queries/queries/sourceData1y.graphql -v ~/projects/no-stack-queries/variables/sourceData1y.json\n',
+    '$ nostack callapi -u irnold1y -s TestStack1y -q ~/projects/no-stack-queries/queries/unitData1y.graphql -v ~/projects/no-stack-queries/variables/unitData1y.json\n',
   ]
 
   static flags = {

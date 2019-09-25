@@ -16,7 +16,8 @@ const execa = require('execa')
 const fs = require('fs-extra')
 const Listr = require('listr')
 
-async function generateCodeFiles(appName: string) {
+export async function generateCodeFiles(appName: string) {
+  // console.log(`stacklocation=${appName}/stack.json`)
   const currentStack: StackInfo = await fs.readJSON(`${appName}/stack.json`) // await generateJSON.bind(this)(template, appName)
   // console.log(`currentStack=${currentStack}`)
   await createTopProjectDirs(currentStack, appName)

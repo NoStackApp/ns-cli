@@ -1,6 +1,6 @@
 query collectionQuery($collectionId: ID!, $parameters: String!, $unrestricted: Boolean!) { collectionData(collectionId: $collectionId, parameters: $parameters, unrestricted: $unrestricted) }
 
-query sourceData($sourceId: ID!, $typeRelationships:String!, $parameters: String!, $unrestricted: Boolean!) { sourceData(sourceId: $sourceId, typeRelationships:$typeRelationships, parameters: $parameters, unrestricted: $unrestricted){
+query sourceData($unitId: ID!, $typeRelationships:String!, $parameters: String!, $unrestricted: Boolean!) { sourceData(unitId: $unitId, typeRelationships:$typeRelationships, parameters: $parameters, unrestricted: $unrestricted){
   id,
   type,
   instance {
@@ -66,7 +66,7 @@ query unitData($unitId: ID!, $typeRelationships:String!, $parameters: String!, $
 
 
 
-mutation addSelection($sourceId:ID!,$typeId:ID!){
+mutation addSelection($unitId:ID!,$typeId:ID!){
   AddSourceTypes(sourceid: $sourceId, typeid: $typeId) {
     id
     types {

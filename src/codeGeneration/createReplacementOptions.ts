@@ -24,6 +24,32 @@ export interface ReplacementOptions {
   to: string [],
 }
 
+/*
+         const newTodo = {
+          instance: {
+            id: newTodoData.instanceId,
+            value: newTodoData.value,
+            __typename: 'Instance',
+          },
+          children: [
+            {
+              instances: [
+                {
+                  instance: {
+                    id: isCompletedData.instanceId,
+                    value: isCompletedData.value,
+                    __typename: 'Instance',
+                  },
+                  __typename: 'InstanceWithTypedChildren',
+                },
+              ],
+              __typename: 'TypeWithInstances',
+            },
+          ],
+          __typename: 'InstanceWithTypedChildren',
+        };
+ */
+
 function generateSingleChildCreationCode(parentType: string, childType: string, source: string) {
   return `    await createIsCompleted({
       variables: {
@@ -44,22 +70,26 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
             __typename: 'Instance',
           },
           children: [
-            {
-              instance: {
-                id: ${childType}Data.instanceId,
-                value: ${childType}Data.value,
-                __typename: 'Instance',
+              {
+                instances: [
+                  {
+                     instance: {
+                        id: ${childType}Data.instanceId,
+                        value: ${childType}Data.value,
+                        __typename: 'Instance',
+                     },
+                     __typename: 'InstanceWithTypedChildren',
+                  },
+                ],
+                __typename: 'TypeWithInstances',
               },
-              __typename: 'InstanceWithChildren',
-            },
           ],
-          __typename: 'InstanceWithChildren',
+          __typename: 'InstanceWithTypedChildren',
         };
 
         onAdd(new${singularName(parentType)})(cache);
       },
     });
-
 `
 }
 
@@ -99,7 +129,7 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
           childComponent = pluralName(child)
         } else {
           actionIdsForSingleChildren += `, CREATE_${allCaps(child)}_FOR_${allCaps(source)}_ACTION_ID`
-          childrenConstantDeclarations += `\n  const ${child} = ${type}.children[0];`
+          childrenConstantDeclarations += `\n  const ${child} = ${type}.children[0].instances[0];`
           singleChildrenCreationCode += generateSingleChildCreationCode(type, child, source)
           singleChildrenComposeStatements += `\n  graphql(EXECUTE_ACTION, { name: 'create${singularName(child)}' }),`
           singleChildrenParams += `, create${singularName(child)}`
@@ -175,7 +205,7 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
       fromRegExp: /__SingularSourceLowercase__/g,
       toString: source,
     },
-    sourceId: {
+    unitId: {
       fromRegExp: /__SOURCE_ID_CONSTANT__/g,
       toString: currentStack.sources[source].const,
     },

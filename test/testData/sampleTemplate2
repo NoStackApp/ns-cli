@@ -2,23 +2,23 @@
 newUserClass user
 
 ### SOURCES ###
-newSource  projectsForUser user
+newSource  projectSource user
 newSource  toDoSource user
-connectSources toDoSource projectsForUser project
+newUnit foo (userClass: x)
+connectSources toDoSource projectSource project
 
 ### TYPES ###
-newType project projectsForUser user
+newType project projectSource user
 newType toDo toDoSource project
-newType team toDoSource project
 newType isCompleted toDoSource toDo boolean singleRequired
 
 ### SELECTIONS ###
-newSelection projectsForUser project
+newSelection projectSource project
 newSelection toDoSource toDo
 newSelection toDoSource isCompleted
 
 ### CONSTRAINTS ###
-newConstraint __currentUser__ projectsForUser user ID
+newConstraint __currentUser__ projectSource user ID
 newConstraint currentProjectId toDoSource project ID
 
 

@@ -2,16 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/testData/Marketplace.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/testData/TwoChildrenTemplate.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/testData/flow.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/testData/sampleFlow.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/testData/sampleTemplate2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/getUserInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/getUserInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/loginUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/loginUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/setUserInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/setUserInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createQueryFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createQueryFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createReplacementOptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createReplacementOptions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/commands/callapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/callapi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/createQuery.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/createQuery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tools/callApiHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tools/callApiHelper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/tools/genericApiCall.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tools/genericApiCall.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/getUserInfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/getUserInfo.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/loginUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/loginUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/setUserInfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/setUserInfo.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tools/callApiHelper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/callApiHelper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/boilerplates/flattenData.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/flattenData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericPlural.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericPlural.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/query.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/resources/query.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apps/createNoStackApp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/apps/createNoStackApp.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/createQueryFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createQueryFile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/createReplacementOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createReplacementOptions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generateAppCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generateAppCode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/callapi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/callapi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/makecode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/makecode.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/newapp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/newapp.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commands/quickstarter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/commands/quickstarter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createQuery.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/createQuery.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tools/genericApiCall.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/genericApiCall.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stack.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/testData/TwoChildrenTemplate.sh" beforeDir="false" afterPath="$PROJECT_DIR$/test/testData/TwoChildrenTemplate" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,12 +72,12 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/codeGeneration" />
-      <recent name="$PROJECT_DIR$/src/codeGeneration/generation" />
-      <recent name="$PROJECT_DIR$/src/tools" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/testData" />
       <recent name="$PROJECT_DIR$/resources" />
-      <recent name="$PROJECT_DIR$/src/auth" />
+      <recent name="$PROJECT_DIR$/src/commands" />
+      <recent name="$PROJECT_DIR$/temp" />
+      <recent name="$PROJECT_DIR$/src/stacks" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="$PROJECT_DIR$/src/tools/errorMessage.ts" />
@@ -67,12 +86,12 @@
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createFragmentsFile.ts" />
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createConfigFile.ts" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/test/testData" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/codeGeneration" />
+      <recent name="$PROJECT_DIR$/src/codeGeneration/generation" />
+      <recent name="$PROJECT_DIR$/src/tools" />
       <recent name="$PROJECT_DIR$/resources" />
-      <recent name="$PROJECT_DIR$/src/commands" />
-      <recent name="$PROJECT_DIR$/temp" />
-      <recent name="$PROJECT_DIR$/src/stacks" />
+      <recent name="$PROJECT_DIR$/src/auth" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -111,7 +130,11 @@
       <workItem from="1568019887862" duration="263000" />
       <workItem from="1568021488543" duration="9712000" />
       <workItem from="1568060000590" duration="57851000" />
-      <workItem from="1568358131459" duration="36728000" />
+      <workItem from="1568358131459" duration="37331000" />
+      <workItem from="1568811198107" duration="6817000" />
+      <workItem from="1568925947885" duration="11603000" />
+      <workItem from="1569138286067" duration="21250000" />
+      <workItem from="1569398873049" duration="10357000" />
     </task>
     <servers />
   </component>

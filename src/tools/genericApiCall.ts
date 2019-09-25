@@ -41,7 +41,7 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
     .catch(async err => {
       console.log(JSON.stringify(err))
       if (err.code === 103 || err.response.errors[0].code === 103) {
-        console.log('***error 103 encountered... will refresh token again***') // GraphQL response errors
+        // console.log('***error 103 encountered... will refresh token again***') // GraphQL response errors
         // const user = options.user || isRequired('user')
         // const stack = options.stack || isRequired('stack')
         await refreshAccessToken(userInfo)
@@ -56,14 +56,14 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
     })
 
   if (!finished) {
-    console.log('trying again')
+    // console.log('trying again')
     const clientAfterRefresh = new GraphQLClient(server, {
       headers: {
         jwt: userInfo.accessToken
       }
     })
     await clientAfterRefresh.request(query, variables).then(data => {
-      console.log(data)
+      // console.log(data)
       dataReturned = data
       finished = true
     })

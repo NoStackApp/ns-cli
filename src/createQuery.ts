@@ -63,17 +63,17 @@ async function createSource(options: CreateOptions) {
 }
 
 async function createTree(options: CreateOptions) {
-  const sourceId = options.parent || isRequired('parent')
+  const unitId = options.parent || isRequired('parent')
   const treeName = options.value || isRequired('value')
 
-  const id = `source_${sourceId}_tree_${treeName}`
+  const id = `source_${unitId}_tree_${treeName}`
   const query = `mutation {
     CreateTree(id: "${id}", name: "${treeName}") {
       id
       name
     }
 
-    AddSourceTree(treeid: "${id}", sourceid: "${sourceId}") {
+    AddSourceTree(treeid: "${id}", sourceid: "${unitId}") {
       id
       tree {
         id

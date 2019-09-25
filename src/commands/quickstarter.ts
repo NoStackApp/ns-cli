@@ -26,6 +26,7 @@ export default class Quickstarter extends Command {
     help: flags.help({char: 'h'}),
     // flag with a value (-n, --name=VALUE)
     appName: flags.string({char: 'a', description: 'name of application'}),
+    baseApp: flags.string({char: 'b', description: 'directory of the base app to copy. If it does not exist, it is created.'}),
     stack: flags.string({char: 's', description: 'stack'}),
     template: flags.string({char: 't', description: 'template from which to spin up a stack'}),
     licenseId: flags.string({char: 'l', description: 'license id for the organization of the user'}),
@@ -41,6 +42,7 @@ export default class Quickstarter extends Command {
   async run() {
     const {args, flags} = this.parse(Quickstarter)
     const appName = flags.appName || isRequired('appName')
+    const baseApp = flags.baseApp || ''
     const stack = flags.stack || isRequired('stack')
     const template = flags.template || isRequired('template')
     const user = flags.user || isRequired('user')
@@ -62,14 +64,14 @@ export default class Quickstarter extends Command {
 
     // console.log(`userInfo:${JSON.stringify(userInfo)}`)
 
-    const newAppTasks = await createNoStackApp(appName)
+    const newAppTasks = await createNoStackApp(appName, baseApp)
     const newStackTasks = await createStackAndModerator(userInfo)
     const generateAppTasks = await generateAppCode(appName)
 
     // @ts-ignore
     const tasks = new Listr([
       {
-        title: 'Create a Placeholder NoStack App',
+        title: 'Create a Base NoStack App',
         task: async () => newAppTasks
       },
       {

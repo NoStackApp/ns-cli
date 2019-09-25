@@ -1,0 +1,28 @@
+stack: todo
+
+userClass: user
+  units:
+    - userInfo
+    user [constraint: `=currentUser`]
+      project [creatable, returned]
+      task [returned]
+      team [assn:on, returned]
+    - projectInfo
+      project [constraint: `=currentProject`]
+        task
+        user [associatable, single]
+        isCompleted [required, single, dataType: boolean, returned]
+        team [returned]
+    - teamUsers
+      team [constraint: `=currentTeam`]
+        user [single, associatable]
+    - userTeams
+      user [constraint: `=currentUser`]
+        team
+    - teamInfo
+      team  [constraint: `=currentTeam`]
+        user [assn: on, associatable, returned]
+        project [associatable, returned]
+    - users
+      user [returned]
+

@@ -30,6 +30,7 @@ export default class Makecode extends Command {
       return
     }
 
+    // await generateCodeFiles(appName)  // temp, to debug
     const generateAppTasks = await generateAppCode(appName)
     await generateAppTasks.run().catch((err: any) => {
       console.error(err)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Source } from '@nostack/no-stack';
+import { Unit } from '@nostack/no-stack';
 import styled from 'styled-components';
 import flattenData  from '../../../flattenData';
 
@@ -22,18 +22,21 @@ function __PluralName__({ __SingularParentName__Id }) {
   };
 
   return (
-    <Source
+    <Unit
       id={__SOURCE_ID_CONSTANT__}
       typeRelationships={__RELATIONSHIPS_NAME__}
       query={__SOURCE_QUERY_NAME__}
       parameters={parameters}
     >
-      {({loading, error, data, updateSourceAfterCreateAction, updateSourceAfterUpdateAction, updateSourceAfterDeleteAction}) => {
+      {({loading, error, data, updateUnitAfterCreateAction, updateUnitAfterUpdateAction, updateUnitAfterDeleteAction}) => {
         if (loading) return 'Loading...';
 
-        if (error) return `Error: ${error.graphQLErrors}`;
+        if (error) {
+          console.error(error);
+          return `Error: ${error.graphQLErrors}`
+        };
 
-        const __PluralNameLowercase__ = data.sourceData.map(el => flattenData(el));
+        const __PluralNameLowercase__ = data.unitData.map(el => flattenData(el));
 
         return (
           <>
@@ -44,17 +47,17 @@ function __PluralName__({ __SingularParentName__Id }) {
                   key={__SingularNameLowercase__.id}
                   parentId={__SingularParentName__Id}
                   __SingularNameLowercase__={__SingularNameLowercase__}
-                  onUpdate={updateSourceAfterUpdateAction}
-                  onDelete={updateSourceAfterDeleteAction}
+                  onUpdate={updateUnitAfterUpdateAction}
+                  onDelete={updateUnitAfterDeleteAction}
                 />
               ))
             }
-            <__SingularName__CreationForm  __SingularParentName__Id={__SingularParentName__Id} onAdd={updateSourceAfterCreateAction}/>
+            <__SingularName__CreationForm  __SingularParentName__Id={__SingularParentName__Id} onAdd={updateUnitAfterCreateAction}/>
           </__PluralName__StyleWrapper>
           </>
         );
       }}
-    </Source>
+    </Unit>
   );
 }
 export default __PluralName__;
