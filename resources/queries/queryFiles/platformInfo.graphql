@@ -1,0 +1,1 @@
+query  platformInfo($stackId: ID!) {platformInfo(platformId:$stackId)}

@@ -1,0 +1,31 @@
+query unitData($unitId: ID!, $typeRelationships:String!, $parameters: String!, $unrestricted: Boolean!) { unitData(unitId: $unitId, typeRelationships:$typeRelationships, parameters: $parameters, unrestricted: $unrestricted){
+    id,
+    instance {
+        id,
+        value,
+        order
+    },
+    children {
+        typeId,
+        instances {
+            id,
+            instance {
+                id,
+                value,
+                order
+            },
+            children {
+                typeId,
+                instances {
+                    id,
+                    instance {
+                        id,
+                        value,
+                        order
+                    },
+                }
+            }
+        }
+    }
+}}
+
