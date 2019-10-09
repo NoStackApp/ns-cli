@@ -1,7 +1,7 @@
 import React from 'react';
 import { Unit } from '@nostack/no-stack';
 import styled from 'styled-components';
-import flattenData  from '../../../flattenData';
+import { flattenData } from '../../../flattenData';
 
 import __SingularName__CreationForm from '../__SingularName__CreationForm';
 import __SingularName__ from '../__SingularName__';
@@ -28,7 +28,7 @@ function __PluralName__({ __SingularParentName__Id }) {
       query={__SOURCE_QUERY_NAME__}
       parameters={parameters}
     >
-      {({loading, error, data, updateUnitAfterCreateAction, updateUnitAfterUpdateAction, updateUnitAfterDeleteAction}) => {
+      {({loading, error, data, updateUnitAfterCreateAction, updateUnitInstanceAfterUpdateAction, updateUnitAfterDeleteAction, refetchQueries}) => {
         if (loading) return 'Loading...';
 
         if (error) {
@@ -47,8 +47,9 @@ function __PluralName__({ __SingularParentName__Id }) {
                   key={__SingularNameLowercase__.id}
                   parentId={__SingularParentName__Id}
                   __SingularNameLowercase__={__SingularNameLowercase__}
-                  onUpdate={updateUnitAfterUpdateAction}
+                  onUpdate={updateUnitInstanceAfterUpdateAction}
                   onDelete={updateUnitAfterDeleteAction}
+                  refetchQueries={refetchQueries}
                 />
               ))
             }

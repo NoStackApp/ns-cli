@@ -4,8 +4,8 @@ import {EXECUTE_ACTION} from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import {graphql} from '@apollo/react-hoc';
 
-import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID, DELETE___SingularForRelationshipAllCaps___ACTION_ID} from '../../../config';
-import {__SingularNameAllCaps___FRAGMENT} from '../../source-props/fragments';
+import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID, DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
+import {__SingularParentNameAllCaps__CHILD_FRAGMENT} from '../../source-props/fragments';
 
 __CHILDREN_IMPORT_LIST__
 
@@ -42,13 +42,15 @@ const DeleteMenu = styled.div`
   border: 1px solid #eeeeee;
 `;
 
-function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, deleteInstance, onUpdate, onDelete}) {
-  __CHILDREN_CONSTANT_DECLARATIONS__
+function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, deleteInstance, onUpdate, onDelete, refetchQueries}) {
   const [__SingularNameLowercase__Value, update__SingularName__Value] = useState(__SingularNameLowercase__.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [ isDeleteMode, updateIsDeleteMode ] = useState(false);
   const [ isDeleting, updateIsDeleting ] = useState(false);
+
+  __CHILDREN_CONSTANT_DECLARATIONS__
+
 
   function handle__SingularName__ValueChange(e) {
     update__SingularName__Value(e.target.value);
@@ -64,7 +66,7 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
           value: __SingularNameLowercase__Value,
           instanceId: __SingularNameLowercase__.id,
         }),
-        update: onUpdate(__SingularNameLowercase__.id, __SingularNameAllCaps___FRAGMENT),
+        update: onUpdate(__SingularNameLowercase__.id, __SingularParentNameAllCaps__CHILD_FRAGMENT),
       },
     });
 

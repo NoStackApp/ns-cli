@@ -38,7 +38,7 @@ function __SingularName__CreationForm({ __SingularParentName__Id, create__Singul
 
     const create__SingularName__Response = await create__SingularName__({
       variables: {
-        actionId: CREATE___SingularForRelationshipAllCaps___ACTION_ID ,
+        actionId: CREATE___SingularForRelationshipAllCaps___ACTION_ID,
         executionParameters: JSON.stringify({
           parentInstanceId: __SingularParentName__Id,
           value: __SingularNameLowercase__Value,

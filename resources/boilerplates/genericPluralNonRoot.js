@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Create__SingularName__Form from '../Create__SingularName__Form';
+import __SingularName__CreationForm from '../__SingularName__CreationForm';
 import __SingularName__ from '../__SingularName__';
 
-const __SingularName__sStyleWrapper = styled.div``;
+const __PluralName__StyleWrapper = styled.div``;
 
-function __SingularName__s({ __SingularNameLowercase__s, currentTodoId, onUpdate, refetchQueries }) {
+function __PluralName__({ __SingularNameLowercase__s, currentTodoId, onUpdate, refetchQueries }) {
   return (
-    <__SingularName__sStyleWrapper>
+    <__PluralName__StyleWrapper>
       <Create__SingularName__Form
         currentTodoId={currentTodoId}
         refetchQueries={refetchQueries}
@@ -21,8 +21,8 @@ function __SingularName__s({ __SingularNameLowercase__s, currentTodoId, onUpdate
           onUpdate={onUpdate}
         />
       ))}
-    </__SingularName__sStyleWrapper>
+    </__PluralName__StyleWrapper>
   );
 }
 
-export default __SingularName__s;
+export default __PluralName__;

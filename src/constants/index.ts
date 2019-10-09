@@ -11,7 +11,8 @@ export const dataTypes = {
 }
 
 export const boilerPlateTypes = {
-  CREATION: 'creation',
+  CREATION_ROOT_TYPE: 'creation_root',
+  CREATION_NON_ROOT: 'creation',
   MULTIPLE_STRING: `${associationTypes.MULTIPLE}${dataTypes.STRING}`,
   MULTIPLE_ROOT: `${associationTypes.MULTIPLE}${dataTypes.STRING}Root`,
   SINGLE_STRING: `${associationTypes.SINGLE_REQUIRED}${dataTypes.STRING}`,
@@ -19,9 +20,10 @@ export const boilerPlateTypes = {
 }
 
 export const boilerPlates = {
-  [boilerPlateTypes.CREATION]: 'genericCreationForm',
+  [boilerPlateTypes.CREATION_ROOT_TYPE]: 'genericCreationFormRootType',
+  [boilerPlateTypes.CREATION_NON_ROOT]: 'genericCreationFormNonRoot',
   [boilerPlateTypes.MULTIPLE_STRING]: 'genericPluralNonRoot',
-  [boilerPlateTypes.MULTIPLE_ROOT]: 'genericPlural',
+  [boilerPlateTypes.MULTIPLE_ROOT]: 'genericPluralRootType',
   [boilerPlateTypes.SINGLE_STRING]: 'genericSingularString',
   [boilerPlateTypes.SINGLE_BOOLEAN]: 'genericSingularBoolean',
 }

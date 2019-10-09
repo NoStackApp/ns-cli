@@ -64,6 +64,7 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
         const ${childType}Data = JSON.parse(response.data.ExecuteAction);
 
         const new${singularName(parentType)} = {
+          id: new${singularName(parentType)}Data.instanceId,
           instance: {
             id: new${singularName(parentType)}Data.instanceId,
             value: new${singularName(parentType)}Data.value,
@@ -71,11 +72,13 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
           },
           children: [
               {
+                typeId: TYPE_${allCaps(childType)}_ID,
                 instances: [
                   {
-                     instance: {
-                        id: ${childType}Data.instanceId,
-                        value: ${childType}Data.value,
+                    id: new${childType}Data.instanceId,
+                    instance: {
+                        id: new${childType}Data.instanceId,
+                        value: new${childType}Data.value,
                         __typename: 'Instance',
                      },
                      __typename: 'InstanceWithTypedChildren',
@@ -96,6 +99,7 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
 export const createReplacementOptions = (type: string, source: string, boilerPlate: string, currentStack: StackInfo) => {
   const parentType = currentStack.types[type].sources[source].parentType
   let childrenImports = ''
+  let childrenTypeList = ''
   let childrenBody = ''
   let childrenConstantDeclarations = ''
   let constraintValue = 'ignoredParameter'
@@ -125,11 +129,11 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
         // console.log(`child=${child}, children[child]=${children[child]}`)
         let childComponent
         if (children[child] === associationTypes.MULTIPLE) {
-          childrenConstantDeclarations += `\n  const ${child} = ${type}.children;`
+          childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);`
           childComponent = pluralName(child)
         } else {
           actionIdsForSingleChildren += `, CREATE_${allCaps(child)}_FOR_${allCaps(source)}_ACTION_ID`
-          childrenConstantDeclarations += `\n  const ${child} = ${type}.children[0].instances[0];`
+          childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID).instances[0];`
           singleChildrenCreationCode += generateSingleChildCreationCode(type, child, source)
           singleChildrenComposeStatements += `\n  graphql(EXECUTE_ACTION, { name: 'create${singularName(child)}' }),`
           singleChildrenParams += `, create${singularName(child)}`
@@ -137,12 +141,14 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
         }
         childrenImports += `
 import ${childComponent} from '../${childComponent}'; `
-        childrenBody += `
+        childrenTypeList += ''
+        childrenBody += `, TYPE_${child}_ID
 < ${childComponent}
               ${child} = { ${child} }
               ${type}Id = {${type}.id}
-              label="Done?"
+              label=${singularName(child)}?
               onUpdate={onUpdate}
+              refetchQueries={refetchQueries}
       />`
       }
     )
@@ -161,10 +167,10 @@ import ${childComponent} from '../${childComponent}'; `
 
           let childComponent
           if (connectedChildren[child] === associationTypes.MULTIPLE) {
-            childrenConstantDeclarations += `\n  const ${child} = ${type}.children;`
+            childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);`
             childComponent = pluralName(child)
           } else {
-            childrenConstantDeclarations += `\n  const ${child} = ${type}.children[0];`
+            childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID).instances[0];`
             childComponent = singularName(child)
           }
 
@@ -229,6 +235,10 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
       fromRegExp: /__CHILDREN_IMPORT_LIST__/g,
       toString: childrenImports,
     },
+    childrenTypeList: {
+      fromRegExp: /__ChildrenTypeList__/g,
+      toString: childrenTypeList,
+    },
     childrenBody: {
       fromRegExp: /__CHILDREN_BODY_LIST__/g,
       toString: childrenBody,
@@ -244,6 +254,10 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
     singularParentName: {
       fromRegExp: /__SingularParentName__/g,
       toString: parentType,
+    },
+    singularParentNameAllCaps: {
+      fromRegExp: /__SingularParentNameAllCaps__/g,
+      toString: allCaps(parentType),
     },
     actionIdsForSingleChildren: {
       fromRegExp: /__ACTION_IDS_FOR_SINGLE_CHILDREN__/g,

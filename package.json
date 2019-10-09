@@ -29,6 +29,7 @@
     "object.map": "^1.0.1",
     "path": "^0.12.7",
     "pify": "^4.0.1",
+    "pkg-dir": "^4.2.0",
     "pluralize": "^8.0.0",
     "prompts": "^2.2.1",
     "replace-in-file": "^4.1.1",
@@ -85,6 +86,7 @@
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "updateReadme": "oclif-dev readme",
     "test": "echo \"No test specified\"",
+    "newtest": "nyc --extension .ts mocha --forbid-only \"test/**/spinstack.test.ts\"",
     "oldtest": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "createNoStack": "bin/create-no-stack-app",
     "version": "oclif-dev readme && git add README.md"

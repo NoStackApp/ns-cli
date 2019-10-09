@@ -1,115 +1,9 @@
 const fs = require('fs-extra')
 
-// import {allCaps} from '../inflections'
-
 import {StackInfo} from '../constants/types'
 import {allCaps, queryForSource, relationshipsForSource} from '../tools/inflections'
 
 import {sourcePropsDir} from './createTopProjectDirs'
-
-// interface QueryTree {
-//   [node: string]: QueryTree
-// }
-//
-// interface VisitedList {
-//   [node: string]: boolean,
-// }
-//
-// function deriveTreeChildren(currentStack: StackInfo, source: string, visited: VisitedList, currentRoot: string) {
-//   console.log(`in deriveTreeChildren(source: ${source}, currentRoot: ${currentRoot}`)
-//
-//   visited[currentRoot] = true
-//   // console.log(`currentStack.types=${JSON.stringify(currentStack.types)}`)
-//
-//   const nodeInfo = currentStack.types[currentRoot].sources[source]
-//   const potentialContiguousNodes = [
-//     nodeInfo.parentType,
-//     ...nodeInfo.children
-//   ]
-//   const contiguousSelectedNodes: string[] = []
-//
-//   let childrenObject: QueryTree = {}
-//
-//   while (potentialContiguousNodes.length > 0) {
-//     const node = potentialContiguousNodes.pop()
-//     if (node && !visited[node]) {
-//       // @ts-ignore
-//       if (currentStack.sources[source].selections.includes(node)) {
-//         contiguousSelectedNodes.push(node)
-//       } else {
-//         visited[node] = true
-//         const currentNodeInfo = currentStack.types[node].sources[source]
-//         const potentialConnectedNodesForCurrentNode = [
-//           currentNodeInfo.parentType,
-//           ...currentNodeInfo.children
-//         ]
-//         potentialConnectedNodesForCurrentNode.map(nodeChild => {
-//           if (nodeChild && nodeChild !== node) {
-//             potentialContiguousNodes.push(nodeChild)
-//           }
-//         })
-//       }
-//     }
-//   }
-//   contiguousSelectedNodes.map(
-//     node => {
-//       childrenObject[node] = deriveTreeChildren(currentStack, source, visited, node)
-//     }
-//   )
-//
-//   if (childrenObject === {}) return {}
-//   return childrenObject
-// }
-//
-// function createQueryBody(queryTree: QueryTree, node: string, currentStack: StackInfo) {
-//   const partsPhrase = `${singularName(node)}Parts`
-//
-//   if (Object.entries(queryTree).length > 0) {
-//     let childrenParts: string[] = []
-//     const children = queryTree[node]
-//     Object.keys(children).map(
-//       (child: string) => {
-//         childrenParts.push(createQueryBody(children[child], child, currentStack))
-//       }
-//     )
-//     // if (childrenTypeRelationships.length > 0) {
-//     return `instance {
-//         ...${partsPhrase}
-//       }
-//     children {
-//           ${childrenParts.join(', ')}
-//       }`
-//     // }
-//   }
-//   return `instance {
-//       ...${partsPhrase}
-//     }`
-//
-// }
-
-// function createTypeRelationships(queryTree: QueryTree, node: string, currentStack: StackInfo) {
-//   const nodeConstant = currentStack.types[node].const
-//   console.log(`in createTypeRelationships (node: ${node}, QueryTree: ${JSON.stringify(queryTree)}`)
-//
-//   if (Object.entries(queryTree).length > 0) {
-//     let childrenTypeRelationships: string[] = []
-//
-//     const children = queryTree[node]
-//     // console.log(`in createTypeRelationships (node: ${node}, children: ${JSON.stringify(children)}`)
-//     Object.keys(children).map(
-//       (child: string) => {
-//         childrenTypeRelationships.push(createTypeRelationships(children[child], child, currentStack))
-//       }
-//     )
-//     // if (childrenTypeRelationships.length > 0) {
-//     return `[${nodeConstant}]: {
-//         ${childrenTypeRelationships.join(', ')}
-//     }`
-//     // }
-//   }
-//   return `[${nodeConstant}]: null`
-//
-// }
 
 export async function createQueryFile(currentStack: StackInfo, source: string) {
   // console.log(`in createQueryFile for currentStack.  source= ${source}`)
@@ -132,7 +26,9 @@ export async function createQueryFile(currentStack: StackInfo, source: string) {
   const queryConstsImport = '\n\nimport { ' + selections.map(selection => `${currentStack.types[selection].const}`).join(', ') + '} from \'../../config\';'
   content += queryConstsImport
 
-  const queryFragmentsImport = '\n\nimport { ' + selections.map(selection => `${allCaps(selection)}_FRAGMENT`).join(', ') + '} from \'./fragments\';'
+  // const queryFragmentsImport = '\n\nimport { ' + selections.map(selection => `${allCaps(selection)}_FRAGMENT`).join(', ') + '} from \'./fragments\';'
+  const rootName = sourceInfo.selectionRoot
+  const queryFragmentsImport = `\n\nimport { ${allCaps(rootName)}_FRAGMENT, TO_DO_CHILD_FRAGMENT } from './fragments';`
   content += queryFragmentsImport
 
   const queryFragmentsList = '\n' + selections.map(selection => `$\{${allCaps(selection)}_FRAGMENT\}`).join('\n')

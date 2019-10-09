@@ -55,6 +55,7 @@ export interface SourceInfo {
   constraints: ConstraintsSet,
   connections: ConnectedList,
   owner: string,
+  root: string,
   selectionRoot: string,
   id: string,
 }

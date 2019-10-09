@@ -14,8 +14,22 @@ The four standard steps for creating an app are the following:
 3. spin up stack (call from the same directory as step 1): `nostack spinstack -u <moderatorName> -t dir/to/template/<templateFile> -s <stackName> -e <emailFor Moderator>`
 4. generate code (call from the same directory as step 1): `nostack makecode -a <appName>`
 
+The first step by far takes the most time.  Not only does it call create-react-app,
+but it installs every dependency, which can take 10 minutes.  Therefore, a 5 second alternative
+is to specify an `appBase`, which is a locally stored empty no-stack app.  You can specify it
+with the `-b` flag: `ns newapp -a app${currentNumber} -b ${appBase}`.
+
+The best practice is usually to create one initially by calling this:
+```
+appBase=~/path/to/appbase
+ns newapp -a ${appBase}
+```
+Then you can call it as you like.  The drawback of using an appBase is that if any of the
+dependencies change you will not see the changes.
+
 There is also a recommended shortcut command to get started:
-`nostack quickStarter -e ${email} -w ${password} -l ${license}  -u ${moderator} -s ${stackName} -a${appName} -t ${appTemplate}`
+`nostack quickStarter -e ${email} -w ${password} -l ${license}  -u ${moderator} -s ${stackName} -a${appName} -t ${appTemplate} -b ${appBase}`
+
 
 That will give you everything you need for your first app.  Note that
 you will need to provide a license and a template.  You can apply for a license at www.nostack.net. Documentation for

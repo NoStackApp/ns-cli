@@ -36,7 +36,7 @@ import {makeDirs} from './makeDirs'
 
 const boilerPlateToDir = (type: string, boilerPlateType: string) => {
   const mappingObject = {
-    [boilerPlateTypes.CREATION]: singularName(type) + 'CreationForm',
+    [boilerPlateTypes.CREATION_ROOT_TYPE]: singularName(type) + 'CreationForm',
     [boilerPlateTypes.SINGLE_BOOLEAN]: singularName(type),
     [boilerPlateTypes.SINGLE_STRING]: singularName(type),
     [boilerPlateTypes.MULTIPLE_STRING]: pluralName(type),

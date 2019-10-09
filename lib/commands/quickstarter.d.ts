@@ -5,6 +5,7 @@ export default class Quickstarter extends Command {
     static flags: {
         help: import("@oclif/parser/lib/flags").IBooleanFlag<void>;
         appName: flags.IOptionFlag<string | undefined>;
+        baseApp: flags.IOptionFlag<string | undefined>;
         stack: flags.IOptionFlag<string | undefined>;
         template: flags.IOptionFlag<string | undefined>;
         licenseId: flags.IOptionFlag<string | undefined>;

@@ -14,6 +14,13 @@ export async function createFragmentsFile(currentStack: StackInfo) {
     key => {
       fragmentsContent += `
 
+export const ${allCaps(key)}_CHILD_FRAGMENT = gql\`
+  fragment ${singularName(key)}ChildParts on Instance {
+    id
+    value
+  }
+
+
 export const ${allCaps(key)}_FRAGMENT = gql\`
   fragment ${singularName(key)}Parts on Instance {
     id

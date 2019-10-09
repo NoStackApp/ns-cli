@@ -4,6 +4,7 @@ export default class Newapp extends Command {
     static flags: {
         help: import("@oclif/parser/lib/flags").IBooleanFlag<void>;
         appName: flags.IOptionFlag<string | undefined>;
+        baseApp: flags.IOptionFlag<string | undefined>;
     };
     run(): Promise<void>;
 }
