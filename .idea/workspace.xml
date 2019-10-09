@@ -1,47 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/boilerplates/genericCreationFormNonRoot.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/queries/variables/OLDunitData.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/commands/resetstack.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/stacks/resetStackCall.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apps/createNoStackApp.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/apps/createNoStackApp.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/apps/createNoStackApp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createQueryFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createQueryFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createReplacementOptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createReplacementOptions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generateAppCode.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generateAppCode.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generateAppCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generateAppCode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commands/makecode.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/makecode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commands/newapp.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/newapp.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commands/newapp.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/newapp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commands/quickstarter.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/quickstarter.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commands/quickstarter.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/commands/quickstarter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/constants/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tools/genericApiCall.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tools/genericApiCall.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/appFlows/TwoChildrenTemplate" beforeDir="false" afterPath="$PROJECT_DIR$/resources/appFlows/TwoChildrenTemplate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/flattenData.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/flattenData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericCreationForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericCreationFormRootType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericPlural.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericPluralRootType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericPluralNonRoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericPluralNonRoot.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericSingularString.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericSingularString.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/queries/variables/unitData.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/queries/variables/unitData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/createFragmentsFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createFragmentsFile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/createQueryFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createQueryFile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/createReplacementOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createReplacementOptions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/createTypeFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createTypeFile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generateAppCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generateAppCode.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/commands/callapi.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/commands/callapi.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/commands/spinstack.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/commands/spinstack.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/commands/testLoginData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/test/commands/testLoginData.ts" afterDir="false" />
-    </list>
+    <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
