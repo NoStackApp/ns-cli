@@ -5,7 +5,7 @@ import compose from '@shopify/react-compose';
 import {graphql} from '@apollo/react-hoc';
 
 import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID, DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
-import {__SingularParentNameAllCaps__CHILD_FRAGMENT} from '../../source-props/fragments';
+import {__SingularParentNameAllCaps___CHILD_FRAGMENT} from '../../source-props/fragments';
 
 __CHILDREN_IMPORT_LIST__
 

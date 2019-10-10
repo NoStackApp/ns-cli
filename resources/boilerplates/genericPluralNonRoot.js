@@ -9,7 +9,7 @@ const __PluralName__StyleWrapper = styled.div``;
 function __PluralName__({ __SingularNameLowercase__s, currentTodoId, onUpdate, refetchQueries }) {
   return (
     <__PluralName__StyleWrapper>
-      <Create__SingularName__Form
+      <__SingularName__CreationForm
         currentTodoId={currentTodoId}
         refetchQueries={refetchQueries}
       />

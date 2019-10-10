@@ -8,7 +8,8 @@ export declare const dataTypes: {
     BOOLEAN: string;
 };
 export declare const boilerPlateTypes: {
-    CREATION: string;
+    CREATION_ROOT_TYPE: string;
+    CREATION_NON_ROOT: string;
     MULTIPLE_STRING: string;
     MULTIPLE_ROOT: string;
     SINGLE_STRING: string;

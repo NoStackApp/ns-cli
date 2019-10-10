@@ -142,11 +142,11 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
         childrenImports += `
 import ${childComponent} from '../${childComponent}'; `
         childrenTypeList += ''
-        childrenBody += `, TYPE_${child}_ID
+        childrenBody += `, TYPE_${allCaps(child)}_ID
 < ${childComponent}
               ${child} = { ${child} }
               ${type}Id = {${type}.id}
-              label=${singularName(child)}?
+              label="${singularName(child)}?"
               onUpdate={onUpdate}
               refetchQueries={refetchQueries}
       />`
