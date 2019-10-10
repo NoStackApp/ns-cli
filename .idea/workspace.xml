@@ -3,19 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createFragmentsFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createFragmentsFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createQueryFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createQueryFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createReplacementOptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createReplacementOptions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createTypeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createTypeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generateAppCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generateAppCode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/constants/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/constants/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/constants/types.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants/types.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericPluralNonRoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericPluralNonRoot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createFragmentsFile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createQueryFile.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createReplacementOptions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericCreationFormNonRoot.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericCreationFormNonRoot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericCreationFormRootType.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericCreationFormRootType.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/boilerplates/genericSingularString.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/boilerplates/genericSingularString.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/createFragmentsFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createFragmentsFile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/codeGeneration/createQueryFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createQueryFile.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/codeGeneration/createReplacementOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createReplacementOptions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/createTypeFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/createTypeFile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generateAppCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generateAppCode.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +119,7 @@
       <workItem from="1570089912620" duration="26084000" />
       <workItem from="1570348015956" duration="15154000" />
       <workItem from="1570649577750" duration="2554000" />
-      <workItem from="1570709911879" duration="5458000" />
+      <workItem from="1570709911879" duration="13880000" />
     </task>
     <servers />
   </component>
@@ -142,17 +138,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/lib/codeGeneration/createReplacementOptions.js</url>
-          <line>119</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

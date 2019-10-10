@@ -66,7 +66,7 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
           value: __SingularNameLowercase__Value,
           instanceId: __SingularNameLowercase__.id,
         }),
-        update: onUpdate(__SingularNameLowercase__.id, __SingularParentNameAllCaps__CHILD_FRAGMENT),
+        update: onUpdate(__SingularNameLowercase__.id, __SingularParentNameAllCaps___CHILD_FRAGMENT),
       },
     });
 

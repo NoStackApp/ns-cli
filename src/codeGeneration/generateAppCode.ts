@@ -53,7 +53,7 @@ export async function generateCodeFiles(appName: string) {
         async (type: string) => {
           const assnType = currentStack.types[type].sources[source].assnType
           const dataType = currentStack.types[type].dataType
-          // console.log(`assnType=${assnType}`)
+          // console.log(`type=${type}, assnType=${assnType}`)
 
           await createTypeFile(type, source, associationTypes.SINGLE_REQUIRED + dataType, currentStack)
 

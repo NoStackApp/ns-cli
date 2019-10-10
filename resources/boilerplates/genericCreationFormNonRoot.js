@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { withNoStack, EXECUTE_ACTION } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-import { CREATE___SingularForRelationshipAllCaps___ACTION_ID__ACTION_IDS_FOR_SINGLE_CHILDREN__ } from '../../../config';
+import { CREATE___SingularForRelationshipAllCaps___ACTION_ID__ACTION_IDS_FOR_SINGLE_CHILDREN____TYPE_IDS_FOR_SINGLE_CHILDREN__ } from '../../../config';
 
 // change styling here
 const Form = styled.div`

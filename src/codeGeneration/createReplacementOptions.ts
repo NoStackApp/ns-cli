@@ -51,7 +51,7 @@ export interface ReplacementOptions {
  */
 
 function generateSingleChildCreationCode(parentType: string, childType: string, source: string) {
-  return `    await createIsCompleted({
+  return `    await create${singularName(childType)}({
       variables: {
         actionId: CREATE_${allCaps(childType)}_FOR_${allCaps(source)}_ACTION_ID,
         executionParameters: JSON.stringify({
@@ -61,7 +61,7 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
         unrestricted: false,
       },
       update: (cache, response) => {
-        const ${childType}Data = JSON.parse(response.data.ExecuteAction);
+        const new${singularName(childType)}Data = JSON.parse(response.data.ExecuteAction);
 
         const new${singularName(parentType)} = {
           id: new${singularName(parentType)}Data.instanceId,
@@ -75,10 +75,10 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
                 typeId: TYPE_${allCaps(childType)}_ID,
                 instances: [
                   {
-                    id: new${childType}Data.instanceId,
+                    id: new${singularName(childType)}Data.instanceId,
                     instance: {
-                        id: new${childType}Data.instanceId,
-                        value: new${childType}Data.value,
+                        id: new${singularName(childType)}Data.instanceId,
+                        value: new${singularName(childType)}Data.value,
                         __typename: 'Instance',
                      },
                      __typename: 'InstanceWithTypedChildren',
@@ -103,6 +103,7 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
   let childrenBody = ''
   let childrenConstantDeclarations = ''
   let constraintValue = 'ignoredParameter'
+  let typeIdsForSingleChildren = ''
   let actionIdsForSingleChildren = ''
   let singleChildrenCreationCode = ''
   let singleChildrenComposeStatements = ''
@@ -129,10 +130,13 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
         // console.log(`child=${child}, children[child]=${children[child]}`)
         let childComponent
         if (children[child] === associationTypes.MULTIPLE) {
+          childrenTypeList += `, TYPE_${allCaps(child)}_ID`
           childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);`
           childComponent = pluralName(child)
         } else {
           actionIdsForSingleChildren += `, CREATE_${allCaps(child)}_FOR_${allCaps(source)}_ACTION_ID`
+          typeIdsForSingleChildren += `, TYPE_${allCaps(child)}_ID`
+          childrenTypeList += `, TYPE_${allCaps(child)}_ID`
           childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID).instances[0];`
           singleChildrenCreationCode += generateSingleChildCreationCode(type, child, source)
           singleChildrenComposeStatements += `\n  graphql(EXECUTE_ACTION, { name: 'create${singularName(child)}' }),`
@@ -167,10 +171,10 @@ import ${childComponent} from '../${childComponent}'; `
 
           let childComponent
           if (connectedChildren[child] === associationTypes.MULTIPLE) {
-            childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);`
+            // childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);`
             childComponent = pluralName(child)
           } else {
-            childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID).instances[0];`
+            // childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID).instances[0];`
             childComponent = singularName(child)
           }
 
@@ -262,6 +266,10 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
     actionIdsForSingleChildren: {
       fromRegExp: /__ACTION_IDS_FOR_SINGLE_CHILDREN__/g,
       toString: actionIdsForSingleChildren,
+    },
+    typeIdsForSingleChildren: {
+      fromRegExp: /__TYPE_IDS_FOR_SINGLE_CHILDREN__/g,
+      toString: typeIdsForSingleChildren,
     },
     singleChildrenCreationCode: {
       fromRegExp: /__SINGLE_CHILDREN_CREATION_CODE__/g,
