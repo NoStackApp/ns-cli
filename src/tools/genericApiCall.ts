@@ -1,6 +1,8 @@
 import {GraphQLClient} from 'graphql-request'
 
 import {secureDirectory} from '../auth/config'
+import {getUserInfo} from '../auth/getUserInfo'
+import {loginUser} from '../auth/loginUser'
 import {refreshAccessToken} from '../auth/refreshAccessToken'
 import {setUserInfo} from '../auth/setUserInfo'
 import {liveServer} from '../constants'
@@ -67,9 +69,18 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
       dataReturned = data
       finished = true
     })
-      .catch(err => {
-        console.log(JSON.stringify(err.response.data)) // Response data if available
-        throw new Error(err.response.errors) // GraphQL response errors
+      .catch(async err => {
+        console.log(JSON.stringify('Try calling the request again...')) // Response data if available
+
+        await loginUser(userInfo)
+
+        try {
+          await getUserInfo(userInfo) // second try
+        } catch (errReadingLogin) {
+          console.error(errReadingLogin)
+          throw new Error(err.response.errors) // GraphQL response errors
+        }
+
       })
   }
   return dataReturned
