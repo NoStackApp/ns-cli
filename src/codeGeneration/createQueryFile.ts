@@ -43,7 +43,9 @@ export async function createQueryFile(currentStack: StackInfo, source: string) {
       typeRelationships: $typeRelationships
       parameters: $parameters
     )
+    {
       ${sourceInfo.props.queryBody}
+    }
   }
   ${queryFragmentsList}
 \`;
