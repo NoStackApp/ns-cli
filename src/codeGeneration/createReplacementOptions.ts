@@ -146,7 +146,7 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
         childrenImports += `
 import ${childComponent} from '../${childComponent}'; `
         childrenTypeList += ''
-        childrenBody += `, TYPE_${allCaps(child)}_ID
+        childrenBody += `
 < ${childComponent}
               ${child} = { ${child} }
               ${type}Id = {${type}.id}
