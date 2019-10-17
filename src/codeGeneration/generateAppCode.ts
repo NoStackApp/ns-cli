@@ -84,14 +84,25 @@ export async function generateAppCode(appName: string) {
     {
       title: 'Make First Git Commit',
       task: async () => {
-        await execa(
-          'git',
-          ['-C', appName, 'add', '.']
-        )
-        await execa(
-          'git',
-          ['-C', appName, 'commit', '-m', 'First no-stack commit :tada']
-        )
+        try {
+          await execa(
+            'git',
+            ['-C', appName, 'add', '.']
+          )
+        } catch {
+          console.log("git error when attempting to add changes.  Perhaps your generated code didn't change?")
+          return
+        }
+
+        try {
+          await execa(
+            'git',
+            ['-C', appName, 'commit', '-m', 'First no-stack commit :tada']
+          )
+        } catch {
+          console.log("git error when attempting to commit.  Perhaps your generated code didn't change?")
+          return
+        }
       },
     },
   ])

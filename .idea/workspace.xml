@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae52d04f-47e1-4756-b1a4-2959a13ed926" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/queries/queryFiles/executeAction.gql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/queries/queryFiles/sourceSimple.gql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/queries/queryFiles/unitDataFailing.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/queries/variables/executeAction.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/queries/variables/sourceSimple.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/queries/variables/unitData/projectForUser.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/queries/variables/executeAction/executeCreateTaskForTaskInfo.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/queries/variables/unitData/taskInfoWithStep.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/createTypeFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/createTypeFile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/codeGeneration/generateAppCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/codeGeneration/generateAppCode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/queries/variables/unitData.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/queries/variables/unitData/taskInfo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/refreshAccessToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/refreshAccessToken.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tools/genericApiCall.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools/genericApiCall.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/refreshAccessToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/refreshAccessToken.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tools/genericApiCall.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/tools/genericApiCall.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/queries/variables/executeAction.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/queries/variables/executeAction/executeAction.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/codeGeneration/generateAppCode.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/codeGeneration/generateAppCode.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +39,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../temp/testapp1/stack.json" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/queries/variables/executeAction" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="$PROJECT_DIR$/node_modules/tslint" />
@@ -56,11 +51,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/queries/variables/executeAction" />
+      <recent name="$PROJECT_DIR$/resources/queries/variables/unitData" />
       <recent name="$PROJECT_DIR$/resources/queries/variables" />
       <recent name="$PROJECT_DIR$/resources/queries/queryFiles" />
       <recent name="$PROJECT_DIR$/src/stacks" />
-      <recent name="$PROJECT_DIR$/src/commands" />
-      <recent name="$PROJECT_DIR$/resources/boilerplates" />
     </key>
     <key name="es6.move.members.recent.items">
       <recent name="$PROJECT_DIR$/test/commands/testLoginData.ts" />
@@ -70,11 +65,11 @@
       <recent name="$PROJECT_DIR$/src/codeGeneration/generation/createFragmentsFile.ts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/queries/variables/executeAction" />
       <recent name="$PROJECT_DIR$/resources/queries/variables/unitData" />
       <recent name="$PROJECT_DIR$/resources/appFlows" />
       <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/src/codeGeneration" />
-      <recent name="$PROJECT_DIR$/src/codeGeneration/generation" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -122,7 +117,7 @@
       <workItem from="1570348015956" duration="15154000" />
       <workItem from="1570649577750" duration="2554000" />
       <workItem from="1570709911879" duration="15712000" />
-      <workItem from="1570907231083" duration="14448000" />
+      <workItem from="1570907231083" duration="28025000" />
     </task>
     <servers />
   </component>
