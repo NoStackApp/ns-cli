@@ -1,10 +1,11 @@
 export function flattenChildData(element) {
   const flatData ={
     typeId: element.typeId,
+    instances: []
   };
 
-  if (element.instances) {
-    flatData.instances = element.instances.map(
+  if (element.instances && element.instances.length > 0) {
+    flatData.instances = element.instances.filter(child => !!child).map(
       instance => flattenData(instance)
     );
   }
@@ -15,10 +16,11 @@ export function flattenChildData(element) {
 export function flattenData(element) {
   const flatData = {
     ...element.instance,
+    children: []
   };
 
-  if (element.children) {
-    flatData.children = element.children.map(
+  if (element.children && element.children.length > 0) {
+    flatData.children = element.children.filter(child => !!child).map(
       child => flattenChildData(child)
     );
   }
