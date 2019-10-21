@@ -131,13 +131,15 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
         let childComponent
         if (children[child] === associationTypes.MULTIPLE) {
           childrenTypeList += `, TYPE_${allCaps(child)}_ID`
-          childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);`
+          childrenConstantDeclarations += `\n  const ${child}Data = ${type}.children && ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);
+            const ${child} = ${child}Data ? ${child}Data.instances : [];`
           childComponent = pluralName(child)
         } else {
           actionIdsForSingleChildren += `, CREATE_${allCaps(child)}_FOR_${allCaps(source)}_ACTION_ID`
           typeIdsForSingleChildren += `, TYPE_${allCaps(child)}_ID`
           childrenTypeList += `, TYPE_${allCaps(child)}_ID`
-          childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID).instances[0];`
+          childrenConstantDeclarations += `\n  const ${child}Data = ${type}.children && ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);
+            const ${child} = ${child}Data ? ${child}Data.instances[0] : [];`
           singleChildrenCreationCode += generateSingleChildCreationCode(type, child, source)
           singleChildrenComposeStatements += `\n  graphql(EXECUTE_ACTION, { name: 'create${singularName(child)}' }),`
           singleChildrenParams += `, create${singularName(child)}`
