@@ -28,10 +28,18 @@ export async function createQueryFile(currentStack: StackInfo, source: string) {
 
   // const queryFragmentsImport = '\n\nimport { ' + selections.map(selection => `${allCaps(selection)}_FRAGMENT`).join(', ') + '} from \'./fragments\';'
   const rootName = sourceInfo.selectionRoot
-  const queryFragmentsImport = `\n\nimport { ${allCaps(rootName)}_FRAGMENT, ${allCaps(rootName)}_CHILD_FRAGMENT } from './fragments';`
+  const rootChildren = currentStack.types[rootName].sources[source].children
+  let queryFragmentsImport = `\n\nimport { ${allCaps(rootName)}_FRAGMENT, ${allCaps(rootName)}_CHILD_FRAGMENT } from './fragments';`
+  if (rootChildren.length === 0) {
+    queryFragmentsImport = `\n\nimport { ${allCaps(rootName)}_FRAGMENT } from './fragments';`
+  }
   content += queryFragmentsImport
 
-  const queryFragmentsList = `\n\${${allCaps(rootName)}_FRAGMENT}\n\${${allCaps(rootName)}_CHILD_FRAGMENT}`
+  let queryFragmentsList = `\n\${${allCaps(rootName)}_FRAGMENT}\n\${${allCaps(rootName)}_CHILD_FRAGMENT}`
+  if (rootChildren.length === 0) {
+    queryFragmentsList = `\n\${${allCaps(rootName)}_FRAGMENT}`
+  }
+
   const queryBody = `\n\nexport const ${queryName} = gql\`
   query UNIT(
     $id: ID!

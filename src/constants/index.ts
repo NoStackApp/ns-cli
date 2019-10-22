@@ -16,6 +16,7 @@ export const boilerPlateTypes = {
   MULTIPLE_STRING: `${associationTypes.MULTIPLE}${dataTypes.STRING}`,
   MULTIPLE_ROOT: `${associationTypes.MULTIPLE}${dataTypes.STRING}Root`,
   SINGLE_STRING: `${associationTypes.SINGLE_REQUIRED}${dataTypes.STRING}`,
+  SINGLE_ROOT: `${associationTypes.SINGLE_REQUIRED}${dataTypes.STRING}Root`,
   SINGLE_BOOLEAN: `${associationTypes.SINGLE_REQUIRED}${dataTypes.BOOLEAN}`,
 }
 
@@ -24,7 +25,8 @@ export const boilerPlates = {
   [boilerPlateTypes.CREATION_NON_ROOT]: 'genericCreationFormNonRoot',
   [boilerPlateTypes.MULTIPLE_STRING]: 'genericPluralNonRoot',
   [boilerPlateTypes.MULTIPLE_ROOT]: 'genericPluralRootType',
-  [boilerPlateTypes.SINGLE_STRING]: 'genericSingularString',
+  [boilerPlateTypes.SINGLE_ROOT]: 'genericSingularString',
+  [boilerPlateTypes.SINGLE_STRING]: 'genericSingularStringNonRoot',
   [boilerPlateTypes.SINGLE_BOOLEAN]: 'genericSingularBoolean',
 }
 

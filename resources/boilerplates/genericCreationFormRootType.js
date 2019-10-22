@@ -44,8 +44,7 @@ function __SingularName__CreationForm({ __SingularParentName__Id, create__Singul
           value: __SingularNameLowercase__Value,
         }),
         unrestricted: false,
-      },
-      update: onAdd(),
+      },__UPDATE_ON_ADD_LINE__
     });
 
     const new__SingularName__Data = JSON.parse(create__SingularName__Response.data.ExecuteAction);

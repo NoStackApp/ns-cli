@@ -40,6 +40,7 @@ const boilerPlateToDir = (type: string, boilerPlateType: string) => {
     [boilerPlateTypes.CREATION_NON_ROOT]: singularName(type) + 'CreationForm',
     [boilerPlateTypes.SINGLE_BOOLEAN]: singularName(type),
     [boilerPlateTypes.SINGLE_STRING]: singularName(type),
+    [boilerPlateTypes.SINGLE_ROOT]: singularName(type),
     [boilerPlateTypes.MULTIPLE_STRING]: pluralName(type),
     [boilerPlateTypes.MULTIPLE_ROOT]: pluralName(type),
   }
