@@ -106,8 +106,11 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
   let typeIdsForSingleChildren = ''
   let actionIdsForSingleChildren = ''
   let singleChildrenCreationCode = ''
+  let updateOnAddLine = '\n' +
+    '      update: onAdd(),'
   let singleChildrenComposeStatements = ''
   let singleChildrenParams = ''
+
 
   if (boilerPlate !== boilerPlates[associationTypes.MULTIPLE]) {
     let children = {...currentStack.sources[source].tree[type]}
@@ -132,8 +135,17 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
         if (children[child] === associationTypes.MULTIPLE) {
           childrenTypeList += `, TYPE_${allCaps(child)}_ID`
           childrenConstantDeclarations += `\n  const ${child}Data = ${type}.children && ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);
-            const ${child} = ${child}Data ? ${child}Data.instances : [];`
+  const ${pluralLowercaseName(child)} = ${child}Data ? ${child}Data.instances : [];`
           childComponent = pluralName(child)
+          childrenBody += `
+< ${childComponent}
+              ${pluralLowercaseName(child)} = { ${pluralLowercaseName(child)} }
+              ${type}Id = {${type}.id}
+              label="${singularName(child)}?"
+              onUpdate={onUpdate}
+              refetchQueries={refetchQueries}
+      />`
+
         } else {
           actionIdsForSingleChildren += `, CREATE_${allCaps(child)}_FOR_${allCaps(source)}_ACTION_ID`
           typeIdsForSingleChildren += `, TYPE_${allCaps(child)}_ID`
@@ -141,14 +153,11 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
           childrenConstantDeclarations += `\n  const ${child}Data = ${type}.children && ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);
             const ${child} = ${child}Data ? ${child}Data.instances[0] : [];`
           singleChildrenCreationCode += generateSingleChildCreationCode(type, child, source)
+          updateOnAddLine = ''
           singleChildrenComposeStatements += `\n  graphql(EXECUTE_ACTION, { name: 'create${singularName(child)}' }),`
           singleChildrenParams += `, create${singularName(child)}`
           childComponent = singularName(child)
-        }
-        childrenImports += `
-import ${childComponent} from '../${childComponent}'; `
-        childrenTypeList += ''
-        childrenBody += `
+          childrenBody += `
 < ${childComponent}
               ${child} = { ${child} }
               ${type}Id = {${type}.id}
@@ -156,6 +165,11 @@ import ${childComponent} from '../${childComponent}'; `
               onUpdate={onUpdate}
               refetchQueries={refetchQueries}
       />`
+
+        }
+        childrenImports += `
+import ${childComponent} from '../${childComponent}'; `
+        childrenTypeList += ''
       }
     )
 
@@ -284,6 +298,10 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
     singleChildrenParams: {
       fromRegExp: /__SINGLE_CHILDREN_PARAMS__/g,
       toString: singleChildrenParams,
+    },
+    updateOnAddLine: {
+      fromRegExp: /__UPDATE_ON_ADD_LINE__/g,
+      toString: updateOnAddLine,
     },
   }
 
