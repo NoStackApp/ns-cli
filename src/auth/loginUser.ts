@@ -26,7 +26,7 @@ export async function loginUser(userInfo: UserInfo) {
 
   if (!userInfo.password) {
     response = await prompts({
-      type: 'text',
+      type: 'password',
       name: 'password',
       message: `User ${userInfo.name} is not logged in. What is their password?`
     })
