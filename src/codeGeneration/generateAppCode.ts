@@ -41,14 +41,14 @@ export async function generateCodeFiles(appName: string) {
 
   await Promise.all(Object.keys(sources).map(
     async (source: string) => {
-      console.log(`source=${source}`)
+      // console.log(`source=${source}`)
       const types = sources[source].selections
       // console.log(`types=${JSON.stringify(types)}`)
       await Promise.all(types.map(
         async (type: string) => {
           const assnType = currentStack.types[type].sources[source].assnType
           const dataType = currentStack.types[type].dataType
-          console.log(`type=${type}, assnType=${assnType}`)
+          // console.log(`type=${type}, assnType=${assnType}`)
           const {selectionRoot} = currentStack.sources[source]
 
           // await createTypeFile(type, source, associationTypes.SINGLE_REQUIRED + dataType, currentStack)

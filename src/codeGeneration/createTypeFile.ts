@@ -48,11 +48,11 @@ const boilerPlateToDir = (type: string, boilerPlateType: string) => {
 }
 
 export async function createTypeFile(type: string, source: string, boilerPlateType: string, currentStack: StackInfo) {
-  console.log(`in createTypeFile, type=${type}, boilerPlate=${boilerPlateType}`)
+  // console.log(`in createTypeFile, type=${type}, boilerPlate=${boilerPlateType}`)
   // const parentType = currentStack.types[type].sources[source].parentType
   const boilerPlate = boilerPlates[boilerPlateType]
   const dir = boilerPlateToDir(type, boilerPlateType)
-  console.log(`in createTypeFile, dir=${dir}`)
+  // console.log(`in createTypeFile, dir=${dir}`)
   // if (boilerPlate !== boilerPlates[associationTypes.MULTIPLE]) {
   //   dir = singularName(type)
   // }
