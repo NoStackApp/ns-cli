@@ -19,7 +19,7 @@ const Button = styled.button`
   margin-left: 1em;
 `;
 
-function __SingularName__CreationForm({ __SingularParentName__Id, create__SingularName____SINGLE_CHILDREN_PARAMS__, onAdd }) {
+function __SingularName__CreationForm({ __SingularParentName__Id, create__SingularName____SINGLE_CHILDREN_PARAMS__, refetchQueries }) {
   const [ __SingularNameLowercase__Value, update__SingularName__Value ] = useState('');
   const [ loading, updateLoading ] = useState(false);
 
