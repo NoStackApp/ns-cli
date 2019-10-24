@@ -13,6 +13,7 @@ export declare const boilerPlateTypes: {
     MULTIPLE_STRING: string;
     MULTIPLE_ROOT: string;
     SINGLE_STRING: string;
+    SINGLE_ROOT: string;
     SINGLE_BOOLEAN: string;
 };
 export declare const boilerPlates: {

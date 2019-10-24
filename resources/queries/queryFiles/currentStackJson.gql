@@ -1,0 +1,1 @@
+query  currentStackJson($stackId: ID!) {currentStackJson(platformId:$stackId)}
