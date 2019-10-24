@@ -28,7 +28,7 @@ function __PluralName__({ __SingularParentName__Id }) {
       query={__SOURCE_QUERY_NAME__}
       parameters={parameters}
     >
-      {({loading, error, data, updateUnitAfterCreateAction, updateUnitInstanceAfterUpdateAction, updateUnitAfterDeleteAction, refetchQueries}) => {
+      {({loading, error, data, refetchQueries}) => {
         if (loading) return 'Loading...';
 
         if (error) {
@@ -47,13 +47,11 @@ function __PluralName__({ __SingularParentName__Id }) {
                   key={__SingularNameLowercase__.id}
                   parentId={__SingularParentName__Id}
                   __SingularNameLowercase__={__SingularNameLowercase__}
-                  onUpdate={updateUnitInstanceAfterUpdateAction}
-                  onDelete={updateUnitAfterDeleteAction}
                   refetchQueries={refetchQueries}
                 />
               ))
             }
-            <__SingularName__CreationForm  __SingularParentName__Id={__SingularParentName__Id} onAdd={updateUnitAfterCreateAction}/>
+            <__SingularName__CreationForm  __SingularParentName__Id={__SingularParentName__Id} refetchQueries={refetchQueries}/>
           </__PluralName__StyleWrapper>
           </>
         );

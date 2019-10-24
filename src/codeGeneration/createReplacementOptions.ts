@@ -60,38 +60,7 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
         }),
         unrestricted: false,
       },
-      update: (cache, response) => {
-        const new${singularName(childType)}Data = JSON.parse(response.data.ExecuteAction);
-
-        const new${singularName(parentType)} = {
-          id: new${singularName(parentType)}Data.instanceId,
-          instance: {
-            id: new${singularName(parentType)}Data.instanceId,
-            value: new${singularName(parentType)}Data.value,
-            __typename: 'Instance',
-          },
-          children: [
-              {
-                typeId: TYPE_${allCaps(childType)}_ID,
-                instances: [
-                  {
-                    id: new${singularName(childType)}Data.instanceId,
-                    instance: {
-                        id: new${singularName(childType)}Data.instanceId,
-                        value: new${singularName(childType)}Data.value,
-                        __typename: 'Instance',
-                     },
-                     __typename: 'InstanceWithTypedChildren',
-                  },
-                ],
-                __typename: 'TypeWithInstances',
-              },
-          ],
-          __typename: 'InstanceWithTypedChildren',
-        };
-
-        onAdd(new${singularName(parentType)})(cache);
-      },
+      refetchQueries,
     });
 `
 }
