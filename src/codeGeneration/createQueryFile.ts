@@ -6,41 +6,13 @@ import {allCaps, queryForSource, relationshipsForSource} from '../tools/inflecti
 import {sourcePropsDir} from './createTopProjectDirs'
 
 export async function createQueryFile(currentStack: StackInfo, source: string) {
-  // console.log(`in createQueryFile for currentStack.  source= ${source}`)
+
   const sourceInfo = currentStack.sources[source]
 
   let content = "import gql from 'graphql-tag';"
-
-  // const selectionRoot = sourceInfo.selectionRoot
-  // console.log(`selectionRoot= ${selectionRoot}`)
-
-  // let queryTree: QueryTree = {
-  //   [selectionRoot]: deriveTreeChildren(currentStack, source, {}, selectionRoot)
-  // }
-  //
   const queryName = queryForSource(source) // `${allCaps(source)}_QUERY`
-  //
-  // // console.log(`currentStack.sources[source]= ${JSON.stringify(currentStack.sources[source])}`)
-  const selections: string[] = currentStack.sources[source].selections
 
-  const queryConstsImport = '\n\nimport { ' + selections.map(selection => `${currentStack.types[selection].const}`).join(', ') + '} from \'../../config\';'
-  content += queryConstsImport
-
-  // const queryFragmentsImport = '\n\nimport { ' + selections.map(selection => `${allCaps(selection)}_FRAGMENT`).join(', ') + '} from \'./fragments\';'
-  const rootName = sourceInfo.selectionRoot
-  const rootChildren = currentStack.types[rootName].sources[source].children
-  let queryFragmentsImport = `\n\nimport { ${allCaps(rootName)}_FRAGMENT, ${allCaps(rootName)}_CHILD_FRAGMENT } from './fragments';`
-  if (rootChildren.length === 0) {
-    queryFragmentsImport = `\n\nimport { ${allCaps(rootName)}_FRAGMENT } from './fragments';`
-  }
-  content += queryFragmentsImport
-
-  let queryFragmentsList = `\n\${${allCaps(rootName)}_FRAGMENT}\n\${${allCaps(rootName)}_CHILD_FRAGMENT}`
-  if (rootChildren.length === 0) {
-    queryFragmentsList = `\n\${${allCaps(rootName)}_FRAGMENT}`
-  }
-
-  const queryBody = `\n\nexport const ${queryName} = gql\`
+  const queryBody = `\nexport const ${queryName} = gql\`
   query UNIT(
     $id: ID!
     $typeRelationships: String!
@@ -55,30 +27,17 @@ export async function createQueryFile(currentStack: StackInfo, source: string) {
       ${sourceInfo.props.queryBody}
     }
   }
-  ${queryFragmentsList}
 \`;
 `
 
-  // console.log(`sourceInfo.props=${JSON.stringify(sourceInfo.props, null, 2)}`)
-
-  /*
-  SAMPLE relationship tree...
-
-  export const PROJECTS_FOR_CURRENT_USER_RELATIONSHIPS = {
-  [TYPE_PROJECT_ID]: null,
-};
-   */
   content += `\n${queryBody}`
-  // console.log(`content=${content}`)
-//
-// //
-  const relationshipName = relationshipsForSource(source) // `${allCaps(source)}_RELATIONSHIP`
-  const relationshipText = `export const ${relationshipName} = {
+  const relationshipsName = relationshipsForSource(source) // `${allCaps(source)}_RELATIONSHIP`
+  const relationshipsText = `export const ${relationshipsName} = {
    ${sourceInfo.props.typeRelationships},
 };`
-//
-  content += `${relationshipText}`
-  // console.log(`content=${content}`)
+
+  content += `
+  ${relationshipsText}`
 
   const queryFile = `${sourcePropsDir}/${source}.js`
   try {

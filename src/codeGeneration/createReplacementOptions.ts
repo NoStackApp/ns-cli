@@ -75,8 +75,7 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
   let typeIdsForSingleChildren = ''
   let actionIdsForSingleChildren = ''
   let singleChildrenCreationCode = ''
-  let updateOnAddLine = '\n' +
-    '      update: onAdd(),'
+  let updateOnAddLine = '\n      refetchQueries'
   let singleChildrenComposeStatements = ''
   let singleChildrenParams = ''
 
@@ -110,7 +109,6 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
               ${pluralLowercaseName(child)} = { ${pluralLowercaseName(child)} }
               ${type}Id = {${type}.id}
               label="${singularName(child)}?"
-              onUpdate={onUpdate}
               refetchQueries={refetchQueries}
       />`
 
@@ -130,7 +128,6 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
               ${child} = { ${child} }
               ${type}Id = {${type}.id}
               label="${singularName(child)}?"
-              onUpdate={onUpdate}
               refetchQueries={refetchQueries}
       />`
 

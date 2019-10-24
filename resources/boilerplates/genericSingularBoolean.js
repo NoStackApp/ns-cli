@@ -4,7 +4,6 @@ import { graphql } from '@apollo/react-hoc';
 import { EXECUTE_ACTION } from '@nostack/no-stack';
 
 import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID} from '../../../config';
-import {__SingularNameAllCaps___FRAGMENT} from '../../source-props/fragments';
 
 // add styling here
 const __SingularName__StyleWrapper = styled.span`
@@ -14,7 +13,7 @@ const __SingularName__StyleWrapper = styled.span`
   padding: 0.5em;
 `;
 
-function __SingularName__({ __SingularNameLowercase__, label, updateInstance, onUpdate, disabled = false }) {
+function __SingularName__({ __SingularNameLowercase__, label, updateInstance, disabled = false }) {
   async function handleUpdateCompletion() {
     const value = __SingularNameLowercase__.value === 'true' ? 'false' : 'true';
 
@@ -33,7 +32,6 @@ function __SingularName__({ __SingularNameLowercase__, label, updateInstance, on
           value,
         }),
       },
-      update: onUpdate(__SingularNameLowercase__.id, __SingularNameAllCaps___FRAGMENT),
     });
   }
 

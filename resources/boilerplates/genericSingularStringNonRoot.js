@@ -5,7 +5,6 @@ import compose from '@shopify/react-compose';
 import {graphql} from '@apollo/react-hoc';
 
 import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID, DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
-import {__SingularParentNameAllCaps___CHILD_FRAGMENT} from '../../source-props/fragments';
 
 __CHILDREN_IMPORT_LIST__
 
@@ -42,7 +41,7 @@ const DeleteMenu = styled.div`
   border: 1px solid #eeeeee;
 `;
 
-function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, deleteInstance, onUpdate, refetchQueries}) {
+function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, deleteInstance, refetchQueries}) {
   const [__SingularNameLowercase__Value, update__SingularName__Value] = useState(__SingularNameLowercase__.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
@@ -66,7 +65,6 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
           value: __SingularNameLowercase__Value,
           instanceId: __SingularNameLowercase__.id,
         }),
-        update: onUpdate(__SingularNameLowercase__.id, __SingularParentNameAllCaps___CHILD_FRAGMENT),
       },
     });
 
