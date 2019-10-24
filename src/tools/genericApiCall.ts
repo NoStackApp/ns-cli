@@ -41,7 +41,7 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
     finished = true
   })
     .catch(async err => {
-      console.log(JSON.stringify(err))
+      // console.log(JSON.stringify(err))
       if (err.code === 103 || err.response.errors[0].code === 103) {
         // console.log('***error 103 encountered... will refresh token again***') // GraphQL response errors
         // const user = options.user || isRequired('user')
