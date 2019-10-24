@@ -1,16 +1,11 @@
-// import chalk from 'chalk'
-// import {loginUser} from '../../auth/loginUser'
 import {associationTypes, boilerPlateTypes} from '../constants'
 import {StackInfo} from '../constants/types'
 
 import {createConfigFile} from './createConfigFile'
-import {createFragmentsFile} from './createFragmentsFile'
 import {createHighestLevelFiles} from './createHighestLevelFiles'
 import {createQueryFile} from './createQueryFile'
 import {createTopProjectDirs, srcDir} from './createTopProjectDirs'
 import {createTypeFile} from './createTypeFile'
-// import {createStackQuery} from '../../stacks/create-stack-query'
-// import {createModerator} from '../../stacks/createModerator'
 
 const execa = require('execa')
 const fs = require('fs-extra')
@@ -35,7 +30,7 @@ export async function generateCodeFiles(appName: string) {
   await createHighestLevelFiles(currentStack, appName)
 
   // const sourcePropsDir = `${appName}/src/source-props`
-  await createFragmentsFile(currentStack)
+  // await createFragmentsFile(currentStack)
 
   const sources = currentStack.sources
   //mapObject
