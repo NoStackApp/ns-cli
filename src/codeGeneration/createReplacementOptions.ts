@@ -111,7 +111,6 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
   let singleChildrenComposeStatements = ''
   let singleChildrenParams = ''
 
-
   if (boilerPlate !== boilerPlates[associationTypes.MULTIPLE]) {
     let children = {...currentStack.sources[source].tree[type]}
     const connectedSource: string = currentStack.sources[source].connections[type]
