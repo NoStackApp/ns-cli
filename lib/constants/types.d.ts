@@ -40,6 +40,7 @@ export interface SourceInfo {
     const: string;
     props: PropsInfo;
     name: string;
+    depth: number;
     tree: TreeTypeList;
     selections: [];
     constraints: ConstraintsSet;

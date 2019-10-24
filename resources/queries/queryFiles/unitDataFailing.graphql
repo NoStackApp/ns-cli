@@ -1,6 +1,0 @@
-query UNIT($id: ID!, $typeRelationships: String!, $parameters: String) {
-  unitData(unitId: $id, typeRelationships: $typeRelationships, parameters: $parameters) {
-  id
-  instance
-  { ...ProjectParts __typename } __typename } }
-  fragment ProjectParts on Instance { id value __typename }
