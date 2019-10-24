@@ -10,7 +10,7 @@ function __PluralName__({ __SingularNameLowercase__s, __SingularParentName__Id, 
   return (
     <__PluralName__StyleWrapper>
       <__SingularName__CreationForm
-        __SingularParentName__Id={__SingularParentName__Id}
+        parentId={__SingularParentName__Id}
         refetchQueries={refetchQueries}
       />
 

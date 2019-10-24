@@ -1,0 +1,24 @@
+### USER CLASS ###
+newUserClass user
+
+### SOURCES ###
+newSource  projectsForUser user
+newSource  projectsForUser user
+newSource  taskInfo user
+connectSources taskInfo projectsForUser project
+
+### TYPES ###
+newType project projectsForUser user
+newType task taskInfo project
+newType completed taskInfo task boolean singleRequired
+newType step taskInfo task
+
+### SELECTIONS ###
+newSelection projectsForUser project
+newSelection taskInfo task
+newSelection taskInfo completed
+newSelection taskInfo step
+
+### CONSTRAINTS ###
+newConstraint __currentUser__ projectsForUser user ID
+newConstraint currentProjectId taskInfo project ID

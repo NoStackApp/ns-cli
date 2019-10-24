@@ -91,18 +91,18 @@ export async function generateAppCode(appName: string) {
             'git',
             ['-C', appName, 'add', '.']
           )
-        } catch {
-          console.log("git error when attempting to add changes.  Perhaps your generated code didn't change?")
+        } catch (err) {
+          console.log(`git error when adding changed files.  Perhaps your generated code didn't change?: ${err}`)
           return
         }
 
         try {
           await execa(
             'git',
-            ['-C', appName, 'commit', '-m', 'First no-stack commit :tada']
+            ['-C', appName, 'commit', '-m', 'generated no-stack code :tada:']
           )
-        } catch {
-          console.log("git error when attempting to commit.  Perhaps your generated code didn't change?")
+        } catch (err) {
+          console.log(`git error when attempting to commit the generation of code.  Perhaps your generated code didn't change? ${err}`)
           return
         }
       },
