@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { graphql } from '@apollo/react-hoc';
 import { EXECUTE_ACTION } from '@nostack/no-stack';
@@ -14,8 +14,12 @@ const __SingularName__StyleWrapper = styled.span`
 `;
 
 function __SingularName__({ __SingularNameLowercase__, label, updateInstance, disabled = false }) {
-  async function handleUpdateCompletion() {
-    const value = __SingularNameLowercase__.value === 'true' ? 'false' : 'true';
+  const [ __SingularNameLowercase__Value, update__SingularName__Value ] = useState(__SingularNameLowercase__.value);
+
+  async function handle__SingularName__ValueChange() {
+    const value = __SingularNameLowercase__Value === 'true' ? 'false' : 'true';
+
+    update__SingularName__Value(value);
 
     await updateInstance({
       variables: {
@@ -25,12 +29,6 @@ function __SingularName__({ __SingularNameLowercase__, label, updateInstance, di
           instanceId: __SingularNameLowercase__.id,
         }),
         unrestricted: false,
-      },
-      optimisticResponse: {
-        ExecuteAction: JSON.stringify({
-          id: __SingularNameLowercase__.id,
-          value,
-        }),
       },
     });
   }
@@ -42,8 +40,8 @@ function __SingularName__({ __SingularNameLowercase__, label, updateInstance, di
         <input
           id={__SingularNameLowercase__.id}
           type="checkbox"
-          checked={__SingularNameLowercase__.value === 'true'}
-          onChange={handleUpdateCompletion}
+          checked={__SingularNameLowercase__Value === 'true'}
+          onChange={handle__SingularName__ValueChange}
           disabled={disabled}
         />
       </label>
