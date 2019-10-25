@@ -1,0 +1,6 @@
+{
+  "id": "ce32d662-f032-4369-808b-b55e5c99bec1",
+  "typeRelationships": "{\"task\":{\"completed\":null,\"step\":{\"goal\":null}}}",
+  "unrestricted": false,
+  "parameters": "{\"currentProjectId\":\"2bcbd541-7eb4-480b-bb6f-d719b30bd86d\"}"
+}
