@@ -50,6 +50,12 @@ export async function createNoStackApp(appName: string, baseApp: string) {
       {
         title: 'Copy directory to new app directory',
         task: async () => {
+          const appDirectoryAlreadyExists = await fs.pathExists(appName)
+
+          if (appDirectoryAlreadyExists) {
+            throw new Error(errorMessage(`the folder for ${appName} already exists. Please choose another appName.`))
+          }
+
           await execa(
             'cp',
             ['-r', baseApp, appName]
