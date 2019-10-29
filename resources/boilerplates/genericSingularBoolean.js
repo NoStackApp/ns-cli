@@ -13,7 +13,7 @@ const __SingularName__StyleWrapper = styled.span`
   padding: 0.5em;
 `;
 
-function __SingularName__({ __SingularNameLowercase__, label, updateInstance, disabled = false }) {
+function __SingularName__({ __SingularNameLowercase__, label, updateInstance, refetchQueries, disabled = false }) {
   const [ __SingularNameLowercase__Value, update__SingularName__Value ] = useState(__SingularNameLowercase__.value);
 
   async function handle__SingularName__ValueChange() {
@@ -30,6 +30,7 @@ function __SingularName__({ __SingularNameLowercase__, label, updateInstance, di
         }),
         unrestricted: false,
       },
+      refetchQueries,
     });
   }
 
