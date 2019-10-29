@@ -1,0 +1,23 @@
+### USER CLASS ###
+newUserClass user
+
+### SOURCES ###
+newSource  userCharacters user
+newSource overview user
+
+### TYPES ###
+newType name userCharacters user
+newType attribute userCharacters user
+newType weapon userCharacters name
+newType location overview city
+newType tweet userCharacters users
+
+### SELECTIONS ###
+#newSelection userCharacters location
+newSelection userCharacters tweets
+newSelection userCharacters name
+newSelection userCharacters attribute
+newSelection userCharacters weapon
+
+### CONSTRAINTS ###
+newConstraint __currentUser__ projectsForUser user ID
