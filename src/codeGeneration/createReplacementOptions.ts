@@ -65,6 +65,11 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
 `
 }
 
+// const isBoilerplateMultiple = (boilerPlate: string) => {
+//   const multipleBoilerplates = {
+//   }
+// }
+
 export const createReplacementOptions = (type: string, source: string, boilerPlate: string, currentStack: StackInfo) => {
   const parentType = currentStack.types[type].sources[source].parentType
   let childrenImports = ''

@@ -37,21 +37,21 @@ export const boilerPlateTypes = {
 }
 
 export const boilerPlates = {
-  [exports.boilerPlateTypes.CREATION_ROOT]: 'genericCreationFormRoot',
-  [exports.boilerPlateTypes.CREATION_NON_ROOT]: 'genericCreationFormNonRoot',
-  [exports.boilerPlateTypes.CREATION_ROOT_GROUPING]: 'genericCreationFormRootGrouping',
-  [exports.boilerPlateTypes.CREATION_NON_ROOT_GROUPING]: 'genericCreationFormNonRootGrouping',
-  [exports.boilerPlateTypes.MULTIPLE_NON_ROOT]: 'genericMultipleNonRoot',
-  [exports.boilerPlateTypes.MULTIPLE_ROOT]: 'genericMultipleRoot',
-  [exports.boilerPlateTypes.SINGLE_ROOT]: 'genericSingle',
-  [exports.boilerPlateTypes.SINGLE_NON_ROOT]: 'genericSingleNonRoot',
-  [exports.boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]: 'genericMultipleNonRootGrouping',
-  [exports.boilerPlateTypes.MULTIPLE_ROOT_GROUPING]: 'genericMultipleRootGrouping',
-  [exports.boilerPlateTypes.SINGLE_ROOT_GROUPING]: 'genericSingleGrouping',
-  [exports.boilerPlateTypes.SINGLE_NON_ROOT_GROUPING]: 'genericSingleNonRootGrouping',
-  [exports.boilerPlateTypes.SINGLE_PROPERTY]: 'genericSingleProperty',
-  [exports.boilerPlateTypes.SINGLE_BOOLEAN]: 'genericSingleBoolean',
-  [exports.boilerPlateTypes.SINGLE_NUMBER]: 'genericSingleNumber',
+  [boilerPlateTypes.CREATION_ROOT]: 'genericCreationFormRoot',
+  [boilerPlateTypes.CREATION_NON_ROOT]: 'genericCreationFormNonRoot',
+  [boilerPlateTypes.CREATION_ROOT_GROUPING]: 'genericCreationFormRootGrouping',
+  [boilerPlateTypes.CREATION_NON_ROOT_GROUPING]: 'genericCreationFormNonRootGrouping',
+  [boilerPlateTypes.MULTIPLE_NON_ROOT]: 'genericMultipleNonRoot',
+  [boilerPlateTypes.MULTIPLE_ROOT]: 'genericMultipleRoot',
+  [boilerPlateTypes.SINGLE_ROOT]: 'genericSingle',
+  [boilerPlateTypes.SINGLE_NON_ROOT]: 'genericSingleNonRoot',
+  [boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]: 'genericMultipleNonRootGrouping',
+  [boilerPlateTypes.MULTIPLE_ROOT_GROUPING]: 'genericMultipleRootGrouping',
+  [boilerPlateTypes.SINGLE_ROOT_GROUPING]: 'genericSingleGrouping',
+  [boilerPlateTypes.SINGLE_NON_ROOT_GROUPING]: 'genericSingleNonRootGrouping',
+  [boilerPlateTypes.SINGLE_PROPERTY]: 'genericSingleProperty',
+  [boilerPlateTypes.SINGLE_BOOLEAN]: 'genericSingleBoolean',
+  [boilerPlateTypes.SINGLE_NUMBER]: 'genericSingleNumber',
 }
 
 export const boilerplateDir = `${__dirname}/../../resources/boilerplates`
