@@ -66,6 +66,7 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
           instanceId: __SingularNameLowercase__.id,
         }),
       },
+      refetchQueries,
     });
 
     updateIsEditMode(false);
