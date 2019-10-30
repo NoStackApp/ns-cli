@@ -1,4 +1,4 @@
-import {associationTypes, boilerPlateTypes} from '../constants'
+import {associationTypes, formTypes, nodeTypes} from '../constants'
 import {StackInfo} from '../constants/types'
 
 import {createConfigFile} from './createConfigFile'
@@ -44,26 +44,49 @@ export async function generateCodeFiles(appName: string) {
       // console.log(`source=${source}`)
       const types = sources[source].selections
       // console.log(`types=${JSON.stringify(types)}`)
+
+      const {selectionRoot} = currentStack.sources[source]
       await Promise.all(types.map(
         async (type: string) => {
           const assnType = currentStack.types[type].sources[source].assnType
           const dataType = currentStack.types[type].dataType
-          // console.log(`type=${type}, assnType=${assnType}`)
-          const {selectionRoot} = currentStack.sources[source]
 
-          // await createTypeFile(type, source, associationTypes.SINGLE_REQUIRED + dataType, currentStack)
-          if (selectionRoot === type) await createTypeFile(type, source, associationTypes.SINGLE_REQUIRED + dataType + 'Root', currentStack)
-          else await createTypeFile(type, source, associationTypes.SINGLE_REQUIRED + dataType, currentStack)
+          let nodeType = currentStack.types[type].sources[source].nodeType
+          if (selectionRoot === type) nodeType = nodeTypes.ROOT
 
-          if (assnType === associationTypes.MULTIPLE) {  // currently just string is supported
-
-            if (selectionRoot === type) await createTypeFile(type, source, boilerPlateTypes.CREATION_ROOT_TYPE, currentStack)
-            else await createTypeFile(type, source, boilerPlateTypes.CREATION_NON_ROOT, currentStack)
-
-            // console.log(`about to createTypeFile for a Multiple.  type=${type}, selectionRoot=${selectionRoot}`)
-            if (selectionRoot === type) await createTypeFile(type, source, boilerPlateTypes.MULTIPLE_ROOT, currentStack)
-            else await createTypeFile(type, source, boilerPlateTypes.MULTIPLE_STRING, currentStack)
+          let formType = formTypes.SINGLE_INSTANCE
+          if (assnType === associationTypes.MULTIPLE) {
+            formType = formTypes.LIST
           }
+
+          const boilerPlateType = formType + dataType + nodeType
+          // console.log(`type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
+
+          await createTypeFile(type, source, boilerPlateType, currentStack)
+
+          if (assnType === associationTypes.MULTIPLE) {
+            const creationBoilerPlateType = formTypes.CREATION + dataType + nodeType
+            await createTypeFile(type, source, creationBoilerPlateType, currentStack)
+
+            const singularBoilerPlateType = formTypes.SINGLE_INSTANCE + dataType + nodeType
+            await createTypeFile(type, source, singularBoilerPlateType, currentStack)
+          }
+
+          // const {selectionRoot} = currentStack.sources[source]
+          //
+          // // await createTypeFile(type, source, associationTypes.SINGLE_REQUIRED + dataType, currentStack)
+          // if (selectionRoot === type) await createTypeFile(type, source, associationTypes.SINGLE_REQUIRED + dataType + 'Root', currentStack)
+          // else await createTypeFile(type, source, associationTypes.SINGLE_REQUIRED + dataType, currentStack)
+          //
+          // if (assnType === associationTypes.MULTIPLE) {  // currently just string is supported
+          //
+          //   if (selectionRoot === type) await createTypeFile(type, source, boilerPlateTypes.CREATION_ROOT_TYPE, currentStack)
+          //   else await createTypeFile(type, source, boilerPlateTypes.CREATION_NON_ROOT, currentStack)
+          //
+          //   // console.log(`about to createTypeFile for a Multiple.  type=${type}, selectionRoot=${selectionRoot}`)
+          //   if (selectionRoot === type) await createTypeFile(type, source, boilerPlateTypes.MULTIPLE_ROOT, currentStack)
+          //   else await createTypeFile(type, source, boilerPlateTypes.MULTIPLE_STRING, currentStack)
+          // }
         }
       ))
     }

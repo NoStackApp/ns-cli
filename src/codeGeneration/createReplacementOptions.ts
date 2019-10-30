@@ -1,4 +1,4 @@
-import {associationTypes, boilerPlates} from '../constants'
+import {associationTypes, boilerPlates, boilerPlateTypes} from '../constants'
 import {StackInfo, TreeTypeChildrenList} from '../constants/types'
 import {
   allCaps,
@@ -65,10 +65,14 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
 `
 }
 
-// const isBoilerplateMultiple = (boilerPlate: string) => {
-//   const multipleBoilerplates = {
-//   }
-// }
+const isBoilerplateMultiple = (boilerPlate: string) => {
+  return (
+    boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT] ||
+    boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_ROOT] ||
+    boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING] ||
+    boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_ROOT_GROUPING]
+  )
+}
 
 export const createReplacementOptions = (type: string, source: string, boilerPlate: string, currentStack: StackInfo) => {
   const parentType = currentStack.types[type].sources[source].parentType
@@ -84,7 +88,7 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
   let singleChildrenComposeStatements = ''
   let singleChildrenParams = ''
 
-  if (boilerPlate !== boilerPlates[associationTypes.MULTIPLE]) {
+  if (isBoilerplateMultiple(boilerPlate)) {
     let children = {...currentStack.sources[source].tree[type]}
     const connectedSource: string = currentStack.sources[source].connections[type]
     const constraintsInfo = currentStack.sources[source].constraints

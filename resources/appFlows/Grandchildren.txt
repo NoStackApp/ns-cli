@@ -12,7 +12,7 @@ newType task taskInfo project
 newType completed taskInfo task boolean singleRequired
 newType step taskInfo task
 newType goal taskInfo step
-newType date taskInfo step string single
+#newType date taskInfo step
 
 
 ### SELECTIONS ###
