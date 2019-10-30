@@ -41,8 +41,10 @@ const boilerPlateToDir = (type: string, boilerPlateType: string) => {
     [boilerPlateTypes.SINGLE_BOOLEAN]: singularName(type),
     [boilerPlateTypes.SINGLE_STRING]: singularName(type),
     [boilerPlateTypes.SINGLE_ROOT]: singularName(type),
-    [boilerPlateTypes.MULTIPLE_STRING]: pluralName(type),
+    [boilerPlateTypes.M]: pluralName(type),
     [boilerPlateTypes.MULTIPLE_ROOT]: pluralName(type),
+    [boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]: pluralName(type),
+    [boilerPlateTypes.MULTIPLE_ROOT_GROUPING.: pluralName(type),
   }
   return mappingObject[boilerPlateType]
 }
