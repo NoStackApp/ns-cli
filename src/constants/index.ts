@@ -57,7 +57,7 @@ export const boilerPlates = {
   [boilerPlateTypes.SINGLE_NON_ROOT_GROUPING]: 'genericSingleNonRootGrouping',
   [boilerPlateTypes.SINGLE_PROPERTY]: 'genericSingleProperty',
   [boilerPlateTypes.SINGLE_BOOLEAN]: 'genericSingleBoolean',
-  [boilerPlateTypes.SINGLE_NUMBER]: 'genericSingleNumber',
+  [boilerPlateTypes.SINGLE_NUMBER]: 'genericSingleNumberProperty',
 }
 
 export const boilerplateDir = `${__dirname}/../../resources/boilerplates`
