@@ -47,14 +47,20 @@ const boilerPlateToDir = (type: string, boilerPlateType: string) => {
     [boilerPlateTypes.MULTIPLE_ROOT]: pluralName(type),
     [boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]: pluralName(type),
     [boilerPlateTypes.MULTIPLE_ROOT_GROUPING]: pluralName(type),
+    [boilerPlateTypes.SINGLE_ROOT_GROUPING]:  singularName(type),
+    [boilerPlateTypes.SINGLE_NON_ROOT_GROUPING]:  singularName(type),
+    [boilerPlateTypes.SINGLE_PROPERTY]:  singularName(type),
+    [boilerPlateTypes.SINGLE_BOOLEAN]:  singularName(type),
+    [boilerPlateTypes.SINGLE_NUMBER]:  singularName(type),
   }
   return mappingObject[boilerPlateType]
 }
 
 export async function createTypeFile(type: string, source: string, boilerPlateType: string, currentStack: StackInfo) {
-  // console.log(`in createTypeFile, type=${type}, boilerPlate=${boilerPlateType}`)
+  // console.log(`in createTypeFile, type=${type}, boilerPlateType=${boilerPlateType}`)
   // const parentType = currentStack.types[type].sources[source].parentType
   const boilerPlate = boilerPlates[boilerPlateType]
+  // console.log(`in createTypeFile, type=${type}, boilerPlate=${boilerPlate}`)
   const dir = boilerPlateToDir(type, boilerPlateType)
   // console.log(`in createTypeFile, dir=${dir}`)
   // if (boilerPlate !== boilerPlates[associationTypes.MULTIPLE]) {

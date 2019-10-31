@@ -2,7 +2,8 @@
 newUserClass user
 
 ### SOURCES ###
-newSource  projectsForUser user
+newSource projectsForUser user
+#newSource profile user
 newSource  taskInfo user
 connectSources taskInfo projectsForUser project
 
