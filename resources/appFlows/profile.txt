@@ -1,0 +1,20 @@
+### USER CLASS ###
+newUserClass user
+
+### SOURCES ###
+newSource userProfile user
+
+### TYPES ###
+newType profile userProfile user grouping
+newType firstName userProfile profile string singleRequired
+newType lastName userProfile profile string singleRequired
+newType address userProfile profile string singleRequired
+
+### SELECTIONS ###
+newSelection userProfile profile
+newSelection userProfile firstName
+newSelection userProfile lastName
+newSelection userProfile address
+
+### CONSTRAINTS ###
+newConstraint __curentUser__ userProfile user ID
