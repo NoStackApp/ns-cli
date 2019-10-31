@@ -36,13 +36,17 @@ import {makeDirs} from './makeDirs'
 
 const boilerPlateToDir = (type: string, boilerPlateType: string) => {
   const mappingObject = {
-    [boilerPlateTypes.CREATION_ROOT_TYPE]: singularName(type) + 'CreationForm',
+    [boilerPlateTypes.CREATION_ROOT]: singularName(type) + 'CreationForm',
     [boilerPlateTypes.CREATION_NON_ROOT]: singularName(type) + 'CreationForm',
+    [boilerPlateTypes.CREATION_ROOT_GROUPING]: singularName(type) + 'CreationForm',
+    [boilerPlateTypes.CREATION_NON_ROOT_GROUPING]: singularName(type) + 'CreationForm',
     [boilerPlateTypes.SINGLE_BOOLEAN]: singularName(type),
-    [boilerPlateTypes.SINGLE_STRING]: singularName(type),
+    [boilerPlateTypes.SINGLE_NON_ROOT]: singularName(type),
     [boilerPlateTypes.SINGLE_ROOT]: singularName(type),
-    [boilerPlateTypes.MULTIPLE_STRING]: pluralName(type),
+    [boilerPlateTypes.MULTIPLE_NON_ROOT]: pluralName(type),
     [boilerPlateTypes.MULTIPLE_ROOT]: pluralName(type),
+    [boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]: pluralName(type),
+    [boilerPlateTypes.MULTIPLE_ROOT_GROUPING]: pluralName(type),
   }
   return mappingObject[boilerPlateType]
 }
@@ -62,7 +66,8 @@ export async function createTypeFile(type: string, source: string, boilerPlateTy
     path
   ]
 
-  const options: ReplacementOptions = createReplacementOptions(type, source, boilerPlate, currentStack)
+  const options: ReplacementOptions = createReplacementOptions(type, source, currentStack)
+  // const options: ReplacementOptions = createReplacementOptions(type, source, boilerPlate, currentStack)
 
   // console.log(`options is: ${JSON.stringify(options)}`)
   await makeDirs(dirList)

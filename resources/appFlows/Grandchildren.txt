@@ -12,6 +12,7 @@ newType task taskInfo project
 newType completed taskInfo task boolean singleRequired
 newType step taskInfo task
 newType goal taskInfo step
+#newType date taskInfo step
 
 
 ### SELECTIONS ###
@@ -20,6 +21,7 @@ newSelection taskInfo task
 newSelection taskInfo completed
 newSelection taskInfo step
 newSelection taskInfo goal
+#newSelection taskInfo date
 
 ### CONSTRAINTS ###
 newConstraint __currentUser__ projectsForUser user ID

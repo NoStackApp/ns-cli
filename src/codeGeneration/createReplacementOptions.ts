@@ -1,4 +1,5 @@
-import {associationTypes, boilerPlates} from '../constants'
+// import {associationTypes, boilerPlates, boilerPlateTypes} from '../constants'
+import {associationTypes} from '../constants'
 import {StackInfo, TreeTypeChildrenList} from '../constants/types'
 import {
   allCaps,
@@ -65,7 +66,17 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
 `
 }
 
-export const createReplacementOptions = (type: string, source: string, boilerPlate: string, currentStack: StackInfo) => {
+// const isBoilerplateMultiple = (boilerPlate: string) => {
+//   return (
+//     boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT] ||
+//     boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_ROOT] ||
+//     boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING] ||
+//     boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_ROOT_GROUPING]
+//   )
+// }
+
+export const createReplacementOptions = (type: string, source: string, currentStack: StackInfo) => {
+// export const createReplacementOptions = (type: string, source: string, boilerPlate: string, currentStack: StackInfo) => {
   const parentType = currentStack.types[type].sources[source].parentType
   let childrenImports = ''
   let childrenTypeList = ''
@@ -79,23 +90,27 @@ export const createReplacementOptions = (type: string, source: string, boilerPla
   let singleChildrenComposeStatements = ''
   let singleChildrenParams = ''
 
-  if (boilerPlate !== boilerPlates[associationTypes.MULTIPLE]) {
-    let children = {...currentStack.sources[source].tree[type]}
-    const connectedSource: string = currentStack.sources[source].connections[type]
-    const constraintsInfo = currentStack.sources[source].constraints
+  // if (isBoilerplateMultiple(boilerPlate)) {
+  // if (true) {
+  //   boilerPlate !== boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT] &&
+  //   boilerPlate !== boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]
+  // ) {
+  let children = {...currentStack.sources[source].tree[type]}
+  const connectedSource: string = currentStack.sources[source].connections[type]
+  const constraintsInfo = currentStack.sources[source].constraints
 
-    Object.keys(constraintsInfo).map(key => {
+  Object.keys(constraintsInfo).map(key => {
       // if (constraintsInfo[key].constraintType === 'ID' &&
       //   constraintsInfo[key].type === type) {
       //   constraintValue = constraintsInfo[key].value
       // }
-      if (constraintsInfo[key].constraintType === 'ID' &&
+    if (constraintsInfo[key].constraintType === 'ID' &&
         constraintsInfo[key].type === parentType) {
-        constraintValue = constraintsInfo[key].value
-      }
-    })
+      constraintValue = constraintsInfo[key].value
+    }
+  })
 
-    Object.keys(children).map(
+  Object.keys(children).map(
       child => {
         // console.log(`child=${child}, children[child]=${children[child]}`)
         let childComponent
@@ -138,15 +153,15 @@ import ${childComponent} from '../${childComponent}'; `
       }
     )
 
-    let connectedChildren: TreeTypeChildrenList = {}
-    if (connectedSource) {
-      connectedChildren = {
-        ...currentStack.sources[connectedSource].tree[type]
-      }
+  let connectedChildren: TreeTypeChildrenList = {}
+  if (connectedSource) {
+    connectedChildren = {
+      ...currentStack.sources[connectedSource].tree[type]
+    }
 
       // console.log(`connectedChildren=${JSON.stringify(connectedChildren)}`)
 
-      Object.keys(connectedChildren).map(
+    Object.keys(connectedChildren).map(
         child => {
           // console.log(`connected child=${child}, connectedChildren[child]=${connectedChildren[child]}`)
 
@@ -166,8 +181,8 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
 < ${childComponent} ${type}Id = {${type}.id} />`
         }
       )
-    }
   }
+  // }
 
   let options: ReplacementOptions = {
     files: '',

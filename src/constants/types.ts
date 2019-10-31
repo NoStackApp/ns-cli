@@ -67,6 +67,7 @@ export interface Sources {
 
 export interface TypeSourceInfo {
   assnType: string,
+  nodeType: string,
   parentType: string,
   children: string[],
 }

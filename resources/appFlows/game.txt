@@ -2,6 +2,21 @@
 newUserClass user
 
 ### SOURCES ###
+newSource tweetsForUser user
+
+### TYPES ###
+newType tweet tweetsForUser users
+newType subTweet tweetsForUser tweet
+
+### SELECTIONS ###
+newSelection tweetsForUser tweet
+newSelection tweetsForUser subTweet
+
+### CONSTRAINTS ###
+newConstraint __currentUser__ tweetsForUser user ID### USER CLASS ###
+newUserClass user
+
+### SOURCES ###
 newSource  userCharacters user
 newSource overview user
 
