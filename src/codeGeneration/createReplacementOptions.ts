@@ -78,7 +78,7 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
 export const createReplacementOptions = (type: string, source: string, currentStack: StackInfo) => {
 // export const createReplacementOptions = (type: string, source: string, boilerPlate: string, currentStack: StackInfo) => {
   const parentType = currentStack.types[type].sources[source].parentType
-  console.log(`in createReplacementOptions, parentType: ${parentType}`)
+  // console.log(`in createReplacementOptions, parentType: ${parentType}`)
   let childrenImports = ''
   let childrenTypeList = ''
   let childrenBody = ''
@@ -183,7 +183,6 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
         }
       )
   }
-  // }
 
   let options: ReplacementOptions = {
     files: '',
@@ -191,9 +190,6 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
     to: []
   }
 
-  console.log(`in createReplacementOptions just before mapping, parentType: ${parentType}`)
-  // console.log(` allCaps(parentType): ${allCaps(parentType)}`)
-  // console.log('after the error')
   const mapping: Mapping = {
     Singular: {
       fromRegExp: /__SingularName__/g,

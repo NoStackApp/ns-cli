@@ -2,8 +2,8 @@ const pluralize = require('pluralize')
 const inflection = require('inflection')
 
 export function allCaps(text: string) {
-  console.log(`in allCaps, text: ${text}`)
-  return inflection.underscore(text).toUpperCase()
+  // console.log(`in allCaps, text: ${text}`)
+  if (text) return inflection.underscore(text).toUpperCase()
 }
 
 export function singularName(name: string) {
