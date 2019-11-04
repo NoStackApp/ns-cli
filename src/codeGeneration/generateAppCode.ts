@@ -35,6 +35,9 @@ export async function generateCodeFiles(appName: string) {
   const sources = currentStack.sources
   //mapObject
 
+  let sources = Object.keys(sources)
+
+
   await Promise.all(Object.keys(sources).map(async source => {
     await createQueryFile(currentStack, source)
   }))
@@ -61,13 +64,16 @@ export async function generateCodeFiles(appName: string) {
 
           try {
             const boilerPlateType = formType + dataType + nodeType
-            console.log(`type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
+            console.log(`*** type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
 
             try {
               await createTypeFile(type, source, boilerPlateType, currentStack)
+
             } catch (errWithCreate) {
               throw new Error(`error with first createTypeFile: ${errWithCreate}`)
             }
+
+
 
             if (assnType === associationTypes.MULTIPLE) {
               console.log('assnType === associationTypes.MULTIPLE is true!')
@@ -80,7 +86,6 @@ export async function generateCodeFiles(appName: string) {
           } catch (err) {
             throw new Error(`error creating type files: ${err}`)
           }
-
           // const {selectionRoot} = currentStack.sources[source]
           //
           // // await createTypeFile(type, source, associationTypes.SINGLE_REQUIRED + dataType, currentStack)

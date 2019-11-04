@@ -76,8 +76,10 @@ export async function createTypeFile(type: string, source: string, boilerPlateTy
   const options: ReplacementOptions = createReplacementOptions(type, source, currentStack)
   // const options: ReplacementOptions = createReplacementOptions(type, source, boilerPlate, currentStack)
 
+  console.log('after createReplacementOptions...')
   // console.log(`options is: ${JSON.stringify(options)}`)
   await makeDirs(dirList)
+  console.log('after makeDirs(dirList)...')
 
   try {
     await generateFromBoilerPlate(`${boilerplateDir}/${boilerPlate}.js`, `${path}/index.js`, options)
