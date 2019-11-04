@@ -59,17 +59,26 @@ export async function generateCodeFiles(appName: string) {
             formType = formTypes.LIST
           }
 
-          const boilerPlateType = formType + dataType + nodeType
-          // console.log(`type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
+          try {
+            const boilerPlateType = formType + dataType + nodeType
+            console.log(`type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
 
-          await createTypeFile(type, source, boilerPlateType, currentStack)
+            try {
+              await createTypeFile(type, source, boilerPlateType, currentStack)
+            } catch (errWithCreate) {
+              throw new Error(`error with first createTypeFile: ${errWithCreate}`)
+            }
 
-          if (assnType === associationTypes.MULTIPLE) {
-            const creationBoilerPlateType = formTypes.CREATION + dataType + nodeType
-            await createTypeFile(type, source, creationBoilerPlateType, currentStack)
+            if (assnType === associationTypes.MULTIPLE) {
+              console.log('assnType === associationTypes.MULTIPLE is true!')
+              const creationBoilerPlateType = formTypes.CREATION + dataType + nodeType
+              await createTypeFile(type, source, creationBoilerPlateType, currentStack)
 
-            const singularBoilerPlateType = formTypes.SINGLE_INSTANCE + dataType + nodeType
-            await createTypeFile(type, source, singularBoilerPlateType, currentStack)
+              const singularBoilerPlateType = formTypes.SINGLE_INSTANCE + dataType + nodeType
+              await createTypeFile(type, source, singularBoilerPlateType, currentStack)
+            }
+          } catch (err) {
+            throw new Error(`error creating type files: ${err}`)
           }
 
           // const {selectionRoot} = currentStack.sources[source]
@@ -95,12 +104,18 @@ export async function generateCodeFiles(appName: string) {
 
 export async function generateAppCode(appName: string) {
   const tasks = new Listr([
-    {
-      title: 'Generate the Code Files',
-      task: async () => {
-        await generateCodeFiles(appName)
-      }
-    },
+    // {
+    //   title: 'Generate the Code Files',
+    //   task: async () => {
+    //     try {
+    //       await generateCodeFiles(appName)
+    //     } catch (err) {
+    //       console.log(`git error when attempting to generate the code: ${err}`)
+    //       throw new Error(err)
+    //     }
+    //     return
+    //   }
+    // },
     {
       title: 'Make First Git Commit',
       task: async () => {

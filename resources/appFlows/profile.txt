@@ -1,20 +1,33 @@
-### USER CLASS ###
+resetStack
 newUserClass user
 
 ### SOURCES ###
 newSource userProfile user
 
 ### TYPES ###
-newType profile userProfile user grouping
-newType firstName userProfile profile string singleRequired
+#useType user userProfile __Root__
+#newType lastName userProfile user string singleRequired
+#newType address userProfile user string singleRequired
+#newType firstName userProfile user string singleRequired
+
+newType profile userProfile __Root__ grouping
+useType user userProfile profile singleRequired
 newType lastName userProfile profile string singleRequired
 newType address userProfile profile string singleRequired
+newType firstName userProfile profile string singleRequired
+
+## The following works...
+#useType user userProfile __Root__
+#newType profile userProfile user grouping
+#newType lastName userProfile profile string singleRequired
+#newType address userProfile profile string singleRequired
+#newType firstName userProfile profile string singleRequired
 
 ### SELECTIONS ###
 newSelection userProfile profile
+newSelection userProfile address
 newSelection userProfile firstName
 newSelection userProfile lastName
-newSelection userProfile address
 
 ### CONSTRAINTS ###
-newConstraint __curentUser__ userProfile user ID
+newConstraint __currentUser__ userProfile user ID
