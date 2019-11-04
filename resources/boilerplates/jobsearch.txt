@@ -1,0 +1,9 @@
+resetStack
+newUser candidate
+
+newUnit resume candidate
+newType education resume candidate grouping
+newType school resume education
+newType year resume education number
+newType degree resume education
+

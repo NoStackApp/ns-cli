@@ -2,7 +2,7 @@ const errorEx = require('error-ex')
 
 import {Command, flags} from '@oclif/command'
 
-import {generateAppCode} from '../codeGeneration/generateAppCode'
+import {generateAppCode, generateCodeFiles} from '../codeGeneration/generateAppCode'
 
 export const noNameError = errorEx('noNameError')
 
@@ -31,6 +31,12 @@ export default class Makecode extends Command {
     }
 
     // await generateCodeFiles(appName)  // temp, to debug
+    // try {
+    await generateCodeFiles(appName)
+    // } catch (err) {
+    //   console.log(`error when attempting to generate the code: ${err}`)
+    //   throw new Error(`code generation error: ${err}`)
+    // }
     const generateAppTasks = await generateAppCode(appName)
     await generateAppTasks.run().catch((err: any) => {
       console.error(err)

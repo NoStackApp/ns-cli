@@ -1,0 +1,19 @@
+run
+  resetStack
+
+userClass: user
+  * projectsForUser:
+             - name: user
+               constraint: `=__currentUser__`
+               childTypes:
+                 - name: project
+                   crudLevel: creatable
+                   returned: true
+                 - name: task
+                   returned: true
+                 - name: team
+                   assn: on
+                   returned: true
+             - user:
+                 - projects:
+
