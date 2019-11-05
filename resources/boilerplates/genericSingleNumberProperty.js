@@ -35,14 +35,16 @@ const Button = styled.button`
 `;
 
 function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, refetchQueries}) {
-  const [__SingularNameLowercase__Value, update__SingularName__Value] = useState(__SingularNameLowercase__.value);
+  const [__SingularNameLowercase__Value, update__SingularName__Value] = useState(parseFloat(__SingularNameLowercase__.value));
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
 
   __CHILDREN_CONSTANT_DECLARATIONS__
 
   function handle__SingularName__ValueChange(e) {
-    update__SingularName__Value(e.target.value);
+    const value = e.target.validity.valid || !!e.target.value ? e.target.value : 0;
+
+    update__SingularName__Value(parseFloat(value));
   }
 
   async function handle__SingularName__ValueSave() {
@@ -72,7 +74,7 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
               __SingularName__ Value:
               <input
                 id={__SingularNameLowercase__.id}
-                type="text"
+                type="number"
                 value={__SingularNameLowercase__Value}
                 onChange={handle__SingularName__ValueChange}
                 disabled={isSaving}
@@ -98,6 +100,7 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
         ) :
         (
           <>
+            __SingularName__ Value:
             {__SingularNameLowercase__Value}
             <Button
               type="button"

@@ -4,7 +4,7 @@ import {EXECUTE_ACTION} from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import {graphql} from '@apollo/react-hoc';
 
-import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID, DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
+import {DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
 
 __CHILDREN_IMPORT_LIST__
 
@@ -15,10 +15,6 @@ const __SingularName__StyleWrapper = styled.div`
   border: none;
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
-`;
-
-const Row = styled.div`
-  margin: 1em 0;
 `;
 
 const Button = styled.button`
@@ -41,37 +37,12 @@ const DeleteMenu = styled.div`
   border: 1px solid #eeeeee;
 `;
 
-function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, deleteInstance, refetchQueries}) {
-  const [__SingularNameLowercase__Value, update__SingularName__Value] = useState(__SingularNameLowercase__.value);
-  const [isEditMode, updateIsEditMode] = useState(false);
-  const [isSaving, updateIsSaving] = useState(false);
+function __SingularName__({__SingularNameLowercase__, parentId, deleteInstance, refetchQueries}) {
   const [ isDeleteMode, updateIsDeleteMode ] = useState(false);
   const [ isDeleting, updateIsDeleting ] = useState(false);
 
   __CHILDREN_CONSTANT_DECLARATIONS__
 
-
-  function handle__SingularName__ValueChange(e) {
-    update__SingularName__Value(e.target.value);
-  }
-
-  async function handle__SingularName__ValueSave() {
-    updateIsSaving(true);
-
-    await updateInstance({
-      variables: {
-        actionId: UPDATE___SingularForRelationshipAllCaps___ACTION_ID,
-        executionParameters: JSON.stringify({
-          value: __SingularNameLowercase__Value,
-          instanceId: __SingularNameLowercase__.id,
-        }),
-      },
-      refetchQueries,
-    });
-
-    updateIsEditMode(false);
-    updateIsSaving(false);
-  }
 
   async function handleDelete() {
     updateIsDeleting(true);
@@ -94,94 +65,41 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
 
   return (
     <__SingularName__StyleWrapper isDeleting={isDeleting}>
-      {isEditMode ?
-        (
-          <>
-            <label htmlFor={__SingularNameLowercase__.id}>
-              __SingularName__ Value:
-              <input
-                id={__SingularNameLowercase__.id}
-                type="text"
-                value={__SingularNameLowercase__Value}
-                onChange={handle__SingularName__ValueChange}
-                disabled={isSaving}
-              />
-            </label>
+      {isDeleteMode ? (
+          <DeleteMenu>
+            Delete?
             <Button
               type="button"
               hoverColor="#00FF00"
-              onClick={handle__SingularName__ValueSave}
-              disabled={isSaving}
+              onClick={handleDelete}
+              disabled={isDeleting}
             >
               &#10003;
             </Button>
             <Button
               type="button"
               hoverColor="#FF0000"
-              onClick={() => updateIsEditMode(false)}
-              disabled={isSaving}
+              onClick={() => updateIsDeleteMode(false)}
+              disabled={isDeleting}
             >
               &#10005;
             </Button>
-            <Button
-              type="button"
-              onClick={() => updateIsDeleteMode(true)}
-            >
-              &#128465;
-            </Button>
-          </>
+          </DeleteMenu>
         ) :
         (
-          <>
-            {__SingularNameLowercase__Value}
-            {isDeleteMode ? (
-                <DeleteMenu>
-                  Delete?
-                  <Button
-                    type="button"
-                    hoverColor="#00FF00"
-                    onClick={handleDelete}
-                    disabled={isDeleting}
-                  >
-                    &#10003;
-                  </Button>
-                  <Button
-                    type="button"
-                    hoverColor="#FF0000"
-                    onClick={() => updateIsDeleteMode(false)}
-                    disabled={isDeleting}
-                  >
-                    &#10005;
-                  </Button>
-                </DeleteMenu>
-              ) :
-              (
-                <>
-                  <Button
-                    type="button"
-                    onClick={() => updateIsEditMode(true)}
-                  >
-                    &#9998;
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => updateIsDeleteMode(true)}
-                  >
-                    &#128465;
-                  </Button>
-                </>
-              )
-            }
-
-            __CHILDREN_BODY_LIST__
-          </>
+          <Button
+            type="button"
+            onClick={() => updateIsDeleteMode(true)}
+          >
+            &#128465;
+          </Button>
         )
       }
+      __CHILDREN_BODY_LIST__
     </__SingularName__StyleWrapper>
   );
 }
 
 export default compose(
-  graphql(EXECUTE_ACTION, { name: 'updateInstance' }),
   graphql(EXECUTE_ACTION, { name: 'deleteInstance' })
 )(__SingularName__);
