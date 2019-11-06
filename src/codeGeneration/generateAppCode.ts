@@ -1,4 +1,4 @@
-import {associationTypes, formTypes, nodeTypes} from '../constants'
+import {associationTypes, dataTypes, formTypes, nodeTypes} from '../constants'
 import {StackInfo} from '../constants/types'
 
 import {createConfigFile} from './createConfigFile'
@@ -41,22 +41,36 @@ export async function generateCodeFiles(appName: string) {
   }))
 
   let sourceKeys = Object.keys(sources)
+
   let i
   for (i = 0; i < sourceKeys.length; i++) {
     let source = sourceKeys[i]
+
     try {
       // console.log(`source=${source}`)
-      const types = sources[source].selections
-      // console.log(`types=${JSON.stringify(types)}`)
+      const sourceInfo = sources[source]
+      const highestLevel = 'highestLevel'
+      let selectedTree = {...sourceInfo.selectedTree}
+      const highestLevelList = selectedTree[highestLevel]
+      let selectionRoot = highestLevelList[0]
+      const root = sourceInfo.root
+      if (highestLevelList.length > 1) {
+        selectedTree[root] = highestLevelList
+        sourceInfo.selectedTree[root] = highestLevelList
+        selectionRoot = root
+      }
+      delete selectedTree[highestLevel]
 
-      const {selectionRoot} = currentStack.sources[source]
+      const types = Object.keys(selectedTree)
+      // const {selectionRoot} = sourceInfo
+      console.log(`types=${JSON.stringify(types)}`)
 
       let j
       for (j = 0; j < types.length; j++) {
         const type = types[j]
         // console.log(`*** type=${type}`)
         const assnType = currentStack.types[type].sources[source].assnType
-        const dataType = currentStack.types[type].dataType
+        let dataType = currentStack.types[type].dataType
 
         let nodeType = currentStack.types[type].sources[source].nodeType
         if (selectionRoot === type) nodeType = nodeTypes.ROOT
@@ -64,6 +78,15 @@ export async function generateCodeFiles(appName: string) {
         let formType = formTypes.SINGLE_INSTANCE
         if (assnType === associationTypes.MULTIPLE) {
           formType = formTypes.LIST
+        }
+
+        if (type === root && type !== sourceInfo.selectedTree[highestLevel][0]) {
+          console.log(`type is root for ${source}`)
+          // this is the root, being used as the highest level component even though
+          // it is not selected.  Therefore, it must be treated as a grouping in order to
+          // show a list of true highest level components.
+          formType = formTypes.SINGLE_INSTANCE
+          dataType = dataTypes.GROUPING
         }
 
         const boilerPlateType = formType + dataType + nodeType

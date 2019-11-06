@@ -2,7 +2,7 @@
 newUserClass user
 
 ### SOURCES ###
-newSource registration user
+newUnit registration user
 
 ### TYPES ###
 newType licenseId registration stackName

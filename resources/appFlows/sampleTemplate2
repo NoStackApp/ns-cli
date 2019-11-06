@@ -2,8 +2,8 @@
 newUserClass user
 
 ### SOURCES ###
-newSource  projectSource user
-newSource  toDoSource user
+newUnit  projectSource user
+newUnit  toDoSource user
 newUnit foo (userClass: x)
 connectSources toDoSource projectSource project
 

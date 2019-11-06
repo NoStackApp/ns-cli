@@ -2,9 +2,9 @@
 newUserClass user
 
 ### SOURCES ###
-newSource  projectsForUser user
-newSource  projectsForUser user
-newSource  taskInfo user
+newUnit  projectsForUser user
+newUnit  projectsForUser user
+newUnit  taskInfo user
 connectSources taskInfo projectsForUser project
 
 ### TYPES ###

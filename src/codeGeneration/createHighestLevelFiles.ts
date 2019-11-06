@@ -50,14 +50,28 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appName: 
     throw(err)
   }
 
-  const topComponentType: string = currentStack.sources[source].selectionRoot
+  const highestLevel = 'highestLevel'
+  const sourceInfo = currentStack.sources[source]
+  const highestLevelList = sourceInfo.selectedTree[highestLevel]
+  // console.log(`highestLevelList for ${source}=${JSON.stringify(highestLevelList)}`)
+
+  let topComponentType: string = sourceInfo.root
+  let topComponent = singularName(topComponentType)
+
+  if (highestLevelList.length === 1) {
+    topComponentType = highestLevelList[0]
+    topComponent = pluralName(topComponentType)
+  }
+
+  // console.log(`topComponentType for ${source}=${topComponentType}`)
+
+  // todo: remove this
   if (!topComponentType) {
     const err = (new noNameError())
     err.message = `source ${source} contains no selected items`
     throw(err)
   }
 
-  let topComponent = pluralName(topComponentType)
 
   if (currentStack.types[topComponentType].sources[source].assnType === associationTypes.SINGLE_REQUIRED) {
     topComponent = singularName(topComponentType)

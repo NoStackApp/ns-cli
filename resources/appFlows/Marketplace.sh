@@ -3,8 +3,8 @@ newUserClass buyer
 newUserClass seller
 
 ### SOURCES ###
-newSource  offerings seller
-newSource  productSearch buyer
+newUnit  offerings seller
+newUnit  productSearch buyer
 
 #connectSources projectInfo projectsForUser project
 
