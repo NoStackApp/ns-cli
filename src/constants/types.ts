@@ -28,6 +28,10 @@ export interface TreeTypeChildrenList {
   [type: string]: string,
 }
 
+interface SelectedTreeList {
+  [type: string]: [string],
+}
+
 interface TreeTypeList {
   [type: string]: TreeTypeChildrenList,
 }
@@ -53,6 +57,7 @@ export interface SourceInfo {
   depth: number,
   tree: TreeTypeList,
   selections: [],
+  selectedTree: SelectedTreeList,
   constraints: ConstraintsSet,
   connections: ConnectedList,
   owner: string,

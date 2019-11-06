@@ -96,7 +96,8 @@ export const createReplacementOptions = (type: string, source: string, currentSt
   //   boilerPlate !== boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT] &&
   //   boilerPlate !== boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]
   // ) {
-  let children = {...currentStack.sources[source].tree[type]}
+  let children = currentStack.sources[source].selectedTree[type]
+  console.log(`children for ${type}: ${JSON.stringify(children)}`)
   const connectedSource: string = currentStack.sources[source].connections[type]
   const constraintsInfo = currentStack.sources[source].constraints
 
@@ -111,11 +112,13 @@ export const createReplacementOptions = (type: string, source: string, currentSt
     }
   })
 
-  Object.keys(children).map(
+  children.map(
       child => {
         // console.log(`child=${child}, children[child]=${children[child]}`)
         let childComponent
-        if (children[child] === associationTypes.MULTIPLE) {
+        const childInfo = currentStack.types[child]
+        const assnInfo = childInfo.sources[source]
+        if (assnInfo.assnType === associationTypes.MULTIPLE) {
           childrenTypeList += `, TYPE_${allCaps(child)}_ID`
           childrenConstantDeclarations += `\n  const ${child}Data = ${type}.children && ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);
   const ${pluralLowercaseName(child)} = ${child}Data ? ${child}Data.instances : [];`
