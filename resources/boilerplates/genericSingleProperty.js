@@ -98,7 +98,7 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
         ) :
         (
           <>
-            {__SingularNameLowercase__Value}
+            __SingularName__ Value: {__SingularNameLowercase__Value}
             <Button
               type="button"
               onClick={() => updateIsEditMode(true)}
