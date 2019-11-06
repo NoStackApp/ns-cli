@@ -12,6 +12,8 @@ const fs = require('fs-extra')
 const Listr = require('listr')
 
 export async function generateCodeFiles(appName: string) {
+// export async function generateCodeFiles(appName: string, userClass: string) {
+  // todo: make for userClass
   // console.log(`stacklocation=${appName}/stack.json`)
   const currentStack: StackInfo = await fs.readJSON(`${appName}/stack.json`) // await generateJSON.bind(this)(template, appName)
   // console.log(`currentStack=${currentStack}`)
@@ -87,10 +89,11 @@ export async function generateCodeFiles(appName: string) {
           // show a list of true highest level components.
           formType = formTypes.SINGLE_INSTANCE
           dataType = dataTypes.GROUPING
+          nodeType = nodeTypes.ROOT
         }
 
         const boilerPlateType = formType + dataType + nodeType
-        // console.log(`*** type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
+        console.log(`*** type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
 
         await createTypeFile(type, source, boilerPlateType, currentStack)
 

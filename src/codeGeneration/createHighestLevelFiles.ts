@@ -57,10 +57,12 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appName: 
 
   let topComponentType: string = sourceInfo.root
   let topComponent = singularName(topComponentType)
+  let topComponentSetting = 'user={ currentUser.id }  userId={ currentUser.id }'
 
   if (highestLevelList.length === 1) {
     topComponentType = highestLevelList[0]
     topComponent = pluralName(topComponentType)
+    topComponentSetting = 'userId={ currentUser.id }'
   }
 
   // console.log(`topComponentType for ${source}=${topComponentType}`)
@@ -72,12 +74,10 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appName: 
     throw(err)
   }
 
-
   if (currentStack.types[topComponentType].sources[source].assnType === associationTypes.SINGLE_REQUIRED) {
     topComponent = singularName(topComponentType)
   }
 
-  let topComponentSetting = 'userId={ currentUser.id }'
 
   /*
 "constraints": {"toDoSource":
