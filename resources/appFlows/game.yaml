@@ -21,14 +21,8 @@ userClass: user
               - steps:
                   - use#user
     - typeInfo:
-        - project:
-            - returned: false
-            - constraint:
-              - value: `=__currentProjectId__`
-              - type: ID
-        - type:
+        - character:
             - properties:
-                - done:
-                    - dataType: boolean
-        - user:
-            - assnName: assigned
+                - strength: number
+                - charisma: number
+                - courage: number

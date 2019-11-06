@@ -2,9 +2,9 @@ resetStack
 newUserClass user
 
 ### SOURCES ###
-newSource projectsForUser user
-#newSource profile user
-newSource  taskInfo user
+newUnit projectsForUser user
+#newUnit profile user
+newUnit  taskInfo user
 connectSources taskInfo projectsForUser project
 
 ### TYPES ###

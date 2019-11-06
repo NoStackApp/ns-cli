@@ -2,7 +2,7 @@
 newUserClass user
 
 ### SOURCES ###
-newSource tweetsForUser user
+newUnit tweetsForUser user
 
 ### TYPES ###
 newType tweet tweetsForUser users
@@ -17,8 +17,8 @@ newConstraint __currentUser__ tweetsForUser user ID### USER CLASS ###
 newUserClass user
 
 ### SOURCES ###
-newSource  userCharacters user
-newSource overview user
+newUnit  userCharacters user
+newUnit overview user
 
 ### TYPES ###
 newType name userCharacters user

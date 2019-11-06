@@ -2,8 +2,8 @@
 newUserClass user
 
 ### SOURCES ###
-newSource  projectSource user
-newSource  toDoSource user
+newUnit  projectSource user
+newUnit  toDoSource user
 connectSources toDoSource projectSource project
 
 ### TYPES ###
