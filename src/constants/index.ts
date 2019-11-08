@@ -53,7 +53,7 @@ export const boilerPlates = {
   [boilerPlateTypes.SINGLE_NON_ROOT]: 'genericSingleNonRoot',
   [boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]: 'genericMultipleNonRootGrouping',
   [boilerPlateTypes.MULTIPLE_ROOT_GROUPING]: 'genericMultipleRootGrouping',
-  [boilerPlateTypes.SINGLE_ROOT_GROUPING]: 'genericSingleGroupingRoot',
+  [boilerPlateTypes.SINGLE_ROOT_GROUPING]: 'genericSingleRootGrouping',
   [boilerPlateTypes.SINGLE_NON_ROOT_GROUPING]: 'genericSingleNonRootGrouping',
   [boilerPlateTypes.SINGLE_PROPERTY]: 'genericSingleProperty',
   [boilerPlateTypes.SINGLE_BOOLEAN]: 'genericSingleBoolean',
