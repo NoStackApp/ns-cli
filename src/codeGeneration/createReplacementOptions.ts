@@ -97,18 +97,15 @@ export const createReplacementOptions = (type: string, source: string, currentSt
   //   boilerPlate !== boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]
   // ) {
   let children = currentStack.sources[source].selectedTree[type]
-  console.log(`children for ${type}: ${JSON.stringify(children)}`)
+  // console.log(`children for ${type}: ${JSON.stringify(children)}`)
   const connectedSource: string = currentStack.sources[source].connections[type]
   const constraintsInfo = currentStack.sources[source].constraints
 
   Object.keys(constraintsInfo).map(key => {
-      // if (constraintsInfo[key].constraintType === 'ID' &&
-      //   constraintsInfo[key].type === type) {
-      //   constraintValue = constraintsInfo[key].value
-      // }
-    if (constraintsInfo[key].constraintType === 'ID' &&
-        constraintsInfo[key].type === parentType) {
-      constraintValue = constraintsInfo[key].value
+    if (constraintsInfo[key].constraintType === 'ID') {
+      if (constraintsInfo[key].type === parentType || currentStack.sources[source].selectionRoot) {
+        constraintValue = constraintsInfo[key].value
+      }
     }
   })
 

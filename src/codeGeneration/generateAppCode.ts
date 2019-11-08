@@ -11,7 +11,8 @@ const execa = require('execa')
 const fs = require('fs-extra')
 const Listr = require('listr')
 
-export async function generateCodeFiles(appName: string) {
+// export async function generateCodeFiles(appName: string) {
+export async function generateCodeFiles(appName: string, userClass: string) {
   // console.log(`stacklocation=${appName}/stack.json`)
   const currentStack: StackInfo = await fs.readJSON(`${appName}/stack.json`) // await generateJSON.bind(this)(template, appName)
   // console.log(`currentStack=${currentStack}`)
@@ -27,7 +28,7 @@ export async function generateCodeFiles(appName: string) {
   // const currentStack: object = fs.readJsonSync('stack.json')
 
   // this.log(JSON.stringify(currentStack, null, 2))
-  await createHighestLevelFiles(currentStack, appName)
+  await createHighestLevelFiles(currentStack, appName, userClass)
 
   // const sourcePropsDir = `${appName}/src/source-props`
   // await createFragmentsFile(currentStack)
@@ -45,10 +46,13 @@ export async function generateCodeFiles(appName: string) {
   let i
   for (i = 0; i < sourceKeys.length; i++) {
     let source = sourceKeys[i]
+    const sourceInfo = sources[source]
+    const {owner} = sourceInfo
+    console.log(`source=${source}, userClass=${userClass}`)
+    if (owner !== userClass) continue
+    console.log(`source=${source} is continuing...`)
 
     try {
-      // console.log(`source=${source}`)
-      const sourceInfo = sources[source]
       const highestLevel = 'highestLevel'
       let selectedTree = {...sourceInfo.selectedTree}
       const highestLevelList = selectedTree[highestLevel]
@@ -63,7 +67,7 @@ export async function generateCodeFiles(appName: string) {
 
       const types = Object.keys(selectedTree)
       // const {selectionRoot} = sourceInfo
-      console.log(`types=${JSON.stringify(types)}`)
+      // console.log(`types=${JSON.stringify(types)}`)
 
       let j
       for (j = 0; j < types.length; j++) {
@@ -81,7 +85,7 @@ export async function generateCodeFiles(appName: string) {
         }
 
         if (type === root && type !== sourceInfo.selectedTree[highestLevel][0]) {
-          console.log(`type is root for ${source}`)
+          console.log(`${type} is root for ${source}`)
           // this is the root, being used as the highest level component even though
           // it is not selected.  Therefore, it must be treated as a grouping in order to
           // show a list of true highest level components.
@@ -91,7 +95,7 @@ export async function generateCodeFiles(appName: string) {
         }
 
         const boilerPlateType = formType + dataType + nodeType
-        // console.log(`*** type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
+        console.log(`*** type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
 
         await createTypeFile(type, source, boilerPlateType, currentStack)
 

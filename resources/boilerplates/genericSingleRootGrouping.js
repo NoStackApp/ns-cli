@@ -3,18 +3,15 @@ import { Unit } from '@nostack/no-stack';
 import styled from 'styled-components';
 import { flattenData } from '../../../flattenData';
 
-// import {
-//   SOURCE_USER_PROFILE_ID,
-//   TYPE_LAST_NAME_ID,
-//   TYPE_ADDRESS_ID,
-//   TYPE_FIRST_NAME_ID,
-// TYPE_ACTIVE_ID} from '../../../config';
+import { __SOURCE_ID_CONSTANT____ChildrenTypeList__} from '../../../config';
+
 import { __RELATIONSHIPS_NAME__, __SOURCE_QUERY_NAME__ } from '../../source-props/__SingularSourceLowercase__';
 
-// import LastName from '../LastName'; 
-// import Address from '../Address'; 
-// import FirstName from '../FirstName'; 
-// import Active from '../Active'; 
+__CHILDREN_IMPORT_LIST__
+// import LastName from '../LastName';
+// import Address from '../Address';
+// import FirstName from '../FirstName';
+// import Active from '../Active';
 
 // add styling here
 const __SingularName__StyleWrapper = styled.div`
@@ -52,6 +49,7 @@ function __SingularName__({ __SingularNameLowercase__Id }) {
           return null;
         }
 
+        __CHILDREN_CONSTANT_DECLARATIONS__
         // const firstNameData = childTypes.find(child => child.typeId === TYPE_FIRST_NAME_ID);
         // const firstName = firstNameData ? firstNameData.instances[0] : [];
 
@@ -64,6 +62,11 @@ function __SingularName__({ __SingularNameLowercase__Id }) {
         // const activeData = childTypes.find(child => child.typeId === TYPE_ACTIVE_ID);
         // const  active = activeData ? activeData.instances[0] : [];
 
+        return (
+          <__SingularName__StyleWrapper>
+            __CHILDREN_BODY_LIST__
+          </__SingularName__StyleWrapper>
+          );
         // return (
         //   <UserStyleWrapper>
         //     <FirstName
