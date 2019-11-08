@@ -8,7 +8,7 @@ import {generateFromBoilerPlate} from './generateFromBoilerPlate'
 
 const fs = require('fs-extra')
 
-export async function createHighestLevelFiles(currentStack: StackInfo, appName: string) {
+export async function createHighestLevelFiles(currentStack: StackInfo, appName: string, userClass: string) {
   // const boilerPlateDir = `${boilerplateDir}/codeGeneration/boilerplates`
 
   // shell.cp()
@@ -43,7 +43,7 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appName: 
   await fs.copy(`${boilerplateDir}/index.js`, `${srcDir}/index.js`)
 
   // App
-  const source: string = currentStack.topSource
+  const source: string = currentStack.userClasses[userClass].topSource
   if (!source) {
     const err = (new noNameError())
     err.message = 'template contains no sources'

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import compose from '@shopify/react-compose';
 import {graphql} from '@apollo/react-hoc';
 
-import {__ChildrenTypeList__} from '../../../config';
+import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID, DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
 
 
 __CHILDREN_IMPORT_LIST__

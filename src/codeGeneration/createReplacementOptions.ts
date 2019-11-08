@@ -97,7 +97,7 @@ export const createReplacementOptions = (type: string, source: string, currentSt
   //   boilerPlate !== boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]
   // ) {
   let children = currentStack.sources[source].selectedTree[type]
-  console.log(`children for ${type}: ${JSON.stringify(children)}`)
+  // console.log(`children for ${type}: ${JSON.stringify(children)}`)
   const connectedSource: string = currentStack.sources[source].connections[type]
   const constraintsInfo = currentStack.sources[source].constraints
 

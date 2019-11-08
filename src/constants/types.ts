@@ -66,6 +66,28 @@ export interface SourceInfo {
   id: string,
 }
 
+/*
+    "user": {
+      "name": "user",
+      "id": "9f025291-ff2b-4ae7-9e89-d9a87ea6a080",
+      "samples": {
+        "tstNoStackMod1": {
+          "id": "546decf9-6d66-4dc6-b3c6-f2451d427bb4",
+          "suffix": "Mod",
+          "owner": "tstNoStackMod1"
+        },
+ */
+export interface UserClassInfo {
+  name: string,
+  id: string,
+  topSource: string,
+  samples: object,
+}
+
+export interface UserClasses {
+  [userClassName: string]: UserClassInfo,
+}
+
 export interface Sources {
   [sourceName: string]: SourceInfo,
 }
@@ -119,7 +141,7 @@ export interface ActionsByActionType {
 
 export interface StackInfo {
   topSource: string,
-  userClasses: object,
+  userClasses: UserClasses,
   sources: Sources,
   types: Types,
   actions: ActionsByActionType,

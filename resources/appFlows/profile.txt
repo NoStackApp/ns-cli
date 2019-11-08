@@ -1,8 +1,10 @@
 resetStack
 newUserClass user
+newUserClass tester
 
 ### SOURCES ###
 newUnit userProfile user
+newUnit testData tester
 
 ### TYPES ###
 useType user userProfile __Root__
@@ -10,6 +12,10 @@ newType lastName userProfile user string singleRequired
 newType address userProfile user string singleRequired
 newType firstName userProfile user string singleRequired
 newType active userProfile user boolean singleRequired
+
+#useType user testData __Root__
+#newType audited testData user
+newType audited testData foo
 
 #newType profile userProfile __Root__ grouping
 #useType user userProfile profile singleRequired
@@ -33,6 +39,11 @@ newSelection userProfile address
 newSelection userProfile firstName
 newSelection userProfile lastName
 newSelection userProfile active
+
+#newSelection testData user
+newSelection testData foo
+newSelection testData audited
+
 
 ### CONSTRAINTS ###
 newConstraint __currentUser__ userProfile user ID

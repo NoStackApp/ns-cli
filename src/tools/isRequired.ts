@@ -1,3 +1,12 @@
-export const isRequired = (paramName: string) => {
+export const isRequired = (paramName: string, commandName: string, flag: string) => {
+  //   this.log("param ${paramName} is required for this creation)
+  //   return
+
+  if (flag && commandName) {
+    console.log(`Error calling command ${commandName}: the parameter '${paramName}' is required.
+     Use the flag '--${paramName}' or '-${flag}'.`)
+    return process.exit(1)
+  }
+
   throw new Error(`param ${paramName} is required for this creation`)
 }
