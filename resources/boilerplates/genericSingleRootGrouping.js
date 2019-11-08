@@ -3,14 +3,12 @@ import { Unit } from '@nostack/no-stack';
 import styled from 'styled-components';
 import { flattenData } from '../../../flattenData';
 
-// NEXT LINE SHOULD BE:
 // import {
 //   SOURCE_USER_PROFILE_ID,
 //   TYPE_LAST_NAME_ID,
 //   TYPE_ADDRESS_ID,
 //   TYPE_FIRST_NAME_ID,
 // TYPE_ACTIVE_ID} from '../../../config';
-import { __SOURCE_ID_CONSTANT__ } from '../../../config';
 import { __RELATIONSHIPS_NAME__, __SOURCE_QUERY_NAME__ } from '../../source-props/__SingularSourceLowercase__';
 
 // import LastName from '../LastName'; 
@@ -20,15 +18,16 @@ import { __RELATIONSHIPS_NAME__, __SOURCE_QUERY_NAME__ } from '../../source-prop
 
 // add styling here
 const __SingularName__StyleWrapper = styled.div`
-  import LastName from '../LastName'; 
-  import Address from '../Address'; 
-  import FirstName from '../FirstName'; 
-  import Active from '../Active'; 
+  margin: 2em 1em;
+  padding: 1.5em;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #888888;
 `;
 
-function __SingularName__({ __SingularName__Id }) {
+function __SingularName__({ __SingularNameLowercase__Id }) {
   const parameters = {
-    __CONSTRAINT_VALUE__: __SingularName__Id,
+    __CONSTRAINT_VALUE__: __SingularNameLowercase__Id,
   };
 
   return (
@@ -48,10 +47,10 @@ function __SingularName__({ __SingularName__Id }) {
 
         const __SingularNameLowercase__ = data.unitData.map(el => flattenData(el));
 
-        // const childTypes = user && user.children;
-        // if (!childTypes) {
-        //   return null;
-        // }
+        const childTypes = __SingularNameLowercase__ && __SingularNameLowercase__.children;
+        if (!childTypes) {
+          return null;
+        }
 
         // const firstNameData = childTypes.find(child => child.typeId === TYPE_FIRST_NAME_ID);
         // const firstName = firstNameData ? firstNameData.instances[0] : [];
@@ -65,7 +64,6 @@ function __SingularName__({ __SingularName__Id }) {
         // const activeData = childTypes.find(child => child.typeId === TYPE_ACTIVE_ID);
         // const  active = activeData ? activeData.instances[0] : [];
 
-        // RETURN SHOULD BE:
         // return (
         //   <UserStyleWrapper>
         //     <FirstName
@@ -91,26 +89,9 @@ function __SingularName__({ __SingularName__Id }) {
         //     />
         //   </UserStyleWrapper>
         // );
-        return (
-          <>
-          <__SingularName__StyleWrapper>
-            {
-              __SingularNameLowercase__ && __SingularNameLowercase__.map(__SingularNameLowercase__ => (
-                <__SingularName__
-                  key={__SingularNameLowercase__.id}
-                  parentId={__SingularParentName__Id}
-                  __SingularNameLowercase__={__SingularNameLowercase__}
-                  refetchQueries={refetchQueries}
-                />
-              ))
-            }
-          </__SingularName__StyleWrapper>
-          </>
-        );
       }}
     </Unit>
   );
 }
 
 export default __SingularName__;
-
