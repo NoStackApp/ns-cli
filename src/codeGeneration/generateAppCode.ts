@@ -87,6 +87,7 @@ export async function generateCodeFiles(appName: string) {
           // show a list of true highest level components.
           formType = formTypes.SINGLE_INSTANCE
           dataType = dataTypes.GROUPING
+          nodeType = nodeTypes.ROOT
         }
 
         const boilerPlateType = formType + dataType + nodeType
