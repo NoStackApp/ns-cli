@@ -1,7 +1,7 @@
 ### USER CLASS ###
 newUserClass user
 
-### SOURCES ###
+### UNITS ###
 newUnit  projectSource user
 newUnit  toDoSource user
 connectSources toDoSource projectSource project

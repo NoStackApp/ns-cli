@@ -11,6 +11,7 @@ export async function buildStackFromTemplate(templateFile: string, userInfo: Use
 
   } catch (err) {
     console.error(err)
+    throw new Error(`error building stack from template: ${err}`)
   }
 
   const query = `mutation {

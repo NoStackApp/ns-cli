@@ -2,7 +2,7 @@
 newUserClass buyer
 newUserClass seller
 
-### SOURCES ###
+### UNITS ###
 newUnit  offerings seller
 newUnit  productSearch buyer
 

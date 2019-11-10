@@ -27,11 +27,11 @@ export default class Spinstack extends Command {
 
   async run() {
     const {flags} = this.parse(Spinstack)
-    const appName = flags.appName || isRequired('appName')
-    const user = flags.user || isRequired('user')
-    const template = flags.template || isRequired('template')
-    const stack = flags.stack || isRequired('stack')
-    const email = flags.email || isRequired('email')
+    const appName = flags.appName || isRequired('appName', 'spinstack', '-a')
+    const user = flags.user || isRequired('user', 'spinstack', '-u')
+    const template = flags.template || isRequired('template', 'spinstack', '-t')
+    const stack = flags.stack || isRequired('stack', 'spinstack', '-s')
+    const email = flags.email || isRequired('email', 'spinstack', '-e')
     const addedSuffix = flags.addedSuffix || ''
 
     let userInfo: UserInfo = newUserInfo(user)
@@ -41,11 +41,12 @@ export default class Spinstack extends Command {
     // console.log(`in spinstack after getUserInfo, userInfo:${JSON.stringify(userInfo)}`)
 
     const json = await buildStackFromTemplate(template, userInfo, email, addedSuffix)
+    console.log(`JSON TO OUTPUT... ${JSON.stringify(json)}`)
 
     await fs.outputJson(`${appName}/stack.json`, JSON.parse(json), (err: any) => {
       if (err) {
         // @ts-ignore
-        throw new Error(console.error(err))
+        throw new Error(`Try calling that request again.  There was a problem with creating the stack.json file: ${err}`)
       }
     })
 

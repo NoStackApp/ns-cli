@@ -2,9 +2,10 @@ resetStack
 newUserClass user
 newUserClass tester
 
-### SOURCES ###
+### UNITS ###
 newUnit userProfile user
 newUnit testData tester
+newUnit dashboard moderator
 
 ### TYPES ###
 useType user userProfile __Root__
@@ -13,24 +14,19 @@ newType address userProfile user string singleRequired
 newType firstName userProfile user string singleRequired
 newType active userProfile user boolean singleRequired
 
-#useType user testData __Root__
-#newType audited testData user
+useType tester testData __Root__
+newType foo testData tester
 newType audited testData foo
+
+useType moderator dashboard __Root__
+newType bar dashboard moderator
+newType foobar dashboard bar
 
 #newType profile userProfile __Root__ grouping
 #useType user userProfile profile singleRequired
 #newType lastName userProfile profile string singleRequired
 #newType address userProfile profile string singleRequired
 #newType firstName userProfile profile string singleRequired
-
-## The following works...
-#useType user userProfile __Root__
-#newType profile userProfile user grouping
-#newType lastName userProfile profile string singleRequired
-#newType address userProfile profile number singleRequired
-#newType street userProfile profile string singleRequired
-#newType firstName userProfile profile string singleRequired
-#newType active userProfile profile boolean singleRequired
 
 ### SELECTIONS ###
 #newSelection userProfile profile
@@ -43,6 +39,10 @@ newSelection userProfile active
 #newSelection testData user
 newSelection testData foo
 newSelection testData audited
+
+newSelection dashboard bar
+newSelection dashboard foobar
+
 
 
 ### CONSTRAINTS ###
