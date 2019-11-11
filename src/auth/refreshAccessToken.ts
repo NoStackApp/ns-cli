@@ -36,10 +36,7 @@ export async function refreshAccessToken(userInfo: UserInfo) {
     return (ExecuteAction.AuthenticationResult.AccessToken)
     // console.log(`newAccessToken=${newAccessToken}`)
   })
-    .catch(() => {
-      console.log('error with the refresh...')
-      // console.log(err)
-      // console.log(err.response.errors) // GraphQL response errors
-      // console.log(err.response.data) // Response data if available
-    })
+    // .catch(refreshError => {
+    //   console.log(`error With refresh: ${refreshError.response.errors[0]}`)
+    // })
 }

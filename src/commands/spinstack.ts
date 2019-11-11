@@ -41,12 +41,17 @@ export default class Spinstack extends Command {
     // console.log(`in spinstack after getUserInfo, userInfo:${JSON.stringify(userInfo)}`)
 
     const json = await buildStackFromTemplate(template, userInfo, email, addedSuffix)
-    console.log(`JSON TO OUTPUT... ${JSON.stringify(json)}`)
+    // console.log(`JSON TO OUTPUT... ${JSON.stringify(json)}`)
+
+    if (json === undefined) {
+      console.log('Try calling that request again.  Your user had to be logged in.')
+      return
+    }
 
     await fs.outputJson(`${appName}/stack.json`, JSON.parse(json), (err: any) => {
       if (err) {
-        // @ts-ignore
-        throw new Error(`Try calling that request again.  There was a problem with creating the stack.json file: ${err}`)
+        // @ts-ignore`
+        throw new Error(`Error writing the stack file ${appName}/stack.json: ${err}`)
       }
     })
 

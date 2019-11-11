@@ -187,7 +187,7 @@ constrained type for a unit.  The constrained value is provided, along with
 an indication of whether the type is constrained by ID (an exact match) or value
 (a comparison match, where the value evaluate to true or false or any given instance
 value).  Currently, only ID is supported.
-* *connectSources \<childSource\> \<parentSource\> \<connecting type\>* Shows
+* *connectUnits \<childSource\> \<parentSource\> \<connecting type\>* Shows
 a means for connecting two sources, forming in effect one larger hierarchy.
 The connecting type must be shared between the two of them currently.
 

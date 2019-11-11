@@ -4,7 +4,7 @@ newUserClass user
 ### UNITS ###
 newUnit  projectSource user
 newUnit  toDoSource user
-connectSources toDoSource projectSource project
+connectUnits toDoSource projectSource project
 
 ### TYPES ###
 newType project projectSource user

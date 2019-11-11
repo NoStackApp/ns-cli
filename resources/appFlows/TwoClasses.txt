@@ -8,7 +8,7 @@ newUnit  taskInfo user
 newUnit  lurkZone lurker
 
 
-connectSources taskInfo projectsForUser project
+connectUnits taskInfo projectsForUser project
 
 
 ### TYPES ###

@@ -5,7 +5,7 @@ newUserClass user
 newUnit  projectsForUser user
 newUnit  projectsForUser user
 newUnit  taskInfo user
-connectSources taskInfo projectsForUser project
+connectUnits taskInfo projectsForUser project
 
 ### TYPES ###
 newType project projectsForUser user

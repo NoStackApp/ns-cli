@@ -171,7 +171,7 @@ const newConstraint = (args: string[]) => {
   }
 }
 
-const connectSources = (args: string[]) => {
+const connectUnits = (args: string[]) => {
   const childSource = args[0]
   const parentSource = args[1]
   const connectingType = args[2]
@@ -187,7 +187,7 @@ const updateData = (command: string, args: string[]) => {
     newType,
     newSelection,
     newConstraint,
-    connectSources,
+    connectUnits,
   }
 
   // @ts-ignore
