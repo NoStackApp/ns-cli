@@ -5,7 +5,6 @@ newUserClass user
 newUnit projectsForUser user
 #newUnit profile user
 newUnit  taskInfo user
-connectUnits taskInfo projectsForUser project
 
 ### TYPES ###
 newType project projectsForUser user
@@ -14,6 +13,7 @@ newType completed taskInfo task boolean singleRequired
 newType step taskInfo task
 newType goal taskInfo step
 useType user taskInfo step
+connectUnits taskInfo projectsForUser project
 
 ### SELECTIONS ###
 newSelection projectsForUser project
