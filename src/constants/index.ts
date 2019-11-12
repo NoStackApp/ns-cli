@@ -26,6 +26,12 @@ export const formTypes = {
   LIST: 'list',
 }
 
+export interface boilerPlateInfoType {
+  formType: string,
+  dataType: string,
+  nodeType: string,
+}
+
 export const boilerPlateTypes = {
   CREATION_ROOT: `${formTypes.CREATION}${dataTypes.STRING}${nodeTypes.ROOT}`,
   CREATION_NON_ROOT: `${formTypes.CREATION}${dataTypes.STRING}${nodeTypes.NONROOT}`,

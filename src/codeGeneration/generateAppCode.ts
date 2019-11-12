@@ -1,4 +1,4 @@
-import {associationTypes, dataTypes, formTypes, nodeTypes} from '../constants'
+import {associationTypes, boilerPlateInfoType, dataTypes, formTypes, nodeTypes} from '../constants'
 import {StackInfo} from '../constants/types'
 
 import {createConfigFile} from './createConfigFile'
@@ -94,19 +94,31 @@ export async function generateCodeFiles(appName: string, userClass: string) {
           nodeType = nodeTypes.ROOT
         }
 
-        const boilerPlateType = formType + dataType + nodeType
+        const boilerPlateInfo: boilerPlateInfoType = {
+          formType,
+          dataType,
+          nodeType}
+
         console.log(`*** type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
 
-        await createTypeFile(type, source, boilerPlateType, currentStack)
+        await createTypeFile(type, source, boilerPlateInfo, currentStack)
 
         // console.log(`assnType=${assnType}`)
-        if (assnType === associationTypes.MULTIPLE) {
+        if (assnType !== associationTypes.SINGLE_REQUIRED) {
           // console.log('assnType === associationTypes.MULTIPLE is true!')
-          const creationBoilerPlateType = formTypes.CREATION + dataType + nodeType
-          await createTypeFile(type, source, creationBoilerPlateType, currentStack)
+          const creationBoilerPlateInfo = {
+            formType: formTypes.CREATION,
+            dataType,
+            nodeType
+          }
+          await createTypeFile(type, source, creationBoilerPlateInfo, currentStack)
 
-          const singularBoilerPlateType = formTypes.SINGLE_INSTANCE + dataType + nodeType
-          await createTypeFile(type, source, singularBoilerPlateType, currentStack)
+          const singularBoilerPlateInfo = {
+            formType: formTypes.LIST,
+            dataType,
+            nodeType
+          }
+          await createTypeFile(type, source, singularBoilerPlateInfo, currentStack)
         }
       }
 
