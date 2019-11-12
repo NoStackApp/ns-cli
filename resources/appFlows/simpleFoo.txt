@@ -1,0 +1,18 @@
+resetStack
+newUserClass tester
+
+### UNITS ###
+newUnit testData tester
+
+### TYPES ###
+useType tester testData __Root__
+newType foo testData tester
+newType audited testData foo
+
+### SELECTIONS ###
+newSelection testData foo
+newSelection testData audited
+
+#newUnit unit2 tester
+#connectUnits unit2 testData project
+

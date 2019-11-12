@@ -34,11 +34,11 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
   })
 
   let dataReturned: any = ''
-  let finished = false
+  // let finished = false
   await client.request(query, variables).then(data => {
     // console.log(`data=${JSON.stringify(data)}`)
     dataReturned = data
-    finished = true
+    // finished = true
   })
     .catch(async err => {
       // console.log(JSON.stringify(err))
@@ -47,45 +47,114 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
       }
 
       if (err.code === 103 || err.response.errors[0].code === 103) {
-        // console.log('***error 103 encountered... will refresh token again***') // GraphQL response errors
-        // const user = options.user || isRequired('user')
-        // const stack = options.stack || isRequired('stack')
-        await refreshAccessToken(userInfo)
-        await setUserInfo(userInfo)
-        // refreshAccessTokenForUser(currentRefreshToken,user)
-      } else {
-        finished = true
-        // console.log(err.response.errors) // GraphQL response errors
-        console.log(JSON.stringify(err.response.data)) // Response data if available
-        throw new Error(err.response.errors) // GraphQL response errors
-      }
-    })
-
-  if (!finished) {
-    // console.log('trying again')
-    const clientAfterRefresh = new GraphQLClient(server, {
-      headers: {
-        jwt: userInfo.accessToken
-      }
-    })
-    await clientAfterRefresh.request(query, variables).then(data => {
-      // console.log(data)
-      dataReturned = data
-      finished = true
-    })
-      .catch(async err => {
-        console.log(JSON.stringify('Try calling the request again...')) // Response data if available
-
-        await loginUser(userInfo)
-
         try {
-          await getUserInfo(userInfo) // second try
-        } catch (errReadingLogin) {
-          console.error(errReadingLogin)
-          throw new Error(err.response.errors) // GraphQL response errors
+          await refreshAccessToken(userInfo)
+        } catch (refreshError) {
+          // console.log(`error with refreshing token: ${JSON.stringify(refreshError.response.errors)}`)
+          if (refreshError.response.errors[0] === 'error executing action: Error: NotAuthorizedException: Invalid Refresh Token') {
+            // console.log('error with refreshing token!')
+            await loginUser(userInfo)
+            try {
+              await getUserInfo(userInfo) // second try
+            } catch (errReadingLogin) {
+              // console.error(errReadingLogin)
+              throw new Error(errReadingLogin.response.errors) // GraphQL response errors
+            }
+          }
         }
 
-      })
-  }
+        await setUserInfo(userInfo)
+
+        const clientAfterRefresh = new GraphQLClient(server, {
+          headers: {
+            jwt: userInfo.accessToken
+          }
+        })
+        // } catch {
+        //   await loginUser(userInfo)
+        //
+        //   try {
+        //     await getUserInfo(userInfo) // second try
+        //   } catch (errReadingLogin) {
+        //     console.error(errReadingLogin)
+        //     throw new Error(errReadingLogin.response.errors) // GraphQL response errors
+        //   }
+        //
+        // }
+        // if (!clientAfterRefresh) throw new Error('problem refreshing the tokens.')
+        try {
+          await clientAfterRefresh.request(query, variables).then(data => {
+            // console.log(data)
+            dataReturned = data
+            // finished = true
+          })
+        } catch (err) {
+          throw new Error(`${err.response.errors[0]}`)
+        }
+        // refreshAccessTokenForUser(currentRefreshToken,user)
+      } else {
+        // console.log(err.response.errors) // GraphQL response errors
+        // console.log(JSON.stringify(err.response.data)) // Response data if available
+        throw new Error(`${err.response.errors[0]}`) // GraphQL response errors
+      }
+    })
+
+  // let clientAfterRefresh = null
+  // if (!finished) {
+  //   // console.log('trying again')
+  //
+  //   // try {
+  //   clientAfterRefresh = new GraphQLClient(server, {
+  //     headers: {
+  //       jwt: userInfo.accessToken
+  //     }
+  //   })
+  //   // } catch {
+  //   //   await loginUser(userInfo)
+  //   //
+  //   //   try {
+  //   //     await getUserInfo(userInfo) // second try
+  //   //   } catch (errReadingLogin) {
+  //   //     console.error(errReadingLogin)
+  //   //     throw new Error(errReadingLogin.response.errors) // GraphQL response errors
+  //   //   }
+  //   //
+  //   // }
+  //   // if (!clientAfterRefresh) throw new Error('problem refreshing the tokens.')
+  //   try {
+  //     await clientAfterRefresh.request(query, variables).then(data => {
+  //       // console.log(data)
+  //       dataReturned = data
+  //       finished = true
+  //     })
+  //   } catch (err) {
+  //     if (err.code === 103 || err.response.errors[0].code === 103) {
+  //       // must be that the refresh token has expired
+  //       await loginUser(userInfo)
+  //       try {
+  //         await getUserInfo(userInfo) // second try
+  //       } catch (errReadingLogin) {
+  //         // console.error(errReadingLogin)
+  //         throw new Error(errReadingLogin.response.errors) // GraphQL response errors
+  //       }
+  //     }
+  //
+  //     // third try's the charm...
+  //     clientAfterRefresh = new GraphQLClient(server, {
+  //       headers: {
+  //         jwt: userInfo.accessToken
+  //       }
+  //     })
+  //     try {
+  //       await clientAfterRefresh.request(query, variables).then(data => {
+  //         // console.log(data)
+  //         dataReturned = data
+  //         finished = true
+  //       })
+  //     } catch (err) {
+  //       throw new Error(`${err.response.errors[0]}`)
+  //     }
+  //   }
+  // }
   return dataReturned
 }

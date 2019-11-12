@@ -3,6 +3,7 @@ export const liveServer = 'https://api.matchlynx.com/graphql'
 export const associationTypes = {
   MULTIPLE: 'multiple',
   SINGLE_REQUIRED: 'singleRequired',
+  SELECTABLE: 'selectable',
 }
 
 export const dataTypes = {
@@ -16,6 +17,7 @@ export const nodeTypes = {
   NONROOT: 'nonRoot',
   ROOT: 'Root',
   PROPERTY: 'Property',
+  SELECTABLE: 'selectable',
 }
 
 export const formTypes = {

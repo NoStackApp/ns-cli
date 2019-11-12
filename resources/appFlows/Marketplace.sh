@@ -2,11 +2,11 @@
 newUserClass buyer
 newUserClass seller
 
-### SOURCES ###
+### UNITS ###
 newUnit  offerings seller
 newUnit  productSearch buyer
 
-#connectSources projectInfo projectsForUser project
+#connectUnits projectInfo projectsForUser project
 
 ### TYPES ###
 newType product offerings seller
