@@ -1,7 +1,7 @@
 // import {string} from '@oclif/command/lib/flags'
 // import {Replacement} from 'tslint'
 
-import {boilerplateDir, boilerPlates, boilerPlateTypes} from '../constants'
+import {boilerplateDir, boilerPlateInfoType, boilerPlates, boilerPlateTypes, dataTypes, formTypes} from '../constants'
 import {StackInfo} from '../constants/types'
 import {pluralName, singularName} from '../tools/inflections'
 
@@ -34,34 +34,24 @@ import {makeDirs} from './makeDirs'
 //
 // }
 
-const boilerPlateToDir = (type: string, boilerPlateType: string) => {
+const boilerPlateToDir = (type: string, formType: string) => {
   const mappingObject = {
-    [boilerPlateTypes.CREATION_ROOT]: singularName(type) + 'CreationForm',
-    [boilerPlateTypes.CREATION_NON_ROOT]: singularName(type) + 'CreationForm',
-    [boilerPlateTypes.CREATION_ROOT_GROUPING]: singularName(type) + 'CreationForm',
-    [boilerPlateTypes.CREATION_NON_ROOT_GROUPING]: singularName(type) + 'CreationForm',
-    [boilerPlateTypes.SINGLE_BOOLEAN]: singularName(type),
-    [boilerPlateTypes.SINGLE_NON_ROOT]: singularName(type),
-    [boilerPlateTypes.SINGLE_ROOT]: singularName(type),
-    [boilerPlateTypes.MULTIPLE_NON_ROOT]: pluralName(type),
-    [boilerPlateTypes.MULTIPLE_ROOT]: pluralName(type),
-    [boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]: pluralName(type),
-    [boilerPlateTypes.MULTIPLE_ROOT_GROUPING]: pluralName(type),
-    [boilerPlateTypes.SINGLE_ROOT_GROUPING]:  singularName(type),
-    [boilerPlateTypes.SINGLE_NON_ROOT_GROUPING]:  singularName(type),
-    [boilerPlateTypes.SINGLE_PROPERTY]:  singularName(type),
-    [boilerPlateTypes.SINGLE_BOOLEAN]:  singularName(type),
-    [boilerPlateTypes.SINGLE_NUMBER]:  singularName(type),
+    [formTypes.SINGLE_INSTANCE]: singularName(type),
+    [formTypes.CREATION]: singularName(type) + 'CreationForm',
+    [formTypes.LIST]: pluralName(type),
   }
-  return mappingObject[boilerPlateType]
+  return mappingObject[formType]
 }
 
-export async function createTypeFile(type: string, source: string, boilerPlateType: string, currentStack: StackInfo) {
+const boilerPlateFromInfo = (boilerPlateInfo: boilerPlateInfoType) =>
+  boilerPlates[boilerPlateInfo.formType + boilerPlateInfo.dataType + boilerPlateInfo.nodeType]
+
+export async function createTypeFile(type: string, source: string, boilerPlateInfo: boilerPlateInfoType, currentStack: StackInfo) {
   // console.log(`in createTypeFile, type=${type}, boilerPlateType=${boilerPlateType}`)
   // const parentType = currentStack.types[type].sources[source].parentType
-  const boilerPlate = boilerPlates[boilerPlateType]
+  const boilerPlate = boilerPlateFromInfo(boilerPlateInfo)
   console.log(`in createTypeFile, type=${type}, boilerPlate=${boilerPlate}`)
-  const dir = boilerPlateToDir(type, boilerPlateType)
+  const dir = boilerPlateToDir(type, boilerPlateInfo.formType)
   // console.log(`in createTypeFile, dir=${dir}`)
   // if (boilerPlate !== boilerPlates[associationTypes.MULTIPLE]) {
   //   dir = singularName(type)
