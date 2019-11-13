@@ -39,9 +39,9 @@ export default class Makecode extends Command {
         process.exit(1)
       }
       userClass = userClassNames[0]
-      this.log(`userClass has been set to ${userClass}`)
+      // this.log(`userClass has been set to ${userClass}`)
     }
-    this.log(`userClass is ${userClass}`)
+    // this.log(`userClass is ${userClass}`)
 
     // await generateCodeFiles(appName)  // temp, to debug
     // try {

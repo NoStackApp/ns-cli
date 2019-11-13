@@ -48,9 +48,8 @@ export async function generateCodeFiles(appName: string, userClass: string) {
     let source = sourceKeys[i]
     const sourceInfo = sources[source]
     const {owner} = sourceInfo
-    console.log(`source=${source}, userClass=${userClass}`)
+    // console.log(`source=${source}, userClass=${userClass}`)
     if (owner !== userClass) continue
-    console.log(`source=${source} is continuing...`)
 
     try {
       const highestLevel = 'highestLevel'
@@ -80,9 +79,9 @@ export async function generateCodeFiles(appName: string, userClass: string) {
         if (selectionRoot === type) nodeType = nodeTypes.ROOT
 
         let formType = formTypes.SINGLE_INSTANCE
-        if (assnType === associationTypes.MULTIPLE) {
-          formType = formTypes.LIST
-        }
+        // if (assnType !== associationTypes.SINGLE_REQUIRED) {
+        //   formType = formTypes.LIST
+        // }
 
         if (type === root && type !== sourceInfo.selectedTree[highestLevel][0]) {
           console.log(`${type} is root for ${source}`)
@@ -99,7 +98,7 @@ export async function generateCodeFiles(appName: string, userClass: string) {
           dataType,
           nodeType}
 
-        console.log(`*** type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
+        // console.log(`*** type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
 
         await createTypeFile(type, source, boilerPlateInfo, currentStack)
 
