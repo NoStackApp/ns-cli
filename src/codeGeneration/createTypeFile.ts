@@ -47,10 +47,10 @@ const boilerPlateFromInfo = (boilerPlateInfo: boilerPlateInfoType) =>
   boilerPlates[boilerPlateInfo.formType + boilerPlateInfo.dataType + boilerPlateInfo.nodeType]
 
 export async function createTypeFile(type: string, source: string, boilerPlateInfo: boilerPlateInfoType, currentStack: StackInfo) {
-  // console.log(`in createTypeFile, type=${type}, boilerPlateType=${boilerPlateType}`)
+  // console.log(`in createTypeFile, type=${type}, boilerPlateInfo=${JSON.stringify(boilerPlateInfo)}`)
   // const parentType = currentStack.types[type].sources[source].parentType
   const boilerPlate = boilerPlateFromInfo(boilerPlateInfo)
-  console.log(`in createTypeFile, type=${type}, boilerPlate=${boilerPlate}`)
+  // console.log(`in createTypeFile, type=${type}, boilerPlate=${boilerPlate}`)
   const dir = boilerPlateToDir(type, boilerPlateInfo.formType)
   // console.log(`in createTypeFile, dir=${dir}`)
   // if (boilerPlate !== boilerPlates[associationTypes.MULTIPLE]) {
