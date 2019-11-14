@@ -33,6 +33,7 @@ export default class Quickstarter extends Command {
     user: flags.string({char: 'u', description: 'moderator to create'}),
     email: flags.string({char: 'e', description: 'moderator email'}),
     password: flags.string({char: 'w', description: 'moderator password'}),
+    userClass: flags.string({char: 'c', description: 'userClass for which to generate an app'}),
     // flag with no value (-f, --force)
     force: flags.boolean({char: 'f'}),
   }
@@ -41,14 +42,15 @@ export default class Quickstarter extends Command {
 
   async run() {
     const {args, flags} = this.parse(Quickstarter)
-    const appName = flags.appName || isRequired('appName')
+    const appName = flags.appName || isRequired('appName', 'quickstarter', '-a')
     const baseApp = flags.baseApp || ''
-    const stack = flags.stack || isRequired('stack')
-    const template = flags.template || isRequired('template')
-    const user = flags.user || isRequired('user')
-    const password = flags.password || isRequired('password')
-    const email = flags.email || isRequired('email')
-    const licenseId = flags.licenseId || isRequired('licenseId')
+    const stack = flags.stack || isRequired('stack', 'quickstarter', '-s')
+    const flowSpec = flags.template || isRequired('flowSpec', 'quickstarter', '-t')
+    const user = flags.user || isRequired('user', 'quickstarter', '-u')
+    const userClass = flags.userClass || isRequired('userClass', 'quickstarter', '-c')
+    const password = flags.password || isRequired('password', 'quickstarter', '-w')
+    const email = flags.email || isRequired('email', 'quickstarter', '-e')
+    const licenseId = flags.licenseId || isRequired('licenseId', 'quickstarter', '-l')
 
     let userInfo: UserInfo = {
       name: user,
@@ -66,7 +68,7 @@ export default class Quickstarter extends Command {
 
     const newAppTasks = await createNoStackApp(appName, baseApp)
     const newStackTasks = await createStackAndModerator(userInfo)
-    const generateAppTasks = await generateAppCode(appName)
+    const generateAppTasks = await generateAppCode(appName, userClass)
 
     // @ts-ignore
     const tasks = new Listr([
@@ -89,7 +91,7 @@ export default class Quickstarter extends Command {
           //   }
           // });
           //
-          const json = await buildStackFromTemplate(template, userInfo, email, '')
+          const json = await buildStackFromTemplate(flowSpec, userInfo, email, '')
           const stackFile = `${appName}/stack.json`
           await fs.outputJson(stackFile, JSON.parse(json))
 

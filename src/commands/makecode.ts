@@ -46,12 +46,12 @@ export default class Makecode extends Command {
     // await generateCodeFiles(appName)  // temp, to debug
     // try {
     // await generateCodeFiles(appName)
-    await generateCodeFiles(appName, userClass)
+    // await generateCodeFiles(appName, userClass)
     // } catch (err) {
     //   console.log(`error when attempting to generate the code: ${err}`)
     //   throw new Error(`code generation error: ${err}`)
     // }
-    const generateAppTasks = await generateAppCode(appName)
+    const generateAppTasks = await generateAppCode(appName, userClass)
     await generateAppTasks.run().catch((err: any) => {
       console.error(err)
     })
