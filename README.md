@@ -4,7 +4,9 @@ no-stack-cli
 [NoStack](https://www.nostack.net/) is a tool that automatically generates a 
 secure and stable back end and even generates React code for your front end.
 
-This CLI lets you take advantage of these capabilities. The CLI, as well as NoStack, are only being released in alpha at this point.
+NoStack lets you specify *units* of your application, which are essentially hierarchies (trees) of data types.  NoStack then generates a back end that combines the data needs of all of the units, and creates for you starter front end code.  The starter code implements the full user flow.  [Styling is left up to you.]  Unlike templating tools, NoStack does not limit your application..
+
+This CLI lets you take advantage of these capabilities. The CLI, as well as NoStack, are only being released in alpha at this point. But we are actively building the project.
 
 Features include:
 * A simple language NoStack Flow Specification (NFS) Language for specifying 
@@ -71,6 +73,8 @@ The four standard steps for creating an app for the first time are the following
 2. create a new moderator and stack `nostack quickstarter -e <moderatorEmail> -w <password> -l <licenceId>  -u <moderatorName> -s <stackName>`
 3. spin up stack (call from the same directory as step 1): `nostack spinstack -u <moderatorName> -t dir/to/appFlow/<appFlow> -s <stackName> -e <emailFor Moderator>`
 4. generate code (call from the same directory as step 1): `nostack makecode -a <appName>`
+
+[IMPORTANT NOTE: you must currently run these from the parent directory of the app that you want to generate!]
 
 The first step, `newapp` takes by far the most time to execute.  Not only does it call create-react-app,
 but it installs every dependency, which can take 10 minutes.  Therefore, it pays to perform `newapp` one time to create an `appBase`.  Once you have an 
