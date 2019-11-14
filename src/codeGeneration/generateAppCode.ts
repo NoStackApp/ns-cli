@@ -177,20 +177,20 @@ export async function generateCodeFiles(appName: string, userClass: string) {
 // ))
 // }
 
-export async function generateAppCode(appName: string) {
+export async function generateAppCode(appName: string, userClass: string) {
   const tasks = new Listr([
-    // {
-    //   title: 'Generate the Code Files',
-    //   task: async () => {
-    //     try {
-    //       await generateCodeFiles(appName)
-    //     } catch (err) {
-    //       console.log(`git error when attempting to generate the code: ${err}`)
-    //       throw new Error(err)
-    //     }
-    //     return
-    //   }
-    // },
+    {
+      title: 'Generate the Code Files',
+      task: async () => {
+        try {
+          await generateCodeFiles(appName, userClass)
+        } catch (err) {
+          console.log(`git error when attempting to generate the code: ${err}`)
+          throw new Error(err)
+        }
+        return
+      }
+    },
     {
       title: 'Make First Git Commit',
       task: async () => {
