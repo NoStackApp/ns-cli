@@ -30,11 +30,11 @@ export default class Createstack extends Command {
 
   async run() {
     const {args, flags} = this.parse(Createstack)
-    const stack = flags.stack || isRequired('stack')
-    const user = flags.user || isRequired('user')
-    const password = flags.password || isRequired('password')
-    const email = flags.email || isRequired('email')
-    const licenseId = flags.licenseId || isRequired('licenseId')
+    const stack = flags.stack || isRequired('stack', 'createstack', '-s')
+    const user = flags.user || isRequired('user', 'createstack', '-u')
+    const password = flags.password || isRequired('password', 'createstack', '-w')
+    const email = flags.email || isRequired('email', 'createstack', '-e')
+    const licenseId = flags.licenseId || isRequired('licenseId', 'createstack', '-l')
 
     let userInfo: UserInfo = {
       name: user,

@@ -18,8 +18,8 @@ export default class Resetstack extends Command {
 
   async run() {
     const {flags} = this.parse(Resetstack)
-    const user = flags.user || isRequired('user')
-    const stack = flags.stack || isRequired('stack')
+    const user = flags.user || isRequired('user', 'resetstack', '-u')
+    const stack = flags.stack || isRequired('stack', 'resetstack', '-s')
 
     let userInfo: UserInfo = newUserInfo(user)
     userInfo.stack = stack
