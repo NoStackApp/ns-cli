@@ -7,17 +7,17 @@ newUnit  taskInfo user
 newUnit allUsers user
 
 ### TYPES ###
-useType user projectsForUser __Root__
+useType user projectsForUser __Root__ multiple
 newType project projectsForUser user
 
-useType project taskInfo __Root__
+useType project taskInfo __Root__ multiple
 newType task taskInfo project
 newType completed taskInfo task boolean singleRequired
 newType step taskInfo task
 newType goal taskInfo step
-useType user taskInfo step
+useType user taskInfo step selectable allUsers
 
-useType user allUsers __Root__
+useType user allUsers __Root__ multiple
 
 connectUnits taskInfo projectsForUser project
 
