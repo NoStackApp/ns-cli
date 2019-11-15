@@ -42,7 +42,7 @@ Fundamentally, the CLI can do the following:
 
 In addition to being straightforward, the CLI simplifies things by seamlessly handling token refreshing once a "user" has logged in.  
 
-*WARNING*: the CLI currently stores passwords in the directory `~/secure`, which (despite the name) is accessible by anyone who has access to your computer.  So it is your responsiblity to protect the computer where the CLI is used from anyone who might maliciously use that information. A future version might come up with a better approach, or at least allow you the option not to save a password.
+*WARNING*: in the alpha version, the CLI currently stores passwords in the directory `~/secure`, which (despite the name) is accessible by anyone who has access to your computer.  So it is your responsiblity to protect the computer where the CLI is used from anyone who might maliciously use that information. A future version might come up with a better approach, or at least allow you the option not to save a password.
 
 
 ### The quickstarter Command
@@ -60,10 +60,12 @@ The following parameters appear in `quickstarter`, and in other commands:
 * -e <email>: the email that you want for the stack moderator 
 * -l <license>: the licence string entitling you to a new stack  
 * -s <stackName>: the name of the stack (note that it needs to be unique)
-* -a <appName>: the name of the app.  (note that it must be all lowercase letters without spaces, but does not need to be unique)
-* -t <appFlow>: a valid app flow specification file, including the path
-* -c <userClass>: the type of user in the appFlow file for which the app will be created.
+* -c <userClass>: the type of user in the appFlow file for which the front end app will be created.
+* -a <appName>: the name of the front end app for the userClass.  (note that it must be all lowercase letters without spaces, but does not need to be unique)
+* -t <appFlow>: a path to a valid app flow specification file
 * -b <appBase> [OPTIONAL]: a directory containing an empty NoStack application.  See below for how to create one.
+
+Note: you must be in the parent directory where you want the app directory to appear.
 
 ## Separate Steps for generating an App
 The [quickstarter](#the-quickstarter-command) is a way to use the CLI for the first time, but you will probably need to know the commands for the separate steps that it uses.  The reason is that you'll probably want to reset and reuse the stack with a different app flow.
@@ -88,14 +90,15 @@ The best practice is usually to create one initially by calling this:
 appBase=~/path/to/appbase
 ns newapp -a ${appBase}
 ```
-Then you can call it as you like.  The drawback of using an appBase is that if any of the dependencies change you will not benefit from the changes.
+Then you can use it whenever you like.  The drawback of using an appBase is that if any of the dependencies change you will not benefit from the changes.
 
 The [resources/appFlows](resources/appFlows) directory contains a few sample appFlows.  Currently, there is no repository, but one is planned.
 
 ## Getting help
 If you are ever confused about the commands, run `nostack --help`. 
 If you want to know the parameters for any command, just run the command with '--help'.
-But relax--if you are missing one you will be told automatically.  :) 
+
+But relax--if you are missing a parameter you will be prompted, and most syntax errors in your app flow spec are reported to you. :) 
 
 ## Further Reading
 Check out the [Introduction to NoStack](resources/Documentation/IntroToNoStack.md)
@@ -212,9 +215,9 @@ USAGE
   $ nostack makecode
 
 OPTIONS
-  -a, --appName=appName  application name
-  -f, --force
-  -h, --help             show CLI help
+  -a, --appName=appName      application name
+  -c, --userClass=userClass  user class for which to generate an app
+  -h, --help                 show CLI help
 ```
 
 _See code: [src/commands/makecode.ts](https://github.com/YizYah/no-stack-cli/blob/v0.2.5/src/commands/makecode.ts)_
@@ -246,6 +249,7 @@ USAGE
 OPTIONS
   -a, --appName=appName      name of application
   -b, --baseApp=baseApp      directory of the base app to copy. If it does not exist, it is created.
+  -c, --userClass=userClass  userClass for which to generate an app
   -e, --email=email          moderator email
   -f, --force
   -h, --help                 show CLI help

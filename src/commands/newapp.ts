@@ -24,7 +24,7 @@ export default class Newapp extends Command {
 
   async run() {
     const {flags} = this.parse(Newapp)
-    const appName = flags.appName || isRequired('appName')
+    const appName = flags.appName || isRequired('appName', 'newapp', '-a')
     const baseApp = flags.baseApp || ''
 
     const newAppTasks = await createNoStackApp(appName, baseApp)

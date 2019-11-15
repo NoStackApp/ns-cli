@@ -33,9 +33,9 @@ export default class Callapi extends Command {
   async run() {
     // const {args, flags} = this.parse(Callapi)
     const {flags} = this.parse(Callapi)
-    const user = flags.user || isRequired('user')
-    const stack = flags.stack || isRequired('stack')
-    const queryFile = flags.queryFile || isRequired('queryFile')
+    const user = flags.user || isRequired('user', 'callapi', '-u')
+    const stack = flags.stack || isRequired('stack', 'callapi', '-s')
+    const queryFile = flags.queryFile || isRequired('queryFile', 'callapi', '-q')
     const variablesFile = flags.variablesFile || ''
 
     // this.log(`in callapi, queryFile=${queryFile}`)
