@@ -28,6 +28,7 @@ const installationList = [
   'graphql-tag',
   'jsonwebtoken',
   'react-graph-vis',
+  'react-select',
   'react-spinkit',
   'styled-components',
   'uuid',
