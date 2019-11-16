@@ -115,7 +115,7 @@ export const createReplacementOptions = (type: string, source: string, currentSt
         let childComponent
         const childInfo = currentStack.types[child]
         const assnInfo = childInfo.sources[source]
-        if (assnInfo.assnType === associationTypes.MULTIPLE) {
+        if (assnInfo.assnType !== associationTypes.SINGLE_REQUIRED) {
           childrenTypeList += `, TYPE_${allCaps(child)}_ID`
           childrenConstantDeclarations += `\n  const ${child}Data = ${type}.children && ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);
   const ${pluralLowercaseName(child)} = ${child}Data ? ${child}Data.instances : [];`
@@ -167,7 +167,7 @@ import ${childComponent} from '../${childComponent}'; `
           // console.log(`connected child=${child}, connectedChildren[child]=${connectedChildren[child]}`)
 
           let childComponent
-          if (connectedChildren[child] === associationTypes.MULTIPLE) {
+          if (connectedChildren[child] !== associationTypes.SINGLE_REQUIRED) {
             // childrenConstantDeclarations += `\n  const ${child} = ${type}.children.find(child => child.typeId === TYPE_${allCaps(child)}_ID);`
             childComponent = pluralName(child)
           } else {
