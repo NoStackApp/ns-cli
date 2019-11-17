@@ -6,8 +6,6 @@ import {graphql} from '@apollo/react-hoc';
 
 import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID, DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
 
-// Expected: `import Users from '../Users';`
-// Actual: `import User from '../User';`
 __CHILDREN_IMPORT_LIST__
 
 // add styling here
@@ -17,6 +15,10 @@ const __SingularName__StyleWrapper = styled.div`
   border: none;
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
+`;
+
+const Row = styled.div`
+  margin: 1em 0;
 `;
 
 const Button = styled.button`
@@ -46,8 +48,6 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
   const [ isDeleteMode, updateIsDeleteMode ] = useState(false);
   const [ isDeleting, updateIsDeleting ] = useState(false);
 
-  // expected: const users = userData ? userData.instances : [];
-  // actual: const user = userData ? userData.instances[0] : [];
   __CHILDREN_CONSTANT_DECLARATIONS__
 
 
@@ -173,20 +173,6 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
               )
             }
 
-            // EXPECTED:
-            // <Users
-            //  users={users}
-            //  stepId={step.id}
-            //  refetchQueries={refetchQueries}
-            // />
-            
-            // ACTUAL:
-            // <User
-            //  user={user}
-            //  stepId={step.id}
-            //  label="User?"
-            //  refetchQueries={refetchQueries}
-            // />
             __CHILDREN_BODY_LIST__
           </>
         )

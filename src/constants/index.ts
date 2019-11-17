@@ -24,9 +24,15 @@ export const formTypes = {
   CREATION: 'creation',
   SINGLE_INSTANCE: 'single',
   LIST: 'list',
+  SELECTION: 'selection'
 }
 
-export interface boilerPlateInfoType {
+export const unitTypes = {
+  INTERACTIVE: 'interactive',
+  DATA_SOURCE: 'dataSource',
+}
+
+export interface BoilerPlateInfoType {
   formType: string,
   dataType: string,
   nodeType: string,
@@ -51,6 +57,7 @@ export const boilerPlateTypes = {
   SINGLE_BOOLEAN: `${formTypes.SINGLE_INSTANCE}${dataTypes.BOOLEAN}${nodeTypes.PROPERTY}`,
   SINGLE_NUMBER: `${formTypes.SINGLE_INSTANCE}${dataTypes.NUMBER}${nodeTypes.PROPERTY}`,
   SINGLE_PROPERTY: `${formTypes.SINGLE_INSTANCE}${dataTypes.STRING}${nodeTypes.PROPERTY}`,
+  SELECTION: `${formTypes.SELECTION}${dataTypes.STRING}${nodeTypes.SELECTABLE}`,
 }
 
 export const boilerPlates = {
@@ -72,6 +79,7 @@ export const boilerPlates = {
   [boilerPlateTypes.SINGLE_PROPERTY]: 'genericSingleProperty',
   [boilerPlateTypes.SINGLE_BOOLEAN]: 'genericSingleBoolean',
   [boilerPlateTypes.SINGLE_NUMBER]: 'genericSingleNumberProperty',
+  [boilerPlateTypes.SELECTION]: 'genericSelection',
 }
 
 export const boilerplateDir = `${__dirname}/../../resources/boilerplates`

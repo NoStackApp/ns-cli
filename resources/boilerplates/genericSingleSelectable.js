@@ -51,7 +51,7 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
           actionId: DELETE___SingularForRelationshipAllCaps___ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: __SingularNameLowercase__.id,
+            childInstanceId: __SingularNameLowercase__.id,
           }),
         },
         refetchQueries
@@ -61,42 +61,42 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
     }
   }
 
-    <UserStyleWrapper isDeleting={isDeleting}>
-      {user.value}
-      {isDeleteMode ? (
-          <DeleteMenu>
-            Delete?
-            <Button
-              type="button"
-              hoverColor="#00FF00"
-              onClick={handleDelete}
-              disabled={isDeleting}
-            >
-              &#10003;
-            </Button>
-            <Button
-              type="button"
-              hoverColor="#FF0000"
-              onClick={() => updateIsDeleteMode(false)}
-              disabled={isDeleting}
-            >
-              &#10005;
-            </Button>
-          </DeleteMenu>
-        ) :
-        (
-          <Button
-            type="button"
-            onClick={() => updateIsDeleteMode(true)}
-          >
-            &#128465;
-          </Button>
-        )
-      }
-    </UserStyleWrapper>
+    {/*<UserStyleWrapper isDeleting={isDeleting}>*/}
+    {/*  {__SingularNameLowercase__.value}*/}
+    {/*  {isDeleteMode ? (*/}
+    {/*      <DeleteMenu>*/}
+    {/*        Delete?*/}
+    {/*        <Button*/}
+    {/*          type="button"*/}
+    {/*          hoverColor="#00FF00"*/}
+    {/*          onClick={handleDelete}*/}
+    {/*          disabled={isDeleting}*/}
+    {/*        >*/}
+    {/*          &#10003;*/}
+    {/*        </Button>*/}
+    {/*        <Button*/}
+    {/*          type="button"*/}
+    {/*          hoverColor="#FF0000"*/}
+    {/*          onClick={() => updateIsDeleteMode(false)}*/}
+    {/*          disabled={isDeleting}*/}
+    {/*        >*/}
+    {/*          &#10005;*/}
+    {/*        </Button>*/}
+    {/*      </DeleteMenu>*/}
+    {/*    ) :*/}
+    {/*    (*/}
+    {/*      <Button*/}
+    {/*        type="button"*/}
+    {/*        onClick={() => updateIsDeleteMode(true)}*/}
+    {/*      >*/}
+    {/*        &#128465;*/}
+    {/*      </Button>*/}
+    {/*    )*/}
+    {/*  }*/}
+    {/*</UserStyleWrapper>*/}
   return (
     <__SingularName__StyleWrapper isDeleting={isDeleting}>
-      {__SingularNameLowercase__Value}
+      {__SingularNameLowercase__.value}
       {isDeleteMode ? (
           <DeleteMenu>
             Delete?

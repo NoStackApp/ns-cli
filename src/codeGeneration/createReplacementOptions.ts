@@ -25,32 +25,6 @@ export interface ReplacementOptions {
   to: string [],
 }
 
-/*
-         const newTodo = {
-          instance: {
-            id: newTodoData.instanceId,
-            value: newTodoData.value,
-            __typename: 'Instance',
-          },
-          children: [
-            {
-              instances: [
-                {
-                  instance: {
-                    id: isCompletedData.instanceId,
-                    value: isCompletedData.value,
-                    __typename: 'Instance',
-                  },
-                  __typename: 'InstanceWithTypedChildren',
-                },
-              ],
-              __typename: 'TypeWithInstances',
-            },
-          ],
-          __typename: 'InstanceWithTypedChildren',
-        };
- */
-
 function generateSingleChildCreationCode(parentType: string, childType: string, source: string) {
   return `    await create${singularName(childType)}({
       variables: {
@@ -66,18 +40,14 @@ function generateSingleChildCreationCode(parentType: string, childType: string, 
 `
 }
 
-// const isBoilerplateMultiple = (boilerPlate: string) => {
-//   return (
-//     boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT] ||
-//     boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_ROOT] ||
-//     boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING] ||
-//     boilerPlate === boilerPlates[boilerPlateTypes.MULTIPLE_ROOT_GROUPING]
-//   )
-// }
-
 export const createReplacementOptions = (type: string, source: string, currentStack: StackInfo) => {
 // export const createReplacementOptions = (type: string, source: string, boilerPlate: string, currentStack: StackInfo) => {
-  const parentType = currentStack.types[type].sources[source].parentType
+  const sourceInfo = currentStack.sources[source]
+  const typeSourceInfo = currentStack.types[type].sources[source]
+  const {parentType} = typeSourceInfo
+  const selectionSource = typeSourceInfo.selectionSource ?
+    singularName(typeSourceInfo.selectionSource) :
+    null
   // console.log(`in createReplacementOptions, parentType: ${parentType}`)
   let childrenImports = ''
   let childrenTypeList = ''
@@ -91,19 +61,14 @@ export const createReplacementOptions = (type: string, source: string, currentSt
   let singleChildrenComposeStatements = ''
   let singleChildrenParams = ''
 
-  // if (isBoilerplateMultiple(boilerPlate)) {
-  // if (true) {
-  //   boilerPlate !== boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT] &&
-  //   boilerPlate !== boilerPlates[boilerPlateTypes.MULTIPLE_NON_ROOT_GROUPING]
-  // ) {
-  let children = currentStack.sources[source].selectedTree[type]
+  let children = sourceInfo.selectedTree[type]
+  const connectedSource: string = sourceInfo.connections[type]
+  const constraintsInfo = sourceInfo.constraints
   // console.log(`children for ${type}: ${JSON.stringify(children)}`)
-  const connectedSource: string = currentStack.sources[source].connections[type]
-  const constraintsInfo = currentStack.sources[source].constraints
 
   Object.keys(constraintsInfo).map(key => {
     if (constraintsInfo[key].constraintType === 'ID') {
-      if (constraintsInfo[key].type === parentType || currentStack.sources[source].selectionRoot) {
+      if (constraintsInfo[key].type === parentType || sourceInfo.selectionRoot) {
         constraintValue = constraintsInfo[key].value
       }
     }
@@ -213,7 +178,7 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
     },
     unitId: {
       fromRegExp: /__SOURCE_ID_CONSTANT__/g,
-      toString: currentStack.sources[source].const,
+      toString: sourceInfo.const,
     },
     relationships: {
       fromRegExp: /__RELATIONSHIPS_NAME__/g,
@@ -282,6 +247,10 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
     updateOnAddLine: {
       fromRegExp: /__UPDATE_ON_ADD_LINE__/g,
       toString: updateOnAddLine,
+    },
+    selectionSource: {
+      fromRegExp: /__SelectionSource__/g,
+      toString: selectionSource,
     },
   }
 

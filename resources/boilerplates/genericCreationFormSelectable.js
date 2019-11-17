@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { withNoStack, EXECUTE_ACTION } from '@nostack/no-stack';
 
 // expected: `import UserSelect from '../../AllUsers/UserSelect';`
-
+import __SingularName__Select from '../../__SelectionSource__/__SingularName__Select';
 import { CREATE___SingularForRelationshipAllCaps___ACTION_ID__ACTION_IDS_FOR_SINGLE_CHILDREN____TYPE_IDS_FOR_SINGLE_CHILDREN__ } from '../../../config';
 
 // change styling here

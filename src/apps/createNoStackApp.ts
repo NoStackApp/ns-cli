@@ -31,6 +31,7 @@ const installationList = [
   'react-select',
   'react-spinkit',
   'styled-components',
+  'react-select',
   'uuid',
   '@nostack/no-stack@alpha',
 ]

@@ -55,7 +55,7 @@ function __SingularName__Select({ id, onSubmit, disabled }) {
         }));
 
         return (
-          <__SingularName__StyleWrapper>
+          <__SingularName__SelectStyleWrapper>
             <Select
               inputId={id}
               isClearable={true}
@@ -64,15 +64,15 @@ function __SingularName__Select({ id, onSubmit, disabled }) {
               options={options}
               isDisabled={disabled}
             />
-            <Button 
+            <Button
               onClick={handleSubmit}
               disabled={disabled
-                || !selected 
+                || !selected
                 || !selected.value}
             >
               Add User
             </Button>
-          </__SingularName__StyleWrapper>
+          </__SingularName__SelectStyleWrapper>
         );
       }}
     </Unit>
