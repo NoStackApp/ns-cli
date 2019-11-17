@@ -1,8 +1,14 @@
 # The NoStack Flow Specification (NFS) Language
-App flows are text files which contain series of declarations
- using the NoStack Flow Specification language (NFS).  Currently, they are
- plain text, but soon NoStack will support a more powerful and intuitive YAML
- file format.
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  
+  - [Creating App Flows](#creating-app-flows)
+    - [NFS Commands](#nfs-commands)
+  - [Creating the files](#creating-the-files)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+App flows are text files which contain series of declarations using the NoStack Flow Specification language (NFS).  Currently, they are plain text, but soon NoStack will support a more powerful and intuitive YAML file format.
 
 Before learning this, it is recommended to read the [Introduction to NoStack](./IntroToNoStack.md)
 to understand the commands in NFS.
@@ -18,7 +24,7 @@ The commands are expected to change soon, but currently these are available. NoS
 resetStack
 ```
 Resets a stack by removing everything in it.  The moderator remains.
-  Warning: currently this also removes all of the users. A version is planned that will allow you to choose whether to retain the users, and/or the data.
+  Warning: currently this also removes all of the users except the moderator and all of the data. A version is planned that will allow you to choose whether to retain the users, and/or the data.
 
 ```
 newUserClass <class>
@@ -29,9 +35,11 @@ type being created for the user class.  In other words, each
 user is an instance of their class or classes.
 
 ```
-newUnit  <unit> <class>
+newUnit  <unit> <class> [<unitType>]
 ```
-Specifies the unit name, and which userClass can access it.  Every unit is currently assigned to exactly one userClass.  As explained in the [Introduction to NoStack](./IntroToNoStack.md), a unit supports a portion of the user interface for the given userClass.
+Specifies the unit name, and which userClass can access it.  Every unit is currently assigned to exactly one userClass.  As explained in the [Introduction to NoStack](./IntroToNoStack.md), a unit supports a portion of the user interface for the given userClass.  
+
+The default unitType is 'interactive', which means that the hierarchy of data is shown in components viewable and/or editable by the user.  The other currently supported unitType is `dataSource`, which indicates that the unit exists to provide options for a selection.  See the sections on newType and useType for who to use a selectable data source.
 
 ```
 newType <type> <unit> <parent> [<dataType ] [<association type>] [<source>]

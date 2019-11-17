@@ -20,8 +20,13 @@ export declare const formTypes: {
     CREATION: string;
     SINGLE_INSTANCE: string;
     LIST: string;
+    SELECTION: string;
 };
-export interface boilerPlateInfoType {
+export declare const unitTypes: {
+    INTERACTIVE: string;
+    DATA_SOURCE: string;
+};
+export interface BoilerPlateInfoType {
     formType: string;
     dataType: string;
     nodeType: string;
@@ -45,6 +50,7 @@ export declare const boilerPlateTypes: {
     SINGLE_BOOLEAN: string;
     SINGLE_NUMBER: string;
     SINGLE_PROPERTY: string;
+    SELECTION: string;
 };
 export declare const boilerPlates: {
     [x: string]: string;
