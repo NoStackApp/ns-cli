@@ -144,12 +144,11 @@ Some major ones include:
 * AddType
 * AddRootType
 * AddAssn
-* AddUserPlatform
+* CreateUserOnPlatform
 * AddInstance
 * RemoveInstance
 
 You can see the documentation for these at the [API Playground](https://api.matchlynx.com/).  Clicking on DOCS will let you examine the parameters needed for each.      	
- 
 
 
 [Return to Main Document](../../README.md)

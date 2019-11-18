@@ -22,7 +22,7 @@ no-stack-cli
     - [Generate a Front End App](#generate-a-front-end-app)
   - [Creating an App Base](#creating-an-app-base)
   - [Getting Help](#getting-help)
-  - [Further Reading](#further-reading)
+  - [Further Information](#further-information)
 - [Usage](#usage)
 - [Commands](#commands)
   - [`nostack callapi`](#nostack-callapi)
@@ -181,7 +181,7 @@ Check out the [Introduction to NoStack](resources/Documentation/IntroToNoStack.m
 for an explanation of how data is organized in the stack.
 
 Then check out: 
-* [The NFS Language](resources/Documentation/IntroToNoStack.md) to understand 
+* [The NFS Language](resources/Documentation/NFSlanguage.md) to understand 
 app flows and to create your own easily.
 
 * [The NoStack API](resources/Documentation/NoStackApi.md) is the basis for everything supported by NFS and `spinstack`.
@@ -195,7 +195,7 @@ $ npm install -g no-stack-cli
 $ nostack COMMAND
 running command...
 $ nostack (-v|--version|version)
-no-stack-cli/0.3.0 linux-x64 node-v12.11.1
+no-stack-cli/0.2.5 linux-x64 node-v12.11.1
 $ nostack --help [COMMAND]
 USAGE
   $ nostack COMMAND
@@ -233,7 +233,7 @@ EXAMPLE
   ~/projects/no-stack-queries/variables/unitData1y.json
 ```
 
-_See code: [src/commands/callapi.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.0/src/commands/callapi.ts)_
+_See code: [src/commands/callapi.ts](https://github.com/YizYah/no-stack-cli/blob/v0.2.5/src/commands/callapi.ts)_
 
 ## `nostack createstack`
 
@@ -256,7 +256,7 @@ EXAMPLE
   $ nostack createStack -u franky -s tempstack, -e franky@gmail.com -w franky12$
 ```
 
-_See code: [src/commands/createstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.0/src/commands/createstack.ts)_
+_See code: [src/commands/createstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.2.5/src/commands/createstack.ts)_
 
 ## `nostack help [COMMAND]`
 
@@ -289,7 +289,7 @@ OPTIONS
   -h, --help                 show CLI help
 ```
 
-_See code: [src/commands/makecode.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.0/src/commands/makecode.ts)_
+_See code: [src/commands/makecode.ts](https://github.com/YizYah/no-stack-cli/blob/v0.2.5/src/commands/makecode.ts)_
 
 ## `nostack newapp`
 
@@ -305,7 +305,7 @@ OPTIONS
   -h, --help             show CLI help
 ```
 
-_See code: [src/commands/newapp.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.0/src/commands/newapp.ts)_
+_See code: [src/commands/newapp.ts](https://github.com/YizYah/no-stack-cli/blob/v0.2.5/src/commands/newapp.ts)_
 
 ## `nostack quickstarter`
 
@@ -332,7 +332,7 @@ EXAMPLE
   $ nostack quickstarter -u franky -s tempstack, -e franky@gmail.com -w franky12$
 ```
 
-_See code: [src/commands/quickstarter.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.0/src/commands/quickstarter.ts)_
+_See code: [src/commands/quickstarter.ts](https://github.com/YizYah/no-stack-cli/blob/v0.2.5/src/commands/quickstarter.ts)_
 
 ## `nostack resetstack`
 
@@ -348,7 +348,7 @@ OPTIONS
   -u, --user=user    moderator for stack
 ```
 
-_See code: [src/commands/resetstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.0/src/commands/resetstack.ts)_
+_See code: [src/commands/resetstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.2.5/src/commands/resetstack.ts)_
 
 ## `nostack spinstack`
 
@@ -368,5 +368,5 @@ OPTIONS
   -x, --addedSuffix=addedSuffix  added suffix for sample instances generated
 ```
 
-_See code: [src/commands/spinstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.0/src/commands/spinstack.ts)_
+_See code: [src/commands/spinstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.2.5/src/commands/spinstack.ts)_
 <!-- commandsstop -->
