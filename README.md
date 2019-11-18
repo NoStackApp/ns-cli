@@ -1,5 +1,35 @@
+
 no-stack-cli
 ============
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents** 
+
+- [Intro](#intro)
+  - [Getting Started](#getting-started)
+  - [Using the CLI](#using-the-cli)
+  - [The quickstarter Command](#the-quickstarter-command)
+  - [Separate Steps for generating an App](#separate-steps-for-generating-an-app)
+    - [newApp](#newapp)
+    - [Create an Empty Stack](#create-an-empty-stack)
+    - [Build the Stack](#build-the-stack)
+    - [Generate a Front End App](#generate-a-front-end-app)
+  - [Creating an App Base](#creating-an-app-base)
+  - [Getting Help](#getting-help)
+  - [Further Reading](#further-reading)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`nostack callapi`](#nostack-callapi)
+  - [`nostack createstack`](#nostack-createstack)
+  - [`nostack help [COMMAND]`](#nostack-help-command)
+  - [`nostack makecode`](#nostack-makecode)
+  - [`nostack newapp`](#nostack-newapp)
+  - [`nostack quickstarter`](#nostack-quickstarter)
+  - [`nostack resetstack`](#nostack-resetstack)
+  - [`nostack spinstack`](#nostack-spinstack)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 
 
@@ -36,6 +66,7 @@ Features include:
 * Ability to pivot a flow quickly (some features pending)
 * Planned export capability to let you run the app from your own server
 * Generation of starter code on the front end
+* Sample data for testing purposes, marked clearly in the database as sample.
 
 ## Getting Started
 To install the CLI, run the following:
@@ -71,6 +102,8 @@ There is a shortcut command to get started:
 That will give you everything you need for your first app.  Note that
 you will need to provide a licence.
  
+Actually, `quickstarter` combines the [Separate Steps for generating an App](#separate-steps-for-generating-an-app) shown below.  If you want to see what's happening, check those out.
+ 
 The following parameters appear in `quickstarter`, and are used consistently in other CLI commands:
 * -u <moderator>: the user name for the stack moderator 
 * -w <password>: the password for the stack moderator
@@ -82,25 +115,56 @@ The following parameters appear in `quickstarter`, and are used consistently in 
 * -t <appFlow>: a path to a valid app flow specification file
 * -b <appBase> [OPTIONAL]: a directory containing an empty NoStack application.  See [Creating an App Base](creating-an-app-base) below for instructions to create one.
 
-Note: with `quickstarter` as well as `newapp` and `makecode`, you must be in the parent of the app directory.
+Note: with `quickstarter` as well as `spinstack`, `newapp` and `makecode`, you must be in the parent of the app directory.
 
 ## Separate Steps for generating an App
 The [quickstarter](#the-quickstarter-command) is a way to use the CLI for the first time, but you will probably need to know the commands for the separate steps that it uses.  The reason is that you'll probably want to reset and reuse the stack with a different app flow.
 
-Here are the four standard steps for creating an app:
-1. create a no-stack-app `nostack newapp -a <appName>`
-2. create a new moderator and stack `nostack quickstarter -e <moderatorEmail> -w <password> -l <licenceId>  -u <moderatorName> -s <stackName>`
-3. spin up the stack: `nostack spinstack -u <moderatorName> -t dir/to/appFlow/<appFlow> -s <stackName> -e <emailFor Moderator>`
-4. generate front end codecode (call from the same directory as step 1): `nostack makecode -a <appName>`
+There are the four standard steps for creating an app, covered below.
+### newApp
+Generation of an "empty" NoStack application:
+```
+nostack newapp -a <appName> [-b <baseApp> ]
+```
+The application is created using create-react-app, with several added packages.  Included in the packages are:
+* [no-stack](https://www.npmjs.com/package/no-stack), a package that enables a React application to work with NoStack
+* a lot of Apollo client packages.
 
-[IMPORTANT NOTE: you must currently run these from the parent directory of the app that you want to generate!]
+This step takes a long time unless you use an baseApp.  See [Creating an App Base](#creating-an-app-base) below.
+
+Please note that the folder for the app will be created in the current directory.
+  
+### Create an Empty Stack
+Create a new moderator and stack.
+```
+nostack createstack -e <moderatorEmail> -w <password> -l <licenceId>  -u <moderatorName> -s <stackName>
+```
+
+### Build the Stack
+Spin up the stack from an [NFS](resources/Documentation/NFSlanguage.md) file.
+```
+nostack spinstack -u <moderatorName> -t dir/to/appFlow/<appFlow> -s <stackName> -e <emailFor Moderator> -a appname
+```
+
+Calling `spinstack` will generate  a `stack.json` file in the directory with the name of your application (specified with the `-a` flag).  That file contains a wealth of information about your stack, including every element generated and their ids.  Also included are ids for sample data. 
+
+### Generate a Front End App
+Generate front end code for an app for a given userClass.
+
+```
+nostack makecode -a <appName> -c <userClass>
+```
+
+The `makecode` command uses the `stack.json` file found in the directory specified by `-a` (remember that you **must be in the parent directory for that folder**).  Only the units owned by the specified userClass get used.
+
+You can build as many apps as you like.  The tool only generates one app for a user from
+a user.  But you can modify the `stack.json` file that you use to generate more than one for a userClass by removing unwanted units.
 
 ## Creating an App Base
-The first step, `newapp`, takes by far the most time to execute.  Not only does it call create-react-app,
+The first step, [newApp](#newapp), takes by far the most time to execute.  Not only does it call create-react-app,
 but it installs every dependency, which can take 10 minutes.  
 
-Therefore, it pays to perform `newapp` one time to create an `appBase`.  Once you have an 
-appBase, you can create a new app almost immediately by using the new appBase with 
+Therefore, it pays to perform `newapp` one time to create an `appBase`.  Once you have an appBase, you can create a new app almost immediately by using the new appBase with 
 the `-b` flag: 
 ```
 ? nostack newapp -a app${currentNumber} -b ${appBase}`.
@@ -123,15 +187,17 @@ If you want to know the parameters for any command, just run the command with '-
 
 But relax--if you are missing a parameter you will be prompted :)
 
-## Further Reading
+## Further Information
 Check out the [Introduction to NoStack](resources/Documentation/IntroToNoStack.md)
 for an explanation of how data is organized in the stack.
 
-Then you can read about the [NFS Language](resources/Documentation/IntroToNoStack.md) to understand 
+Then check out: 
+* [The NFS Language](resources/Documentation/IntroToNoStack.md) to understand 
 app flows and to create your own easily.
 
+* [The NoStack API](resources/Documentation/NoStackApi.md) is the basis for everything supported by NFS and `spinstack`.
 
-
+* [The stack.json File](resources/Documentation/stack.json.md).
 
 # Usage
 <!-- usage -->
