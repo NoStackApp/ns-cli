@@ -95,7 +95,7 @@ Connecting units does not affect the stack or the back end, but changes the fron
 * When separate queries would be more efficient.  A common example is when a user is not expected to want to see the children of more than one of a given type of info at once.  For instance, an app that shows events organized by category might create a separate unit to show the specific events, because the user is likely to seek only events of a desired category.
 
 ## Creating the files
-The best place to start is to check out some of the samples in the [resources/appFlows](resources/appFlows) directory of this package. You can copy one, use it with `spinstack`, and then modify it as you like.
+The best place to start is to check out some of the samples in the [resources/appFlows](../appFlows) directory of this package. You can copy one, use it with `spinstack`, and then modify it as you like.
 
 Remember that these are just text files.  You can easily create templates and use string replacement to generate one that works for your needs.
 
