@@ -57,12 +57,12 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appName: 
 
   let topComponentType: string = sourceInfo.root
   let topComponent = singularName(topComponentType)
-  let topComponentSetting = '${userClass}Id={ currentUser.id }'
+  const topComponentSetting = `${userClass}Id={ currentUser.id }`
 
   if (highestLevelList.length === 1) {
     topComponentType = highestLevelList[0]
     topComponent = pluralName(topComponentType)
-    topComponentSetting = `${userClass}Id={ currentUser.id }`
+    // topComponentSetting = `${userClass}Id={ currentUser.id }`
   }
 
   // console.log(`topComponentType for ${source}=${topComponentType}`)

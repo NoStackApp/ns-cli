@@ -3,7 +3,7 @@ const fs = require('fs-extra')
 
 import {Command, flags} from '@oclif/command'
 
-import {generateAppCode, generateCodeFiles} from '../codeGeneration/generateAppCode'
+import {generateAppCode} from '../codeGeneration/generateAppCode'
 import {StackInfo} from '../constants/types'
 import {isRequired} from '../tools/isRequired'
 

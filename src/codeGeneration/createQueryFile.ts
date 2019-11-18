@@ -1,12 +1,11 @@
 const fs = require('fs-extra')
 
 import {StackInfo} from '../constants/types'
-import {allCaps, queryForSource, relationshipsForSource} from '../tools/inflections'
+import {queryForSource, relationshipsForSource} from '../tools/inflections'
 
 import {sourcePropsDir} from './createTopProjectDirs'
 
 export async function createQueryFile(currentStack: StackInfo, source: string) {
-
   const sourceInfo = currentStack.sources[source]
 
   let content = "import gql from 'graphql-tag';"
