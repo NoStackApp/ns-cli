@@ -7,7 +7,7 @@ NoStack Data
 - [Data Structure](#data-structure)
 - [Units](#units)
 - [User Classes](#user-classes)
-- [Authorization](#authorization)
+  - [Authorization](#authorization)
 - [Query details](#query-details)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
