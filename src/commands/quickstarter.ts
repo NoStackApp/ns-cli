@@ -19,23 +19,23 @@ export default class Quickstarter extends Command {
   static description = 'Creates a new moderator and stack.  Also logs in the moderator locally.'
 
   static examples = [
-    '$ nostack quickstarter -u franky -s tempstack, -e franky@gmail.com -w franky12$',
+    '$ nostack quickstarter -u franky -s tempstack, -e franky@gmail.com -w franky12$ -a myapp -b ~/temp/baseApp -t appFlow.txt -l ABC$$123 -c buyer',
   ]
 
   static flags = {
     help: flags.help({char: 'h'}),
     // flag with a value (-n, --name=VALUE)
     appName: flags.string({char: 'a', description: 'name of application'}),
-    baseApp: flags.string({char: 'b', description: 'directory of the base app to copy. If it does not exist, it is created.'}),
+    baseApp: flags.string({char: 'b', description: 'directory of the base app to copy.'}),
     stack: flags.string({char: 's', description: 'stack'}),
-    template: flags.string({char: 't', description: 'template from which to spin up a stack'}),
+    template: flags.string({char: 't', description: 'app flow spec from which to spin up a stack'}),
     licenseId: flags.string({char: 'l', description: 'license id for the organization of the user'}),
     user: flags.string({char: 'u', description: 'moderator to create'}),
     email: flags.string({char: 'e', description: 'moderator email'}),
     password: flags.string({char: 'w', description: 'moderator password'}),
     userClass: flags.string({char: 'c', description: 'userClass for which to generate an app'}),
     // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
+    // force: flags.boolean({char: 'f'}),
   }
 
   static args = []
@@ -114,8 +114,8 @@ export default class Quickstarter extends Command {
       console.error(err)
     })
 
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    if (args.file) {
+      this.log(`you input --file: ${args.file}`)
     }
   }
 }
