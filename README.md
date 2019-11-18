@@ -37,18 +37,6 @@ no-stack-cli
 [![Downloads/week](https://img.shields.io/npm/dw/no-stack-cli.svg)](https://npmjs.org/package/no-stack-cli)
 [![License](https://img.shields.io/npm/l/no-stack-cli.svg)](https://github.com/YizYah/no-stack-cli/blob/master/package.json)
 
-<!-- toc -->
-* [Intro](#intro)
-    * [Getting Started](#getting-started)
-    * [Using the CLI](#using-the-cli)
-    * [Quickstarter](#the-quickstarter-command)
-    * [Creating an App Base](#creating-an-app-base)
-    * [Getting Help](#getting-help)
-    * [Further Info](#further-reading)
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
-
 # Intro
 [NoStack](https://www.nostack.net/) lets you generate a 
 secure and stable back end easily from a high level app flow specification, and even generates starter React code for your front end. 
