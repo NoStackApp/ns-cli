@@ -13,7 +13,6 @@ export default class Quickstarter extends Command {
         email: flags.IOptionFlag<string | undefined>;
         password: flags.IOptionFlag<string | undefined>;
         userClass: flags.IOptionFlag<string | undefined>;
-        force: import("@oclif/parser/lib/flags").IBooleanFlag<boolean>;
     };
     static args: never[];
     run(): Promise<void>;
