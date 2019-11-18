@@ -16,7 +16,7 @@ no-stack-cli
   - [Using the CLI](#using-the-cli)
   - [The quickstarter Command](#the-quickstarter-command)
   - [Separate Steps for generating an App](#separate-steps-for-generating-an-app)
-    - [newApp](#newapp)
+    - [Create a NoStack App Placeholder](#create-a-nostack-app-placeholder)
     - [Create an Empty Stack](#create-an-empty-stack)
     - [Build the Stack](#build-the-stack)
     - [Generate a Front End App](#generate-a-front-end-app)
@@ -110,7 +110,7 @@ Note: with `quickstarter` as well as `spinstack`, `newapp` and `makecode`, you m
 The [quickstarter](#the-quickstarter-command) is a way to use the CLI for the first time, but you will probably need to know the commands for the separate steps that it uses.  The reason is that you'll probably want to reset and reuse the stack with a different app flow.
 
 There are the four standard steps for creating an app, covered below.
-### newApp
+### Create a NoStack App Placeholder
 Generation of an "empty" NoStack application:
 ```
 nostack newapp -a <appName> [-b <baseApp> ]
