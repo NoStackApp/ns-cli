@@ -1,22 +1,40 @@
 no-stack-cli
 ============
 
-[NoStack](https://www.nostack.net/) is a tool that automatically generates a 
-secure and stable back end and even generates React code for your front end.
 
-NoStack lets you specify *units* of your application, which are essentially hierarchies (trees) of data types.  NoStack then generates a back end that combines the data needs of all of the units, and creates for you starter front end code.  The starter code implements the full user flow.  [Styling is left up to you.]  Unlike templating tools, NoStack does not limit your application..
+
+[![Version](https://img.shields.io/npm/v/no-stack-cli.svg)](https://npmjs.org/package/no-stack-cli)
+[![Downloads/week](https://img.shields.io/npm/dw/no-stack-cli.svg)](https://npmjs.org/package/no-stack-cli)
+[![License](https://img.shields.io/npm/l/no-stack-cli.svg)](https://github.com/YizYah/no-stack-cli/blob/master/package.json)
+
+<!-- toc -->
+* [Intro](#intro)
+    * [Getting Started](#getting-started)
+    * [Using the CLI](#using-the-cli)
+    * [Quickstarter](#the-quickstarter-command)
+    * [Creating an App Base](#creating-an-app-base)
+    * [Getting Help](#getting-help)
+    * [Further Info](#further-reading)
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
+
+# Intro
+[NoStack](https://www.nostack.net/) lets you generate a 
+secure and stable back end easily from a high level app flow specification, and even generates starter React code for your front end. 
 
 This CLI lets you take advantage of these capabilities. The CLI, as well as NoStack, are only being released in alpha at this point. But we are actively building the project.
 
+NoStack lets you break down your app flow into *units*, which are essentially hierarchies (trees) of data types.  NoStack then spins up a back end that combines the data needs of all of the units, and creates for you starter front end code.  The starter code implements the full user flow.  [But styling is left up to you.]  Unlike templating tools, NoStack does not limit your application to particular types of data, screens, etc.
+
 Features include:
-* A simple language NoStack Flow Specification (NFS) Language for specifying 
-the units of a user interface.
+* A simple language NoStack Flow Specification (NFS) language for specifying the units of a user interface
 * Spinning up virtual stacks from flow specs within seconds
-* Support for unlimited types of users sharing the same data
+* Support for unlimited types of users and apps sharing the same data
 * Built in auth flow and strict access control
-* Licenced hosting of virtual stacks
+* Hosting of virtual stacks (licence required)
 * Ability to pivot a flow quickly (some features pending)
-* Planned exporting to files. 
+* Planned export capability to let you run the app from your own server
 * Generation of starter code on the front end
 
 ## Getting Started
@@ -33,19 +51,18 @@ The CLI is only useful if you have a NoStack licence.  You can apply for one on 
  only being awarded to alpha testers.
 
 ## Using the CLI
-The CLI tool is created with the two goals of simplicity and flexibility.  You can use the CLI to perform any action possible with the NoStack API, so it is flexible.  But, most users will be able to get by with a few key commands.
+The CLI tool is created with the two goals of flexibility and simplicity.  You can use the CLI to perform any action possible with the NoStack API, so it is flexible.  But, most users will be able to get by with a few key commands.
 
 Fundamentally, the CLI can do the following:
 1. create a back end, called a "stack", using the `spinstack` command
 2. create front end code, called an "app", in a specified directory that uses a stack, using the `makecode` command
-3. make general NoStack api calls, using the `callapi` command.
+3. make general NoStack api calls, using the `callapi` command. (Most people probably won't need that.)
 
-In addition to being straightforward, the CLI simplifies things by seamlessly handling token refreshing once a "user" has logged in.  
+In addition to being straightforward, the CLI seamlessly handles token refreshing once a "user" has logged in.  
 
-*WARNING*: in the alpha version, the CLI currently stores passwords in the directory `~/secure`, which (despite the name) is accessible by anyone who has access to your computer.  So it is your responsiblity to protect the computer where the CLI is used from anyone who might maliciously use that information. A future version might come up with a better approach, or at least allow you the option not to save a password.
+*WARNING*: in the alpha version, the CLI currently stores passwords in the directory `~/secure`, which (despite the name) is accessible by anyone who has access to your computer.  So it is your responsibility to protect the computer where the CLI is used from anyone who might maliciously use that information. A future version might come up with a better approach, or at least allow you the option not to save a password.
 
-
-### The quickstarter Command
+## The quickstarter Command
 There is a shortcut command to get started:
 ```
 ? nostack quickStarter -e ${email} -w ${password} -l ${license}  -u ${moderator} -s ${stackName} -a${appName} -t ${appFlow} -c ${userClass} -b ${appBase}
@@ -54,7 +71,7 @@ There is a shortcut command to get started:
 That will give you everything you need for your first app.  Note that
 you will need to provide a licence.
  
-The following parameters appear in `quickstarter`, and in other commands:
+The following parameters appear in `quickstarter`, and are used consistently in other CLI commands:
 * -u <moderator>: the user name for the stack moderator 
 * -w <password>: the password for the stack moderator
 * -e <email>: the email that you want for the stack moderator 
@@ -63,42 +80,48 @@ The following parameters appear in `quickstarter`, and in other commands:
 * -c <userClass>: the type of user in the appFlow file for which the front end app will be created.
 * -a <appName>: the name of the front end app for the userClass.  (note that it must be all lowercase letters without spaces, but does not need to be unique)
 * -t <appFlow>: a path to a valid app flow specification file
-* -b <appBase> [OPTIONAL]: a directory containing an empty NoStack application.  See below for how to create one.
+* -b <appBase> [OPTIONAL]: a directory containing an empty NoStack application.  See [Creating an App Base](creating-an-app-base) below for instructions to create one.
 
-Note: you must be in the parent directory where you want the app directory to appear.
+Note: with `quickstarter` as well as `newapp` and `makecode`, you must be in the parent of the app directory.
 
 ## Separate Steps for generating an App
 The [quickstarter](#the-quickstarter-command) is a way to use the CLI for the first time, but you will probably need to know the commands for the separate steps that it uses.  The reason is that you'll probably want to reset and reuse the stack with a different app flow.
 
-The four standard steps for creating an app for the first time are the following:
+Here are the four standard steps for creating an app:
 1. create a no-stack-app `nostack newapp -a <appName>`
 2. create a new moderator and stack `nostack quickstarter -e <moderatorEmail> -w <password> -l <licenceId>  -u <moderatorName> -s <stackName>`
-3. spin up stack (call from the same directory as step 1): `nostack spinstack -u <moderatorName> -t dir/to/appFlow/<appFlow> -s <stackName> -e <emailFor Moderator>`
-4. generate code (call from the same directory as step 1): `nostack makecode -a <appName>`
+3. spin up the stack: `nostack spinstack -u <moderatorName> -t dir/to/appFlow/<appFlow> -s <stackName> -e <emailFor Moderator>`
+4. generate front end codecode (call from the same directory as step 1): `nostack makecode -a <appName>`
 
 [IMPORTANT NOTE: you must currently run these from the parent directory of the app that you want to generate!]
 
-The first step, `newapp` takes by far the most time to execute.  Not only does it call create-react-app,
-but it installs every dependency, which can take 10 minutes.  Therefore, it pays to perform `newapp` one time to create an `appBase`.  Once you have an 
+## Creating an App Base
+The first step, `newapp`, takes by far the most time to execute.  Not only does it call create-react-app,
+but it installs every dependency, which can take 10 minutes.  
+
+Therefore, it pays to perform `newapp` one time to create an `appBase`.  Once you have an 
 appBase, you can create a new app almost immediately by using the new appBase with 
 the `-b` flag: 
 ```
-? ns newapp -a app${currentNumber} -b ${appBase}`.
+? nostack newapp -a app${currentNumber} -b ${appBase}`.
 ```
 The best practice is usually to create one initially by calling this:
 ```
-appBase=~/path/to/appbase
-ns newapp -a ${appBase}
+nosstack newapp -a /path/to/appbase
 ```
-Then you can use it whenever you like.  The drawback of using an appBase is that if any of the dependencies change you will not benefit from the changes.
+Then you can use the appBase whenever you like.  The drawback of using an appBase is that if any of the dependencies change you will not benefit from the changes.
 
 The [resources/appFlows](resources/appFlows) directory contains a few sample appFlows.  Currently, there is no repository, but one is planned.
 
-## Getting help
-If you are ever confused about the commands, run `nostack --help`. 
-If you want to know the parameters for any command, just run the command with '--help'.
+## Getting Help
+If you are ever confused about the commands, run
+> $ nostack --help
+ 
+If you want to know the parameters for any command, just run the command with '--help', e.g.
 
-But relax--if you are missing a parameter you will be prompted, and most syntax errors in your app flow spec are reported to you. :) 
+> $ nostack spinstack --help
+
+But relax--if you are missing a parameter you will be prompted :)
 
 ## Further Reading
 Check out the [Introduction to NoStack](resources/Documentation/IntroToNoStack.md)
@@ -110,15 +133,6 @@ app flows and to create your own easily.
 
 
 
-
-[![Version](https://img.shields.io/npm/v/no-stack-cli.svg)](https://npmjs.org/package/no-stack-cli)
-[![Downloads/week](https://img.shields.io/npm/dw/no-stack-cli.svg)](https://npmjs.org/package/no-stack-cli)
-[![License](https://img.shields.io/npm/l/no-stack-cli.svg)](https://github.com/YizYah/no-stack-cli/blob/master/package.json)
-
-<!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
 # Usage
 <!-- usage -->
 ```sh-session

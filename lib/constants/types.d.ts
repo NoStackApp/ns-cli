@@ -41,6 +41,7 @@ interface ConstraintsSet {
 }
 export interface SourceInfo {
     const: string;
+    unitType: string;
     props: PropsInfo;
     name: string;
     depth: number;
@@ -68,6 +69,7 @@ export interface Sources {
 }
 export interface TypeSourceInfo {
     assnType: string;
+    selectionSource: string;
     nodeType: string;
     parentType: string;
     children: string[];
