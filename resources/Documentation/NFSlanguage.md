@@ -2,20 +2,22 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  
-  - [Creating App Flows](#creating-app-flows)
-    - [NFS Commands](#nfs-commands)
-  - [Creating the files](#creating-the-files)
+
+- [Creating App Flows](#creating-app-flows)
+  - [NFS Commands](#nfs-commands)
+- [Creating the files](#creating-the-files)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 App flows are text files which contain series of declarations using the NoStack Flow Specification language (NFS).  Currently, they are plain text, but soon NoStack will support a more powerful and intuitive YAML file format.
 
-Before learning this, it is recommended to read the [Introduction to NoStack](./IntroToNoStack.md)
-to understand the commands in NFS.
+Before learning this, it is recommended to read the [Introduction to NoStack Data](./IntroToNoStack.md)
+to understand what the commands below are achieving.
 
 ## Creating App Flows
+The `spinstack` command in CLI interprets NFS files.  Most syntactic errors are caught for for you, so you should be able to build them yourself without much trouble, once you understand how the data works.
 
-A flow specification file treats each line as a different declaration.
+NFS treats each line as a different declaration.
 Any line that does not begin with a reserved command word is ignored.
 
 ### NFS Commands
