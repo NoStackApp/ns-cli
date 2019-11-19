@@ -41,7 +41,7 @@ const testModeratorName = async (moderatorName: string) => {
     return `The moderatorName '${moderatorName}' contains forbidden characters.  A moderator name can contain
     uppercase and lowercase letters (a-z, A-Z), numbers (0-9)`
 
-  console.log(`moderatorExists(${moderatorName})=${await moderatorExists(moderatorName)}`);
+  console.log(`moderatorExists(${moderatorName})=${await moderatorExists(moderatorName)}`)
   if (await moderatorExists(moderatorName))
     return `There already exists a moderator with the name ${moderatorName}.  Please select something else.`
 

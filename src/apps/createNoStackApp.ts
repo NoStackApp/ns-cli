@@ -1,6 +1,6 @@
 import chalk from 'chalk'
-import {getAppName} from '../inputs/getAppName'
 
+import {getAppName} from '../inputs/getAppName'
 import {errorMessage} from '../tools/errorMessage'
 
 // import {logProgress} from './logging'
