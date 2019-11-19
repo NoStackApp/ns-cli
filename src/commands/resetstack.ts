@@ -3,8 +3,10 @@ import {Command, flags} from '@oclif/command'
 import {getUserInfo} from '../auth/getUserInfo'
 import {newUserInfo} from '../auth/newUserInfo'
 import {UserInfo} from '../constants/types'
-import {resetStackCall} from '../stacks/resetStackCall'
+import {getModeratorName} from '../inputs/getModeratorName'
+import {getStackName} from '../inputs/getStackName'
 import {isRequired} from '../inputs/isRequired'
+import {resetStackCall} from '../stacks/resetStackCall'
 
 export default class Resetstack extends Command {
   static description = 'Resets the stack, meaning that the moderator remains and the stack is completely empty.  ' +
@@ -18,8 +20,11 @@ export default class Resetstack extends Command {
 
   async run() {
     const {flags} = this.parse(Resetstack)
-    const user = flags.user || isRequired('user', 'resetstack', '-u')
-    const stack = flags.stack || isRequired('stack', 'resetstack', '-s')
+    const stack = await getStackName(flags.stack)
+    if (!stack) isRequired('stack', 'resetstack', '-s')
+
+    const user = await getModeratorName(flags.user)
+    if (!user) isRequired('user', 'resetstack', '-u')
 
     let userInfo: UserInfo = newUserInfo(user)
     userInfo.stack = stack

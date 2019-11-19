@@ -31,10 +31,10 @@ export async function licenseValid(licenseId: string) {
 
 const testLicenseId = async (licenseId: string) => {
   if (!licenseId || licenseId.length === 0)
-    return 'Please enter a name for your license (all numbers and letters, no spaces).'
+    return 'Please enter your license now.'
 
   if (!await licenseValid(licenseId))
-    return `The license number you entered, '${licenseId}', is either invalid or maxed out.
+    return `The license numbers you entered, '${licenseId}', is either invalid or maxed out.
       Please check the number and try again.  If you think that there is a problem with your
       registration, please contact info@nostack.net.`
 

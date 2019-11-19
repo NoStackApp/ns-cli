@@ -3,8 +3,13 @@ import {Command, flags} from '@oclif/command'
 import {getUserInfo} from '../auth/getUserInfo'
 import {newUserInfo} from '../auth/newUserInfo'
 import {UserInfo} from '../constants/types'
-import {buildStackFromTemplate} from '../stacks/buildStackFromTemplate'
+// import {getAppName} from '../inputs/getAppName'
+import {getEmail} from '../inputs/getEmail'
+import {getFlowSpec} from '../inputs/getFlowSpec'
+// import {getModeratorName} from '../inputs/getModeratorName'
+// import {getStackName} from '../inputs/getStackName'
 import {isRequired} from '../inputs/isRequired'
+import {buildStackFromTemplate} from '../stacks/buildStackFromTemplate'
 
 const fs = require('fs-extra') // @ts-ignore
 
@@ -27,11 +32,25 @@ export default class Spinstack extends Command {
 
   async run() {
     const {flags} = this.parse(Spinstack)
+
     const appName = flags.appName || isRequired('appName', 'spinstack', '-a')
-    const user = flags.user || isRequired('user', 'spinstack', '-u')
-    const template = flags.template || isRequired('template', 'spinstack', '-t')
     const stack = flags.stack || isRequired('stack', 'spinstack', '-s')
-    const email = flags.email || isRequired('email', 'spinstack', '-e')
+    const user = flags.user || isRequired('user', 'spinstack', '-u')
+    // const stack = await getStackName(flags.stack)
+    // if (!stack) isRequired('stack', 'spinstack', '-s')
+    //
+    // const user = await getModeratorName(flags.user)
+    // if (!user) isRequired('user', 'spinstack', '-u')
+    //
+    // const appName = await getAppName(flags.appName) || ''
+    // if (!appName) isRequired('appName', 'spinstack', '-a')
+
+    const flowSpec = await getFlowSpec(flags.template) || ''
+    if (!flowSpec) isRequired('flowSpec', 'spinstack', '-t')
+
+    const email = await getEmail(flags.email)
+    if (!email) isRequired('email', 'quickstarter', '-e')
+
     const addedSuffix = flags.addedSuffix || ''
 
     let userInfo: UserInfo = newUserInfo(user)
@@ -40,7 +59,7 @@ export default class Spinstack extends Command {
     userInfo = await getUserInfo(userInfo)
     // console.log(`in spinstack after getUserInfo, userInfo:${JSON.stringify(userInfo)}`)
 
-    const json = await buildStackFromTemplate(template, userInfo, email, addedSuffix)
+    const json = await buildStackFromTemplate(flowSpec, userInfo, email, addedSuffix)
     // console.log(`JSON TO OUTPUT... ${JSON.stringify(json)}`)
 
     if (json === undefined) {

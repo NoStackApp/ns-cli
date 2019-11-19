@@ -2,6 +2,11 @@ import {Command, flags} from '@oclif/command'
 // import {createNoStackApp} from '../apps/createNoStackApp'
 
 import {UserInfo} from '../constants/types'
+import {getEmail} from '../inputs/getEmail'
+import {getLicenseId} from '../inputs/getLicenseId'
+import {getModeratorName} from '../inputs/getModeratorName'
+import {getPassword} from '../inputs/getPassword'
+import {getStackName} from '../inputs/getStackName'
 // import {createModerator} from '../stacks/createModerator'
 import {createStackAndModerator} from '../stacks/create-stack-and-moderator'
 import {isRequired} from '../inputs/isRequired'
@@ -30,11 +35,20 @@ export default class Createstack extends Command {
 
   async run() {
     const {args, flags} = this.parse(Createstack)
-    const stack = flags.stack || isRequired('stack', 'createstack', '-s')
-    const user = flags.user || isRequired('user', 'createstack', '-u')
-    const password = flags.password || isRequired('password', 'createstack', '-w')
-    const email = flags.email || isRequired('email', 'createstack', '-e')
-    const licenseId = flags.licenseId || isRequired('licenseId', 'createstack', '-l')
+    const stack = await getStackName(flags.stack)
+    if (!stack) isRequired('stack', 'createstack', '-s')
+
+    const user = await getModeratorName(flags.user)
+    if (!user) isRequired('user', 'createstack', '-u')
+
+    const password = await getPassword(flags.password)
+    if (!password) isRequired('password', 'createstack', '-w')
+
+    const email = await getEmail(flags.email)
+    if (!email) isRequired('email', 'createstack', '-e')
+
+    const licenseId = await getLicenseId(flags.licenseId)
+    if (!licenseId) isRequired('licenseId', 'createstack', '-l')
 
     let userInfo: UserInfo = {
       name: user,

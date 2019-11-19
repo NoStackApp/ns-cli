@@ -5,6 +5,7 @@ import {Command, flags} from '@oclif/command'
 
 import {generateAppCode} from '../codeGeneration/generateAppCode'
 import {StackInfo} from '../constants/types'
+// import {getAppName} from '../inputs/getAppName'
 import {isRequired} from '../inputs/isRequired'
 
 export const noNameError = errorEx('noNameError')
@@ -25,8 +26,10 @@ export default class Makecode extends Command {
     // const {args, flags} = this.parse(Makecode)
     const {flags} = this.parse(Makecode)
 
-    // const template = flags.template || ''
     const appName = flags.appName || isRequired('appName', 'makecode', 'a')
+    // const appName = await getAppName(flags.appName) || ''
+    // if (!appName) isRequired('appName', 'makecode', '-a')
+
     let userClass = flags.userClass
 
     if (!userClass) {
@@ -41,16 +44,7 @@ export default class Makecode extends Command {
       userClass = userClassNames[0]
       // this.log(`userClass has been set to ${userClass}`)
     }
-    // this.log(`userClass is ${userClass}`)
 
-    // await generateCodeFiles(appName)  // temp, to debug
-    // try {
-    // await generateCodeFiles(appName)
-    // await generateCodeFiles(appName, userClass)
-    // } catch (err) {
-    //   console.log(`error when attempting to generate the code: ${err}`)
-    //   throw new Error(`code generation error: ${err}`)
-    // }
     const generateAppTasks = await generateAppCode(appName, userClass)
     await generateAppTasks.run().catch((err: any) => {
       console.error(err)
