@@ -4,7 +4,7 @@ import {getUserInfo} from '../auth/getUserInfo'
 import {newUserInfo} from '../auth/newUserInfo'
 import {UserInfo} from '../constants/types'
 import {resetStackCall} from '../stacks/resetStackCall'
-import {isRequired} from '../tools/isRequired'
+import {isRequired} from '../inputs/isRequired'
 
 export default class Resetstack extends Command {
   static description = 'Resets the stack, meaning that the moderator remains and the stack is completely empty.  ' +
