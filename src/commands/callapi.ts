@@ -5,8 +5,8 @@ import {Command, flags} from '@oclif/command'
 import {getUserInfo} from '../auth/getUserInfo'
 import {newUserInfo} from '../auth/newUserInfo'
 import {UserInfo} from '../constants/types'
-import {callApiHelper} from '../tools/callApiHelper'
 import {isRequired} from '../inputs/isRequired'
+import {callApiHelper} from '../tools/callApiHelper'
 
 export const noNameError = errorEx('noNameError')
 

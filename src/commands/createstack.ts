@@ -7,9 +7,9 @@ import {getLicenseId} from '../inputs/getLicenseId'
 import {getModeratorName} from '../inputs/getModeratorName'
 import {getPassword} from '../inputs/getPassword'
 import {getStackName} from '../inputs/getStackName'
+import {isRequired} from '../inputs/isRequired'
 // import {createModerator} from '../stacks/createModerator'
 import {createStackAndModerator} from '../stacks/create-stack-and-moderator'
-import {isRequired} from '../inputs/isRequired'
 
 export default class Createstack extends Command {
   static description = 'Creates a new moderator and stack.  Also logs in the moderator locally.'

@@ -10,16 +10,3 @@ export const isRequired = (paramName: string, commandName: string, flag: string)
 
   throw new Error(`param ${paramName} is required for this creation`)
 }
-
-
-/*
-  if (!userInfo.password) {
-    response = await prompts({
-      type: 'password',
-      name: 'password',
-      message: `User ${userInfo.name} is not logged in. What is their password?`
-    })
-    userInfo.password = response.password
-  }
-
- */
