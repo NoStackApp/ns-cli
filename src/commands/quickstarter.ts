@@ -3,14 +3,18 @@ import {Command, flags} from '@oclif/command'
 import {createNoStackApp} from '../apps/createNoStackApp'
 import {generateAppCode} from '../codeGeneration/generateAppCode'
 import {UserInfo} from '../constants/types'
+import {getAppName} from '../inputs/getAppName'
+import {getBaseApp} from '../inputs/getBaseApp'
+import {getEmail} from '../inputs/getEmail'
+import {getFlowSpec} from '../inputs/getFlowSpec'
+import {getLicenseId} from '../inputs/getLicenseId'
+import {getModeratorName} from '../inputs/getModeratorName'
+import {getPassword} from '../inputs/getPassword'
+import {getStackName} from '../inputs/getStackName'
+import {isRequired} from '../inputs/isRequired'
 import {buildStackFromTemplate} from '../stacks/buildStackFromTemplate'
-// import {createModerator} from '../stacks/createModerator'
 import {createStackAndModerator} from '../stacks/create-stack-and-moderator'
 import {errorMessage} from '../tools/errorMessage'
-// import {createStackQuery} from '../stacks/create-stack-query'
-// import {createModerator} from '../stacks/createModerator'
-import {isRequired} from '../tools/isRequired'
-// import {loginUser} from '../auth/loginUser'
 
 const fs = require('fs-extra')
 const Listr = require('listr')
@@ -24,7 +28,6 @@ export default class Quickstarter extends Command {
 
   static flags = {
     help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
     appName: flags.string({char: 'a', description: 'name of application'}),
     baseApp: flags.string({char: 'b', description: 'directory of the base app to copy.'}),
     stack: flags.string({char: 's', description: 'stack'}),
@@ -34,23 +37,38 @@ export default class Quickstarter extends Command {
     email: flags.string({char: 'e', description: 'moderator email'}),
     password: flags.string({char: 'w', description: 'moderator password'}),
     userClass: flags.string({char: 'c', description: 'userClass for which to generate an app'}),
-    // flag with no value (-f, --force)
-    // force: flags.boolean({char: 'f'}),
   }
 
   static args = []
 
   async run() {
     const {args, flags} = this.parse(Quickstarter)
-    const appName = flags.appName || isRequired('appName', 'quickstarter', '-a')
-    const baseApp = flags.baseApp || ''
-    const stack = flags.stack || isRequired('stack', 'quickstarter', '-s')
-    const flowSpec = flags.template || isRequired('flowSpec', 'quickstarter', '-t')
-    const user = flags.user || isRequired('user', 'quickstarter', '-u')
+
+    let baseApp = flags.baseApp || ''
+    if (baseApp.length > 0) baseApp = await getBaseApp(baseApp)
+
+    const email = await getEmail(flags.email)
+    if (!email) isRequired('email', 'quickstarter', '-e')
+
+    const stack = await getStackName(flags.stack)
+    if (!stack) isRequired('stack', 'quickstarter', '-s')
+
+    const user = await getModeratorName(flags.user)
+    if (!user) isRequired('user', 'quickstarter', '-u')
+
+    const appName = await getAppName(flags.appName) || ''
+    if (!appName) isRequired('appName', 'quickstarter', '-a')
+
+    const flowSpec = await getFlowSpec(flags.template) || ''
+    if (!flowSpec) isRequired('flowSpec', 'quickstarter', '-t')
+
+    const licenseId = await getLicenseId(flags.licenseId)
+    if (!licenseId) isRequired('licenseId', 'quickstarter', '-l')
+
+    const password = await getPassword(flags.password)
+    if (!password) isRequired('password', 'quickstarter', '-w')
+
     const userClass = flags.userClass || isRequired('userClass', 'quickstarter', '-c')
-    const password = flags.password || isRequired('password', 'quickstarter', '-w')
-    const email = flags.email || isRequired('email', 'quickstarter', '-e')
-    const licenseId = flags.licenseId || isRequired('licenseId', 'quickstarter', '-l')
 
     let userInfo: UserInfo = {
       name: user,

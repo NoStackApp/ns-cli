@@ -4,7 +4,7 @@ import {getUserInfo} from '../auth/getUserInfo'
 import {newUserInfo} from '../auth/newUserInfo'
 import {UserInfo} from '../constants/types'
 import {buildStackFromTemplate} from '../stacks/buildStackFromTemplate'
-import {isRequired} from '../tools/isRequired'
+import {isRequired} from '../inputs/isRequired'
 
 const fs = require('fs-extra') // @ts-ignore
 

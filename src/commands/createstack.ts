@@ -4,7 +4,7 @@ import {Command, flags} from '@oclif/command'
 import {UserInfo} from '../constants/types'
 // import {createModerator} from '../stacks/createModerator'
 import {createStackAndModerator} from '../stacks/create-stack-and-moderator'
-import {isRequired} from '../tools/isRequired'
+import {isRequired} from '../inputs/isRequired'
 
 export default class Createstack extends Command {
   static description = 'Creates a new moderator and stack.  Also logs in the moderator locally.'

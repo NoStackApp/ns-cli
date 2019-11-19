@@ -5,7 +5,7 @@ import {Command, flags} from '@oclif/command'
 
 import {generateAppCode} from '../codeGeneration/generateAppCode'
 import {StackInfo} from '../constants/types'
-import {isRequired} from '../tools/isRequired'
+import {isRequired} from '../inputs/isRequired'
 
 export const noNameError = errorEx('noNameError')
 

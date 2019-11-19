@@ -1,4 +1,5 @@
 import chalk from 'chalk'
+import {getAppName} from '../inputs/getAppName'
 
 import {errorMessage} from '../tools/errorMessage'
 
@@ -52,15 +53,12 @@ export async function createNoStackApp(appName: string, baseApp: string) {
       {
         title: 'Copy directory to new app directory',
         task: async () => {
-          const appDirectoryAlreadyExists = await fs.pathExists(appName)
-
-          if (appDirectoryAlreadyExists) {
-            throw new Error(errorMessage(`the folder for ${appName} already exists. Please choose another appName.`))
-          }
+          let finalAppName = appName
+          finalAppName = await getAppName(finalAppName) || ''
 
           await execa(
             'cp',
-            ['-r', baseApp, appName]
+            ['-r', baseApp, finalAppName]
           ).catch(
             (error: any) => {
               throw new Error(`${chalk.red(`error copying over from ${baseApp}.`)} Here is the error reported:\n${error}`)

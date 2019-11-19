@@ -1,7 +1,8 @@
 import {Command, flags} from '@oclif/command'
 
 import {createNoStackApp} from '../apps/createNoStackApp'
-import {isRequired} from '../tools/isRequired'
+import {getAppName} from '../inputs/getAppName'
+import {isRequired} from '../inputs/isRequired'
 
 // import {createNoStackApp} from '../apps/createNoStackApp'
 
@@ -24,7 +25,7 @@ export default class Newapp extends Command {
 
   async run() {
     const {flags} = this.parse(Newapp)
-    const appName = flags.appName || isRequired('appName', 'newapp', '-a')
+    const appName = await getAppName(flags.appName) || ''
     const baseApp = flags.baseApp || ''
 
     const newAppTasks = await createNoStackApp(appName, baseApp)
