@@ -160,7 +160,7 @@ the `-b` flag:
 ```
 The best practice is usually to create one initially by calling this:
 ```
-nosstack newapp -a /path/to/appbase
+nostack newapp -a /path/to/appbase
 ```
 Then you can use the appBase whenever you like.  The drawback of using an appBase is that if any of the dependencies change you will not benefit from the changes.
 
