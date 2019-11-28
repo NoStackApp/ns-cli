@@ -8,9 +8,9 @@ import {getBaseApp} from '../inputs/getBaseApp'
 import {getEmail} from '../inputs/getEmail'
 import {getFlowSpec} from '../inputs/getFlowSpec'
 import {getLicenseId} from '../inputs/getLicenseId'
-import {getModeratorName} from '../inputs/getModeratorName'
+import {getNewModeratorName} from '../inputs/getNewModeratorName'
 import {getPassword} from '../inputs/getPassword'
-import {getStackName} from '../inputs/getStackName'
+import {getNewStackName} from '../inputs/getNewStackName'
 import {isRequired} from '../inputs/isRequired'
 import {buildStackFromTemplate} from '../stacks/buildStackFromTemplate'
 import {createStackAndModerator} from '../stacks/create-stack-and-moderator'
@@ -50,10 +50,10 @@ export default class Quickstarter extends Command {
     const email = await getEmail(flags.email)
     if (!email) isRequired('email', 'quickstarter', '-e')
 
-    const stack = await getStackName(flags.stack)
+    const stack = await getNewStackName(flags.stack)
     if (!stack) isRequired('stack', 'quickstarter', '-s')
 
-    const user = await getModeratorName(flags.user)
+    const user = await getNewModeratorName(flags.user)
     if (!user) isRequired('user', 'quickstarter', '-u')
 
     const appName = await getAppName(flags.appName) || ''

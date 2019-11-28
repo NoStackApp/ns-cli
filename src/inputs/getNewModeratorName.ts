@@ -2,6 +2,7 @@
 
 import {UserInfo} from '../constants/types'
 import {genericApiCall} from '../tools/genericApiCall'
+import {stackExists} from './getNewStackName'
 
 import {promptTypes, promptUser} from './promptUser'
 
@@ -29,7 +30,7 @@ export async function moderatorExists(moderatorName: string) {
   return returnedData.moderatorExists
 }
 
-const testModeratorName = async (moderatorName: string) => {
+const testModeratorName = async (moderatorName: string, isNew: boolean) => {
   if (!moderatorName || moderatorName.length === 0)
     return 'Please enter a name for your moderator (all numbers and letters, no spaces).'
 
@@ -41,18 +42,22 @@ const testModeratorName = async (moderatorName: string) => {
     return `The moderatorName '${moderatorName}' contains forbidden characters.  A moderator name can contain
     uppercase and lowercase letters (a-z, A-Z), numbers (0-9)`
 
-  // console.log(`moderatorExists(${moderatorName})=${await moderatorExists(moderatorName)}`)
-  if (await moderatorExists(moderatorName))
-    return `There already exists a moderator with the name ${moderatorName}.  Please select something else.`
+  const alreadyExists = await moderatorExists(moderatorName)
+
+  if (isNew && alreadyExists) return `There already exists a moderator with the name ${moderatorName}.  Please select something else.`
+  if (!isNew && !alreadyExists) return `There is no moderator with the name ${moderatorName}.  Please check the name.`
 
   return ''
 }
 
-export async function getModeratorName(moderatorName: string | undefined) {
+const testNewModerator = async (moderatorName: string) => testModeratorName(moderatorName, true)
+const testExistingModerator = async (moderatorName: string) => testModeratorName(moderatorName, false)
+
+export async function getNewModeratorName(moderatorName: string | undefined) {
   let prompt = 'Please enter a name for your moderator (all numbers and lowercase letters, no spaces).'
 
   if (moderatorName) {
-    prompt = await testModeratorName(moderatorName)
+    prompt = await testNewModerator(moderatorName)
   }
   if (prompt.length === 0) return moderatorName
 
@@ -60,6 +65,22 @@ export async function getModeratorName(moderatorName: string | undefined) {
     'moderatorName',
     promptTypes.TEXT,
     prompt,
-    testModeratorName
+    testNewModerator
+  )
+}
+
+export async function getExistingModeratorName(moderatorName: string | undefined) {
+  let prompt = 'Please enter a name for your moderator (all numbers and lowercase letters, no spaces).'
+
+  if (moderatorName) {
+    prompt = await testExistingModerator(moderatorName)
+  }
+  if (prompt.length === 0) return moderatorName
+
+  return promptUser(
+    'moderatorName',
+    promptTypes.TEXT,
+    prompt,
+    testExistingModerator
   )
 }
