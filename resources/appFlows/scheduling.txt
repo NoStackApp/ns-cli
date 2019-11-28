@@ -1,0 +1,43 @@
+resetStack
+newUserClass user
+
+### UNITS ###
+newUnit projectsForUser user
+newUnit  taskInfo user
+newUnit allUsers user dataSource
+newUnit scheduledSteps user
+
+### TYPES ###
+useType user projectsForUser __Root__ multiple
+newType project projectsForUser user
+
+useType project taskInfo __Root__ multiple
+newType task taskInfo project
+newType completed taskInfo task boolean singleRequired
+newType step taskInfo task
+newType goal taskInfo step
+newType done taskInfo step
+useType user taskInfo step selectable allUsers
+
+useType user allUsers __Root__ multiple
+
+useType user scheduledSteps __Root__
+newType scheduling scheduledSteps user grouping
+useType step scheduledSteps scheduling viewable taskInfo
+
+connectUnits taskInfo projectsForUser project
+
+### SELECTIONS ###
+newSelection projectsForUser project
+newSelection taskInfo task
+newSelection taskInfo completed
+newSelection taskInfo step
+newSelection taskInfo goal
+newSelection taskInfo user
+
+newSelection allUsers user
+
+### CONSTRAINTS ###
+newConstraint __currentUser__ projectsForUser user ID
+newConstraint currentProjectId taskInfo project ID
+newConstraint __currentUser__ scheduledSteps user ID

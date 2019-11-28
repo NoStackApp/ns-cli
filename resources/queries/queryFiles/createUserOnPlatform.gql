@@ -1,0 +1,21 @@
+mutation USER_REGISTRATION_MUTATION(
+	$userClass: ID!
+	$username: String!
+	$firstName: String!
+	$lastName: String!
+	$email: String!
+	$password: String!
+) {
+	user: CreateUserOnPlatform(
+		userClass: $userClass
+		name: $username
+		firstName: $firstName
+		lastName: $lastName
+		email: $email
+		password: $password
+	) {
+		id
+		name
+		__typename
+	}
+}
