@@ -6,8 +6,8 @@ import {UserInfo} from '../constants/types'
 // import {getAppName} from '../inputs/getAppName'
 import {getEmail} from '../inputs/getEmail'
 import {getFlowSpec} from '../inputs/getFlowSpec'
-// import {getModeratorName} from '../inputs/getModeratorName'
-// import {getStackName} from '../inputs/getStackName'
+// import {getNewModeratorName} from '../inputs/getNewModeratorName'
+// import {getNewStackName} from '../inputs/getNewStackName'
 import {isRequired} from '../inputs/isRequired'
 import {buildStackFromTemplate} from '../stacks/buildStackFromTemplate'
 
@@ -36,10 +36,10 @@ export default class Spinstack extends Command {
     const appName = flags.appName || isRequired('appName', 'spinstack', '-a')
     const stack = flags.stack || isRequired('stack', 'spinstack', '-s')
     const user = flags.user || isRequired('user', 'spinstack', '-u')
-    // const stack = await getStackName(flags.stack)
+    // const stack = await getNewStackName(flags.stack)
     // if (!stack) isRequired('stack', 'spinstack', '-s')
     //
-    // const user = await getModeratorName(flags.user)
+    // const user = await getNewModeratorName(flags.user)
     // if (!user) isRequired('user', 'spinstack', '-u')
     //
     // const appName = await getAppName(flags.appName) || ''

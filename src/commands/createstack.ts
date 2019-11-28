@@ -4,9 +4,9 @@ import {Command, flags} from '@oclif/command'
 import {UserInfo} from '../constants/types'
 import {getEmail} from '../inputs/getEmail'
 import {getLicenseId} from '../inputs/getLicenseId'
-import {getModeratorName} from '../inputs/getModeratorName'
+import {getNewModeratorName} from '../inputs/getNewModeratorName'
 import {getPassword} from '../inputs/getPassword'
-import {getStackName} from '../inputs/getStackName'
+import {getNewStackName} from '../inputs/getNewStackName'
 import {isRequired} from '../inputs/isRequired'
 // import {createModerator} from '../stacks/createModerator'
 import {createStackAndModerator} from '../stacks/create-stack-and-moderator'
@@ -35,10 +35,10 @@ export default class Createstack extends Command {
 
   async run() {
     const {args, flags} = this.parse(Createstack)
-    const stack = await getStackName(flags.stack)
+    const stack = await getNewStackName(flags.stack)
     if (!stack) isRequired('stack', 'createstack', '-s')
 
-    const user = await getModeratorName(flags.user)
+    const user = await getNewModeratorName(flags.user)
     if (!user) isRequired('user', 'createstack', '-u')
 
     const password = await getPassword(flags.password)

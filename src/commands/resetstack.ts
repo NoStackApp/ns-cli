@@ -3,8 +3,8 @@ import {Command, flags} from '@oclif/command'
 import {getUserInfo} from '../auth/getUserInfo'
 import {newUserInfo} from '../auth/newUserInfo'
 import {UserInfo} from '../constants/types'
-import {getModeratorName} from '../inputs/getModeratorName'
-import {getStackName} from '../inputs/getStackName'
+import {getExistingModeratorName} from '../inputs/getNewModeratorName'
+import {getStackName} from '../inputs/getNewStackName'
 import {isRequired} from '../inputs/isRequired'
 import {resetStackCall} from '../stacks/resetStackCall'
 
@@ -23,7 +23,7 @@ export default class Resetstack extends Command {
     const stack = await getStackName(flags.stack)
     if (!stack) isRequired('stack', 'resetstack', '-s')
 
-    const user = await getModeratorName(flags.user)
+    const user = await getExistingModeratorName(flags.user)
     if (!user) isRequired('user', 'resetstack', '-u')
 
     let userInfo: UserInfo = newUserInfo(user)

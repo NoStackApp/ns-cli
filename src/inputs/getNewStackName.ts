@@ -29,7 +29,7 @@ export async function stackExists(stackName: string) {
   return returnedData.stackExists
 }
 
-const testStackName = async (stackName: string) => {
+const testStackName = async (stackName: string, isNew: boolean) => {
   if (!stackName || stackName.length === 0)
     return 'Please enter a name for your stack (all numbers and letters, no spaces).'
 
@@ -41,17 +41,22 @@ const testStackName = async (stackName: string) => {
     return `The stackName '${stackName}' contains forbidden characters.  A stack name can contain
     uppercase and lowercase letters (a-z, A-Z), numbers (0-9)`
 
-  if (await stackExists(stackName))
-    return `There already exists a stack with the name ${stackName}.  Please select something else.`
+  const alreadyExists = await stackExists(stackName)
+
+  if (isNew && alreadyExists) return `There already exists a stack with the name ${stackName}.  Please select something else.`
+  if (!isNew && !alreadyExists) return `There is no stack with the name ${stackName}.  Please check the name.`
 
   return ''
 }
 
-export async function getStackName(stackName: string | undefined) {
+const testNewStack = async (stackName: string) => testStackName(stackName, true)
+const testExistingStack = async (stackName: string) => testStackName(stackName, false)
+
+export async function getNewStackName(stackName: string | undefined) {
   let prompt = 'Please enter a name for your stack (all numbers and lowercase letters, no spaces).'
 
   if (stackName) {
-    prompt = await testStackName(stackName)
+    prompt = await testNewStack(stackName)
   }
   if (prompt.length === 0) return stackName
 
@@ -59,6 +64,22 @@ export async function getStackName(stackName: string | undefined) {
     'stackName',
     promptTypes.TEXT,
     prompt,
-    testStackName
+    testNewStack
+  )
+}
+
+export async function getStackName(stackName: string | undefined) {
+  let prompt = 'Please enter a name for your stack (all numbers and lowercase letters, no spaces).'
+
+  if (stackName) {
+    prompt = await testExistingStack(stackName)
+  }
+  if (prompt.length === 0) return stackName
+
+  return promptUser(
+    'stackName',
+    promptTypes.TEXT,
+    prompt,
+    testExistingStack
   )
 }
