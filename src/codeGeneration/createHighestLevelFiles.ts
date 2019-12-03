@@ -43,6 +43,12 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appName: 
   await fs.copy(`${boilerplateDir}/index.js`, `${srcDir}/index.js`)
 
   // App
+  if (!currentStack.userClasses[userClass]) {
+    const err = (new noNameError())
+    err.message = `template contains no userClass '${userClass}'`
+    throw(err)
+  }
+
   const source: string = currentStack.userClasses[userClass].topSource
   if (!source) {
     const err = (new noNameError())

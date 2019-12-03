@@ -1,12 +1,13 @@
 import {expect, test} from '@oclif/test'
 
-import {testModerator, testStack} from './testLoginData'
+import {resourcesDirectory, testModerator, testStack} from '../testConstants'
 
-const queriesDir = `${__dirname}/../../resources/queries`
-const queryFile = `${queriesDir}/queryFiles/platformInfo.graphql`
+const queriesDir = `${resourcesDirectory}/queries`
+const queryFile = `${queriesDir}/queryFiles/platformInfo.gql`
 const varFile = `${queriesDir}/variables/platformInfo.json`
 
-describe('callapi', () => {
+describe('test of callapi', function () {
+  this.timeout(15000)
   test
     .stdout()
     .command(['callapi',

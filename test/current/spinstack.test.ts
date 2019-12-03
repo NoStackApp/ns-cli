@@ -1,15 +1,16 @@
 import {expect, test} from '@oclif/test'
 
-import {testModerator, testStack} from '../testConstants'
+import {appName, testModerator, testStack} from '../testConstants'
 
 require('dotenv').config({path: __dirname + '/./../../.env'})
 
-const appName = 'testStackApp'
-const appFlowsDir = `${__dirname}/../../resources/appFlows`
-const appFlow = `${appFlowsDir}/sampleTemplate2`
+const appFlow = `${__dirname}/../testFlowSpec.txt`
 const email = process.env.EMAIL as string
+const fileName = `${appName}/stack.json`
+const fs = require('fs-extra')
 
-describe('spinstack', () => {
+describe('spinstack', function () {
+  this.timeout(0)
   test
     .stdout()
     .command(['spinstack',
@@ -19,8 +20,8 @@ describe('spinstack', () => {
       '-t', appFlow,
       '-e', email,
     ])
-    .it('creates the stack', () => {
-      expect(`${appName}/stack.json`).to.contain('userClasses')
+    .it('creates the stack', async function () {
+      expect(fs.pathExistsSync(fileName))
     })
 
   // test

@@ -1,0 +1,6 @@
+{
+  "actionType": "CREATE_INSTANCE_WITH_UNOWNED_PARENT",
+  "actionName": "CreateTaskForOtherUser2",
+  "userClassId": "b34404a6-9d56-4d06-a066-a4f42f14c2e7",
+  "actionParameters": "{\"typeId\":\"3c7c4115-d766-4189-b995-636077218313\", \"parentTypeId\":\"8ac96a39-01ad-4640-a15f-bf0c8c3af5bd\",\"assnId\": \"cef66625-ad08-451b-8475-3cb5296fe297\"}"
+}
