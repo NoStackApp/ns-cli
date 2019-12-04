@@ -95,7 +95,7 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
       } else {
         // console.log(err.response.errors) // GraphQL response errors
         // console.log(JSON.stringify(err.response.data)) // Response data if available
-        throw new Error(`${err.response.errors[0]}`) // GraphQL response errors
+        throw new Error('We are sorry, this call has produced an error on the server.  Please contact info@nostack.net.') // GraphQL response errors
       }
     })
 

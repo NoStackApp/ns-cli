@@ -1,0 +1,49 @@
+resetStack
+
+### USER CLASS ###
+newUserClass user
+
+### UNITS ###
+newUnit projectsForUser user
+newUnit taskInfo user
+newUnit allUsers user dataSource
+newUnit myTasks user
+
+### TYPES ###
+useType user allUsers __Root__ multiple
+
+useType user projectsForUser __Root__ multiple
+newType project projectsForUser user
+useType project taskInfo __Root__ multiple
+newType task taskInfo project
+newType isCompleted taskInfo task boolean singleRequired
+newType assignment taskInfo task grouping
+useType user taskInfo assignment selectable allUsers
+newType dueDate taskInfo assignment string singleRequired
+
+useType user myTasks __Root__ multiple
+useType assignment myTasks user viewable taskInfo
+useType dueDate myTasks assignment viewable taskInfo
+newType progressReport myTasks assignment
+
+### SELECTIONS ###
+newSelection myTasks assignment
+newSelection myTasks dueDate
+newSelection myTasks progressReport
+
+newSelection allUsers user
+
+newSelection projectsForUser project
+newSelection taskInfo task
+newSelection taskInfo isCompleted
+newSelection taskInfo assignment
+newSelection taskInfo user
+newSelection taskInfo dueDate
+
+### CONSTRAINTS ###
+newConstraint __currentUser__ projectsForUser user ID
+newConstraint currentProjectId taskInfo project ID
+
+connectUnits taskInfo projectsForUser project
+
+
