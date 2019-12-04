@@ -14,7 +14,7 @@ async function generateFilesForType(
 ) {
   const typeInfo = currentStack.types[type]
   const typeSourceInfo = typeInfo.sources[source]
-  const {assnType, selectionSource} = typeSourceInfo
+  const {assnType, sourceUnit} = typeSourceInfo
   let {nodeType} = typeSourceInfo
   let {dataType} = typeInfo
 
@@ -39,13 +39,13 @@ async function generateFilesForType(
   }
   // console.log(`*** type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
 
-  if (selectionSource) {
+  if (sourceUnit) {
     const selectionBoilerPlateInfo: BoilerPlateInfoType = {
       formType: formTypes.SELECTION,
       dataType,
       nodeType: nodeTypes.SELECTABLE,
     }
-    await generateTypeFile(type, selectionSource, selectionBoilerPlateInfo, currentStack)
+    await generateTypeFile(type, sourceUnit, selectionBoilerPlateInfo, currentStack)
   }
 
   await generateTypeFile(type, source, boilerPlateInfo, currentStack)
