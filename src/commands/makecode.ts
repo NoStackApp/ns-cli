@@ -16,7 +16,8 @@ export default class Makecode extends Command {
   static flags = {
     // template: flags.string({char: 't', description: 'template file'}),
     userClass: flags.string({char: 'c', description: 'user class for which to generate an app'}),
-    appName: flags.string({char: 'a', description: 'application name'}),
+    appDir: flags.string({char: 'a', description: 'application directory'}),
+    jsonPath: flags.string({char: 'j', description: 'path and filename for the stack json file.  The file tells you about your server and gets used to generate code for front end apps.'}),
     help: flags.help({char: 'h'}),
   }
 
@@ -26,14 +27,12 @@ export default class Makecode extends Command {
     // const {args, flags} = this.parse(Makecode)
     const {flags} = this.parse(Makecode)
 
-    const appName = flags.appName || isRequired('appName', 'makecode', 'a')
-    // const appName = await getAppName(flags.appName) || ''
-    // if (!appName) isRequired('appName', 'makecode', '-a')
-
+    const appDir = flags.appDir || isRequired('appDir', 'makecode', 'a')
+    const jsonPath = flags.jsonPath || isRequired('jsonPath', 'makecode', '-j')
     let userClass = flags.userClass
 
     if (!userClass) {
-      const stack: StackInfo = await fs.readJSON(`${appName}/stack.json`)
+      const stack: StackInfo = await fs.readJSON(`${appDir}/stack.json`)
       const userClasses = stack.userClasses
       const userClassNames = Object.keys(userClasses)
       if (userClassNames.length !== 1) {
@@ -45,7 +44,7 @@ export default class Makecode extends Command {
       // this.log(`userClass has been set to ${userClass}`)
     }
 
-    const generateAppTasks = await generateAppCode(appName, userClass)
+    const generateAppTasks = await generateAppCode(appDir, userClass, jsonPath)
     await generateAppTasks.run().catch((err: any) => {
       console.error(err)
     })

@@ -102,7 +102,7 @@ export default class Quickstarter extends Command {
         title: 'Build Stack from Template',
         task: async () => {
           // const json = await buildStackFromTemplate_1.buildStackFromTemplate(template, userInfo, email, addedSuffix);
-          // await fs.outputJson(`${appName}/stack.json`, JSON.parse(json), (err) => {
+          // await fs.outputJson(`${appDir}/stack.json`, JSON.parse(json), (err) => {
           //   if (err) {
           //     // @ts-ignore
           //     throw new Error(console.error(err));

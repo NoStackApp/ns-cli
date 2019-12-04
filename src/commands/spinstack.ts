@@ -18,7 +18,7 @@ export default class Spinstack extends Command {
 
   static flags = {
     help: flags.help({char: 'h'}),
-    appName: flags.string({char: 'a', description: 'application name'}),
+    jsonPath: flags.string({char: 'j', description: 'path and filename for the stack json file.  The file tells you about your server and gets used to generate code for front end apps.'}),
     stack: flags.string({char: 's', description: 'stack'}),
     template: flags.string({char: 't', description: 'template from which to spin up a stack'}),
     // flag with a value (-n, --name=VALUE)
@@ -33,17 +33,9 @@ export default class Spinstack extends Command {
   async run() {
     const {flags} = this.parse(Spinstack)
 
-    const appName = flags.appName || isRequired('appName', 'spinstack', '-a')
+    const jsonPath = flags.jsonPath || isRequired('json', 'spinstack', '-j')
     const stack = flags.stack || isRequired('stack', 'spinstack', '-s')
     const user = flags.user || isRequired('user', 'spinstack', '-u')
-    // const stack = await getNewStackName(flags.stack)
-    // if (!stack) isRequired('stack', 'spinstack', '-s')
-    //
-    // const user = await getNewModeratorName(flags.user)
-    // if (!user) isRequired('user', 'spinstack', '-u')
-    //
-    // const appName = await getAppName(flags.appName) || ''
-    // if (!appName) isRequired('appName', 'spinstack', '-a')
 
     const flowSpec = await getFlowSpec(flags.template) || ''
     if (!flowSpec) isRequired('flowSpec', 'spinstack', '-t')
@@ -55,27 +47,24 @@ export default class Spinstack extends Command {
 
     let userInfo: UserInfo = newUserInfo(user)
     userInfo.stack = stack
-    // console.log(`in spinstack, userInfo:${JSON.stringify(userInfo)}`)
     userInfo = await getUserInfo(userInfo)
-    // console.log(`in spinstack after getUserInfo, userInfo:${JSON.stringify(userInfo)}`)
 
     const json = await buildStackFromTemplate(flowSpec, userInfo, email, addedSuffix)
-    // console.log(`JSON TO OUTPUT... ${JSON.stringify(json)}`)
 
     if (json === undefined) {
       console.log('Try calling that request again.  Your user had to be logged in.')
       return
     }
 
-    await fs.outputJson(`${appName}/stack.json`, JSON.parse(json), (err: any) => {
+    await fs.outputJson(`${jsonPath}`, JSON.parse(json), (err: any) => {
       if (err) {
         // @ts-ignore`
-        throw new Error(`Error writing the stack file ${appName}/stack.json: ${err}`)
+        throw new Error(`Error writing the stack file ${jsonPath}: ${err}`)
       }
     })
 
     this.log(`The stack ${stack} has been generated.
-    The file ${appName}/stack.json contains some information about it.`)
+    The file ${jsonPath} contains some information about it.`)
 
     // this.log(`json produced: ${JSON.stringify(JSON.parse(json), null, 2) }`)
   }

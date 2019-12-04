@@ -8,9 +8,8 @@ let srcDir: string
 let compDir: string
 let sourcePropsDir: string
 
-export async function createTopProjectDirs(currentStack: StackInfo, appName: string) {
+export async function createTopProjectDirs(currentStack: StackInfo, appDir: string) {
   let dirList: string[] = []
-  appDir = appName
   srcDir = `${appDir}/src`
   compDir = `${srcDir}/components`
   sourcePropsDir = `${compDir}/source-props`

@@ -1,7 +1,7 @@
+import {throwError} from 'rxjs'
 import {StackInfo} from '../constants/types'
 
 export async function createConfigFile(currentStack: StackInfo, appName: string) {
-  // const boilerPlateDir = `${boilerplateDir}/codeGeneration/boilerplates`
   let outputText = `// This file was generated automatically by nostack for the app '${appName}'.  If you build a new stack from a template, you should replace it.
 // If you modify your current stack to add actions, sources, or types, it would make sense to add constants here.
 

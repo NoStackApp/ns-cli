@@ -21,7 +21,7 @@ export default class Createstack extends Command {
   static flags = {
     help: flags.help({char: 'h'}),
     // flag with a value (-n, --name=VALUE)
-    // appName: flags.string({char: 'a', description: 'name of application'}),
+    // appDir: flags.string({char: 'a', description: 'name of application'}),
     stack: flags.string({char: 's', description: 'stack'}),
     licenseId: flags.string({char: 'l', description: 'license id for the organization of the user'}),
     user: flags.string({char: 'u', description: 'moderator to create'}),

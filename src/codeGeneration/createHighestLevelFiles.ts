@@ -119,7 +119,7 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appName: 
   await generateFromBoilerPlate(`${boilerplateDir}/App.js`, `${srcDir}/App.js`, options)
 
   // config
-  // const configText = await createConfigFile(currentStack, appName)
+  // const configText = await createConfigFile(currentStack, appDir)
   // // console.log(`configText=${configText}`)
   // fs.outputFile(`${srcDir}/config/index.js`, configText)
 

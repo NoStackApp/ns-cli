@@ -10,18 +10,19 @@ const execa = require('execa')
 const fs = require('fs-extra')
 const Listr = require('listr')
 
-export async function generateCodeFiles(appName: string, userClass: string) {
-  // console.log(`stacklocation=${appName}/stack.json`)
-  const currentStack: StackInfo = await fs.readJSON(`${appName}/stack.json`) // await generateJSON.bind(this)(template, appName)
+export async function generateCodeFiles(appDir: string, userClass: string, jsonPath: string) {
+  // console.log(`stacklocation=${appDir}/stack.json`)
+  const currentStack: StackInfo = await fs.readJSON(jsonPath) // await generateJSON.bind(this)(template, appDir)
   // console.log(`currentStack=${currentStack}`)
-  await createTopProjectDirs(currentStack, appName)
+  await createTopProjectDirs(currentStack, appDir)
 
+  const appName = appDir.match(/([^\/]*)\/*$/)![1]
   const configText = await createConfigFile(currentStack, appName)
   // console.log(`configText=${configText}`)
   fs.outputFile(`${srcDir}/config/index.js`, configText)
 
   // this.log(JSON.stringify(currentStack, null, 2))
-  await createHighestLevelFiles(currentStack, appName, userClass)
+  await createHighestLevelFiles(currentStack, appDir, userClass)
 
   const sources = currentStack.sources
 
@@ -34,13 +35,13 @@ export async function generateCodeFiles(appName: string, userClass: string) {
   await createTypeFiles(sources, userClass, currentStack)
 }
 
-export async function generateAppCode(appName: string, userClass: string) {
+export async function generateAppCode(appDir: string, userClass: string, jsonPath: string) {
   const tasks = new Listr([
     {
       title: 'Generate the Code Files',
       task: async () => {
         try {
-          await generateCodeFiles(appName, userClass)
+          await generateCodeFiles(appDir, userClass, jsonPath)
         } catch (err) {
           console.log(`git error when attempting to generate the code: ${err}`)
           throw new Error(err)
@@ -54,7 +55,7 @@ export async function generateAppCode(appName: string, userClass: string) {
         try {
           await execa(
             'git',
-            ['-C', appName, 'add', '.']
+            ['-C', appDir, 'add', '.']
           )
         } catch (err) {
           console.log(`git error when adding changed files.  Perhaps your generated code didn't change?: ${err}`)
@@ -64,7 +65,7 @@ export async function generateAppCode(appName: string, userClass: string) {
         try {
           await execa(
             'git',
-            ['-C', appName, 'commit', '-m', 'generated no-stack code :tada:']
+            ['-C', appDir, 'commit', '-m', 'generated no-stack code :tada:']
           )
         } catch (err) {
           console.log(`git error when attempting to commit the generation of code.  Perhaps your generated code didn't change? ${err}`)
