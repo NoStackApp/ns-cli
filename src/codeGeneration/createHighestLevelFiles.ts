@@ -33,6 +33,12 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appName: 
 
   await generateFromBoilerPlate(`${boilerplateDir}/NavBar.js`, `${compDir}/NavBar/index.js`, options)
 
+  // DeleteInstanceMenu
+  await fs.copy(`${boilerplateDir}/DeleteInstanceMenu.js`, `${compDir}/DeleteInstanceMenu/index.js`)
+
+  // EditInstanceForm
+  await fs.copy(`${boilerplateDir}/EditInstanceForm.js`, `${compDir}/EditInstanceForm/index.js`)
+
   // client file
   await fs.copy(`${boilerplateDir}/client.js`, `${srcDir}/client/index.js`)
 
