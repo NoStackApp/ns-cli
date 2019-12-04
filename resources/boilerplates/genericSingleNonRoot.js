@@ -21,10 +21,15 @@ const __SingularName__StyleWrapper = styled.div(({
 }) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine': 'none'};
+  border: ${selected ? '1px solid aquamarine': '1px solid white'};
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
   background-color: ${isDeleting && 'tomato'};
+  cursor: ${selected ? 'auto' : 'pointer'};
+
+  &:hover {
+    border: 1px solid aquamarine;
+  }
 `);
 
 const Button = styled.button`
@@ -60,7 +65,7 @@ function __SingularName__({
   if (!selected) {
     return (
       <__SingularName__StyleWrapper onClick={() => onSelect(__SingularNameLowercase__.id)}>
-        {stepValue}
+        {__SingularNameLowercase__Value}
       </__SingularName__StyleWrapper>
     );
   }
