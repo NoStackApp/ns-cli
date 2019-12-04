@@ -85,7 +85,7 @@ In addition to being straightforward, the CLI seamlessly handles token refreshin
 ## The quickstarter Command
 There is a shortcut command to get started:
 ```
-? nostack quickStarter -e ${email} -w ${password} -l ${license}  -u ${moderator} -s ${stackName} -a${appName} -t ${appFlow} -c ${userClass} -b ${appBase}
+? nostack quickStarter -e ${email} -w ${password} -l ${license}  -u ${moderator} -s ${stackName} -a${appDir} -t ${appFlow} -c ${userClass} -b ${appBase}
 ```
 
 That will give you everything you need for your first app.  Note that
@@ -100,7 +100,7 @@ The following parameters appear in `quickstarter`, and are used consistently in 
 * -l <license>: the licence string entitling you to a new stack  
 * -s <stackName>: the name of the stack (note that it needs to be unique)
 * -c <userClass>: the type of user in the appFlow file for which the front end app will be created.
-* -a <appName>: the name of the front end app for the userClass.  (note that it must be all lowercase letters without spaces, but does not need to be unique)
+* -a <appDir>: the name of the front end app for the userClass.  (note that it must be all lowercase letters without spaces, but does not need to be unique)
 * -t <appFlow>: a path to a valid app flow specification file
 * -b <appBase> [OPTIONAL]: a directory containing an empty NoStack application.  See [Creating an App Base](creating-an-app-base) below for instructions to create one.
 
@@ -113,7 +113,7 @@ There are the four standard steps for creating an app, covered below.
 ### Create a NoStack App Placeholder
 Generation of an "empty" NoStack application:
 ```
-nostack newapp -a <appName> [-b <baseApp> ]
+nostack newapp -a <appDir> [-b <baseApp> ]
 ```
 The application is created using create-react-app, with several added packages.  Included in the packages are:
 * [no-stack](https://www.npmjs.com/package/no-stack), a package that enables a React application to work with NoStack
@@ -141,7 +141,7 @@ Calling `spinstack` will generate  a `stack.json` file in the directory with the
 Generate front end code for an app for a given userClass.
 
 ```
-nostack makecode -a <appName> -c <userClass>
+nostack makecode -a <appDir> -c <userClass>
 ```
 
 The `makecode` command uses the `stack.json` file found in the directory specified by `-a` (remember that you **must be in the parent directory for that folder**).  Only the units owned by the specified userClass get used.
@@ -284,7 +284,7 @@ USAGE
   $ nostack makecode
 
 OPTIONS
-  -a, --appName=appName      application name
+  -a, --appDir=appDir      application name
   -c, --userClass=userClass  user class for which to generate an app
   -h, --help                 show CLI help
 ```
@@ -300,7 +300,7 @@ USAGE
   $ nostack newapp
 
 OPTIONS
-  -a, --appName=appName  name of application
+  -a, --appDir=appDir  name of application
   -b, --baseApp=baseApp  directory of the base app to copy. If it does not exist, it is created.
   -h, --help             show CLI help
 ```
@@ -316,7 +316,7 @@ USAGE
   $ nostack quickstarter
 
 OPTIONS
-  -a, --appName=appName      name of application
+  -a, --appDir=appDir      name of application
   -b, --baseApp=baseApp      directory of the base app to copy.
   -c, --userClass=userClass  userClass for which to generate an app
   -e, --email=email          moderator email
@@ -359,7 +359,7 @@ USAGE
   $ nostack spinstack
 
 OPTIONS
-  -a, --appName=appName          application name
+  -a, --appDir=appDir          application name
   -e, --email=email              email to be used by sample users
   -h, --help                     show CLI help
   -s, --stack=stack              stack

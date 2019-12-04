@@ -74,7 +74,7 @@ export async function createNoStackApp(appName: string, baseApp: string) {
     {
       title: 'Run create-react-app',
       task: async () => {
-        // shell.exec(`npx create-react-app ${appName} >> ${LOGFILE}`)
+        // shell.exec(`npx create-react-app ${appDir} >> ${LOGFILE}`)
 
         const isAppFolder = await fs.pathExists(appName)
 
@@ -121,7 +121,7 @@ export async function createNoStackApp(appName: string, baseApp: string) {
     {
       title: 'Confirm Installation',
       task: async () => {
-        // shell.exec(`npx create-react-app ${appName} >> ${LOGFILE}`)
+        // shell.exec(`npx create-react-app ${appDir} >> ${LOGFILE}`)
 
         const noStackFile = `${appName}/node_modules/@nostack/no-stack/dist/no-stack.esm.js`
         const isNoStackFile = await fs.pathExists(noStackFile)
