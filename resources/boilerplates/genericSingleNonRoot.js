@@ -1,25 +1,31 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import {EXECUTE_ACTION} from '@nostack/no-stack';
+import { EXECUTE_ACTION } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
-import {graphql} from '@apollo/react-hoc';
+import { graphql } from '@apollo/react-hoc';
 
-import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID, DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
+import {
+  UPDATE___SingularForRelationshipAllCaps___ACTION_ID,
+  DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__,
+} from '../../../config';
+
+import EditInstanceForm from '../../EditInstanceForm';
+import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 __CHILDREN_IMPORT_LIST__
 
 // add styling here
-const __SingularName__StyleWrapper = styled.div`
+const __SingularName__StyleWrapper = styled.div(({
+  selected,
+  isDeleting,
+}) => `
   margin: 2em 1em;
   padding: 1.5em;
-  border: none;
+  border: ${selected ? '1px solid aquamarine': 'none'};
   border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
-`;
-
-const Row = styled.div`
-  margin: 1em 0;
-`;
+  background-color: ${isDeleting && 'tomato'};
+`);
 
 const Button = styled.button`
   background: none;
@@ -34,22 +40,30 @@ const Button = styled.button`
   }
 `;
 
-const DeleteMenu = styled.div`
-  color: red;
-  margin: 1em;
-  padding: 1em;
-  border: 1px solid #eeeeee;
-`;
-
-function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, deleteInstance, refetchQueries}) {
+function __SingularName__({
+  __SingularNameLowercase__,
+  parentId,
+  selected,
+  updateInstance,
+  deleteInstance,
+  refetchQueries,
+  onSelect,
+}) {
   const [__SingularNameLowercase__Value, update__SingularName__Value] = useState(__SingularNameLowercase__.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
-  const [ isDeleteMode, updateIsDeleteMode ] = useState(false);
-  const [ isDeleting, updateIsDeleting ] = useState(false);
+  const [isDeleteMode, updateIsDeleteMode] = useState(false);
+  const [isDeleting, updateIsDeleting] = useState(false);
 
   __CHILDREN_CONSTANT_DECLARATIONS__
 
+  if (!selected) {
+    return (
+      <__SingularName__StyleWrapper onClick={() => onSelect(__SingularNameLowercase__.id)}>
+        {stepValue}
+      </__SingularName__StyleWrapper>
+    );
+  }
 
   function handle__SingularName__ValueChange(e) {
     update__SingularName__Value(e.target.value);
@@ -73,6 +87,26 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
     updateIsSaving(false);
   }
 
+  function handleCancelEdit() {
+    updateIsEditMode(false);
+  }
+
+  if (isEditMode) {
+    return (
+      <__SingularName__StyleWrapper>
+        <EditInstanceForm
+          id={__SingularNameLowercase__.id}
+          label="__SingularName__ Value:" 
+          value={__SingularNameLowercase__Value}
+          onChange={handle__SingularName__ValueChange}
+          onSave={handle__SingularName__ValueSave}
+          onCancel={handleCancelEdit}
+          disabled={isSaving}
+        />
+      </__SingularName__StyleWrapper>
+    );
+  }
+
   async function handleDelete() {
     updateIsDeleting(true);
 
@@ -92,91 +126,43 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
     }
   }
 
-  return (
-    <__SingularName__StyleWrapper isDeleting={isDeleting}>
-      {isEditMode ?
-        (
-          <>
-            <label htmlFor={__SingularNameLowercase__.id}>
-              __SingularName__ Value:
-              <input
-                id={__SingularNameLowercase__.id}
-                type="text"
-                value={__SingularNameLowercase__Value}
-                onChange={handle__SingularName__ValueChange}
-                disabled={isSaving}
-              />
-            </label>
-            <Button
-              type="button"
-              hoverColor="#00FF00"
-              onClick={handle__SingularName__ValueSave}
-              disabled={isSaving}
-            >
-              &#10003;
-            </Button>
-            <Button
-              type="button"
-              hoverColor="#FF0000"
-              onClick={() => updateIsEditMode(false)}
-              disabled={isSaving}
-            >
-              &#10005;
-            </Button>
-            <Button
-              type="button"
-              onClick={() => updateIsDeleteMode(true)}
-            >
-              &#128465;
-            </Button>
-          </>
-        ) :
-        (
-          <>
-            {__SingularNameLowercase__Value}
-            {isDeleteMode ? (
-                <DeleteMenu>
-                  Delete?
-                  <Button
-                    type="button"
-                    hoverColor="#00FF00"
-                    onClick={handleDelete}
-                    disabled={isDeleting}
-                  >
-                    &#10003;
-                  </Button>
-                  <Button
-                    type="button"
-                    hoverColor="#FF0000"
-                    onClick={() => updateIsDeleteMode(false)}
-                    disabled={isDeleting}
-                  >
-                    &#10005;
-                  </Button>
-                </DeleteMenu>
-              ) :
-              (
-                <>
-                  <Button
-                    type="button"
-                    onClick={() => updateIsEditMode(true)}
-                  >
-                    &#9998;
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={() => updateIsDeleteMode(true)}
-                  >
-                    &#128465;
-                  </Button>
-                </>
-              )
-            }
+  function handleCancelDelete() {
+    updateIsDeleteMode(false);
+  }
 
-            __CHILDREN_BODY_LIST__
-          </>
-        )
-      }
+  if (isDeleteMode) {
+    return (
+      <__SingularName__StyleWrapper 
+        selected={selected}
+        isDeleting={isDeleting}
+      >
+        {__SingularNameLowercase__Value}
+        <DeleteInstanceMenu
+          onDelete={handleDelete}
+          onCancel={handleCancelDelete}
+          disabled={isDeleting}
+        />
+      </__SingularName__StyleWrapper>
+    );
+  }
+
+  return (
+    <__SingularName__StyleWrapper selected={selected}>
+      {__SingularNameLowercase__Value}
+      <Button
+        type="button"
+        onClick={() => updateIsEditMode(true)}
+      >
+        &#9998;
+      </Button>
+      <Button
+        type="button"
+        onClick={() => updateIsDeleteMode(true)}
+      >
+        &#128465;
+      </Button>
+
+      __CHILDREN_BODY_LIST__
     </__SingularName__StyleWrapper>
   );
 }
