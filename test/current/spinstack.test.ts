@@ -32,3 +32,5 @@ describe('spinstack', function () {
   //     expect(ctx.stdout).to.contain('hello jeff')
   //   })
 })
+
+fs.remove(sampleStackJson)
