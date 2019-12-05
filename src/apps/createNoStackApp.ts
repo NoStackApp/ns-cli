@@ -34,6 +34,7 @@ const installationList = [
   'styled-components',
   'react-select',
   'uuid',
+  'yup',
   '@nostack/no-stack@alpha',
 ]
 
@@ -53,8 +54,7 @@ export async function createNoStackApp(appDir: string, baseApp: string) {
       {
         title: 'Copy directory to new app directory',
         task: async () => {
-          let finalAppDir = appDir
-          finalAppDir = await getAppDir(finalAppDir) || ''
+          const finalAppDir = await getAppDir(appDir) || ''
 
           await execa(
             'cp',

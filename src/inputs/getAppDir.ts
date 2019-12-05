@@ -1,9 +1,10 @@
+import {appNameFromPath} from '../codeGeneration/generateAppCode'
 import {promptTypes, promptUser} from './promptUser'
 
 const fs = require('fs-extra')
 
 const testAppDir = async (appDir: string) => {
-  const appName = appDir.match(/([^\/]*)\/*$/)![1]
+  const appName = appNameFromPath(appDir)
   if (!appDir || appName.length === 0)
     return 'Your directory is missing for your app.  Please enter a path and a final directory name (all numbers and lowercase letters, no spaces).'
 

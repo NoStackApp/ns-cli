@@ -36,7 +36,7 @@ export default class Makecode extends Command {
     let userClass = flags.userClass
 
     if (!userClass) {
-      const stack: StackInfo = await fs.readJSON(`${appDir}/stack.json`)
+      const stack: StackInfo = await fs.readJSON(jsonPath)
       const userClasses = stack.userClasses
       const userClassNames = Object.keys(userClasses)
       if (userClassNames.length !== 1) {
