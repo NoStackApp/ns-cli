@@ -195,7 +195,7 @@ $ npm install -g no-stack-cli
 $ nostack COMMAND
 running command...
 $ nostack (-v|--version|version)
-no-stack-cli/0.3.3 linux-x64 node-v12.11.1
+no-stack-cli/0.3.4 linux-x64 node-v12.11.1
 $ nostack --help [COMMAND]
 USAGE
   $ nostack COMMAND
@@ -232,7 +232,7 @@ EXAMPLE
   ~/projects/no-stack-queries/variables/unitData1y.json
 ```
 
-_See code: [src/commands/callapi.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/callapi.ts)_
+_See code: [src/commands/callapi.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.4/src/commands/callapi.ts)_
 
 ## `nostack createstack`
 
@@ -255,7 +255,7 @@ EXAMPLE
   $ nostack createStack -u franky -s tempstack, -e franky@gmail.com -w franky12$
 ```
 
-_See code: [src/commands/createstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/createstack.ts)_
+_See code: [src/commands/createstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.4/src/commands/createstack.ts)_
 
 ## `nostack help [COMMAND]`
 
@@ -294,7 +294,7 @@ EXAMPLE
   $ nostack makecode -a ~/temp/myapp -j ~/temp/stack.json -c buyer
 ```
 
-_See code: [src/commands/makecode.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/makecode.ts)_
+_See code: [src/commands/makecode.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.4/src/commands/makecode.ts)_
 
 ## `nostack newapp`
 
@@ -313,7 +313,7 @@ EXAMPLE
   $ nostack newapp -a ~/temp/myapp -b ~/temp/baseapp
 ```
 
-_See code: [src/commands/newapp.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/newapp.ts)_
+_See code: [src/commands/newapp.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.4/src/commands/newapp.ts)_
 
 ## `nostack quickstarter`
 
@@ -348,7 +348,7 @@ EXAMPLE
   ~/temp/stack.json -t appFlow.txt -l ABC$123 -c buyer
 ```
 
-_See code: [src/commands/quickstarter.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/quickstarter.ts)_
+_See code: [src/commands/quickstarter.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.4/src/commands/quickstarter.ts)_
 
 ## `nostack spinstack`
 
@@ -377,5 +377,5 @@ EXAMPLE
   $ nostack spinstack -u franky -s tempstack, -e franky@gmail.com -j ~/temp/stack.json -t appFlow.txt
 ```
 
-_See code: [src/commands/spinstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/spinstack.ts)_
+_See code: [src/commands/spinstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.4/src/commands/spinstack.ts)_
 <!-- commandsstop -->
