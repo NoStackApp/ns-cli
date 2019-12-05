@@ -45,8 +45,8 @@ export const createReplacementOptions = (type: string, source: string, currentSt
   const sourceInfo = currentStack.sources[source]
   const typeSourceInfo = currentStack.types[type].sources[source]
   const {parentType} = typeSourceInfo
-  const selectionSource = typeSourceInfo.selectionSource ?
-    singularName(typeSourceInfo.selectionSource) :
+  const sourceUnit = typeSourceInfo.sourceUnit ?
+    singularName(typeSourceInfo.sourceUnit) :
     null
   // console.log(`in createReplacementOptions, parentType: ${parentType}`)
   let childrenImports = ''
@@ -250,7 +250,7 @@ import ${childComponent} from '../../${singularName(connectedSource)}/${childCom
     },
     selectionSource: {
       fromRegExp: /__SelectionSource__/g,
-      toString: selectionSource,
+      toString: sourceUnit,
     },
   }
 
