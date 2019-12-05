@@ -1,4 +1,4 @@
-import {throwError} from 'rxjs'
+// import {throwError} from 'rxjs'
 import {StackInfo} from '../constants/types'
 
 export async function createConfigFile(currentStack: StackInfo, appName: string) {

@@ -2,7 +2,6 @@
 
 import {UserInfo} from '../constants/types'
 import {genericApiCall} from '../tools/genericApiCall'
-import {stackExists} from './getNewStackName'
 
 import {promptTypes, promptUser} from './promptUser'
 
