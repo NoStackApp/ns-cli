@@ -7,6 +7,7 @@ require('dotenv').config({path: __dirname + '/./../../.env'})
 const appFlow = `${__dirname}/../testFlowSpec.txt`
 const email = process.env.EMAIL as string
 const fileName = `${appName}/stack.json`
+const sampleStackJson = '~/temp/sampleStack.json'
 const fs = require('fs-extra')
 
 describe('spinstack', function () {
@@ -16,7 +17,7 @@ describe('spinstack', function () {
     .command(['spinstack',
       '-u', testModerator,
       '-s', testStack,
-      '-a', appName,
+      '-j', sampleStackJson,
       '-t', appFlow,
       '-e', email,
     ])

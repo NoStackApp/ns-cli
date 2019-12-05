@@ -1,4 +1,5 @@
 import {appNameFromPath} from '../codeGeneration/generateAppCode'
+
 import {promptTypes, promptUser} from './promptUser'
 
 const fs = require('fs-extra')

@@ -69,7 +69,7 @@ export interface Sources {
 }
 export interface TypeSourceInfo {
     assnType: string;
-    selectionSource: string;
+    sourceUnit: string;
     nodeType: string;
     parentType: string;
     children: string[];

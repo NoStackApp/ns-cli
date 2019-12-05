@@ -4,8 +4,7 @@ export default class Quickstarter extends Command {
     static examples: string[];
     static flags: {
         help: import("@oclif/parser/lib/flags").IBooleanFlag<void>;
-        appName: flags.IOptionFlag<string | undefined>;
-        baseApp: flags.IOptionFlag<string | undefined>;
+        appDir: flags.IOptionFlag<string | undefined>;
         stack: flags.IOptionFlag<string | undefined>;
         template: flags.IOptionFlag<string | undefined>;
         licenseId: flags.IOptionFlag<string | undefined>;
@@ -13,6 +12,8 @@ export default class Quickstarter extends Command {
         email: flags.IOptionFlag<string | undefined>;
         password: flags.IOptionFlag<string | undefined>;
         userClass: flags.IOptionFlag<string | undefined>;
+        jsonPath: flags.IOptionFlag<string | undefined>;
+        baseApp: flags.IOptionFlag<string | undefined>;
     };
     static args: never[];
     run(): Promise<void>;

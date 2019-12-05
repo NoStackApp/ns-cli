@@ -1,1 +1,1 @@
-export declare function createNoStackApp(appName: string, baseApp: string): Promise<any>;
+export declare function createNoStackApp(appDir: string, baseApp: string): Promise<any>;

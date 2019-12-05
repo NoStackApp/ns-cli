@@ -85,7 +85,7 @@ In addition to being straightforward, the CLI seamlessly handles token refreshin
 ## The quickstarter Command
 There is a shortcut command to get started:
 ```
-? nostack quickStarter -e ${email} -w ${password} -l ${license}  -u ${moderator} -s ${stackName} -a${appDir} -t ${appFlow} -c ${userClass} -b ${appBase}
+? nostack quickStarter -e ${email} -w ${password} -l ${license}  -u ${moderator} -s ${stackName} -a ${appDir} -t ${appFlow} -c ${userClass} -b ${appBase} -j jsonPath
 ```
 
 That will give you everything you need for your first app.  Note that
@@ -100,11 +100,9 @@ The following parameters appear in `quickstarter`, and are used consistently in 
 * -l <license>: the licence string entitling you to a new stack  
 * -s <stackName>: the name of the stack (note that it needs to be unique)
 * -c <userClass>: the type of user in the appFlow file for which the front end app will be created.
-* -a <appDir>: the name of the front end app for the userClass.  (note that it must be all lowercase letters without spaces, but does not need to be unique)
+* -a <appDir>: the path and directory of the front end app for the userClass.  (The last directory in the path becomes the name of the app.  Note that it must be all lowercase letters without spaces, but does not need to be unique within nostack, and in fact is only relevant to you running locally.)
 * -t <appFlow>: a path to a valid app flow specification file
 * -b <appBase> [OPTIONAL]: a directory containing an empty NoStack application.  See [Creating an App Base](creating-an-app-base) below for instructions to create one.
-
-Note: with `quickstarter` as well as `spinstack`, `newapp` and `makecode`, you must be in the parent of the app directory.
 
 ## Separate Steps for generating an App
 The [quickstarter](#the-quickstarter-command) is a way to use the CLI for the first time, but you will probably need to know the commands for the separate steps that it uses.  The reason is that you'll probably want to reset and reuse the stack with a different app flow.
@@ -121,7 +119,7 @@ The application is created using create-react-app, with several added packages. 
 
 This step takes a long time unless you use an baseApp.  See [Creating an App Base](#creating-an-app-base) below.
 
-Please note that the folder for the app will be created in the current directory.
+The folder for the app will be created.
   
 ### Create an Empty Stack
 Create a new moderator and stack.
@@ -132,22 +130,24 @@ nostack createstack -e <moderatorEmail> -w <password> -l <licenceId>  -u <modera
 ### Build the Stack
 Spin up the stack from an [NFS](resources/Documentation/NFSlanguage.md) file.
 ```
-nostack spinstack -u <moderatorName> -t dir/to/appFlow/<appFlow> -s <stackName> -e <emailFor Moderator> -a appname
+nostack spinstack -u <moderatorName> -t dir/to/appFlow/<appFlow> -s <stackName> -e <emailFor Moderator> -a appDir -j <jsonPath>
 ```
 
-Calling `spinstack` will generate  a `stack.json` file in the directory with the name of your application (specified with the `-a` flag).  That file contains a wealth of information about your stack, including every element generated and their ids.  Also included are ids for sample data. 
+Calling `spinstack` will generate  a `stack json` file in the path that you specify in <jsonPath>.  The conventional suffix used is `.json`.  That file contains a wealth of information about your stack, including every element generated and their ids.  Also included are ids for sample data. 
 
 ### Generate a Front End App
 Generate front end code for an app for a given userClass.
 
 ```
-nostack makecode -a <appDir> -c <userClass>
+nostack makecode -a <appDir> -c <userClass> -j <jsonPath>
 ```
 
-The `makecode` command uses the `stack.json` file found in the directory specified by `-a` (remember that you **must be in the parent directory for that folder**).  Only the units owned by the specified userClass get used.
 
-You can build as many apps as you like.  The tool only generates one app for a user from
-a user.  But you can modify the `stack.json` file that you use to generate more than one for a userClass by removing unwanted units.
+The `makecode` command uses the `jsonPath` file specified.  Only the units owned by the specified userClass get used.
+
+You can build as many apps as you like using your stack.  The tool only generates one app for a user from a given userClass.  But you can modify the `stack.json` file that you use to generate more than one for a userClass by removing unwanted units from your stack json file.
+
+Note: for your convenience, every time you call `makecode`, a copy of the stack json that you used appears in your app directory as `docs/stack.json`.
 
 ## Creating an App Base
 The first step, [newApp](#newapp), takes by far the most time to execute.  Not only does it call create-react-app,
@@ -210,7 +210,6 @@ USAGE
 * [`nostack makecode`](#nostack-makecode)
 * [`nostack newapp`](#nostack-newapp)
 * [`nostack quickstarter`](#nostack-quickstarter)
-* [`nostack resetstack`](#nostack-resetstack)
 * [`nostack spinstack`](#nostack-spinstack)
 
 ## `nostack callapi`
@@ -284,9 +283,15 @@ USAGE
   $ nostack makecode
 
 OPTIONS
-  -a, --appDir=appDir      application name
+  -a, --appDir=appDir        application directory
   -c, --userClass=userClass  user class for which to generate an app
   -h, --help                 show CLI help
+
+  -j, --jsonPath=jsonPath    path and filename for the stack json file.  The file tells you about your server and gets
+                             used to generate code for front end apps.
+
+EXAMPLE
+  $ nostack makecode -a ~/temp/myapp -j ~/temp/stack.json -c buyer
 ```
 
 _See code: [src/commands/makecode.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/makecode.ts)_
@@ -300,9 +305,12 @@ USAGE
   $ nostack newapp
 
 OPTIONS
-  -a, --appDir=appDir  name of application
+  -a, --appDir=appDir    application directory
   -b, --baseApp=baseApp  directory of the base app to copy. If it does not exist, it is created.
   -h, --help             show CLI help
+
+EXAMPLE
+  $ nostack newapp -a ~/temp/myapp -b ~/temp/baseapp
 ```
 
 _See code: [src/commands/newapp.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/newapp.ts)_
@@ -316,39 +324,31 @@ USAGE
   $ nostack quickstarter
 
 OPTIONS
-  -a, --appDir=appDir      name of application
-  -b, --baseApp=baseApp      directory of the base app to copy.
+  -a, --appDir=appDir        path and directory of application
+  -b, --baseApp=baseApp      path and directory of the base app to copy.
   -c, --userClass=userClass  userClass for which to generate an app
   -e, --email=email          moderator email
   -h, --help                 show CLI help
+
+  -j, --jsonPath=jsonPath    path and filename for the stack json file.  The file tells you about your server and gets
+                             used to generate code for front end apps.
+
   -l, --licenseId=licenseId  license id for the organization of the user
+
   -s, --stack=stack          stack
+
   -t, --template=template    app flow spec from which to spin up a stack
+
   -u, --user=user            moderator to create
+
   -w, --password=password    moderator password
 
 EXAMPLE
-  $ nostack quickstarter -u franky -s tempstack, -e franky@gmail.com -w franky12$ -a myapp -b ~/temp/baseApp -t 
-  appFlow.txt -l ABC$123 -c buyer
+  $ nostack quickstarter -u franky -s tempstack, -e franky@gmail.com -w franky12$ -a ~/temp/myapp -b ~/temp/baseApp -j 
+  ~/temp/stack.json -t appFlow.txt -l ABC$123 -c buyer
 ```
 
 _See code: [src/commands/quickstarter.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/quickstarter.ts)_
-
-## `nostack resetstack`
-
-Resets the stack, meaning that the moderator remains and the stack is completely empty.  Essentially returns the status to before 'spinstack'.  WARNING: this is not reversable and will remove EVERYTHING, including your users!!!!
-
-```
-USAGE
-  $ nostack resetstack
-
-OPTIONS
-  -h, --help         show CLI help
-  -s, --stack=stack  stack
-  -u, --user=user    moderator for stack
-```
-
-_See code: [src/commands/resetstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/resetstack.ts)_
 
 ## `nostack spinstack`
 
@@ -359,13 +359,22 @@ USAGE
   $ nostack spinstack
 
 OPTIONS
-  -a, --appDir=appDir          application name
   -e, --email=email              email to be used by sample users
   -h, --help                     show CLI help
+
+  -j, --jsonPath=jsonPath        path and filename for the stack json file.  The file tells you about your server and
+                                 gets used to generate code for front end apps.
+
   -s, --stack=stack              stack
+
   -t, --template=template        template from which to spin up a stack
+
   -u, --user=user                moderator for stack
+
   -x, --addedSuffix=addedSuffix  added suffix for sample instances generated
+
+EXAMPLE
+  $ nostack spinstack -u franky -s tempstack, -e franky@gmail.com -j ~/temp/stack.json -t appFlow.txt
 ```
 
 _See code: [src/commands/spinstack.ts](https://github.com/YizYah/no-stack-cli/blob/v0.3.3/src/commands/spinstack.ts)_

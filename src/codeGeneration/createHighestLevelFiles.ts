@@ -3,13 +3,16 @@ import {associationTypes, boilerplateDir} from '../constants'
 import {StackInfo} from '../constants/types'
 import {pluralName, singularName} from '../tools/inflections'
 
-import {appDir, compDir, srcDir} from './createTopProjectDirs'
+import {compDir, srcDir} from './createTopProjectDirs'
+import {appNameFromPath} from './generateAppCode'
 import {generateFromBoilerPlate} from './generateFromBoilerPlate'
 
 const fs = require('fs-extra')
 
-export async function createHighestLevelFiles(currentStack: StackInfo, appName: string, userClass: string) {
+export async function createHighestLevelFiles(currentStack: StackInfo, appDir: string, userClass: string) {
   // const boilerPlateDir = `${boilerplateDir}/codeGeneration/boilerplates`
+
+  const appName = appNameFromPath(appDir)
 
   // shell.cp()
 
@@ -23,7 +26,7 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appName: 
       appName
     ]
   }
-
+  console.log(`appDir=${appDir}`)
   await fs.outputJson(`${appDir}/docs/stack.json`, currentStack, (err: any) => {
     if (err) {
       // @ts-ignore
