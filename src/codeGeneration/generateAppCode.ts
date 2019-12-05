@@ -9,20 +9,26 @@ import {createTypeFiles} from './typeFiles/createTypeFiles'
 const execa = require('execa')
 const fs = require('fs-extra')
 const Listr = require('listr')
+const path = require('path')
+
+export const appNameFromPath = (appDir: string) => {
+  if (appDir === '.') return path.basename(path.resolve())
+  return path.basename(appDir) // appDir.match(/([^\/]*)\/*$/)![1].substring(2)
+}
 
 export async function generateCodeFiles(appDir: string, userClass: string, jsonPath: string) {
   // console.log(`stacklocation=${appDir}/stack.json`)
   const currentStack: StackInfo = await fs.readJSON(jsonPath) // await generateJSON.bind(this)(template, appDir)
   // console.log(`currentStack=${currentStack}`)
   await createTopProjectDirs(currentStack, appDir)
-
-  const appName = appDir.match(/([^\/]*)\/*$/)![1]
+  console.log(`appDir=${appDir}`)
+  const appName = appNameFromPath(appDir)
   const configText = await createConfigFile(currentStack, appName)
   // console.log(`configText=${configText}`)
   fs.outputFile(`${srcDir}/config/index.js`, configText)
 
   // this.log(JSON.stringify(currentStack, null, 2))
-  await createHighestLevelFiles(currentStack, appDir, userClass)
+  await createHighestLevelFiles(currentStack, appName, userClass)
 
   const sources = currentStack.sources
 

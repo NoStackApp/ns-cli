@@ -13,6 +13,10 @@ export const noNameError = errorEx('noNameError')
 export default class Makecode extends Command {
   static description = 'generates a starter app from a json provided by NoStack'
 
+  static examples = [
+    '$ nostack makecode -a ~/temp/myapp -j ~/temp/stack.json -c buyer',
+  ]
+
   static flags = {
     // template: flags.string({char: 't', description: 'template file'}),
     userClass: flags.string({char: 'c', description: 'user class for which to generate an app'}),
@@ -32,7 +36,7 @@ export default class Makecode extends Command {
     let userClass = flags.userClass
 
     if (!userClass) {
-      const stack: StackInfo = await fs.readJSON(`${appDir}/stack.json`)
+      const stack: StackInfo = await fs.readJSON(jsonPath)
       const userClasses = stack.userClasses
       const userClassNames = Object.keys(userClasses)
       if (userClassNames.length !== 1) {

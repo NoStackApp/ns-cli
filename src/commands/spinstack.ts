@@ -16,6 +16,10 @@ const fs = require('fs-extra') // @ts-ignore
 export default class Spinstack extends Command {
   static description = "Spins up a fully functional backend from a provided template.  The same template can then be used to generate front end code using the command 'makeCode'."
 
+  static examples = [
+    '$ nostack spinstack -u franky -s tempstack, -e franky@gmail.com -j ~/temp/stack.json -t appFlow.txt',
+  ]
+
   static flags = {
     help: flags.help({char: 'h'}),
     jsonPath: flags.string({char: 'j', description: 'path and filename for the stack json file.  The file tells you about your server and gets used to generate code for front end apps.'}),
