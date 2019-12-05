@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import {getAppName} from '../inputs/getAppName'
+import {getAppDir} from '../inputs/getAppDir'
 import {errorMessage} from '../tools/errorMessage'
 
 // import {logProgress} from './logging'
@@ -37,7 +37,7 @@ const installationList = [
   '@nostack/no-stack@alpha',
 ]
 
-export async function createNoStackApp(appName: string, baseApp: string) {
+export async function createNoStackApp(appDir: string, baseApp: string) {
   if (baseApp) {
     const tasksCopyFromBaseApp = new Listr([
       {
@@ -53,12 +53,12 @@ export async function createNoStackApp(appName: string, baseApp: string) {
       {
         title: 'Copy directory to new app directory',
         task: async () => {
-          let finalAppName = appName
-          finalAppName = await getAppName(finalAppName) || ''
+          let finalAppDir = appDir
+          finalAppDir = await getAppDir(finalAppDir) || ''
 
           await execa(
             'cp',
-            ['-r', baseApp, finalAppName]
+            ['-r', baseApp, finalAppDir]
           ).catch(
             (error: any) => {
               throw new Error(`${chalk.red(`error copying over from ${baseApp}.`)} Here is the error reported:\n${error}`)
@@ -76,23 +76,23 @@ export async function createNoStackApp(appName: string, baseApp: string) {
       task: async () => {
         // shell.exec(`npx create-react-app ${appDir} >> ${LOGFILE}`)
 
-        const isAppFolder = await fs.pathExists(appName)
+        const isAppFolder = await fs.pathExists(appDir)
 
         if (isAppFolder) {
-          throw new Error(errorMessage(`a folder for ${appName} already exists. Please choose a different app name`))
+          throw new Error(errorMessage(`a folder for ${appDir} already exists. Please choose a different app name`))
         }
 
         const upperCaseCheck = /(.*[A-Z].*)/
-        if (upperCaseCheck.test(appName)) {
-          throw new Error(errorMessage(`The ${appName} contains at least one capital, which create-react-app does not permit.`))
+        if (upperCaseCheck.test(appDir)) {
+          throw new Error(errorMessage(`The ${appDir} contains at least one capital, which create-react-app does not permit.`))
         }
 
         await execa(
           'npx',
-          ['create-react-app', appName, `>> ${LOGFILE}`]
+          ['create-react-app', appDir, `>> ${LOGFILE}`]
         ).catch(
           (error: any) => {
-            throw new Error(`${chalk.red('error running create-react-app.')} You may try calling 'create-react-app ${appName}' directly and see what messages are reported. Here is the error reported:\n${error}`)
+            throw new Error(`${chalk.red('error running create-react-app.')} You may try calling 'create-react-app ${appDir}' directly and see what messages are reported. Here is the error reported:\n${error}`)
           }
         )
       }
@@ -106,7 +106,7 @@ export async function createNoStackApp(appName: string, baseApp: string) {
             task: async () => {
               await execa(
                 'npm',
-                ['install', '--prefix', appName, '--save', item]
+                ['install', '--prefix', appDir, '--save', item]
               ).catch(
                 (error: any) => {
                   throw new Error(`${chalk.red(`error installing ${item}.`)} You may try installing ${item} directly by running 'npm install --save ${item}' directly and see what messages are reported. Here is the error reported:\n${error}`)
@@ -123,7 +123,7 @@ export async function createNoStackApp(appName: string, baseApp: string) {
       task: async () => {
         // shell.exec(`npx create-react-app ${appDir} >> ${LOGFILE}`)
 
-        const noStackFile = `${appName}/node_modules/@nostack/no-stack/dist/no-stack.esm.js`
+        const noStackFile = `${appDir}/node_modules/@nostack/no-stack/dist/no-stack.esm.js`
         const isNoStackFile = await fs.pathExists(noStackFile)
 
         if (!isNoStackFile) {

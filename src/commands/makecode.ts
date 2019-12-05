@@ -13,6 +13,10 @@ export const noNameError = errorEx('noNameError')
 export default class Makecode extends Command {
   static description = 'generates a starter app from a json provided by NoStack'
 
+  static examples = [
+    '$ nostack makecode -a ~/temp/myapp -j ~/temp/stack.json -c buyer',
+  ]
+
   static flags = {
     // template: flags.string({char: 't', description: 'template file'}),
     userClass: flags.string({char: 'c', description: 'user class for which to generate an app'}),

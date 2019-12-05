@@ -3,7 +3,7 @@ import {Command, flags} from '@oclif/command'
 import {createNoStackApp} from '../apps/createNoStackApp'
 import {generateAppCode} from '../codeGeneration/generateAppCode'
 import {UserInfo} from '../constants/types'
-import {getAppName} from '../inputs/getAppName'
+import {getAppDir} from '../inputs/getAppDir'
 import {getBaseApp} from '../inputs/getBaseApp'
 import {getEmail} from '../inputs/getEmail'
 import {getFlowSpec} from '../inputs/getFlowSpec'
@@ -23,13 +23,12 @@ export default class Quickstarter extends Command {
   static description = 'Creates a new moderator and stack.  Also logs in the moderator locally.'
 
   static examples = [
-    '$ nostack quickstarter -u franky -s tempstack, -e franky@gmail.com -w franky12$ -a myapp -b ~/temp/baseApp -t appFlow.txt -l ABC$$123 -c buyer',
+    '$ nostack quickstarter -u franky -s tempstack, -e franky@gmail.com -w franky12$ -a ~/temp/myapp -b ~/temp/baseApp -j ~/temp/stack.json -t appFlow.txt -l ABC$$123 -c buyer',
   ]
 
   static flags = {
     help: flags.help({char: 'h'}),
-    appName: flags.string({char: 'a', description: 'name of application'}),
-    baseApp: flags.string({char: 'b', description: 'directory of the base app to copy.'}),
+    appDir: flags.string({char: 'a', description: 'path and directory of application'}),
     stack: flags.string({char: 's', description: 'stack'}),
     template: flags.string({char: 't', description: 'app flow spec from which to spin up a stack'}),
     licenseId: flags.string({char: 'l', description: 'license id for the organization of the user'}),
@@ -37,6 +36,8 @@ export default class Quickstarter extends Command {
     email: flags.string({char: 'e', description: 'moderator email'}),
     password: flags.string({char: 'w', description: 'moderator password'}),
     userClass: flags.string({char: 'c', description: 'userClass for which to generate an app'}),
+    jsonPath: flags.string({char: 'j', description: 'path and filename for the stack json file.  The file tells you about your server and gets used to generate code for front end apps.'}),
+    baseApp: flags.string({char: 'b', description: 'path and directory of the base app to copy.'}),
   }
 
   static args = []
@@ -47,6 +48,8 @@ export default class Quickstarter extends Command {
     let baseApp = flags.baseApp || ''
     if (baseApp.length > 0) baseApp = await getBaseApp(baseApp)
 
+    const jsonPath = flags.jsonPath || isRequired('json', 'quickstarter', '-j')
+
     const email = await getEmail(flags.email)
     if (!email) isRequired('email', 'quickstarter', '-e')
 
@@ -56,8 +59,8 @@ export default class Quickstarter extends Command {
     const user = await getNewModeratorName(flags.user)
     if (!user) isRequired('user', 'quickstarter', '-u')
 
-    const appName = await getAppName(flags.appName) || ''
-    if (!appName) isRequired('appName', 'quickstarter', '-a')
+    const appDir = await getAppDir(flags.appDir) || ''
+    if (!appDir) isRequired('appDir', 'quickstarter', '-a')
 
     const flowSpec = await getFlowSpec(flags.template) || ''
     if (!flowSpec) isRequired('flowSpec', 'quickstarter', '-t')
@@ -84,9 +87,9 @@ export default class Quickstarter extends Command {
 
     // console.log(`userInfo:${JSON.stringify(userInfo)}`)
 
-    const newAppTasks = await createNoStackApp(appName, baseApp)
+    const newAppTasks = await createNoStackApp(appDir, baseApp)
     const newStackTasks = await createStackAndModerator(userInfo)
-    const generateAppTasks = await generateAppCode(appName, userClass)
+    const generateAppTasks = await generateAppCode(appDir, userClass, jsonPath)
 
     // @ts-ignore
     const tasks = new Listr([
@@ -110,10 +113,9 @@ export default class Quickstarter extends Command {
           // });
           //
           const json = await buildStackFromTemplate(flowSpec, userInfo, email, '')
-          const stackFile = `${appName}/stack.json`
-          await fs.outputJson(stackFile, JSON.parse(json))
+          await fs.outputJson(jsonPath, JSON.parse(json))
 
-          const isStackFile = await fs.pathExists(stackFile)
+          const isStackFile = await fs.pathExists(jsonPath)
 
           if (!isStackFile) {
             throw new Error(errorMessage('stack file was not generated on the front end.'))
