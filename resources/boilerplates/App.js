@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import './App.css';
-import { NoStackConsumer, LoginForm } from '@nostack/no-stack';
+import { NoStackConsumer, LoginForm, RegistrationForm } from '@nostack/no-stack';
+
+import { PLATFORM_ID, TYPE_USER_ID } from './config';
 
 import NavBar from './components/NavBar';
+import AuthTabs from './components/AuthTabs';
 import __TopComponentName__ from './components/__SourceName__/__TopComponentName__';
 
 const Wrapper = styled.div`
@@ -15,9 +18,6 @@ const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  div {
-    margin: 0.5em;
-  }
 `;
 
 const App = () => (
@@ -31,8 +31,18 @@ const App = () => (
           if (!currentUser) {
             return (
               <LoginWrapper>
-                <div>Please Log In</div>
-                <div><LoginForm /></div>
+                <AuthTabs
+                  menuTitles={[
+                    'Login',
+                    'Register',
+                  ]}
+                >
+                  <LoginForm />
+                  <RegistrationForm 
+                    platformId={PLATFORM_ID}
+                    userClassId={TYPE_USER_ID}
+                  />
+                </AuthTabs>
               </LoginWrapper>
             );
           }
