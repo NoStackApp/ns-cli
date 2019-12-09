@@ -42,6 +42,9 @@ export async function createHighestLevelFiles(currentStack: StackInfo, appDir: s
   // EditInstanceForm
   await fs.copy(`${boilerplateDir}/EditInstanceForm.js`, `${compDir}/EditInstanceForm/index.js`)
 
+  // AuthTabs
+  await fs.copy(`${boilerplateDir}/AuthTabs.js`, `${compDir}/AuthTabs/index.js`)
+
   // client file
   await fs.copy(`${boilerplateDir}/client.js`, `${srcDir}/client/index.js`)
 
