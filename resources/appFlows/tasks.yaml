@@ -1,8 +1,8 @@
-run
+run:
   resetStack
 
 userClass: user
-  * projectsForUser:
+  - projectsForUser:
     - tree:
       - user:
         - project
@@ -13,7 +13,7 @@ userClass: user
          - project:
             - crudLevel: creatable
 
-  * taskInfo:
+  - taskInfo:
     - tree:
       - use#project:
           - task:
