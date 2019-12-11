@@ -3,6 +3,8 @@ import chalk from 'chalk'
 import {getAppDir} from '../inputs/getAppDir'
 import {errorMessage} from '../tools/errorMessage'
 
+var findInFiles = require('find-in-files')
+
 // import {logProgress} from './logging'
 
 const execa = require('execa')
@@ -95,6 +97,24 @@ export async function createNoStackApp(appDir: string, baseApp: string) {
             throw new Error(`${chalk.red('error running create-react-app.')} You may try calling 'create-react-app ${appDir}' directly and see what messages are reported. Here is the error reported:\n${error}`)
           }
         )
+      }
+    },
+    {
+      title: 'Confirm CRA Installation',
+      task: async () => {
+        const errorText = 'create-react-app did not run correctly.  This could be' +
+          'caused by a globally installed copy of create-react-app.  The global installation is no' +
+          'longer being supported.  If you do have one installed globally, you should really uninstall' +
+          'it and use "npx create-react-app" instead.'
+        const jsonFile = `${appDir}/package.json`
+        const isJsonFile = await fs.pathExists(jsonFile)
+
+        if (!isJsonFile) {
+          throw new Error(errorMessage(errorText))
+        }
+
+        // const scriptsFound = await findInFiles.find('scripts:', appDir, 'project.json')
+        // throw new Error(`scriptsFound=${JSON.stringify(scriptsFound)}`)
       }
     },
     {
