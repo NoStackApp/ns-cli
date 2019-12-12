@@ -1,0 +1,38 @@
+run:
+  resetStack
+
+user:
+  - projectsForUser:
+      - hierarchy:
+          - user:
+              - project
+      - properties:
+          - user:
+              - returned: false
+              - constraint: __currentUser__
+          - project:
+              - crudLevel: creatable
+              - connections:
+                  - taskInfo:
+          - meta:
+              - topSource: true
+  - taskInfo:
+      - hierarchy:
+          - use#project:
+              - task:
+                  - done
+                  - steps:
+                      - use#user
+      - properties:
+          - project:
+              - returned: false
+              - constraint:
+                  - value: __currentProjectId__
+                  - type: ID
+          - done:
+              - dataType: boolean
+          - user:
+              - assnName: assigned
+              - actions:
+                  - contactAssignee:
+                      type: CONTACT
