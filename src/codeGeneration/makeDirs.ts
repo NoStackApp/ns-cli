@@ -14,17 +14,6 @@ async function makeDir(dirName: string) {
   }
 }
 
-//
-// const functionWithPromise = item => { //a function that returns a promise
-//   return Promise.resolve('ok')
-// }
-//
-// }
-
-// const getData = async () => {
-//   return await Promise.all(list.map(item => anAsyncFunction(item)))
-// }
-
 export async function makeDirs(dirList: string[]) {
   await Promise.all(dirList.map(item => makeDir(item)))
 }
