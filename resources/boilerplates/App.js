@@ -7,7 +7,7 @@ import { PLATFORM_ID, TYPE_USER_ID } from './config';
 
 import NavBar from './components/NavBar';
 import AuthTabs from './components/AuthTabs';
-import __TopComponentName__ from './components/__SourceName__/__TopComponentName__';
+import {{topComponentName}} from './components/{{sourceName}}/{{topComponentName}}';
 
 const Wrapper = styled.div`
   padding: 5em 5em;
@@ -38,7 +38,7 @@ const App = () => (
                   ]}
                 >
                   <LoginForm />
-                  <RegistrationForm 
+                  <RegistrationForm
                     platformId={PLATFORM_ID}
                     userClassId={TYPE_USER_ID}
                   />
@@ -48,7 +48,7 @@ const App = () => (
           }
 
           return (
-            <__TopComponentName__ __TopComponentPropSetting__ />
+            <{{topComponentName}} {{topComponentPropSetting}} />
           );
         }}
       </NoStackConsumer>

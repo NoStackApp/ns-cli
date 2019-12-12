@@ -1,17 +1,15 @@
 const fs = require('fs-extra')
 
 import {StackInfo} from '../constants/types'
-import {queryForSource, relationshipsForSource} from '../tools/inflections'
+import {allCaps} from '../tools/inflections'
+
+const Handlebars = require('handlebars')
 
 import {sourcePropsDir} from './createTopProjectDirs'
 
-export async function createQueryFile(currentStack: StackInfo, source: string) {
-  const sourceInfo = currentStack.sources[source]
+const queryFileTemplate = Handlebars.compile(`import gql from 'graphql-tag';
 
-  let content = "import gql from 'graphql-tag';"
-  const queryName = queryForSource(source) // `${allCaps(source)}_QUERY`
-
-  const queryBody = `\nexport const ${queryName} = gql\`
+  export const SOURCE_{{sourceAllCaps}}_QUERY = gql\`
   query UNIT(
     $id: ID!
     $typeRelationships: String!
@@ -23,24 +21,27 @@ export async function createQueryFile(currentStack: StackInfo, source: string) {
       parameters: $parameters
     )
     {
-      ${sourceInfo.props.queryBody}
+      {{queryBody}}
     }
   }
 \`;
-`
 
-  content += `\n${queryBody}`
-  const relationshipsName = relationshipsForSource(source) // `${allCaps(source)}_RELATIONSHIP`
-  const relationshipsText = `export const ${relationshipsName} = {
-   ${sourceInfo.props.typeRelationships},
-};`
+export const {{sourceAllCaps}}_RELATIONSHIPS = {
+   {{typeRelationships}},
+};`)
 
-  content += `
-  ${relationshipsText}`
+export async function createQueryFile(currentStack: StackInfo, source: string) {
+  const sourceInfo = currentStack.sources[source]
+
+  const queryFileText = queryFileTemplate({
+    sourceAllCaps: allCaps(source),
+    queryBody: sourceInfo.props.queryBody,
+    typeRelationships: sourceInfo.props.typeRelationships
+  })
 
   const queryFile = `${sourcePropsDir}/${source}.js`
   try {
-    await fs.outputFile(queryFile, content)
+    await fs.outputFile(queryFile, queryFileText)
   } catch (err) {
     console.error(err)
   }

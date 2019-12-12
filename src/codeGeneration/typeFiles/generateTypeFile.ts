@@ -15,12 +15,12 @@ const boilerPlateFromInfo = (boilerPlateInfo: BoilerPlateInfoType) =>
   boilerPlates[boilerPlateInfo.formType + boilerPlateInfo.dataType + boilerPlateInfo.nodeType]
 
 export async function generateTypeFile(type: string, source: string, boilerPlateInfo: BoilerPlateInfoType, currentStack: StackInfo) {
-  console.log(`in generateTypeFile, type=${type}, boilerPlateInfo=${JSON.stringify(boilerPlateInfo)}`)
+  // console.log(`in generateTypeFile, type=${type}, boilerPlateInfo=${JSON.stringify(boilerPlateInfo)}`)
   // const parentType = currentStack.types[type].sources[source].parentType
   const boilerPlate = boilerPlateFromInfo(boilerPlateInfo)
-  console.log(`in generateTypeFile, type=${type}, boilerPlate=${boilerPlate}`)
+  // console.log(`in generateTypeFile, type=${type}, boilerPlate=${boilerPlate}`)
   const dir = boilerPlateToDir(type, boilerPlateInfo.formType)
-  console.log(`in generateTypeFile, dir=${dir}`)
+  // console.log(`in generateTypeFile, dir=${dir}`)
   // if (boilerPlate !== boilerPlates[associationTypes.MULTIPLE]) {
   //   dir = singularName(type)
   // }
@@ -30,7 +30,6 @@ export async function generateTypeFile(type: string, source: string, boilerPlate
     path
   ]
 
-  console.log(`before createReplacementOptions(${type}, ${source})`)
   const options: ReplacementOptions = createReplacementOptions(type, source, currentStack)
   // const options: ReplacementOptions = createReplacementOptions(type, source, boilerPlate, currentStack)
 

@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 
 const NavBar = () => (
   <Wrapper>
-    <div>__AppName__</div>
+    <div>{{appName}}</div>
     <div>
       <LogoutButton />
     </div>
