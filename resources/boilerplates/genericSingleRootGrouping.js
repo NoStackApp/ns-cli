@@ -3,14 +3,14 @@ import { Unit } from '@nostack/no-stack';
 import styled from 'styled-components';
 import { flattenData } from '../../../flattenData';
 
-import { __SOURCE_ID_CONSTANT____ChildrenTypeList__} from '../../../config';
+import { {{SOURCE_ID_CONSTANT}}{{ChildrenTypeList}} } from '../../../config';
 
-import { __RELATIONSHIPS_NAME__, __SOURCE_QUERY_NAME__ } from '../../source-props/__SingularSourceLowercase__';
+import { {{RELATIONSHIPS_NAME}}, {{SOURCE_QUERY_NAME}} } from '../../source-props/{{SingularSourceLowercase}}';
 
-__CHILDREN_IMPORT_LIST__
+{{{CHILDREN_IMPORT_LIST}}}
 
 // add styling here
-const __SingularName__StyleWrapper = styled.div`
+const {{SingularName}}StyleWrapper = styled.div`
   margin: 2em 1em;
   padding: 1.5em;
   border: none;
@@ -18,16 +18,16 @@ const __SingularName__StyleWrapper = styled.div`
   box-shadow: 5px 5px 10px #888888;
 `;
 
-function __SingularName__({ __SingularNameLowercase__Id }) {
+function {{SingularName}}({ {{SingularNameLowercase}}Id }) {
   const parameters = {
-    __CONSTRAINT_VALUE__: __SingularNameLowercase__Id,
+    {{CONSTRAINT_VALUE}}: {{SingularNameLowercase}}Id,
   };
 
   return (
     <Unit
-      id={__SOURCE_ID_CONSTANT__}
-      typeRelationships={__RELATIONSHIPS_NAME__}
-      query={__SOURCE_QUERY_NAME__}
+      id={ {{SOURCE_ID_CONSTANT}} }
+      typeRelationships={ {{RELATIONSHIPS_NAME}} }
+      query={ {{SOURCE_QUERY_NAME}} }
       parameters={parameters}
     >
       {({loading, error, data, refetchQueries}) => {
@@ -38,23 +38,23 @@ function __SingularName__({ __SingularNameLowercase__Id }) {
           return `Error: ${error.graphQLErrors}`
         };
 
-        const __SingularNameLowercase__ = data.unitData.map(el => flattenData(el));
+        const {{SingularNameLowercase}} = data.unitData.map(el => flattenData(el));
 
-        const childTypes = __SingularNameLowercase__[0] && __SingularNameLowercase__[0].children;
+        const childTypes = {{SingularNameLowercase}}[0] && {{SingularNameLowercase}}[0].children;
         if (!childTypes) {
           return null;
         }
 
-        __CHILDREN_CONSTANT_DECLARATIONS__
+        {{{CHILDREN_CONSTANT_DECLARATIONS}}}
 
         return (
-          <__SingularName__StyleWrapper>
-            __CHILDREN_BODY_LIST__
-          </__SingularName__StyleWrapper>
+          <{{SingularName}}StyleWrapper>
+            {{{CHILDREN_BODY_LIST}}}
+          </{{SingularName}}StyleWrapper>
           );
       }}
     </Unit>
   );
 }
 
-export default __SingularName__;
+export default {{SingularName}};

@@ -2,19 +2,19 @@ import React, { Component, createRef } from 'react';
 import styled from 'styled-components';
 import { v4 } from 'uuid';
 
-import __SingularName__CreationForm from '../__SingularName__CreationForm';
-import __SingularName__ from '../__SingularName__';
+import {{SingularName}}CreationForm from '../{{SingularName}}CreationForm';
+import {{SingularName}} from '../{{SingularName}}';
 
-const __PluralName__StyleWrapper = styled.div``;
+const {{PluralName}}StyleWrapper = styled.div``;
 
 const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
 
-class __PluralName__ extends Component {
+class {{PluralName}} extends Component {
   state = {
-    selected__SingularName__Id: null,
+    selected{{SingularName}}Id: null,
   };
 
   wrapperRef = createRef();
@@ -32,40 +32,40 @@ class __PluralName__ extends Component {
 
     if (
       node &&
-      node !== e.target && 
+      node !== e.target &&
       !node.contains(e.target)
     ) {
-      this.setState({ selected__SingularName__Id: null });
+      this.setState({ selected{{SingularName}}Id: null });
     }
   }
 
-  handleSelect = id => this.setState({ selected__SingularName__Id: id });
+  handleSelect = id => this.setState({ selected{{SingularName}}Id: id });
 
   render () {
-    const { __SingularParentName__Id, __SingularNameLowercase__s, refetchQueries, onUpdate } = this.props;
-    const { selected__SingularName__Id } = this.state;
+    const { {{SingularParentName}}Id, {{SingularNameLowercase}}s, refetchQueries, onUpdate } = this.props;
+    const { selected{{SingularName}}Id } = this.state;
 
     return (
-      <__PluralName__StyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
-        <__SingularName__CreationForm
-          parentId={__SingularParentName__Id}
+      <{{PluralName}}StyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
+        <{{SingularName}}CreationForm
+          parentId={ {{SingularParentName}}Id }
           refetchQueries={refetchQueries}
         />
 
-        {__SingularNameLowercase__s.map(__SingularNameLowercase__ => (
-          <__SingularName__
+        { {{SingularNameLowercase}}s.map({{SingularNameLowercase}} => (
+          <{{SingularName}}
             key={v4()}
-            __SingularNameLowercase__={__SingularNameLowercase__}
-            selected={__SingularNameLowercase__.id === selected__SingularName__Id}
+            {{SingularNameLowercase}}={ {{SingularNameLowercase}} }
+            selected={ {{SingularNameLowercase}}.id === selected{{SingularName}}Id }
             onUpdate={onUpdate}
-            parentId={__SingularParentName__Id}
+            parentId={ {{SingularParentName}}Id }
             refetchQueries={refetchQueries}
             onSelect={this.handleSelect}
           />
-        ))}
-      </__PluralName__StyleWrapper>
+        )) }
+      </{{PluralName}}StyleWrapper>
     )
   }
 }
 
-export default __PluralName__;
+export default {{PluralName}};

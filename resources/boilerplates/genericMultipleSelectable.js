@@ -1,29 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import __SingularName__CreationForm from '../__SingularName__CreationForm';
-import __SingularName__ from '../__SingularName__';
+import {{SingularName}}CreationForm from '../{{SingularName}}CreationForm';
+import {{SingularName}} from '../{{SingularName}}';
 
-const __PluralName__StyleWrapper = styled.div``;
+const {{PluralName}}StyleWrapper = styled.div``;
 
-function __PluralName__({ __SingularNameLowercase__s, __SingularParentName__Id, refetchQueries }) {
+function {{PluralName}}({ {{SingularNameLowercase}}s, {{SingularParentName}}Id, refetchQueries }) {
   return (
-    <__PluralName__StyleWrapper>
-      <__SingularName__CreationForm
-        parentId={__SingularParentName__Id}
+    <{{PluralName}}StyleWrapper>
+      <{{SingularName}}CreationForm
+        parentId={ {{SingularParentName}}Id }
         refetchQueries={refetchQueries}
       />
 
-      {__SingularNameLowercase__s.map(__SingularNameLowercase__ => (
-        <__SingularName__
-          key={__SingularNameLowercase__.id}
-          __SingularNameLowercase__={__SingularNameLowercase__}
-          parentId={__SingularParentName__Id}
+      { {{SingularNameLowercase}}s.map({{SingularNameLowercase}} => (
+        <{{SingularName}}
+          key={ {{SingularNameLowercase}}.id }
+          {{SingularNameLowercase}}={ {{SingularNameLowercase}} }
+          parentId={ {{SingularParentName}}Id }
           refetchQueries={refetchQueries}
         />
       ))}
-    </__PluralName__StyleWrapper>
+    </{{PluralName}}StyleWrapper>
   );
 }
 
-export default __PluralName__;
+export default {{PluralName}};

@@ -4,12 +4,12 @@ import {EXECUTE_ACTION} from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import {graphql} from '@apollo/react-hoc';
 
-import {DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
+import {DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ChildrenTypeList}} } from '../../../config';
 
-__CHILDREN_IMPORT_LIST__
+{{{CHILDREN_IMPORT_LIST}}}
 
 // add styling here
-const __SingularName__StyleWrapper = styled.div`
+const {{SingularName}}StyleWrapper = styled.div`
   margin: 2em 1em;
   padding: 1.5em;
   border: none;
@@ -37,11 +37,11 @@ const DeleteMenu = styled.div`
   border: 1px solid #eeeeee;
 `;
 
-function __SingularName__({__SingularNameLowercase__, parentId, deleteInstance, refetchQueries}) {
+function {{SingularName}}({ {{SingularNameLowercase}}, parentId, deleteInstance, refetchQueries}) {
   const [ isDeleteMode, updateIsDeleteMode ] = useState(false);
   const [ isDeleting, updateIsDeleting ] = useState(false);
 
-  __CHILDREN_CONSTANT_DECLARATIONS__
+  {{{CHILDREN_CONSTANT_DECLARATIONS}}}
 
 
   async function handleDelete() {
@@ -50,10 +50,10 @@ function __SingularName__({__SingularNameLowercase__, parentId, deleteInstance, 
     try {
       await deleteInstance({
         variables: {
-          actionId: DELETE___SingularForRelationshipAllCaps___ACTION_ID,
+          actionId: DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: __SingularNameLowercase__.id,
+            instanceId: {{SingularNameLowercase}}.id,
           }),
         },
         refetchQueries,
@@ -64,7 +64,7 @@ function __SingularName__({__SingularNameLowercase__, parentId, deleteInstance, 
   }
 
   return (
-    <__SingularName__StyleWrapper isDeleting={isDeleting}>
+    <{{SingularName}}StyleWrapper isDeleting={isDeleting}>
       {isDeleteMode ? (
           <DeleteMenu>
             Delete?
@@ -95,11 +95,11 @@ function __SingularName__({__SingularNameLowercase__, parentId, deleteInstance, 
           </Button>
         )
       }
-      __CHILDREN_BODY_LIST__
-    </__SingularName__StyleWrapper>
+      {{{CHILDREN_BODY_LIST}}}
+    </{{SingularName}}StyleWrapper>
   );
 }
 
 export default compose(
   graphql(EXECUTE_ACTION, { name: 'deleteInstance' })
-)(__SingularName__);
+)({{SingularName}});

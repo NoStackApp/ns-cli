@@ -3,30 +3,30 @@ import styled from 'styled-components';
 import { graphql } from '@apollo/react-hoc';
 import { EXECUTE_ACTION } from '@nostack/no-stack';
 
-import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID} from '../../../config';
+import {UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID} from '../../../config';
 
 // add styling here
-const __SingularName__StyleWrapper = styled.span`
+const {{SingularName}}StyleWrapper = styled.span`
   margin-left: 1.5em;
   display: inline-block;
   border: 1px solid #eeeeee;
   padding: 0.5em;
 `;
 
-function __SingularName__({ __SingularNameLowercase__, label, updateInstance, refetchQueries, disabled = false }) {
-  const [ __SingularNameLowercase__Value, update__SingularName__Value ] = useState(__SingularNameLowercase__.value);
+function {{SingularName}}({ {{SingularNameLowercase}}, label, updateInstance, refetchQueries, disabled = false }) {
+  const [ {{SingularNameLowercase}}Value, update{{SingularName}}Value ] = useState({{SingularNameLowercase}}.value);
 
-  async function handle__SingularName__ValueChange() {
-    const value = __SingularNameLowercase__Value === 'true' ? 'false' : 'true';
+  async function handle{{SingularName}}ValueChange() {
+    const value = {{SingularNameLowercase}}Value === 'true' ? 'false' : 'true';
 
-    update__SingularName__Value(value);
+    update{{SingularName}}Value(value);
 
     await updateInstance({
       variables: {
-        actionId: UPDATE___SingularForRelationshipAllCaps___ACTION_ID,
+        actionId: UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
         executionParameters: JSON.stringify({
           value,
-          instanceId: __SingularNameLowercase__.id,
+          instanceId: {{SingularNameLowercase}}.id,
         }),
         unrestricted: false,
       },
@@ -35,19 +35,19 @@ function __SingularName__({ __SingularNameLowercase__, label, updateInstance, re
   }
 
   return (
-    <__SingularName__StyleWrapper>
-      <label htmlFor={__SingularNameLowercase__.id}>
+    <{{SingularName}}StyleWrapper>
+      <label htmlFor={ {{SingularNameLowercase}}.id }>
         {label}
         <input
-          id={__SingularNameLowercase__.id}
+          id={ {{SingularNameLowercase}}.id }
           type="checkbox"
-          checked={__SingularNameLowercase__Value === 'true'}
-          onChange={handle__SingularName__ValueChange}
+          checked={ {{SingularNameLowercase}}Value === 'true' }
+          onChange={handle{{SingularName}}ValueChange}
           disabled={disabled}
         />
       </label>
-    </__SingularName__StyleWrapper>
+    </{{SingularName}}StyleWrapper>
   );
 }
 
-export default graphql(EXECUTE_ACTION, { name: 'updateInstance' })(__SingularName__);
+export default graphql(EXECUTE_ACTION, { name: 'updateInstance' })({{SingularName}});
