@@ -3,8 +3,8 @@ import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
 import { withNoStack, EXECUTE_ACTION } from '@nostack/no-stack';
 
-import __SingularName__Select from '../../__SelectionSource__/__SingularName__Select';
-import { CREATE___SingularForRelationshipAllCaps___ACTION_ID__ACTION_IDS_FOR_SINGLE_CHILDREN____TYPE_IDS_FOR_SINGLE_CHILDREN__ } from '../../../config';
+import {{SingularName}}Select from '../../{{SelectionSource}}/{{SingularName}}Select';
+import { CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ACTION_IDS_FOR_SINGLE_CHILDREN}}{{TYPE_IDS_FOR_SINGLE_CHILDREN}} } from '../../../config';
 
 // change styling here
 const Form = styled.div`
@@ -15,7 +15,7 @@ const Form = styled.div`
   background-color: #F5F5F5;
 `;
 
-function __SingularName__CreationForm({ parentId, create__SingularName____SINGLE_CHILDREN_PARAMS__, refetchQueries }) {
+function {{SingularName}}CreationForm({ parentId, create{{SingularName}}{{SINGLE_CHILDREN_PARAMS}}, refetchQueries }) {
   const [ loading, updateLoading ] = useState(false);
 
   const handleSubmit = async value => {
@@ -26,9 +26,9 @@ function __SingularName__CreationForm({ parentId, create__SingularName____SINGLE
     updateLoading(true);
 
     try {
-      const create__SingularName__Response = await create__SingularName__({
+      const create{{SingularName}}Response = await create{{SingularName}}({
         variables: {
-          actionId: CREATE___SingularForRelationshipAllCaps___ACTION_ID,
+          actionId: CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
             childInstanceId: value,
@@ -44,13 +44,13 @@ function __SingularName__CreationForm({ parentId, create__SingularName____SINGLE
     updateLoading(false);
   }
 
-  const selectId = `__SingularNameLowercase__-value-${parentId}`;
+  const selectId = `{{SingularNameLowercase}}-value-${parentId}`;
 
   return (
     <div>
       <label htmlFor={selectId}>
-        __SingularName__:
-        <__SingularName__Select
+        {{SingularName}}:
+        <{{SingularName}}Select
           id={selectId}
           onSubmit={handleSubmit}
           disabled={loading}
@@ -60,4 +60,4 @@ function __SingularName__CreationForm({ parentId, create__SingularName____SINGLE
   );
 }
 
-export default graphql(EXECUTE_ACTION, { name: 'create__SingularName__' })(__SingularName__CreationForm);
+export default graphql(EXECUTE_ACTION, { name: 'create{{SingularName}}' })({{SingularName}}CreationForm);

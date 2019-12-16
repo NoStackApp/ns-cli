@@ -4,12 +4,12 @@ import {EXECUTE_ACTION} from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import {graphql} from '@apollo/react-hoc';
 
-import {UPDATE___SingularForRelationshipAllCaps___ACTION_ID, DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
+import {UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID, DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ChildrenTypeList}} } from '../../../config';
 
-__CHILDREN_IMPORT_LIST__
+{{{CHILDREN_IMPORT_LIST}}}
 
 // add styling here
-const __SingularName__StyleWrapper = styled.div`
+const {{SingularName}}StyleWrapper = styled.div`
   margin: 2em 1em;
   padding: 1.5em;
   border: none;
@@ -34,26 +34,26 @@ const Button = styled.button`
   }
 `;
 
-function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, refetchQueries}) {
-  const [__SingularNameLowercase__Value, update__SingularName__Value] = useState(__SingularNameLowercase__.value);
+function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance, refetchQueries }) {
+  const [{{SingularNameLowercase}}Value, update{{SingularName}}Value] = useState({{SingularNameLowercase}}.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
 
-  __CHILDREN_CONSTANT_DECLARATIONS__
+  {{{CHILDREN_CONSTANT_DECLARATIONS}}}
 
-  function handle__SingularName__ValueChange(e) {
-    update__SingularName__Value(e.target.value);
+  function handle{{SingularName}}ValueChange(e) {
+    update{{SingularName}}Value(e.target.value);
   }
 
-  async function handle__SingularName__ValueSave() {
+  async function handle{{SingularName}}ValueSave() {
     updateIsSaving(true);
 
     await updateInstance({
       variables: {
-        actionId: UPDATE___SingularForRelationshipAllCaps___ACTION_ID,
+        actionId: UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
         executionParameters: JSON.stringify({
-          value: __SingularNameLowercase__Value,
-          instanceId: __SingularNameLowercase__.id,
+          value: {{SingularNameLowercase}}Value,
+          instanceId: {{SingularNameLowercase}}.id,
         }),
       },
       refetchQueries,
@@ -64,24 +64,24 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
   }
 
   return (
-    <__SingularName__StyleWrapper>
+    <{{SingularName}}StyleWrapper>
       {isEditMode ?
         (
           <>
-            <label htmlFor={__SingularNameLowercase__.id}>
-              __SingularName__ Value:
+            <label htmlFor={ {{SingularNameLowercase}}.id }>
+              {{SingularName}} Value:
               <input
-                id={__SingularNameLowercase__.id}
+                id={ {{SingularNameLowercase}}.id }
                 type="text"
-                value={__SingularNameLowercase__Value}
-                onChange={handle__SingularName__ValueChange}
+                value={ {{SingularNameLowercase}}Value }
+                onChange={handle{{SingularName}}ValueChange}
                 disabled={isSaving}
               />
             </label>
             <Button
               type="button"
               hoverColor="#00FF00"
-              onClick={handle__SingularName__ValueSave}
+              onClick={handle{{SingularName}}ValueSave}
               disabled={isSaving}
             >
               &#10003;
@@ -98,7 +98,7 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
         ) :
         (
           <>
-            __SingularName__ Value: {__SingularNameLowercase__Value}
+            {{SingularName}} Value: { {{SingularNameLowercase}}Value }
             <Button
               type="button"
               onClick={() => updateIsEditMode(true)}
@@ -106,14 +106,14 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
               &#9998;
             </Button>
 
-            __CHILDREN_BODY_LIST__
+            {{{CHILDREN_BODY_LIST}}}
           </>
         )
       }
-    </__SingularName__StyleWrapper>
+    </{{SingularName}}StyleWrapper>
   );
 }
 
 export default compose(
   graphql(EXECUTE_ACTION, { name: 'updateInstance' }),
-)(__SingularName__);
+)({{SingularName}});

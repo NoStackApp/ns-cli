@@ -5,17 +5,17 @@ import Select from 'react-select';
 
 import { flattenData } from '../../../flattenData';
 
-import { __SOURCE_ID_CONSTANT__ } from '../../../config';
-import { __RELATIONSHIPS_NAME__, __SOURCE_QUERY_NAME__ } from '../../source-props/__SingularSourceLowercase__';
+import { {{SOURCE_ID_CONSTANT}} } from '../../../config';
+import { {{RELATIONSHIPS_NAME}}, {{SOURCE_QUERY_NAME}} } from '../../source-props/{{SingularSourceLowercase}}';
 
 // add styling here
-const __SingularName__SelectStyleWrapper = styled.div``;
+const {{SingularName}}SelectStyleWrapper = styled.div``;
 
 const Button = styled.button`
   margin-left: 1em;
 `;
 
-function __SingularName__Select({ id, onSubmit, disabled }) {
+function {{SingularName}}Select({ id, onSubmit, disabled }) {
   const [selected, updateSelected] = useState();
 
   const handleChange = option => updateSelected(option);
@@ -34,9 +34,9 @@ function __SingularName__Select({ id, onSubmit, disabled }) {
 
   return (
     <Unit
-      id={__SOURCE_ID_CONSTANT__}
-      typeRelationships={__RELATIONSHIPS_NAME__}
-      query={__SOURCE_QUERY_NAME__}
+      id={ {{SOURCE_ID_CONSTANT}} }
+      typeRelationships={ {{RELATIONSHIPS_NAME}} }
+      query={ {{SOURCE_QUERY_NAME}} }
       parameters={parameters}
     >
       {({loading, error, data, refetchQueries}) => {
@@ -47,15 +47,15 @@ function __SingularName__Select({ id, onSubmit, disabled }) {
           return `Error: ${error.graphQLErrors}`
         };
 
-        const __PluralNameLowercase__ = data.unitData.map(el => flattenData(el));
+        const {{PluralNameLowercase}} = data.unitData.map(el => flattenData(el));
 
-        const options = __PluralNameLowercase__.map(__SingularNameLowercase__ => ({
-          value: __SingularNameLowercase__.id,
-          label: __SingularNameLowercase__.value,
+        const options = {{PluralNameLowercase}}.map({{SingularNameLowercase}} => ({
+          value: {{SingularNameLowercase}}.id,
+          label: {{SingularNameLowercase}}.value,
         }));
 
         return (
-          <__SingularName__SelectStyleWrapper>
+          <{{SingularName}}SelectStyleWrapper>
             <Select
               inputId={id}
               isClearable={true}
@@ -72,11 +72,11 @@ function __SingularName__Select({ id, onSubmit, disabled }) {
             >
               Add User
             </Button>
-          </__SingularName__SelectStyleWrapper>
+          </{{SingularName}}SelectStyleWrapper>
         );
       }}
     </Unit>
   );
 }
 
-export default __SingularName__Select;
+export default {{SingularName}}Select;

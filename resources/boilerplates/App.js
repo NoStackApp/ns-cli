@@ -48,7 +48,7 @@ const App = () => (
           }
 
           return (
-            <{{topComponentName}} {{topComponentPropSetting}} />
+            <{{topComponentName}} {{{topComponentPropSetting}}} />
           );
         }}
       </NoStackConsumer>

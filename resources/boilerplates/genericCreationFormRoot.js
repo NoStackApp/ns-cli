@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { withNoStack, EXECUTE_ACTION } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
-import { CREATE___SingularForRelationshipAllCaps___ACTION_ID__ACTION_IDS_FOR_SINGLE_CHILDREN____TYPE_IDS_FOR_SINGLE_CHILDREN__ } from '../../../config';
+import { CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ACTION_IDS_FOR_SINGLE_CHILDREN}}{{TYPE_IDS_FOR_SINGLE_CHILDREN}} } from '../../../config';
 
 // change styling here
 const Form = styled.div`
@@ -19,39 +19,46 @@ const Button = styled.button`
   margin-left: 1em;
 `;
 
-function __SingularName__CreationForm({ __SingularParentName__Id, create__SingularName____SINGLE_CHILDREN_PARAMS__, refetchQueries }) {
-  const [ __SingularNameLowercase__Value, update__SingularName__Value ] = useState('');
+function {{SingularName}}CreationForm({ {{SingularParentName}}Id, create{{SingularName}}{{SINGLE_CHILDREN_PARAMS}}, refetchQueries }) {
+  const [ {{SingularNameLowercase}}Value, update{{SingularName}}Value ] = useState('');
   const [ loading, updateLoading ] = useState(false);
 
   function handleChange(e) {
-    update__SingularName__Value(e.target.value);
+    update{{SingularName}}Value(e.target.value);
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!__SingularNameLowercase__Value) {
+    if (!{{SingularNameLowercase}}Value) {
       return;
     }
 
     updateLoading(true);
 
-    const create__SingularName__Response = await create__SingularName__({
+
+
+
+
+
+
+
+    const create{{SingularName}}Response = await create{{SingularName}}({
       variables: {
-        actionId: CREATE___SingularForRelationshipAllCaps___ACTION_ID,
+        actionId: CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
         executionParameters: JSON.stringify({
-          parentInstanceId: __SingularParentName__Id,
-          value: __SingularNameLowercase__Value,
+          parentInstanceId: {{{SingularParentName}}}Id,
+          value: {{{SingularNameLowercase}}}Value,
         }),
         unrestricted: false,
-      },__UPDATE_ON_ADD_LINE__
+      },{{UPDATE_ON_ADD_LINE}}
     });
 
-    const new__SingularName__Data = JSON.parse(create__SingularName__Response.data.ExecuteAction);
+    const new{{SingularName}}Data = JSON.parse(create{{SingularName}}Response.data.ExecuteAction);
 
-    __SINGLE_CHILDREN_CREATION_CODE__
+    {{{SINGLE_CHILDREN_CREATION_CODE}}}
 
-    update__SingularName__Value('');
+    update{{SingularName}}Value('');
     updateLoading(false);
   }
 
@@ -63,22 +70,22 @@ function __SingularName__CreationForm({ __SingularParentName__Id, create__Singul
 
   return (
     <Form>
-      <label htmlFor="__SingularNameLowercase__-value">
-        __SingularName__:
+      <label htmlFor="{{SingularNameLowercase}}-value">
+        {{SingularName}}:
         <input
-          id="__SingularNameLowercase__-value"
+          id="{{SingularNameLowercase}}-value"
           type="text"
           onChange={handleChange}
           onKeyPress={handleKeyPress}
-          value={__SingularNameLowercase__Value}
+          value={ {{{SingularNameLowercase}}}Value }
           disabled={loading}
         />
       </label>
       <Button type="submit"  disabled={loading}  onClick={handleSubmit}>
         {
           loading
-            ? 'Creating __SingularName__...'
-            : 'Create __SingularName__'
+            ? 'Creating {{SingularName}}...'
+            : 'Create {{SingularName}}'
         }
       </Button>
     </Form>
@@ -86,5 +93,5 @@ function __SingularName__CreationForm({ __SingularParentName__Id, create__Singul
 }
 
 export default compose(
-  graphql(EXECUTE_ACTION, { name: 'create__SingularName__' }),__SINGLE_CHILDREN_COMPOSE_STATEMENTS__
-)(__SingularName__CreationForm);
+  graphql(EXECUTE_ACTION, { name: 'create{{SingularName}}' }),{{{SINGLE_CHILDREN_COMPOSE_STATEMENTS}}}
+)({{SingularName}}CreationForm);

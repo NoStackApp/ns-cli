@@ -5,17 +5,17 @@ import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
 import {
-  UPDATE___SingularForRelationshipAllCaps___ACTION_ID,
-  DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__,
+  UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
+  DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ChildrenTypeList}},
 } from '../../../config';
 
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
-__CHILDREN_IMPORT_LIST__
+{{{CHILDREN_IMPORT_LIST}}}
 
 // add styling here
-const __SingularName__StyleWrapper = styled.div(({
+const {{SingularName}}StyleWrapper = styled.div(({
   selected,
   isDeleting,
 }) => `
@@ -45,8 +45,8 @@ const Button = styled.button`
   }
 `;
 
-function __SingularName__({
-  __SingularNameLowercase__,
+function {{SingularName}}({
+  {{SingularNameLowercase}},
   parentId,
   selected,
   updateInstance,
@@ -54,35 +54,35 @@ function __SingularName__({
   refetchQueries,
   onSelect,
 }) {
-  const [__SingularNameLowercase__Value, update__SingularName__Value] = useState(__SingularNameLowercase__.value);
+  const [{{SingularNameLowercase}}Value, update{{SingularName}}Value] = useState({{SingularNameLowercase}}.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
 
-  __CHILDREN_CONSTANT_DECLARATIONS__
+  {{{CHILDREN_CONSTANT_DECLARATIONS}}}
 
   if (!selected) {
     return (
-      <__SingularName__StyleWrapper onClick={() => onSelect(__SingularNameLowercase__.id)}>
-        {__SingularNameLowercase__Value}
-      </__SingularName__StyleWrapper>
+      <{{SingularName}}StyleWrapper onClick={() => onSelect({{SingularNameLowercase}}.id)}>
+        { {{SingularNameLowercase}}Value }
+      </{{SingularName}}StyleWrapper>
     );
   }
 
-  function handle__SingularName__ValueChange(e) {
-    update__SingularName__Value(e.target.value);
+  function handle{{SingularName}}ValueChange(e) {
+    update{{SingularName}}Value(e.target.value);
   }
 
-  async function handle__SingularName__ValueSave() {
+  async function handle{{SingularName}}ValueSave() {
     updateIsSaving(true);
 
     await updateInstance({
       variables: {
-        actionId: UPDATE___SingularForRelationshipAllCaps___ACTION_ID,
+        actionId: UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
         executionParameters: JSON.stringify({
-          value: __SingularNameLowercase__Value,
-          instanceId: __SingularNameLowercase__.id,
+          value: {{{SingularNameLowercase}}}Value,
+          instanceId: {{SingularNameLowercase}}.id,
         }),
       },
       refetchQueries,
@@ -98,17 +98,17 @@ function __SingularName__({
 
   if (isEditMode) {
     return (
-      <__SingularName__StyleWrapper>
+      <{{SingularName}}StyleWrapper>
         <EditInstanceForm
-          id={__SingularNameLowercase__.id}
-          label="__SingularName__ Value:" 
-          value={__SingularNameLowercase__Value}
-          onChange={handle__SingularName__ValueChange}
-          onSave={handle__SingularName__ValueSave}
+          id={ {{SingularNameLowercase}}.id }
+          label="{{SingularName}} Value:"
+          value={ {{SingularNameLowercase}}Value }
+          onChange={handle{{SingularName}}ValueChange}
+          onSave={handle{{SingularName}}ValueSave}
           onCancel={handleCancelEdit}
           disabled={isSaving}
         />
-      </__SingularName__StyleWrapper>
+      </{{SingularName}}StyleWrapper>
     );
   }
 
@@ -118,10 +118,10 @@ function __SingularName__({
     try {
       await deleteInstance({
         variables: {
-          actionId: DELETE___SingularForRelationshipAllCaps___ACTION_ID,
+          actionId: DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            instanceId: __SingularNameLowercase__.id,
+            instanceId: {{SingularNameLowercase}}.id,
           }),
         },
         refetchQueries
@@ -137,23 +137,23 @@ function __SingularName__({
 
   if (isDeleteMode) {
     return (
-      <__SingularName__StyleWrapper 
+      <{{SingularName}}StyleWrapper
         selected={selected}
         isDeleting={isDeleting}
       >
-        {__SingularNameLowercase__Value}
+        { {{SingularNameLowercase}}Value }
         <DeleteInstanceMenu
           onDelete={handleDelete}
           onCancel={handleCancelDelete}
           disabled={isDeleting}
         />
-      </__SingularName__StyleWrapper>
+      </{{SingularName}}StyleWrapper>
     );
   }
 
   return (
-    <__SingularName__StyleWrapper selected={selected}>
-      {__SingularNameLowercase__Value}
+    <{{SingularName}}StyleWrapper selected={selected}>
+      { {{SingularNameLowercase}}Value }
       <Button
         type="button"
         onClick={() => updateIsEditMode(true)}
@@ -167,12 +167,12 @@ function __SingularName__({
         &#128465;
       </Button>
 
-      __CHILDREN_BODY_LIST__
-    </__SingularName__StyleWrapper>
+      {{{CHILDREN_BODY_LIST}}}
+    </{{SingularName}}StyleWrapper>
   );
 }
 
 export default compose(
   graphql(EXECUTE_ACTION, { name: 'updateInstance' }),
   graphql(EXECUTE_ACTION, { name: 'deleteInstance' })
-)(__SingularName__);
+)({{SingularName}});

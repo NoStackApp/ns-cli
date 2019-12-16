@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import {EXECUTE_ACTION} from '@nostack/no-stack';
 import {graphql} from '@apollo/react-hoc';
 
-import {DELETE___SingularForRelationshipAllCaps___ACTION_ID__ChildrenTypeList__} from '../../../config';
+import { DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ChildrenTypeList}} } from '../../../config';
 
-__CHILDREN_IMPORT_LIST__
+{{{CHILDREN_IMPORT_LIST}}}
 
 // add styling here
-const __SingularName__StyleWrapper = styled.div`
+const {{SingularName}}StyleWrapper = styled.div`
   margin: 2em 1em;
   padding: 1.5em;
   border: none;
@@ -36,11 +36,11 @@ const DeleteMenu = styled.div`
   border: 1px solid #eeeeee;
 `;
 
-function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, deleteInstance, refetchQueries}) {
+function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance, deleteInstance, refetchQueries }) {
   const [ isDeleteMode, updateIsDeleteMode ] = useState(false);
   const [ isDeleting, updateIsDeleting ] = useState(false);
 
-  __CHILDREN_CONSTANT_DECLARATIONS__
+  {{{CHILDREN_CONSTANT_DECLARATIONS}}}
 
   async function handleDelete() {
     updateIsDeleting(true);
@@ -48,10 +48,10 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
     try {
       await deleteInstance({
         variables: {
-          actionId: DELETE___SingularForRelationshipAllCaps___ACTION_ID,
+          actionId: DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
           executionParameters: JSON.stringify({
             parentInstanceId: parentId,
-            childInstanceId: __SingularNameLowercase__.id,
+            childInstanceId: {{SingularNameLowercase}}.id,
           }),
         },
         refetchQueries
@@ -62,7 +62,7 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
   }
 
     {/*<UserStyleWrapper isDeleting={isDeleting}>*/}
-    {/*  {__SingularNameLowercase__.value}*/}
+    {/*  { {{SingularNameLowercase}}.value }*/}
     {/*  {isDeleteMode ? (*/}
     {/*      <DeleteMenu>*/}
     {/*        Delete?*/}
@@ -95,8 +95,8 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
     {/*  }*/}
     {/*</UserStyleWrapper>*/}
   return (
-    <__SingularName__StyleWrapper isDeleting={isDeleting}>
-      {__SingularNameLowercase__.value}
+    <{{SingularName}}StyleWrapper isDeleting={isDeleting}>
+      { {{SingularNameLowercase}}.value }
       {isDeleteMode ? (
           <DeleteMenu>
             Delete?
@@ -127,9 +127,9 @@ function __SingularName__({__SingularNameLowercase__, parentId, updateInstance, 
           </Button>
         )
       }
-      __CHILDREN_BODY_LIST__
-    </__SingularName__StyleWrapper>
+      {{{CHILDREN_BODY_LIST}}}
+    </{{SingularName}}StyleWrapper>
   );
 }
 
-export default graphql(EXECUTE_ACTION, { name: 'deleteInstance' })(__SingularName__);
+export default graphql(EXECUTE_ACTION, { name: 'deleteInstance' })({{SingularName}});

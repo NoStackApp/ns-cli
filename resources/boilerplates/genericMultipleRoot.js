@@ -5,22 +5,22 @@ import { v4 } from 'uuid';
 
 import { flattenData } from '../../../flattenData';
 
-import __SingularName__CreationForm from '../__SingularName__CreationForm';
-import __SingularName__ from '../__SingularName__';
+import {{SingularName}}CreationForm from '../{{SingularName}}CreationForm';
+import {{SingularName}} from '../{{SingularName}}';
 
-import { __SOURCE_ID_CONSTANT__ } from '../../../config';
-import { __RELATIONSHIPS_NAME__, __SOURCE_QUERY_NAME__ } from '../../source-props/__SingularSourceLowercase__';
+import { {{SOURCE_ID_CONSTANT}} } from '../../../config';
+import { {{RELATIONSHIPS_NAME}}, {{SOURCE_QUERY_NAME}} } from '../../source-props/{{SingularSourceLowercase}}';
 
 // add styling here
-const __PluralName__StyleWrapper = styled.div`
+const {{PluralName}}StyleWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 `;
 
-class __PluralName__ extends Component {
+class {{PluralName}} extends Component {
   state = {
-    selected__SingularName__Id: null,
+    selected{{SingularName}}Id: null,
   };
 
   wrapperRef = createRef();
@@ -38,28 +38,28 @@ class __PluralName__ extends Component {
 
     if (
       node &&
-      node !== e.target && 
+      node !== e.target &&
       !node.contains(e.target)
     ) {
-      this.setState({ selected__SingularName__Id: null });
+      this.setState({ selected{{SingularName}}Id: null });
     }
   }
 
-  handleSelect = id => this.setState({ selected__SingularName__Id: id });
+  handleSelect = id => this.setState({ selected{{SingularName}}Id: id });
 
   render() {
-    const { __SingularParentName__Id } = this.props;
-    const { selected__SingularName__Id } = this.state;
+    const { {{SingularParentName}}Id } = this.props;
+    const { selected{{SingularName}}Id } = this.state;
 
     const parameters = {
-      __CONSTRAINT_VALUE__: __SingularParentName__Id,
+      {{CONSTRAINT_VALUE}}: {{SingularParentName}}Id,
     };
 
     return (
       <Unit
-        id={__SOURCE_ID_CONSTANT__}
-        typeRelationships={__RELATIONSHIPS_NAME__}
-        query={__SOURCE_QUERY_NAME__}
+        id={ {{SOURCE_ID_CONSTANT}} }
+        typeRelationships={ {{RELATIONSHIPS_NAME}} }
+        query={ {{SOURCE_QUERY_NAME}} }
         parameters={parameters}
       >
         {({loading, error, data, refetchQueries}) => {
@@ -70,23 +70,23 @@ class __PluralName__ extends Component {
             return `Error: ${error.graphQLErrors}`
           };
 
-          const __PluralNameLowercase__ = data.unitData.map(el => flattenData(el));
+          const {{PluralNameLowercase}} = data.unitData.map(el => flattenData(el));
 
           return (
             <>
-              <__SingularName__CreationForm  __SingularParentName__Id={__SingularParentName__Id} refetchQueries={refetchQueries}/>
-              <__PluralName__StyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
-                {__PluralNameLowercase__ && __PluralNameLowercase__.map(__SingularNameLowercase__ => (
-                  <__SingularName__
+              <{{SingularName}}CreationForm  {{SingularParentName}}Id={ {{SingularParentName}}Id } refetchQueries={refetchQueries}/>
+              <{{PluralName}}StyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
+                { {{PluralNameLowercase}} && {{PluralNameLowercase}}.map({{SingularNameLowercase}} => (
+                  <{{SingularName}}
                     key={v4()}
-                    parentId={__SingularParentName__Id}
-                    __SingularNameLowercase__={__SingularNameLowercase__}
-                    selected={__SingularNameLowercase__.id === selected__SingularName__Id}
+                    parentId={ {{SingularParentName}}Id }
+                    {{SingularNameLowercase}}={ {{SingularNameLowercase}} }
+                    selected={ {{SingularNameLowercase}}.id === selected{{SingularName}}Id }
                     refetchQueries={refetchQueries}
                     onSelect={this.handleSelect}
                   />
-                ))}
-              </__PluralName__StyleWrapper>
+                )) }
+              </{{PluralName}}StyleWrapper>
             </>
           );
         }}
@@ -95,4 +95,4 @@ class __PluralName__ extends Component {
   }
 }
 
-export default __PluralName__;
+export default {{PluralName}};
