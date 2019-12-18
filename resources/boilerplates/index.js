@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { NoStackProvider, Console } from '@nostack/no-stack';
+import { NoStackProvider } from '@nostack/no-stack';
 
 import { PLATFORM_ID } from './config';
 import './index.css';
@@ -12,7 +12,6 @@ import client from './client';
 ReactDOM.render(
   <NoStackProvider client={client} platformId={PLATFORM_ID}>
     <App />
-    <Console />
   </NoStackProvider>,
   document.getElementById('root')
 );
