@@ -3,10 +3,6 @@ import chalk from 'chalk'
 import {getAppDir} from '../inputs/getAppDir'
 import {errorMessage} from '../tools/errorMessage'
 
-var findInFiles = require('find-in-files')
-
-// import {logProgress} from './logging'
-
 const execa = require('execa')
 const fs = require('fs-extra')
 const Listr = require('listr')
