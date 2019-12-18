@@ -10,17 +10,12 @@ import {UserInfo} from '../constants/types'
 
 export const fs = require('fs-extra')
 require('dotenv').config({path: __dirname + '/./../../.env'})
-// console.log(`__dirname + '/./../.env'=${__dirname + '/./../../.env'}`)
 
 const isDev = process.env.NODE_ENV === 'development'
 // console.log(`isDev=${isDev}`)
 // console.log(`process.env.LOCAL_SERVER=${process.env.LOCAL_SERVER}`)
 
 const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
-// console.log(`in genericAPICall, server=${server}`)
-
-// tslint:disable-next-line:no-http-string
-// export const server = 'http://localhost:3000/graphql'
 export const stacksDirectory = `${secureDirectory}/noStackInfo`
 
 export async function genericApiCall(query: string, userInfo: UserInfo, variables: object = {}) {
@@ -36,7 +31,7 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
   let dataReturned: any = ''
   // let finished = false
   await client.request(query, variables).then(data => {
-    // console.log(`data=${JSON.stringify(data)}`)
+    // console.log(`data=/${JSON.stringify(data)}`)
     dataReturned = data
     // finished = true
   })
@@ -70,18 +65,6 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
             jwt: userInfo.accessToken
           }
         })
-        // } catch {
-        //   await loginUser(userInfo)
-        //
-        //   try {
-        //     await getUserInfo(userInfo) // second try
-        //   } catch (errReadingLogin) {
-        //     console.error(errReadingLogin)
-        //     throw new Error(errReadingLogin.response.errors) // GraphQL response errors
-        //   }
-        //
-        // }
-        // if (!clientAfterRefresh) throw new Error('problem refreshing the tokens.')
         try {
           await clientAfterRefresh.request(query, variables).then(data => {
             // console.log(data)
@@ -101,62 +84,5 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
       }
     })
 
-  // let clientAfterRefresh = null
-  // if (!finished) {
-  //   // console.log('trying again')
-  //
-  //   // try {
-  //   clientAfterRefresh = new GraphQLClient(server, {
-  //     headers: {
-  //       jwt: userInfo.accessToken
-  //     }
-  //   })
-  //   // } catch {
-  //   //   await loginUser(userInfo)
-  //   //
-  //   //   try {
-  //   //     await getUserInfo(userInfo) // second try
-  //   //   } catch (errReadingLogin) {
-  //   //     console.error(errReadingLogin)
-  //   //     throw new Error(errReadingLogin.response.errors) // GraphQL response errors
-  //   //   }
-  //   //
-  //   // }
-  //   // if (!clientAfterRefresh) throw new Error('problem refreshing the tokens.')
-  //   try {
-  //     await clientAfterRefresh.request(query, variables).then(data => {
-  //       // console.log(data)
-  //       dataReturned = data
-  //       finished = true
-  //     })
-  //   } catch (err) {
-  //     if (err.code === 103 || err.response.errors[0].code === 103) {
-  //       // must be that the refresh token has expired
-  //       await loginUser(userInfo)
-  //       try {
-  //         await getUserInfo(userInfo) // second try
-  //       } catch (errReadingLogin) {
-  //         // console.error(errReadingLogin)
-  //         throw new Error(errReadingLogin.response.errors) // GraphQL response errors
-  //       }
-  //     }
-  //
-  //     // third try's the charm...
-  //     clientAfterRefresh = new GraphQLClient(server, {
-  //       headers: {
-  //         jwt: userInfo.accessToken
-  //       }
-  //     })
-  //     try {
-  //       await clientAfterRefresh.request(query, variables).then(data => {
-  //         // console.log(data)
-  //         dataReturned = data
-  //         finished = true
-  //       })
-  //     } catch (err) {
-  //       throw new Error(`${err.response.errors[0]}`)
-  //     }
-  //   }
-  // }
   return dataReturned
 }
