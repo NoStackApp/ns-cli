@@ -1,0 +1,7 @@
+mutation DELETE_STACK(
+	$stackId: ID!
+) {
+	stack: DeleteStack(
+		stackId: $stackId
+	)
+}

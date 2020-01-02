@@ -15,7 +15,7 @@ export default class Createstack extends Command {
   static description = 'Creates a new moderator and stack.  Also logs in the moderator locally.'
 
   static examples = [
-    '$ nostack createStack -u franky -s tempstack, -e franky@gmail.com -w franky12$',
+    '$ nostack createstack -u mod -s tempstack, -e franky+mod@gmail.com -w franky12$ -w letMeIn0! -l licensed2Kill'
   ]
 
   static flags = {
@@ -31,10 +31,8 @@ export default class Createstack extends Command {
     force: flags.boolean({char: 'f'}),
   }
 
-  static args = []
-
   async run() {
-    const {args, flags} = this.parse(Createstack)
+    const {flags} = this.parse(Createstack)
     const stack = await getNewStackName(flags.stack)
     if (!stack) isRequired('stack', 'createstack', '-s')
 
@@ -68,11 +66,11 @@ export default class Createstack extends Command {
 
     const newStackTasks = await createStackAndModerator(userInfo)
     await newStackTasks.run().catch((err: any) => {
-      console.error(err)
+      throw new Error(err)
     })
 
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
-    }
+    console.log(`The stack ${stack} and its moderator ${user} have been created.
+    You can now run commands with the parameters '-u ${user} -s ${stack}'.
+    Try using 'nostack spinstack' with a script to generate a back end.`)
   }
 }
