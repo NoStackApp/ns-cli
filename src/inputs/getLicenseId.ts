@@ -42,7 +42,7 @@ const testLicenseId = async (licenseId: string) => {
 }
 
 export async function getLicenseId(licenseId: string | undefined) {
-  let prompt = 'Please enter a name for your license (all numbers and lowercase letters, no spaces).'
+  let prompt = 'Please enter your complete license.'
 
   if (licenseId) {
     prompt = await testLicenseId(licenseId)

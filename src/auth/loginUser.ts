@@ -5,12 +5,11 @@ import {UserInfo} from '../constants/types'
 
 import {setUserInfo} from './setUserInfo'
 
-require('dotenv').config({path: __dirname + '/./../.env'})
+require('dotenv').config({path: __dirname + '/./../../.env'})
 
 const prompts = require('prompts')
 
 const isDev = process.env.NODE_ENV === 'development'
-// console.log(`process.env.LOCAL_SERVER=${process.env.LOCAL_SERVER}`)
 
 const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
 // console.log(`server=${server}`)
@@ -23,7 +22,7 @@ export async function loginUser(userInfo: UserInfo) {
     password: '',
     stackId: ''
   }
-
+  //
   if (!userInfo.password) {
     response = await prompts({
       type: 'password',

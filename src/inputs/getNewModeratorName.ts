@@ -41,10 +41,10 @@ const testModeratorName = async (moderatorName: string, isNew: boolean) => {
     return `The moderatorName '${moderatorName}' contains forbidden characters.  A moderator name can contain
     uppercase and lowercase letters (a-z, A-Z), numbers (0-9)`
 
-  const alreadyExists = await moderatorExists(moderatorName)
-
-  if (isNew && alreadyExists) return `There already exists a moderator with the name ${moderatorName}.  Please select something else.`
-  if (!isNew && !alreadyExists) return `There is no moderator with the name ${moderatorName}.  Please check the name.`
+  // const alreadyExists = await moderatorExists(moderatorName)
+  //
+  // if (isNew && alreadyExists) return `There already exists a moderator with the name ${moderatorName}.  Please select something else.`
+  // if (!isNew && !alreadyExists) return `There is no moderator with the name ${moderatorName}.  Please check the name.`
 
   return ''
 }

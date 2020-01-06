@@ -2,23 +2,28 @@ import {UserInfo} from '../constants/types'
 import {genericApiCall} from '../tools/genericApiCall'
 
 export async function createStackQuery(userInfo: UserInfo) {
-  // console.log(`userInfo=${JSON.stringify(userInfo)}`)
+  const {password, email, name, stack, licenseId} = userInfo
 
   const query = `mutation {
-      CreatePlatform(owner: "${userInfo.id}", ownerPlatformPassword: "${userInfo.password}", name: "${userInfo.stack}", licenseId: "${userInfo.licenseId}") {
-      id,
-      name,
-      clientId,
-      moderators{id}
+    CreateStack(
+      name: "${stack}"
+      licenseId: "${licenseId}"
+      modName: "${name}"
+      modEmail: "${email}"
+      modPassword: "${password}"
+    ) {
+        id,
+        name,
+        clientId,
+        moderators { id }
     }
-   }
-  `
-  // console.log(`query=${query}`)
+  }`
 
   const returnedData = await genericApiCall(query, userInfo)
+  // console.log(`returnedData=${JSON.stringify(returnedData, null, 2)}`)
 
-  userInfo.stackId = returnedData.CreatePlatform.id
-  userInfo.id = returnedData.CreatePlatform.moderators[0].id
-  // console.log(`final userInfo=${JSON.stringify(userInfo)}`)
+  userInfo.stackId = returnedData.CreateStack.id
+  userInfo.id = returnedData.CreateStack.moderators[0].id
 
+  return returnedData
 }
