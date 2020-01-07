@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import './App.css';
-import { NoStackConsumer, LoginForm, RegistrationForm } from '@nostack/no-stack';
+import { NoStackConsumer } from '@nostack/no-stack';
 
 import { PLATFORM_ID, TYPE_USER_ID } from './config';
 
 import NavBar from './components/NavBar';
 import AuthTabs from './components/AuthTabs';
+import LoginForm from './components/LoginForm';
+import RegistrationForm from './components/RegistrationForm';
 import {{topComponentName}} from './components/{{sourceName}}/{{topComponentName}}';
 
 const Wrapper = styled.div`

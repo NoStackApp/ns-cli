@@ -5,9 +5,6 @@ import {graphql} from '@apollo/react-hoc';
 
 import { DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ChildrenTypeList}} } from '../../../config';
 
-// if it has action, import the component
-// import { {{ ActionName }} } from '../{{ ActionName }}';
-
 {{{CHILDREN_IMPORT_LIST}}}
 
 // add styling here
@@ -67,8 +64,6 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance,
   return (
     <{{SingularName}}StyleWrapper isDeleting={isDeleting}>
       { {{SingularNameLowercase}}.value }
-      // if it has contact action, insert button here
-      // <{{ActionName}} parentId={ {{SingularNameLowercase}}.id } />
       {isDeleteMode ? (
           <DeleteMenu>
             Delete?
