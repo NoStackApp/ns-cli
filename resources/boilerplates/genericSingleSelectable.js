@@ -15,7 +15,7 @@ const {{SingularName}}StyleWrapper = styled.div`
   margin: 2em 1em;
   padding: 1.5em;
   border: none;
-  border-radius: 10px;.3
+  border-radius: 10px;
   box-shadow: 5px 5px 10px #888888;
 `;
 
