@@ -17,7 +17,7 @@ export default class Spinstack extends Command {
   static description = "Spins up a fully functional backend from a provided data flow spec.  The generated json can then be used to generate front end code using the command 'makeCode'."
 
   static examples = [
-    '$ nostack spinstack -u franky -s tempstack, -e franky@gmail.com -j ~/temp/stack.json -t appFlow.txt',
+    '$ nostack spinstack -u franky -s tempstack -e franky@gmail.com -j ~/temp/stack.json -t appFlow.txt',
   ]
 
   static flags = {

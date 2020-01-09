@@ -72,7 +72,7 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
             // finished = true
           })
         } catch (err) {
-          throw new Error(`${err.response.errors[0]}`)
+          throw new Error(`${JSON.stringify(err.response.errors[0])}`)
         }
         // refreshAccessTokenForUser(currentRefreshToken,user)
       } else {

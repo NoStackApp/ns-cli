@@ -1,4 +1,5 @@
 import {associationTypes} from '../constants'
+// import {ActionInfo, StackInfo, TreeTypeChildrenList} from '../constants/types'
 import {StackInfo, TreeTypeChildrenList} from '../constants/types'
 import {
   allCaps,
@@ -102,6 +103,7 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
   const sourceInfo = currentStack.sources[source]
   const typeSourceInfo = currentStack.types[type].sources[source]
   const {parentType} = typeSourceInfo
+  // const addedActions = currentStack.actions.ADDED.filter((action: ActionInfo) => action.type === type)
 
   let children = sourceInfo.selectedTree[type]
   const connectedSource: string = sourceInfo.connections[type]

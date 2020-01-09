@@ -15,7 +15,7 @@ const {{SingularName}}StyleWrapper = styled.div`
   margin: 2em 1em;
   padding: 1.5em;
   border: none;
-  border-radius: 10px;
+  border-radius: 10px;.3
   box-shadow: 5px 5px 10px #888888;
 `;
 
@@ -67,8 +67,8 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance,
   return (
     <{{SingularName}}StyleWrapper isDeleting={isDeleting}>
       { {{SingularNameLowercase}}.value }
-      // if it has contact action, insert button here
-      // <{{ActionName}} parentId={ {{SingularNameLowercase}}.id } />
+      {/* if it has contact action, insert button here
+      <{{ActionName}} parentId={ {{SingularNameLowercase}}.id } /> */}
       {isDeleteMode ? (
           <DeleteMenu>
             Delete?
