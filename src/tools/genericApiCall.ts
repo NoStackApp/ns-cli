@@ -1,4 +1,5 @@
 import {GraphQLClient} from 'graphql-request'
+import {log} from 'util'
 
 import {secureDirectory} from '../auth/config'
 import {getUserInfo} from '../auth/getUserInfo'
@@ -72,6 +73,32 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
             // finished = true
           })
         } catch (err) {
+          if (err.code === 103 || err.response.errors[0].code === 103) {
+            try {
+              await loginUser(userInfo)
+            } catch {
+              throw new Error(`There is apparently an error with logging in ${userInfo.name} to ${userInfo.stack}.
+              You might try confirming that you got the spelling correct.  info@nostack.net`)
+            }
+
+            const clientAfterRefresh = new GraphQLClient(server, {
+              headers: {
+                jwt: userInfo.accessToken
+              }
+            })
+
+            try {
+              await clientAfterRefresh.request(query, variables).then(data => {
+                // console.log(data)
+                dataReturned = data
+                // finished = true
+              })
+            } catch (err) {
+              throw new Error(`We are sorry, this call has produced an error on the server.
+            Please contact info@nostack.net.
+            Here's some info about the server error: ${JSON.stringify(err.response.errors[0], null, 2) }`)
+            }
+          }
           throw new Error(`${JSON.stringify(err.response.errors[0], null, 2) }`)
         }
         // refreshAccessTokenForUser(currentRefreshToken,user)
