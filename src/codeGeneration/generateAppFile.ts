@@ -1,7 +1,7 @@
 import {noNameError} from '../commands/makecode'
 import {associationTypes, boilerplateDir} from '../constants'
 import {StackInfo} from '../constants/types'
-import {pluralName, singularName} from '../tools/inflections'
+import {allCaps, pluralName, singularName} from '../tools/inflections'
 
 import {srcDir} from './createTopProjectDirs'
 
@@ -55,6 +55,7 @@ export async function generateAppFile(currentStack: StackInfo, userClass: string
     sourceName: singularName(source),
     topComponentName: topComponent,
     topComponentPropSetting: topComponentSetting,
+    userTypeId: `TYPE_${allCaps(userClass)}_ID`
   })
 
     // console.log(appFileContents)

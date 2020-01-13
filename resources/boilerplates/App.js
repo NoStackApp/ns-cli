@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import './App.css';
 import { NoStackConsumer } from '@nostack/no-stack';
 
-import { PLATFORM_ID, TYPE_USER_ID } from './config';
+import { PLATFORM_ID, {{userTypeId}} } from './config';
 
 import NavBar from './components/NavBar';
 import AuthTabs from './components/AuthTabs';
@@ -42,7 +42,7 @@ const App = () => (
                   <LoginForm />
                   <RegistrationForm
                     platformId={PLATFORM_ID}
-                    userClassId={TYPE_USER_ID}
+                    userClassId={ {{userTypeId}} }
                   />
                 </AuthTabs>
               </LoginWrapper>
