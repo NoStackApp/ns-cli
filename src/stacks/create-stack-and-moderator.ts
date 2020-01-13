@@ -13,12 +13,12 @@ export async function createStackAndModerator(userInfo: UserInfo) {
         await createStackQuery(userInfo)
       }
     },
-    {
-      title: 'Log in the moderator',
-      task: async () => {
-        await loginUser(userInfo)
-      }
-    },
+    // {
+    //   title: 'Log in the moderator',
+    //   task: async () => {
+    //     await loginUser(userInfo)
+    //   }
+    // },
   ])
 
   return tasks

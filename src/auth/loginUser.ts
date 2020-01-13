@@ -63,6 +63,7 @@ export async function loginUser(userInfo: UserInfo) {
     const ExecuteAction = JSON.parse(data.ExecuteAction)  // .AuthenticationResult // AccessToken
     userInfo.accessToken = ExecuteAction.AuthenticationResult.AccessToken
     userInfo.refreshToken = ExecuteAction.AuthenticationResult.RefreshToken
+    // userInfo.name = ExecuteAction.userName
 
     // console.log(`userInfo=${JSON.stringify(userInfo)}`)
     await setUserInfo(userInfo)
