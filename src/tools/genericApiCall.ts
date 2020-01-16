@@ -1,5 +1,4 @@
 import {GraphQLClient} from 'graphql-request'
-import {log} from 'util'
 
 import {secureDirectory} from '../auth/config'
 import {getUserInfo} from '../auth/getUserInfo'
