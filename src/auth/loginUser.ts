@@ -2,6 +2,7 @@ import {GraphQLClient} from 'graphql-request'
 
 import {liveServer} from '../constants'
 import {UserInfo} from '../constants/types'
+import {genericApiCall} from '../tools/genericApiCall'
 
 import {setUserInfo} from './setUserInfo'
 
@@ -33,12 +34,20 @@ export async function loginUser(userInfo: UserInfo) {
   }
 
   if (!userInfo.stackId) {
-    response = await prompts({
-      type: 'text',
-      name: 'stackId',
-      message: `What is the stack id for ${userInfo.stack}?`
-    })
-    userInfo.stackId = response.stackId
+
+    const query = `query {stackId(stackName:"${userInfo.stack}")}`
+
+    const returnedData = await genericApiCall(query, userInfo)
+    // console.log(`returnedData=${JSON.stringify(returnedData, null, 2)}`)
+
+    userInfo.stackId = returnedData.stackId
+
+    // response = await prompts({
+    //   type: 'text',
+    //   name: 'stackId',
+    //   message: `What is the stack id for ${userInfo.stack}?`
+    // })
+    // userInfo.stackId = response.stackId
   }
   const executionParameters = {
     userName: userInfo.name,
