@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { withNoStack } from '@nostack/no-stack';
 
+import ForgotPasswordButton from '../ForgotPasswordButton';
+
 const Wrapper = styled.div`
   width: 250px;
 
@@ -96,6 +98,9 @@ const LoginForm = ({ loading, currentUser, login }) => {
         </Row>
         {error && <Row>{error}</Row>}
       </form>
+      <Row>
+        <ForgotPasswordButton />
+      </Row>
     </Wrapper>
   );
 }

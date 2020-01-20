@@ -31,6 +31,20 @@ export async function createHighestLevelFiles(
     `${compDir}/LoginForm/index.js`
   );
 
+  // Forgot Password Button
+  await fs.copy(
+    `${boilerplateDir}/ForgotPasswordButton.js`,
+    `${compDir}/ForgotPasswordButton/index.js`
+  );
+  await fs.copy(
+    `${boilerplateDir}/ResetPasswordForm.js`,
+    `${compDir}/ForgotPasswordButton/ResetPasswordForm.js`
+  );
+  await fs.copy(
+    `${boilerplateDir}/SendCodeForm.js`,
+    `${compDir}/ForgotPasswordButton/SendCodeForm.js`
+  );
+
   // RegistrationForm
   await fs.copy(
     `${boilerplateDir}/RegistrationForm.js`,
