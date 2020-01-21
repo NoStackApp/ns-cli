@@ -93,20 +93,24 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
                 // finished = true
               })
             } catch (err) {
-              throw new Error(`We are sorry, this call has produced an error on the server.
-            Please contact info@nostack.net.
-            Here's some info about the server error: ${JSON.stringify(err.response.errors[0], null, 2) }`)
+              throw new Error(`This call has produced an error on the server.
+            Please contact info@nostack.net if you think that the call should have worked.
+            Here's some info about the server error: ${JSON.stringify(err, null, 2) }`)
             }
           }
           throw new Error(`${JSON.stringify(err.response.errors[0], null, 2) }`)
         }
         // refreshAccessTokenForUser(currentRefreshToken,user)
       } else {
+        const lastError = err.response.errors[0]
         // console.log(err.response.errors) // GraphQL response errors
         // console.log(JSON.stringify(err.response.data)) // Response data if available
-        throw new Error(`We are sorry, this call has produced an error on the server.
-            Please contact info@nostack.net.
-            Here's some info about the server error: ${err.response.errors[0]}`)
+        throw new Error(`This call has produced an error on the server.
+            Please contact info@nostack.net if you think it shouldn't have.
+            The error type is ${lastError.errorType}.
+            The error message is ${lastError.message}.
+            The error path is ${lastError.path}.
+            Here's some info about the server error: ${JSON.stringify(lastError, null, 2)}`)
       }
     })
 
