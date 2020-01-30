@@ -150,7 +150,15 @@ export interface StackInfo {
   stack: StackMeta,
 }
 
-// export interface MetaData {
-//   stackId: string,
-//   stackName: string,
-// }
+/*
+  Added Code Object
+ */
+export interface CompInfo {
+  [location: string]: string,
+}
+export interface UnitInfo {
+  [comp: string]: CompInfo,
+}
+export interface AddedCode {
+  [unit: string]: UnitInfo,
+}

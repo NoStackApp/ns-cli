@@ -4,7 +4,9 @@ const fs = require('fs-extra')
 import {Command, flags} from '@oclif/command'
 
 import {generateAppCode} from '../codeGeneration/generateAppCode'
-import {StackInfo} from '../constants/types'
+import {insertAddedCode} from '../codeGeneration/insertAddedCode'
+import {storeAddedCode} from '../codeGeneration/storeAddedCode'
+import {AddedCode, StackInfo} from '../constants/types'
 // import {getAppName} from '../inputs/getAppName'
 import {isRequired} from '../inputs/isRequired'
 
@@ -48,9 +50,25 @@ export default class Makecode extends Command {
       // this.log(`userClass has been set to ${userClass}`)
     }
 
+    // store added code before generating new code.
+    try {
+      await storeAddedCode(appDir)
+    } catch (err) {
+      throw err
+    }
+
     const generateAppTasks = await generateAppCode(appDir, userClass, jsonPath)
     await generateAppTasks.run().catch((err: any) => {
       console.error(err)
     })
+
+    try {
+      // const rootDir = '/home/yisroel/projects/temp/taskManager2/'
+                            // appDir
+      await insertAddedCode(appDir)
+    } catch (err) {
+      throw err
+    }
+
   }
 }

@@ -34,7 +34,6 @@ export async function loginUser(userInfo: UserInfo) {
   }
 
   if (!userInfo.stackId) {
-
     const query = `query {stackId(stackName:"${userInfo.stack}")}`
 
     const returnedData = await genericApiCall(query, userInfo)

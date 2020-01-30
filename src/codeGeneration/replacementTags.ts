@@ -137,6 +137,7 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
   })
 
   const tags = {
+    Unit: source,
     SingularName: singularName(type),
     PluralName: pluralName(type),
     PluralNameLowercase: pluralLowercaseName(type),

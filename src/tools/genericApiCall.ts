@@ -91,6 +91,7 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
                 // console.log(data)
                 dataReturned = data
                 // finished = true
+                return dataReturned
               })
             } catch (err) {
               throw new Error(`This call has produced an error on the server.
