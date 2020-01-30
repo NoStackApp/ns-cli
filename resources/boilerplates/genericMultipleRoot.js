@@ -11,14 +11,19 @@ import {{SingularName}} from '../{{SingularName}}';
 import { {{SOURCE_ID_CONSTANT}} } from '../../../config';
 import { {{RELATIONSHIPS_NAME}}, {{SOURCE_QUERY_NAME}} } from '../../source-props/{{SingularSourceLowercase}}';
 
+// np__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: styling
+
 // add styling here
 const {{PluralName}}StyleWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 `;
+// np__added_end unit: {{Unit}}, comp: {{PluralName}}, loc: styling
 
 class {{PluralName}} extends Component {
+// np__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: beginning
+// np__added_end unit: {{Unit}}, comp: {{PluralName}}, loc: beginning
   state = {
     selected{{SingularName}}Id: null,
   };
@@ -27,7 +32,7 @@ class {{PluralName}} extends Component {
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
-  }
+    }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClick);
@@ -87,6 +92,8 @@ class {{PluralName}} extends Component {
                   />
                 )) }
               </{{PluralName}}StyleWrapper>
+                {/* np__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
+                {/* np__added_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
             </>
           );
         }}

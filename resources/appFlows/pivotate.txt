@@ -1,4 +1,3 @@
-
 resetStack
 
 ### USER CLASS ###
@@ -15,3 +14,6 @@ newType description appInfo app
 ### SELECTIONS ###
 newSelection appInfo app
 newSelection appInfo description
+
+### FORMS ###
+newForm appInfoInput appInfo customer

@@ -5,12 +5,15 @@ import { v4 } from 'uuid';
 import {{SingularName}}CreationForm from '../{{SingularName}}CreationForm';
 import {{SingularName}} from '../{{SingularName}}';
 
+// np__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: styling
+
 const {{PluralName}}StyleWrapper = styled.div``;
 
 const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
+// np__added_end unit: {{Unit}}, comp: {{PluralName}}, loc: styling
 
 class {{PluralName}} extends Component {
   state = {
@@ -45,6 +48,9 @@ class {{PluralName}} extends Component {
     const { {{SingularParentName}}Id, {{SingularNameLowercase}}s, refetchQueries, onUpdate } = this.props;
     const { selected{{SingularName}}Id } = this.state;
 
+    {/* np__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning */}
+    {/* np__added_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning */}
+
     return (
       <{{PluralName}}StyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
         <{{SingularName}}CreationForm
@@ -63,8 +69,11 @@ class {{PluralName}} extends Component {
             onSelect={this.handleSelect}
           />
         )) }
-      </{{PluralName}}StyleWrapper>
-    )
+  {/* np__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
+  {/* np__added_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
+
+  </{{PluralName}}StyleWrapper>
+  )
   }
 }
 
