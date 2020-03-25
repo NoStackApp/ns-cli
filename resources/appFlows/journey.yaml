@@ -1,0 +1,54 @@
+userClasses:
+  director:
+    types:
+      - organization
+      - department
+  rep:
+    types:
+      - organization
+  manager:
+    types:
+      - organization
+
+units:
+  departmentView:
+    userClass: director
+    hierarchy:
+      - constrain#director:
+        - create#department:
+          - create#division:
+            - select__allManagers#manager
+  divisionView:
+    userClass: manager
+    hierarchy:
+      - constrain#manager:
+        - use-departmentView#division:
+          - select__allReps#rep
+  repView:
+    userClass: rep
+    hierarchy:
+      - constrain#rep:
+        - create#company:
+          - create#journeyMap:
+              - create#step:
+                - create#isCurrent
+                - create#order
+        - create#amount
+        - create#date
+    properties:
+      amount:
+        dataType: boolean
+      order:
+        dataType: number
+  selectable__rep#allReps:
+      userClass: manager
+      hierarchy:
+        - constrain#manager:
+          - use__registration#organization:
+            - use__registration#rep
+  selectable__manager#allManagers:
+      userClass: director
+      hierarchy:
+        - constrain#director:
+          - use__registration#organization:
+            - use__registration#manager
