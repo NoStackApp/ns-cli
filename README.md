@@ -99,7 +99,7 @@ The following parameters appear in `quickstarter`, and are used consistently in 
 * -e <email>: the email that you want for the stack moderator 
 * -l <license>: the licence string entitling you to a new stack  
 * -s <stackName>: the name of the stack (note that it needs to be unique)
-* -c <userClass>: the type of user in the appFlow file for which the front end app will be created.
+* -c <userClass>: the typeName of user in the appFlow file for which the front end app will be created.
 * -a <appDir>: the path and directory of the front end app for the userClass.  (The last directory in the path becomes the name of the app.  Note that it must be all lowercase letters without spaces, but does not need to be unique within nostack, and in fact is only relevant to you running locally.)
 * -t <appFlow>: a path to a valid app flow specification file
 * -b <appBase> [OPTIONAL]: a directory containing an empty NoStack application.  See [Creating an App Base](creating-an-app-base) below for instructions to create one.

@@ -75,6 +75,7 @@ module.exports = function(grunt) {
     const existsJsonFile = await fs.pathExists(addedCodeJsonFile);
     if (!existsJsonFile) {
       addedCodeObject = {};
+      fs.outputJson(addedCodeJsonFile, addedCodeObject);
       console.log(`content = ${JSON.stringify(addedCodeObject,null,2)}`);
       return
     }

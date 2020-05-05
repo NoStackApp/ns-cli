@@ -2,7 +2,7 @@ query collectionQuery($collectionId: ID!, $parameters: String!, $unrestricted: B
 
 query sourceData($unitId: ID!, $typeRelationships:String!, $parameters: String!, $unrestricted: Boolean!) { sourceData(unitId: $unitId, typeRelationships:$typeRelationships, parameters: $parameters, unrestricted: $unrestricted){
   id,
-  type,
+  typeName,
   instance {
     id,
     value,
@@ -10,7 +10,7 @@ query sourceData($unitId: ID!, $typeRelationships:String!, $parameters: String!,
   },
   children {
     id,
-    type,
+    typeName,
     instance {
       id,
       value,
@@ -18,7 +18,7 @@ query sourceData($unitId: ID!, $typeRelationships:String!, $parameters: String!,
     },
     children {
       id,
-      type,
+      typeName,
       instance {
         id,
         value,
@@ -30,7 +30,7 @@ query sourceData($unitId: ID!, $typeRelationships:String!, $parameters: String!,
 
 query unitData($unitId: ID!, $typeRelationships:String!, $parameters: String!, $unrestricted: Boolean!) { unitData(unitId: $unitId, typeRelationships:$typeRelationships, parameters: $parameters, unrestricted: $unrestricted){
   id,
-  type,
+  typeName,
   instance {
     id,
     value,
@@ -38,10 +38,10 @@ query unitData($unitId: ID!, $typeRelationships:String!, $parameters: String!, $
   },
   children {
     id,
-    type,
+    typeName,
     instances {
       id,
-      type,
+      typeName,
       instance {
         id,
         value,
@@ -49,10 +49,10 @@ query unitData($unitId: ID!, $typeRelationships:String!, $parameters: String!, $
       },
       children {
         id,
-        type,
+        typeName,
         instances {
           id,
-          type,
+          typeName,
           instance {
             id,
             value,

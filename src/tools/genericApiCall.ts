@@ -41,7 +41,7 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
         console.log(`server time out: ${err}`)
       }
 
-      if (err.code === 103 || err.response.errors[0].code === 103) {
+      if (err.code === 103 ||  (err.response && err.response.errors[0].code === 103)) {
         try {
           await refreshAccessToken(userInfo)
         } catch (refreshError) {
@@ -72,7 +72,7 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
             // finished = true
           })
         } catch (err) {
-          if (err.code === 103 || err.response.errors[0].code === 103) {
+          if (err.code === 103 || (err.response && err.response.errors[0].code === 103)) {
             try {
               await loginUser(userInfo)
             } catch {

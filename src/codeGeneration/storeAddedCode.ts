@@ -32,7 +32,8 @@ export const storeAddedCode = async (rootDir: string) => {
       const component = match[3]
       const location = match[4]
       // const firstLineEnding = match[5]
-      const contents = match[6]
+      let contents = match[6]
+      if (!contents || contents === '') contents = ' '
       // console.log(`match found: unit: ${unit} component: ${component} location: ${location} contents: ${contents}`)
       // console.log(`match found: unit: ${unit} component: ${component} location: ${location}`)
       if (!addedCode[unit]) addedCode[unit] = {}

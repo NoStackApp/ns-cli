@@ -42,8 +42,8 @@ interface ConnectedList {
 
 interface ConstraintInfo {
   constraintType: string,
-  type: string,
-  value: string
+  typeName: string,
+  constraintValue: string
 }
 
 interface ConstraintsSet {

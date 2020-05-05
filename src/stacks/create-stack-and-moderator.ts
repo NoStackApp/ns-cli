@@ -8,7 +8,7 @@ import {createStackQuery} from './create-stack-query'
 
 // const verifyUser = async () => {
 //   const response = await prompts({
-//     type: 'text',
+//     typeName: 'text',
 //     name: 'userConfirmed',
 //     message: `You must log in your moderator to proceed. Please check your email for a verification
 //             message from 'info@nostack.net' with the title 'Your verification link. When you've verified,

@@ -36,8 +36,8 @@ The file is a json, of the following format:
 
 *  "userClasses": a list of userClasses.
 *  "sources": a list of units.
-*  "types": a list of types.  The types have a section "sources" that shows information about the assn for a given type in each of its units.
-*  "actions": a list of actions.  Actions are grouped by action type.  See [Actions](NoStackApi.md#Actions). 
+*  "types": a list of types.  The types have a section "sources" that shows information about the assn for a given typeName in each of its units.
+*  "actions": a list of actions.  Actions are grouped by action typeName.  See [Actions](NoStackApi.md#Actions). 
 *  "stack": a list of stack metadata.
 
 [Note: the alpha version calls units "sources" in the `stack.json` file.  The plan is to change that to "units" in a future release.]

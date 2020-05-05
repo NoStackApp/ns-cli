@@ -37,7 +37,7 @@ async function generateFilesForType(
     dataType,
     nodeType
   }
-  // console.log(`*** type=${type}, assnType=${assnType}, nodeType=${nodeType}`)
+  // console.log(`*** typeName=${typeName}, assnType=${assnType}, nodeType=${nodeType}`)
 
   if (sourceUnit) {
     const selectionBoilerPlateInfo: BoilerPlateInfoType = {
@@ -101,7 +101,7 @@ export async function createTypeFiles(sources: Sources, userClass: string, curre
       let j
       for (j = 0; j < types.length; j++) {
         const type = types[j]
-        // console.log(`*** type=${type}`)
+        // console.log(`*** typeName=${typeName}`)
         await generateFilesForType(currentStack, type, source, selectionRoot, root, sourceInfo, highestLevel)
       }
 

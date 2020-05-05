@@ -105,7 +105,7 @@ The **unitData** query is the main one returned for a unit.  The generated front
 You can call it directly and examine the results for any unit that you create.  Check out the [sample unitData query file](../queries/queryFiles/unitData.gql) and some [sample unitData variable files](../queries/variables/unitData).
 
 #### Actions
-Actions are in effect virtual API endpoints for your own stack.  An action allows a type of user to do or request something.  Of course, this is useful for modifying data, but also for other actions.
+Actions are in effect virtual API endpoints for your own stack.  An action allows a typeName of user to do or request something.  Of course, this is useful for modifying data, but also for other actions.
 
 Actions have specific `actionTypes`.  \[Note: the alpha version doesn't support many actions yet, but a lot of them are planned.\]
 
@@ -118,7 +118,7 @@ The **CreateAction** mutation allows you to specify a new action.  You have to p
 * "actionType": one of the permitted types. 
 * "actionName": a string for humans that specifies what your action will achieve e.g. "Contact Supervisor"
 *   "userClassId": the id for the userClass to perform the action.  TIP: find ids in your stack.json file in 'userClasses', which is that the beginning.
-*  "actionParameters": a list of relevant parameters for the action type.  The good news is that if you are missing one NoStack will tell you.
+*  "actionParameters": a list of relevant parameters for the action typeName.  The good news is that if you are missing one NoStack will tell you.
 
 A call to `CreateAction` returns an id that can subsequently be used in calls to `ExecuteAction`. 
 
@@ -129,7 +129,7 @@ The **ExecuteAction** mutation allows you to run an action as it would be run by
 
 The parameters are as follows:
 *  "actionId": the id returned from a createAction call.  Note that the `stack.json` file also contains the id for each action.
-*  "executionParameters": a list of relevant parameters for the action type.  As with `CreateAction`, if you are missing one NoStack will tell you.
+*  "executionParameters": a list of relevant parameters for the action typeName.  As with `CreateAction`, if you are missing one NoStack will tell you.
 
 If you execute an unrestricted action, you must specify `"unrestricted":"true"` as well.
 

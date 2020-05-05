@@ -114,7 +114,7 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
     }
   }
 
-  // updateOnAddLine is 'refetchQueries' unless the current type is a property.
+  // updateOnAddLine is 'refetchQueries' unless the current typeName is a property.
   let updateOnAddLine = '\n      refetchQueries'
   children.map(
     child => {
@@ -126,12 +126,12 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
     }
   )
 
-  // constaintValue is is set to 'ignoredParameter' except in specific cases.
+  // constraintValue is is set to 'ignoredParameter' except in specific cases.
   let constraintValue = 'ignoredParameter'
   Object.keys(constraintsInfo).map(key => {
     if (constraintsInfo[key].constraintType === 'ID') {
-      if (constraintsInfo[key].type === parentType || sourceInfo.selectionRoot) {
-        constraintValue = constraintsInfo[key].value
+      if (constraintsInfo[key].typeName === parentType || sourceInfo.selectionRoot) {
+        constraintValue = constraintsInfo[key].constraintValue
       }
     }
   })
