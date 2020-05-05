@@ -45,7 +45,7 @@ class {{PluralName}} extends Component {
   handleSelect = id => this.setState({ selected{{SingularName}}Id: id });
 
   render () {
-    const { {{SingularParentName}}Id, {{SingularNameLowercase}}s, refetchQueries, onUpdate } = this.props;
+    const { {{SingularParentName}}Id, {{PluralNameLowercase}}, refetchQueries, onUpdate } = this.props;
     const { selected{{SingularName}}Id } = this.state;
 
     {/* np__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning */}
@@ -58,7 +58,7 @@ class {{PluralName}} extends Component {
           refetchQueries={refetchQueries}
         />
 
-        { {{SingularNameLowercase}}s.map({{SingularNameLowercase}} => (
+        { {{PluralNameLowercase}}.map({{SingularNameLowercase}} => (
           <{{SingularName}}
             key={v4()}
             {{SingularNameLowercase}}={ {{SingularNameLowercase}} }

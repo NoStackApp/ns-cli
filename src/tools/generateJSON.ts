@@ -97,7 +97,7 @@ const newType = (args: string[]) => {
 
   // @ts-ignore
   if (Object.keys(stack.sources[source].tree).length === 0 && stack.sources[source].tree.constructor === Object) {
-    // this is the first type to be added to the tree, which means that the parent type has not yet been
+    // this is the first typeName to be added to the tree, which means that the parent typeName has not yet been
     // added...
     // @ts-ignore
     stack.sources[source].root = parentType

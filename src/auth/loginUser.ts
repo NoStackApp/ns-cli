@@ -42,7 +42,7 @@ export async function loginUser(userInfo: UserInfo) {
     userInfo.stackId = returnedData.stackId
 
     // response = await prompts({
-    //   type: 'text',
+    //   typeName: 'text',
     //   name: 'stackId',
     //   message: `What is the stack id for ${userInfo.stack}?`
     // })

@@ -1,7 +1,6 @@
-resetStack
 
 ### USER CLASS ###
-newUserClass customer
+#newUserClass customer
 
 ### UNITS ###
 newUnit  appInfo customer

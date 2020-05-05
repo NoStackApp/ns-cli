@@ -3,7 +3,7 @@ import {genericApiCall} from '../tools/genericApiCall'
 
 const fs = require('fs-extra')
 
-export async function modifyStackFromSpec(templateFile: string, userInfo: UserInfo, sampleEmail: string, addedSuffix: string) {
+export async function modifyStackFromSpec(templateFile: string, userInfo: UserInfo, sampleEmail: string, addedSuffix: string, resetLevel: string) {
   // console.log(`in modifyStackFromSpec, userInfo:${JSON.stringify(userInfo)}`)
   let templateString = ''
   try {
@@ -15,7 +15,7 @@ export async function modifyStackFromSpec(templateFile: string, userInfo: UserIn
   }
 
   const query = `mutation {
-      DataSpec(template: "${templateString.replace(/\n/g, '\\n')}", platformId:"${userInfo.stackId}", sampleEmail: "${sampleEmail}", addedSuffix: "${addedSuffix}")
+      DataSpec(template: "${templateString.replace(/\n/g, '\\n')}", platformId:"${userInfo.stackId}", sampleEmail: "${sampleEmail}", addedSuffix: "${addedSuffix}", resetLevel: ${resetLevel})
   }
   `
 

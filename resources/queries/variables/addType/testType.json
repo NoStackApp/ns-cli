@@ -1,0 +1,8 @@
+{
+  "typeId": "pivotateTypeCreditCardName",
+  "typeName": "creditCardName",
+  "parentId": "a158f062-f084-4153-826f-cc8765380dc2",
+  "assnId": "a158f062-f084-4153-826f-cc8765380dc2ToCreditCardName",
+  "assnName": "creditCardNumberToName",
+  "treeId": "1b219263-3125-4bb4-a82e-1e181780fbb7-defaultTree"
+}

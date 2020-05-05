@@ -1,0 +1,78 @@
+userClasses:
+  director: {}
+  manager: {}
+  rep: {}
+
+units:
+  organizationList:
+    userClass: moderator
+    hierarchy:
+      - use#moderator:
+          - create#organization
+  registration#directorProfile:
+    userClass: director
+    hierarchy:
+      - use#director:
+          - select#organization__organizationList
+          - create#department
+  departmentView:
+    userClass: director
+    hierarchy:
+      - constrain#director:
+        - use#department__directorProfile:
+          - create#division:
+            - select#manager__allManagers
+  divisionView:
+    userClass: manager
+    hierarchy:
+      - constrain#manager:
+        - use#division__departmentView:
+          - select#rep__allReps
+  repView:
+    userClass: rep
+    hierarchy:
+      - constrain#rep:
+        - create#opportunity:
+          - create#company:
+              - create#step:
+                - create#isCurrent
+                - create#order
+          - create#amount
+          - create#date
+    properties:
+      amount:
+        dataType: number
+      order:
+        dataType: number
+      isCurrent:
+        dataType: boolean
+  selectable#allReps__rep:
+      userClass: manager
+      hierarchy:
+        - constrain#manager:
+          - use#organization__managerProfile:
+            - use#rep__repProfile
+  selectable#allManagers__manager:
+      userClass: director
+      hierarchy:
+        - constrain#director:
+          - use#organization__directorProfile:
+            - use#manager__managerProfile
+  registration#managerProfile:
+    userClass: manager
+    hierarchy:
+      - use#manager:
+          - select#organization__organizationList
+  registration#repProfile:
+    userClass: rep
+    hierarchy:
+      - use#rep:
+          - select#organization__organizationList
+  selectable#allRepFriends__rep:
+    userClass: rep
+    hierarchy:
+        - use#rep__repProfile
+joins:
+  friend:
+    from: rep__repView
+    to: rep__allRepFriends

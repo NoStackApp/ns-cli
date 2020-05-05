@@ -1,0 +1,18 @@
+units:
+  appSpec:
+    userClass: customer
+    hierarchy:
+      - create#app:
+          - create#userType:
+              - create#screen:
+                - create#infoType
+  selectable#parent__infoType:
+    userClass: customer
+    hierarchy:
+      - use#infoType__appSpec:
+          - use#screen__appSpec
+
+joins:
+  hasParent:
+    from: infoType__appSpec
+    to: infoType__parent

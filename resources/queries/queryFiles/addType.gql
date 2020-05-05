@@ -1,0 +1,18 @@
+mutation addType(
+  $typeId: ID
+  $typeName: String
+  $parentId: ID
+  $assnId: ID
+  $assnName: String
+  $treeId: ID
+  ) {
+    AddType(
+      typeId: $typeId
+      typeName: $typeName
+      parentId: $parentId
+      assnId: $assnId
+      assnName: $assnName
+      treeId: $treeId
+    )
+    {id, name}
+}

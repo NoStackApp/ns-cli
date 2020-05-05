@@ -1,5 +1,5 @@
 run:
-  resetStack
+  - resetStack
 
 user:
   - projectsForUser:
