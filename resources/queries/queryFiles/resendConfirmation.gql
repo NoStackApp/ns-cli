@@ -1,0 +1,3 @@
+mutation resendConfirmation($userNameOrEmail: String, $stackId: ID) {
+  ResendConfirmation(userNameOrEmail:$userNameOrEmail, stackId:$stackId)
+}
