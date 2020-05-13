@@ -101,7 +101,7 @@
     "test": "eslint . --ext .ts --config .eslintrc",
     "OLDtest": "mocha \"test/current/**/*.test.ts\"",
     "oldlint": "tsc -p test --noEmit && tslint -p test -t stylish",
-    "lint": "eslint . --ext .ts --config .eslintrc",
+    "lint": "eslint ./src  --ext .ts --config .eslintrc",
     "lint:fix": "eslint . --ext .ts --config .eslintrc --fix",
     "newtest": "mocha \"test/current/**/*.test.ts\"",
     "oldtest": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
