@@ -8,7 +8,7 @@ import {promptTypes, promptUser} from './promptUser'
 export async function stackExists(stackName: string) {
   // console.log(`in resetStackCall, userInfo:${JSON.stringify(userInfo)}`)
 
-  let userInfo: UserInfo = {
+  const userInfo: UserInfo = {
     name: '',
     stack: '',
     password: '',
@@ -64,7 +64,7 @@ export async function getNewStackName(stackName: string | undefined) {
     'stackName',
     promptTypes.TEXT,
     prompt,
-    testNewStack
+    testNewStack,
   )
 }
 
@@ -80,6 +80,6 @@ export async function getStackName(stackName: string | undefined) {
     'stackName',
     promptTypes.TEXT,
     prompt,
-    testExistingStack
+    testExistingStack,
   )
 }

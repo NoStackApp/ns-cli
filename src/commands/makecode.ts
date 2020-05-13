@@ -6,11 +6,11 @@ import {Command, flags} from '@oclif/command'
 import {generateAppCode} from '../codeGeneration/generateAppCode'
 import {insertAddedCode} from '../codeGeneration/insertAddedCode'
 import {storeAddedCode} from '../codeGeneration/storeAddedCode'
-import {AddedCode, StackInfo} from '../constants/types'
+import {StackInfo} from '../constants/types'
 // import {getAppName} from '../inputs/getAppName'
 import {isRequired} from '../inputs/isRequired'
 
-export const noNameError = errorEx('noNameError')
+export const NoNameError = errorEx('noNameError')
 
 export default class Makecode extends Command {
   static description = 'generates a starter app from a json provided by NoStack'
@@ -42,33 +42,23 @@ export default class Makecode extends Command {
       const userClasses = stack.userClasses
       const userClassNames = Object.keys(userClasses)
       if (userClassNames.length !== 1) {
-        this.log(`error calling makecode: you did not specify a user class with '--userClass' or '-c'.
-        Your options for user classes in the stack of this app are:\n\t\t${userClassNames.join('\n\t\t')}`)
-        process.exit(1)
+        const errMessage = `error calling makecode: you did not specify a user class with '--userClass' or '-c'.
+        Your options for user classes in the stack of this app are:\n\t\t${userClassNames.join('\n\t\t')}`
+        this.log(errMessage)
+        throw new Error(errMessage)
       }
       userClass = userClassNames[0]
       // this.log(`userClass has been set to ${userClass}`)
     }
 
     // store added code before generating new code.
-    try {
-      await storeAddedCode(appDir)
-    } catch (err) {
-      throw err
-    }
+    await storeAddedCode(appDir)
 
     const generateAppTasks = await generateAppCode(appDir, userClass, jsonPath)
     await generateAppTasks.run().catch((err: any) => {
       console.error(err)
     })
 
-    try {
-      // const rootDir = '/home/yisroel/projects/temp/taskManager2/'
-                            // appDir
-      await insertAddedCode(appDir)
-    } catch (err) {
-      throw err
-    }
-
+    await insertAddedCode(appDir)
   }
 }

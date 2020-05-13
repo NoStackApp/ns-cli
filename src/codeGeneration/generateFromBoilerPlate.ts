@@ -5,7 +5,7 @@ const replace = require('replace-in-file')
 export async function generateFromBoilerPlate(
   boilerPlate: string,
   newFile: string,
-  substitutions: object
+  substitutions: object,
 ) {
   // console.log(`boilerPlate=${boilerPlate}, newFile=${newFile}`)
   try {

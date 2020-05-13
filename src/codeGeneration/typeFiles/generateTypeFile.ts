@@ -22,7 +22,7 @@ export async function generateTypeFile(type: string, source: string, boilerPlate
 
   const path = `${compDir}/${singularName(source)}/${dir}`
   const dirList = [
-    path
+    path,
   ]
 
   const tags = replacementTags(type, source, currentStack)

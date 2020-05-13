@@ -1,17 +1,18 @@
 import {Command, flags} from '@oclif/command'
-export default class Createstack extends Command {
+export default class Dataspec extends Command {
     static description: string;
 
     static examples: string[];
 
     static flags: {
         help: import('@oclif/parser/lib/flags').IBooleanFlag<void>;
+        jsonPath: flags.IOptionFlag<string | undefined>;
         stack: flags.IOptionFlag<string | undefined>;
-        licenseId: flags.IOptionFlag<string | undefined>;
+        template: flags.IOptionFlag<string | undefined>;
         user: flags.IOptionFlag<string | undefined>;
         email: flags.IOptionFlag<string | undefined>;
-        password: flags.IOptionFlag<string | undefined>;
-        force: import('@oclif/parser/lib/flags').IBooleanFlag<boolean>;
+        addedSuffix: flags.IOptionFlag<string | undefined>;
+        resetLevel: flags.IOptionFlag<string | undefined>;
     };
 
     run(): Promise<void>;

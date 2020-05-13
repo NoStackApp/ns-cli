@@ -36,7 +36,7 @@ export async function createQueryFile(currentStack: StackInfo, source: string) {
   const queryFileText = queryFileTemplate({
     sourceAllCaps: allCaps(source),
     queryBody: sourceInfo.props.queryBody,
-    typeRelationships: sourceInfo.props.typeRelationships
+    typeRelationships: sourceInfo.props.typeRelationships,
   })
 
   const queryFile = `${sourcePropsDir}/${source}.js`
@@ -45,5 +45,4 @@ export async function createQueryFile(currentStack: StackInfo, source: string) {
   } catch (err) {
     console.error(err)
   }
-
 }

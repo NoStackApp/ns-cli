@@ -8,7 +8,7 @@ import {promptTypes, promptUser} from './promptUser'
 export async function licenseValid(licenseId: string) {
   // console.log(`in resetLicenseCall, userInfo:${JSON.stringify(userInfo)}`)
 
-  let userInfo: UserInfo = {
+  const userInfo: UserInfo = {
     name: '',
     stack: '',
     password: '',
@@ -53,6 +53,6 @@ export async function getLicenseId(licenseId: string | undefined) {
     'licenseId',
     promptTypes.PASSWORD,
     prompt,
-    testLicenseId
+    testLicenseId,
   )
 }

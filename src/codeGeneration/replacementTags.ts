@@ -6,7 +6,7 @@ import {
   pluralName,
   queryForSource,
   relationshipsForSource,
-  singularName
+  singularName,
 } from '../tools/inflections'
 
 const Handlebars = require('handlebars')
@@ -103,14 +103,14 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
   const typeSourceInfo = currentStack.types[type].sources[source]
   const {parentType} = typeSourceInfo
 
-  let children = sourceInfo.selectedTree[type]
+  const children = sourceInfo.selectedTree[type]
   const connectedSource: string = sourceInfo.connections[type]
   const constraintsInfo = sourceInfo.constraints
 
   let connectedChildren: TreeTypeChildrenList = {}
   if (connectedSource) {
     connectedChildren = {
-      ...currentStack.sources[connectedSource].tree[type]
+      ...currentStack.sources[connectedSource].tree[type],
     }
   }
 
@@ -123,7 +123,7 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
       if (assnInfo.assnType === associationTypes.SINGLE_REQUIRED) {
         updateOnAddLine = ''
       }
-    }
+    },
   )
 
   // constraintValue is is set to 'ignoredParameter' except in specific cases.
@@ -155,7 +155,7 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
         if (assnInfo.assnType !== associationTypes.SINGLE_REQUIRED)
           return {childComponent: pluralName(child)}
         return {childComponent: singularName(child)}
-      })
+      }),
     }) + connectedChildrenImportsTemplate(
       {
         connectedChildren: Object.keys(connectedChildren).map((child: string) => {
@@ -163,10 +163,9 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
           if (connectedChildren[child] !== associationTypes.SINGLE_REQUIRED)
             return {childComponent: pluralName(child), singularConnected}
           return {childComponent: singularName(child), singularConnected}
-        })
-      }
-    )
-    ,
+        }),
+      },
+    ),
     ChildrenTypeList: childrenTypeListTemplate({
       children: children.map(child => {
         return {childAllCaps: allCaps(child)}
@@ -190,7 +189,6 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
           child,
           type,
         }
-
       }),
     }) + connectedChildrenBodyTemplate(
       {
@@ -198,8 +196,8 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
           if (connectedChildren[child] !== associationTypes.SINGLE_REQUIRED)
             return {childComponent: pluralName(child), type}
           return {childComponent: singularName(child), type}
-        })
-      }
+        }),
+      },
     ),
     CHILDREN_CONSTANT_DECLARATIONS: childrenConstantDeclarationsTemplate({
       children: children.map(child => {
@@ -211,15 +209,14 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
             childAllCaps: allCaps(child),
             child,
             type,
-            pluralChild: pluralLowercaseName(child)
+            pluralChild: pluralLowercaseName(child),
           }
         return {
           nonProperty: false,
           childAllCaps: allCaps(child),
           child,
-          type
+          type,
         }
-
       }),
     }),
     CONSTRAINT_VALUE: constraintValue,
@@ -231,7 +228,7 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
         const assnInfo = childInfo.sources[source]
         if (assnInfo.assnType === associationTypes.SINGLE_REQUIRED)
           return {childAllCaps: allCaps(child), sourceAllCaps: allCaps(source)}
-      }).filter(Boolean)
+      }).filter(Boolean),
     }),
     TYPE_IDS_FOR_SINGLE_CHILDREN: typeIdsForSingleChildrenTemplate({
       children: children.map(child => {
@@ -253,7 +250,7 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
             sourceAllCaps: allCaps(source),
             singularParent: singularName(type),
           }
-      })
+      }),
     }),
     SINGLE_CHILDREN_COMPOSE_STATEMENTS: singleChildrenComposeStatementsTemplate({
       children: children.map(child => {
