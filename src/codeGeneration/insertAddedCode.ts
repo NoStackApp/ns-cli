@@ -7,7 +7,7 @@
 
 // const recursive = require('recursive-readdir')
 
-                                      //rootDir: string
+// rootDir: string
 import chalk from 'chalk'
 import execa = require('execa')
 import * as path from 'path'
@@ -36,11 +36,11 @@ export const insertAddedCode = async (appDir: string) => {
 
   await execa(
     `${gruntDir}/node_modules/.bin/grunt`,
-    ['--appDir=' + baseDir, `--base=${gruntDir}`]
+    ['--appDir=' + baseDir, `--base=${gruntDir}`],
   ).catch(
     (error: any) => {
       throw new Error(`${chalk.red('error inserting added code.')} Here is the error reported:\n${error}`)
-    }
+    },
   )
 
   // console.log(`gruntDir=${gruntDir}`)

@@ -33,6 +33,5 @@ export default class Newapp extends Command {
       console.error(err)
     })
     // shell.exec(`/home/yisrael/projects/ns-cli/bin/create-no-stack-app "${appDir}"`)
-
   }
 }

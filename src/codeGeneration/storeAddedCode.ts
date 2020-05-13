@@ -23,9 +23,12 @@ export const storeAddedCode = async (rootDir: string) => {
   let i
   for (i = 0; i < files.length; i++) {
     const file = compsDir + files[i]
+    // eslint-disable-next-line no-await-in-loop
     const fileText = await fs.readFile(file, 'utf-8')
     // console.log(`fileText: ${fileText}`)
     let match
+
+    // eslint-disable-next-line no-cond-assign
     while (match = regExAddedCodeSection.exec(fileText)) {
       // if (!output[match[1]])
       const unit = match[2]
@@ -39,14 +42,9 @@ export const storeAddedCode = async (rootDir: string) => {
       if (!addedCode[unit]) addedCode[unit] = {}
       if (!addedCode[unit][component]) addedCode[unit][component] = {}
       addedCode[unit][component][location] = contents
-
     }
   }
 
   // console.log(`addedCode: ${JSON.stringify(addedCode, null, 2)}`)
-  try {
-    await fs.writeJson(addedCodeJsonFile, addedCode)
-  } catch (err) {
-    throw err
-  }
+  await fs.writeJson(addedCodeJsonFile, addedCode)
 }

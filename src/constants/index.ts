@@ -25,7 +25,7 @@ export const formTypes = {
   CREATION: 'creation',
   SINGLE_INSTANCE: 'single',
   LIST: 'list',
-  SELECTION: 'selection'
+  SELECTION: 'selection',
 }
 
 export const unitTypes = {
@@ -34,9 +34,9 @@ export const unitTypes = {
 }
 
 export interface BoilerPlateInfoType {
-  formType: string,
-  dataType: string,
-  nodeType: string,
+  formType: string;
+  dataType: string;
+  nodeType: string;
 }
 
 export const boilerPlateTypes = {

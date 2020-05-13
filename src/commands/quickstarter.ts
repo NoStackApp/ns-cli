@@ -73,7 +73,7 @@ export default class Quickstarter extends Command {
 
     const userClass = flags.userClass || isRequired('userClass', 'quickstarter', '-c')
 
-    let userInfo: UserInfo = {
+    const userInfo: UserInfo = {
       name: user,
       stack,
       password,
@@ -95,11 +95,11 @@ export default class Quickstarter extends Command {
     const tasks = new Listr([
       {
         title: 'Create a Base NoStack App',
-        task: async () => newAppTasks
+        task: async () => newAppTasks,
       },
       {
         title: 'Create an Empty Stack',
-        task: async () => newStackTasks
+        task: async () => newStackTasks,
       },
       {
         title: 'Build Stack from Template',
@@ -120,8 +120,7 @@ export default class Quickstarter extends Command {
           if (!isStackFile) {
             throw new Error(errorMessage('stack file was not generated on the front end.'))
           }
-
-        }
+        },
       },
       {
         title: 'Generate Front End Code',

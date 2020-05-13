@@ -55,7 +55,7 @@ export async function createConfigFile(currentStack: StackInfo, appName: string)
         const currentActionInfo = actionsForCurrentType[action]
         return {
           actionConst: currentActionInfo.const,
-          actionId: currentActionInfo.id
+          actionId: currentActionInfo.id,
         }
       }),
     }

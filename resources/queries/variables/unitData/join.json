@@ -1,0 +1,7 @@
+{
+  "id": "5cc02b54-8542-4d72-be5b-3ce2b131671d",
+  "parameters": "{\"currentCustomer\":\"2ea51c4a-c072-4797-9de7-4bec0fc11db3\"}",
+  "typeRelationships": "{\"app\":{\"userType\":{\"screen\":{\"infoType\":{\"hasParent\":null}}},\"description\":null}}",
+
+  "unrestricted": false
+}

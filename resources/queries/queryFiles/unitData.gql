@@ -1,5 +1,5 @@
-query unitData($unitId: ID!, $typeRelationships:String!, $parameters: String!, $unrestricted: Boolean!) { unitData(unitId: $unitId, typeRelationships:$typeRelationships, parameters: $parameters, unrestricted: $unrestricted){
-    id,
+query unitData($id: ID!, $typeRelationships:String!, $parameters: String!, $unrestricted: Boolean!) {
+  unitData(unitId: $id, typeRelationships:$typeRelationships, parameters: $parameters, unrestricted: $unrestricted){
     instance {
         id,
         value,
@@ -8,7 +8,6 @@ query unitData($unitId: ID!, $typeRelationships:String!, $parameters: String!, $
     children {
         typeId,
         instances {
-            id,
             instance {
                 id,
                 value,
@@ -17,12 +16,33 @@ query unitData($unitId: ID!, $typeRelationships:String!, $parameters: String!, $
             children {
                 typeId,
                 instances {
-                    id,
                     instance {
                         id,
                         value,
                         order
                     },
+                    children {
+                        typeId,
+                        instances {
+                            instance {
+                                id,
+                                value,
+                                order
+                            },
+                            children {
+                                typeId,
+                                instances {
+                                    instance {
+                                        id,
+                                        value,
+                                        order
+                                    },
+
+                                }
+                            }
+
+                        }
+                    }
                 }
             }
         }

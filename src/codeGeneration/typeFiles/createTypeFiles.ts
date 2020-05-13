@@ -10,7 +10,7 @@ async function generateFilesForType(
   selectionRoot: string,
   root: string,
   sourceInfo: SourceInfo,
-  highestLevel: string
+  highestLevel: string,
 ) {
   const typeInfo = currentStack.types[type]
   const typeSourceInfo = typeInfo.sources[source]
@@ -35,7 +35,7 @@ async function generateFilesForType(
   const boilerPlateInfo: BoilerPlateInfoType = {
     formType,
     dataType,
-    nodeType
+    nodeType,
   }
   // console.log(`*** typeName=${typeName}, assnType=${assnType}, nodeType=${nodeType}`)
 
@@ -56,25 +56,25 @@ async function generateFilesForType(
     const creationBoilerPlateInfo = {
       formType: formTypes.CREATION,
       dataType,
-      nodeType
+      nodeType,
     }
     await generateTypeFile(type, source, creationBoilerPlateInfo, currentStack)
 
     const singularBoilerPlateInfo = {
       formType: formTypes.LIST,
       dataType,
-      nodeType
+      nodeType,
     }
     await generateTypeFile(type, source, singularBoilerPlateInfo, currentStack)
   }
 }
 
 export async function createTypeFiles(sources: Sources, userClass: string, currentStack: StackInfo) {
-  let sourceKeys = Object.keys(sources)
+  const sourceKeys = Object.keys(sources)
 
   let i
   for (i = 0; i < sourceKeys.length; i++) {
-    let source = sourceKeys[i]
+    const source = sourceKeys[i]
     const sourceInfo = sources[source]
     const {owner} = sourceInfo
     // console.log(`source=${source}, userClass=${userClass}`)
@@ -82,7 +82,7 @@ export async function createTypeFiles(sources: Sources, userClass: string, curre
 
     try {
       const highestLevel = 'highestLevel'
-      let selectedTree = {...sourceInfo.selectedTree}
+      const selectedTree = {...sourceInfo.selectedTree}
       const highestLevelList = selectedTree[highestLevel]
       let selectionRoot = highestLevelList[0]
       const root = sourceInfo.root
@@ -102,9 +102,9 @@ export async function createTypeFiles(sources: Sources, userClass: string, curre
       for (j = 0; j < types.length; j++) {
         const type = types[j]
         // console.log(`*** typeName=${typeName}`)
+        // eslint-disable-next-line no-await-in-loop
         await generateFilesForType(currentStack, type, source, selectionRoot, root, sourceInfo, highestLevel)
       }
-
     } catch (sourceCreationError) {
       throw new Error(`error creating source ${source}: ${sourceCreationError}`)
     }

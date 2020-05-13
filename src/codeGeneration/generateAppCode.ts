@@ -31,7 +31,7 @@ export async function generateCodeFiles(appDir: string, userClass: string, jsonP
 
   const sources = currentStack.sources
 
-  //mapObject
+  // mapObject
 
   await Promise.all(Object.keys(sources).map(async source => {
     await createQueryFile(currentStack, source)
@@ -51,8 +51,7 @@ export async function generateAppCode(appDir: string, userClass: string, jsonPat
           console.log(`git error when attempting to generate the code: ${err}`)
           throw new Error(err)
         }
-        return
-      }
+      },
     },
     {
       title: 'Make First Git Commit',
@@ -60,7 +59,7 @@ export async function generateAppCode(appDir: string, userClass: string, jsonPat
         try {
           await execa(
             'git',
-            ['-C', appDir, 'add', '.']
+            ['-C', appDir, 'add', '.'],
           )
         } catch (err) {
           console.log(`git error when adding changed files.  Perhaps your generated code didn't change?: ${err}`)
@@ -70,16 +69,14 @@ export async function generateAppCode(appDir: string, userClass: string, jsonPat
         try {
           await execa(
             'git',
-            ['-C', appDir, 'commit', '-m', 'generated no-stack code :tada:']
+            ['-C', appDir, 'commit', '-m', 'generated no-stack code :tada:'],
           )
         } catch (err) {
           console.log(`git error when attempting to commit the generation of code.  Perhaps your generated code didn't change? ${err}`)
-          return
         }
       },
     },
   ])
 
   return tasks
-
 }

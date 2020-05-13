@@ -8,7 +8,6 @@ export async function modifyStackFromSpec(templateFile: string, userInfo: UserIn
   let templateString = ''
   try {
     templateString = await fs.readFile(templateFile, 'utf8')
-
   } catch (err) {
     console.error(err)
     throw new Error(`error building stack from template: ${err}`)
