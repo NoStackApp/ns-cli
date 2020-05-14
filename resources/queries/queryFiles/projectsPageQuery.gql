@@ -1,1 +1,0 @@
-	query UNIT($id: ID!, $typeRelationships: String!, $parameters: String) { unitData(unitId: $id, typeRelationships: $typeRelationships, parameters: $parameters) { instance { id value __typename } __typename } }

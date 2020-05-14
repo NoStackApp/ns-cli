@@ -1,3 +1,0 @@
-mutation EXECUTE_ACTION($actionId: ID!, $executionParameters: String, $unrestricted: Boolean) {
-  ExecuteAction(actionId: $actionId, executionParameters: $executionParameters, unrestricted: $unrestricted)
-}

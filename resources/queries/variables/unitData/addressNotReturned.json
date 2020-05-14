@@ -1,6 +1,0 @@
-{
-  "id": "ca494984-5992-42dc-ac88-31f90c1618bf",
-  "typeRelationships": "{\"user\": {\"address\":null,\"firstName\":null,\"lastName\":null,\"active\":null}}",
-  "unrestricted": false,
-  "parameters": "{\"__currentUser__\":\"d74a1b9a-db8d-4026-8f1d-b2d815c7228d\"}"
-}

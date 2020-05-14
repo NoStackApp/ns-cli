@@ -49,9 +49,9 @@ export default class Spinstack extends Command {
 
     const addedSuffix = flags.addedSuffix || ''
 
-    let userInfo: UserInfo = newUserInfo(user)
+    const userInfo: UserInfo = newUserInfo(user)
     userInfo.stack = stack
-    userInfo = await getUserInfo(userInfo)
+    // userInfo = await getUserInfo(userInfo)
 
     const json = await buildStackFromTemplate(flowSpec, userInfo, email, addedSuffix)
 
