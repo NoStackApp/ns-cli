@@ -43,7 +43,7 @@ export default class Callapi extends Command {
 
     let userInfo: UserInfo = newUserInfo(user)
     userInfo.stack = stack
-    console.log(`in callapi, userInfo:${JSON.stringify(userInfo)}`)
+    // console.log(`in callapi, userInfo:${JSON.stringify(userInfo)}`)
 
     const variables = await fs.readJson(variablesFile)
     const {unrestricted} = variables
