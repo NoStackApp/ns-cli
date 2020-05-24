@@ -50,7 +50,20 @@ interface ConstraintsSet {
   [type: string]: ConstraintInfo;
 }
 
+interface JoinInfo {
+  fromType: string;
+  toUnit: string;
+  toType: string;
+  assnType: string;
+  joinAssnId: string;
+}
+
+interface JoinsList {
+  [join: string]: JoinInfo;
+}
+
 export interface SourceInfo {
+  id: string;
   const: string;
   unitType: string;
   props: PropsInfo;
@@ -64,7 +77,7 @@ export interface SourceInfo {
   owner: string;
   root: string;
   selectionRoot: string;
-  id: string;
+  joins: JoinsList;
 }
 
 /*

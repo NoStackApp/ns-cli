@@ -4,7 +4,7 @@ import {createConfigFile} from './createConfigFile'
 import {createHighestLevelFiles} from './createHighestLevelFiles'
 import {createQueryFile} from './createQueryFile'
 import {createTopProjectDirs, srcDir} from './createTopProjectDirs'
-import {createTypeFiles} from './typeFiles/createTypeFiles'
+import {generateAppTypeFiles} from './typeFiles/generateAppTypeFiles'
 
 const execa = require('execa')
 const fs = require('fs-extra')
@@ -20,24 +20,41 @@ export async function generateCodeFiles(appDir: string, userClass: string, jsonP
   // console.log(`stacklocation=${appDir}/stack.json`)
   const currentStack: StackInfo = await fs.readJSON(jsonPath) // await generateJSON.bind(this)(template, appDir)
 
-  await createTopProjectDirs(currentStack, appDir)
+  try {
+    await createTopProjectDirs(currentStack, appDir)
+  } catch (err) {
+    throw new Error('error in creating top project directories')
+  }
+
   // console.log(`appDir=${appDir}`)
   const appName = appNameFromPath(appDir)
   const configText = await createConfigFile(currentStack, appName)
   // console.log(`configText=${configText}`)
   fs.outputFile(`${srcDir}/config/index.js`, configText)
 
-  await createHighestLevelFiles(currentStack, appDir, userClass)
+  try {
+    await createHighestLevelFiles(currentStack, appDir, userClass)
+  } catch (err) {
+    throw new Error('error in creating highest level files')
+  }
 
   const sources = currentStack.sources
 
   // mapObject
 
-  await Promise.all(Object.keys(sources).map(async source => {
-    await createQueryFile(currentStack, source)
-  }))
+  try {
+    await Promise.all(Object.keys(sources).map(async source => {
+      await createQueryFile(currentStack, source)
+    }))
+  } catch (err) {
+    throw new Error('error in creating top project directories')
+  }
 
-  await createTypeFiles(sources, userClass, currentStack)
+  try {
+    await generateAppTypeFiles(sources, userClass, currentStack)
+  } catch (err) {
+    throw new Error('error in creating app component files')
+  }
 }
 
 export async function generateAppCode(appDir: string, userClass: string, jsonPath: string) {
@@ -54,7 +71,7 @@ export async function generateAppCode(appDir: string, userClass: string, jsonPat
       },
     },
     {
-      title: 'Make First Git Commit',
+      title: 'Make Git Commit',
       task: async () => {
         try {
           await execa(
@@ -69,7 +86,7 @@ export async function generateAppCode(appDir: string, userClass: string, jsonPat
         try {
           await execa(
             'git',
-            ['-C', appDir, 'commit', '-m', 'generated no-stack code :tada:'],
+            ['-C', appDir, 'commit', '-m', 'generated no-stack code using make-code :tada:'],
           )
         } catch (err) {
           console.log(`git error when attempting to commit the generation of code.  Perhaps your generated code didn't change? ${err}`)
