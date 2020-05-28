@@ -10,7 +10,7 @@ export default class Deletestack extends Command {
   static description = 'Deletes a moderator and stack.  Must be called by the moderator.'
 
   static examples = [
-    '$ nostack deletestack -u mod -s tempstack'
+    '$ nostack deletestack -u mod -s tempstack',
   ]
 
   static flags = {

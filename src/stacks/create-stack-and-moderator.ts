@@ -29,27 +29,26 @@ export async function createStackAndModerator(userInfo: UserInfo) {
       title: 'Create the new stack',
       task: async () => {
         await createStackQuery(userInfo)
-      }
+      },
     },
     {
       title: 'Verify moderator identity',
-      task: () => input(`Verify your moderator via email, then hit enter.`, {
+      task: () => input('Verify your moderator via email, then hit enter.', {
         // validate: value => value.length > 0,
         // done: credentials => got('https://myapi.com', {
         //   headers: {
         //     Authorization: `Bearer ${credentials}`
         //   }
         // })
-      })
+      }),
     },
     {
       title: 'Log in the moderator',
       task: async () => {
         await loginUser(userInfo)
-      }
+      },
     },
   ])
 
   return tasks
-
 }

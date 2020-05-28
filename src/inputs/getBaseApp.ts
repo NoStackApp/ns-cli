@@ -21,6 +21,6 @@ export async function getBaseApp(baseApp: string | undefined) {
     'baseApp',
     promptTypes.TEXT,
     prompt,
-    testBaseApp
+    testBaseApp,
   )
 }

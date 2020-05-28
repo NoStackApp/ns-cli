@@ -1,1 +1,1 @@
-export declare const errorMessage: (details: string) => string;
+export declare const errorMessage: (details: string) => string

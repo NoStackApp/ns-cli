@@ -30,6 +30,6 @@ export async function getAppDir(appDir: string | undefined) {
     'appDir',
     promptTypes.TEXT,
     prompt,
-    testAppDir
+    testAppDir,
   )
 }

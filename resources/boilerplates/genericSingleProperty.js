@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {EXECUTE_ACTION} from '@nostack/no-stack';
+import {EXECUTE} from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import {graphql} from '@apollo/react-hoc';
 
@@ -115,5 +115,5 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance,
 }
 
 export default compose(
-  graphql(EXECUTE_ACTION, { name: 'updateInstance' }),
+  graphql(EXECUTE, { name: 'updateInstance' }),
 )({{SingularName}});

@@ -33,8 +33,8 @@ interface ConnectedList {
 }
 interface ConstraintInfo {
     constraintType: string;
-    type: string;
-    value: string;
+    typeName: string;
+    constraintValue: string;
 }
 interface ConstraintsSet {
     [type: string]: ConstraintInfo;
@@ -115,4 +115,13 @@ export interface StackInfo {
     actions: ActionsByActionType;
     stack: StackMeta;
 }
-export {};
+export interface CompInfo {
+    [location: string]: string;
+}
+export interface UnitInfo {
+    [comp: string]: CompInfo;
+}
+export interface AddedCode {
+    [unit: string]: UnitInfo;
+}
+export {}

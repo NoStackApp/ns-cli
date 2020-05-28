@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
-import { withNoStack, EXECUTE_ACTION } from '@nostack/no-stack';
+import { withNoStack, EXECUTE } from '@nostack/no-stack';
 
 import {{SingularName}}Select from '../../{{SelectionSource}}/{{SingularName}}Select';
 import { CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ACTION_IDS_FOR_SINGLE_CHILDREN}}{{TYPE_IDS_FOR_SINGLE_CHILDREN}} } from '../../../config';
@@ -60,4 +60,4 @@ function {{SingularName}}CreationForm({ parentId, create{{SingularName}}{{SINGLE
   );
 }
 
-export default graphql(EXECUTE_ACTION, { name: 'create{{SingularName}}' })({{SingularName}}CreationForm);
+export default graphql(EXECUTE, { name: 'create{{SingularName}}' })({{SingularName}}CreationForm);

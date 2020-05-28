@@ -7,7 +7,7 @@ const byline = require('byline')
 const errorEx = require('error-ex')
 const pluralize = require('pluralize')
 const inflection = require('inflection')
-const noNameError = errorEx('noNameError')
+const NoNameError = errorEx('noNameError')
 
 // let templateFile = ''
 
@@ -23,9 +23,9 @@ const newUserClass = (args: any[]) => {
   // console.log('args[0]=',args[0])
   const name = args[0]
   if (!name) {
-    const err = (new noNameError())
+    const err = (new NoNameError())
     err.message = 'newUserClass without a name in the template'
-    throw(err)
+    throw (err)
   }
 
   // var obj = {
@@ -198,13 +198,13 @@ const updateData = (command: string, args: string[]) => {
 }
 
 export async function generateJSON(template: string, appDir: string) {
-  let stream = byline(fs.createReadStream(template, {encoding: 'utf8'}))
+  const stream = byline(fs.createReadStream(template, {encoding: 'utf8'}))
   let firstWord = ''
   let rest = []
 
   stream.on('data', function (line: { replace(arg0: RegExp, arg1: string): { split(arg0: string): any[];
-    split(s: string): any[]
-  }}) {
+    split(s: string): any[];
+  };}) {
     rest = line.replace(/\s\s+/g, ' ').split(' ')
     firstWord = rest.shift()
     updateData(firstWord, rest)

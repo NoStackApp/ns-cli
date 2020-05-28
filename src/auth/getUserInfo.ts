@@ -23,11 +23,9 @@ export async function getUserInfo(userInfo: UserInfo) {
       } catch (err) {
         console.error(err)
       }
-
     } else {
       console.error(err)
     }
-
   }
 
   // console.log(`in getUserInfo, userInfo:${JSON.stringify(userInfo)}`)

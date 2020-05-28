@@ -1,9 +1,11 @@
-import { Command, flags } from '@oclif/command';
+import {Command, flags} from '@oclif/command'
 export default class Quickstarter extends Command {
     static description: string;
+
     static examples: string[];
+
     static flags: {
-        help: import("@oclif/parser/lib/flags").IBooleanFlag<void>;
+        help: import('@oclif/parser/lib/flags').IBooleanFlag<void>;
         appDir: flags.IOptionFlag<string | undefined>;
         stack: flags.IOptionFlag<string | undefined>;
         template: flags.IOptionFlag<string | undefined>;
@@ -15,6 +17,8 @@ export default class Quickstarter extends Command {
         jsonPath: flags.IOptionFlag<string | undefined>;
         baseApp: flags.IOptionFlag<string | undefined>;
     };
+
     static args: never[];
+
     run(): Promise<void>;
 }

@@ -8,7 +8,7 @@ import {promptTypes, promptUser} from './promptUser'
 export async function moderatorExists(moderatorName: string) {
   // console.log(`in resetModeratorCall, userInfo:${JSON.stringify(userInfo)}`)
 
-  let userInfo: UserInfo = {
+  const userInfo: UserInfo = {
     name: '',
     stack: '',
     password: '',
@@ -29,7 +29,8 @@ export async function moderatorExists(moderatorName: string) {
   return returnedData.moderatorExists
 }
 
-const testModeratorName = async (moderatorName: string, isNew: boolean) => {
+// const testModeratorName = async (moderatorName: string, isNew: boolean) => {
+const testModeratorName = async (moderatorName: string) => {
   if (!moderatorName || moderatorName.length === 0)
     return 'Please enter a name for your moderator (all numbers and letters, no spaces).'
 
@@ -49,8 +50,10 @@ const testModeratorName = async (moderatorName: string, isNew: boolean) => {
   return ''
 }
 
-const testNewModerator = async (moderatorName: string) => testModeratorName(moderatorName, true)
-const testExistingModerator = async (moderatorName: string) => testModeratorName(moderatorName, false)
+// const testNewModerator = async (moderatorName: string) => testModeratorName(moderatorName, true)
+// const testExistingModerator = async (moderatorName: string) => testModeratorName(moderatorName, false)
+const testNewModerator = async (moderatorName: string) => testModeratorName(moderatorName)
+const testExistingModerator = async (moderatorName: string) => testModeratorName(moderatorName)
 
 export async function getNewModeratorName(moderatorName: string | undefined) {
   let prompt = 'Please enter a name for your moderator (all numbers and lowercase letters, no spaces).'
@@ -64,7 +67,7 @@ export async function getNewModeratorName(moderatorName: string | undefined) {
     'moderatorName',
     promptTypes.TEXT,
     prompt,
-    testNewModerator
+    testNewModerator,
   )
 }
 
@@ -80,6 +83,6 @@ export async function getExistingModeratorName(moderatorName: string | undefined
     'moderatorName',
     promptTypes.TEXT,
     prompt,
-    testExistingModerator
+    testExistingModerator,
   )
 }

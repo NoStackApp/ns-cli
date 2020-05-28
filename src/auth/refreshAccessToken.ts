@@ -1,9 +1,10 @@
 import {GraphQLClient} from 'graphql-request'
+import * as path from 'path'
 
 import {liveServer} from '../constants'
 import {UserInfo} from '../constants/types'
 
-require('dotenv').config({path: __dirname + '/./../.env'})
+require('dotenv').config({path: path.join(__dirname, '/./../.env')})
 
 const isDev = process.env.NODE_ENV === 'development'
 // console.log(`process.env.LOCAL_SERVER=${process.env.LOCAL_SERVER}`)
@@ -15,7 +16,7 @@ export async function refreshAccessToken(userInfo: UserInfo) {
   const REFRESH_ACTION_ID = '9039e9c4-5b88-4575-8ed4-1fa1b27dc7a7'
   const executionParameters = {
     refreshToken: userInfo.refreshToken,
-    platformId: userInfo.stackId
+    platformId: userInfo.stackId,
   }
   const embeddableExecutionParameters = JSON.stringify(executionParameters).replace(/"/g, '\\"')
   // console.log('embeddableExecutionParameters=', embeddableExecutionParameters)
@@ -26,17 +27,18 @@ export async function refreshAccessToken(userInfo: UserInfo) {
       }
   `
   const client = new GraphQLClient(server, {
-    headers: {}
+    headers: {},
   })
 
   // console.log('query=', query)
+  // eslint-disable-next-line require-atomic-updates
   userInfo.accessToken = await client.request(query).then(data => {
     // console.log(data)
     const ExecuteAction = JSON.parse(data.ExecuteAction)  // .AuthenticationResult // AccessToken
     return (ExecuteAction.AuthenticationResult.AccessToken)
     // console.log(`newAccessToken=${newAccessToken}`)
   })
-    // .catch(refreshError => {
-    //   console.log(`error With refresh: ${refreshError.response.errors[0]}`)
-    // })
+  // .catch(refreshError => {
+  //   console.log(`error With refresh: ${refreshError.response.errors[0]}`)
+  // })
 }

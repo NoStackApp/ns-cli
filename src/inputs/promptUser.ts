@@ -20,6 +20,7 @@ export const promptUser = async (paramName: string, promptType: string, message:
   while (!returnValue) {
     if (abort) return null
     try {
+      // eslint-disable-next-line no-await-in-loop
       promptResults = await prompts({
         type: promptType,
         name: paramName,
@@ -27,6 +28,7 @@ export const promptUser = async (paramName: string, promptType: string, message:
       }, {onCancel})
       returnValue = promptResults[paramName]
       // console.log(`returnValue=${JSON.stringify(returnValue)}`)
+      // eslint-disable-next-line no-await-in-loop
       prompt = await testValue(returnValue)
       if (prompt.length === 0) return returnValue
       returnValue = null

@@ -1,4 +1,5 @@
 const errorEx = require('error-ex')
+const fs = require('fs-extra')
 
 import {Command, flags} from '@oclif/command'
 
@@ -42,8 +43,11 @@ export default class Callapi extends Command {
 
     let userInfo: UserInfo = newUserInfo(user)
     userInfo.stack = stack
-    // console.log(`in spinstack, userInfo:${JSON.stringify(userInfo)}`)
-    userInfo = await getUserInfo(userInfo)
+    // console.log(`in callapi, userInfo:${JSON.stringify(userInfo)}`)
+
+    const variables = await fs.readJson(variablesFile)
+    const {unrestricted} = variables
+    if (!unrestricted) userInfo = await getUserInfo(userInfo)
 
     const queryData = await callApiHelper(queryFile, userInfo, variablesFile)
     this.log(`Result:\n${JSON.stringify(queryData, null, 2)}`)

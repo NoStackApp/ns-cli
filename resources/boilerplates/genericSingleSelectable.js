@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {EXECUTE_ACTION} from '@nostack/no-stack';
+import {EXECUTE} from '@nostack/no-stack';
 import {graphql} from '@apollo/react-hoc';
 
 import { DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ChildrenTypeList}} } from '../../../config';
@@ -104,4 +104,4 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance,
 );
 }
 
-export default graphql(EXECUTE_ACTION, { name: 'deleteInstance' })({{SingularName}});
+export default graphql(EXECUTE, { name: 'deleteInstance' })({{SingularName}});
