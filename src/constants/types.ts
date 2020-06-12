@@ -154,6 +154,11 @@ export interface ActionsByActionType {
   [actionType: string]: Actions;
 }
 
+export interface ActionTypeDescriptionList {
+  [actionType: string]: string;
+}
+
+
 export interface StackInfo {
   topSource: string;
   userClasses: UserClasses;

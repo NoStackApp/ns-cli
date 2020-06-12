@@ -1,3 +1,5 @@
+import {ActionTypeDescriptionList} from './types'
+
 export const liveServer = 'https://api.matchlynx.com/graphql'
 
 export const associationTypes = {
@@ -85,3 +87,45 @@ export const boilerPlates = {
 
 export const boilerplateDir = `${__dirname}/../../resources/boilerplates`
 // console.log(`boilerplateDir =${boilerplateDir}`)
+
+export const actionTypes = {
+  UPLOAD: 'UPLOAD',
+  APPROVE_UPLOAD: 'APPROVE_UPLOAD',
+  CONTACT: 'CONTACT',
+  INVITE: 'INVITE',
+  ACCEPT_INVITATION: 'ACCEPT_INVITATION',
+  FIRST_LOGIN: 'FIRST_LOGIN',
+  RESPOND: 'RESPOND',
+  NOTIFY: 'NOTIFY',
+  FOLLOW: 'FOLLOW',
+  PAY: 'PAY',
+  BUY: 'BUY',
+  RENT: 'RENT',
+  POST: 'POST',
+  REQUEST_NEW_PASSWORD: 'REQUEST_NEW_PASSWORD',
+  SET_PASSWORD: 'SET_PASSWORD',
+  LOGIN: 'LOGIN',
+  REFRESH_USER_TOKEN: 'REFRESH_USER_TOKEN',
+  VERIFY_USER_TOKEN: 'VERIFY_USER_TOKEN',
+  CREATE_INSTANCE:'CREATE_INSTANCE',
+  CREATE_INSTANCE_WITHOUT_PARENT: 'CREATE_INSTANCE_WITHOUT_PARENT',
+  CREATE_PUBLIC_INSTANCE: 'CREATE_PUBLIC_INSTANCE',
+  ADD_INSTANCE_ASSN: 'ADD_INSTANCE_ASSN',
+  CALL_EXTERNAL_API: 'CALL_EXTERNAL_API',
+  UPDATE_INSTANCE_ASSN:'UPDATE_INSTANCE_ASSN',
+  DELETE_INSTANCE_ASSN:'DELETE_INSTANCE_ASSN',
+
+  // the following are supported in the Execute mutation
+  UPDATE_INSTANCE:'UPDATE_INSTANCE',
+  CREATE_INSTANCE_WITH_UNOWNED_PARENT: 'CREATE_INSTANCE_WITH_UNOWNED_PARENT',
+  SUBMIT_FORM:'SUBMIT_FORM',
+  DELETE_INSTANCE:'DELETE_INSTANCE',
+}
+export const actionTypeDescriptions: ActionTypeDescriptionList = {
+  [actionTypes.CREATE_INSTANCE]: 'create a new instance.  Params: parentInstanceId, value',
+  [actionTypes.UPDATE_INSTANCE]: 'updates value of existing instance.  Params: instanceId, value',
+  [actionTypes.DELETE_INSTANCE]: 'deletes an existing instance',
+  [actionTypes.ADD_INSTANCE_ASSN]: 'associates two existing instances.  Params: parentInstanceid, childInstanceId',
+  [actionTypes.UPDATE_INSTANCE_ASSN]: 'deletes a current instance assn and creates a new',
+  [actionTypes.DELETE_INSTANCE_ASSN]: 'deletes a current instance assn',
+}

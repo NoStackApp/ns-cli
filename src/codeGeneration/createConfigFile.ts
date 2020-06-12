@@ -1,4 +1,5 @@
 // import {throwError} from 'rxjs'
+import {actionTypeDescriptions} from '../constants'
 import {StackInfo} from '../constants/types'
 
 const Handlebars = require('handlebars')
@@ -23,8 +24,13 @@ export const PLATFORM_ID = '{{stackId}}';
 
 const actionDeclarations = Handlebars.compile(`
 // actions
+//   Each action has an action type, which requires it's own set of parameters.
+//   These are best called using no-stack's mutation helper EXECUTE.
+//   See https://github.com/NoStackApp/no-stack#manipulating-data-via-action-mutations-experimental.
+//   EXECUTE_ACTION has been deprecated and in fact does not work on some new action types.
+//   The action variables listed below are shown grouped by action type.
 {{#each actionTypes}}
-    // {{actionType}}
+    // {{actionType}}: {{actionTypeDescription}}
   {{#each actions}}
     export const {{actionConst}}='{{actionId}}';
   {{/each}}
@@ -46,11 +52,14 @@ export const {{typeConst}}='{{typeId}}';
 {{/types}}
 `)
 
+
 export async function createConfigFile(currentStack: StackInfo, appName: string) {
   const actionTypeList = Object.keys(currentStack.actions).map(actionType => {
     const actionsForCurrentType = currentStack.actions[actionType]
+    const actionTypeDescription = actionTypeDescriptions[actionType];
     return {
       actionType,
+      actionTypeDescription,
       actions: Object.keys(actionsForCurrentType).map(action => {
         const currentActionInfo = actionsForCurrentType[action]
         return {
