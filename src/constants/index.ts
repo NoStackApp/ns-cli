@@ -1,4 +1,6 @@
 export const liveServer = 'https://api.matchlynx.com/graphql'
+// export const liveServer = 'https://api.matchlynx.com/graphql'
+// export const liveServer = 'https://qq0we0b5s4.execute-api.us-east-1.amazonaws.com/dev/graphql'
 
 export const associationTypes = {
   MULTIPLE: 'multiple',

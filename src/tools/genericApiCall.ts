@@ -42,7 +42,7 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
       console.log(`server time out: ${err}`)
     }
 
-    if (err.code === 103 ||  (err.response && err.response.errors[0].code === 103)) {
+    if (err.code === 103 ||  (err.response && err.response.errors && err.response.errors[0].code === 103)) {
       try {
         await refreshAccessToken(userInfo)
       } catch (refreshError) {
@@ -104,15 +104,18 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
       }
       // refreshAccessTokenForUser(currentRefreshToken,user)
     } else {
-      const lastError = err.response.errors[0]
       // console.log(err.response.errors) // GraphQL response errors
       // console.log(JSON.stringify(err.response.data)) // Response data if available
-      throw new Error(`This call has produced an error on the server.
+      if (err.response.errors) {
+        const lastError = err.response.errors[0]
+        throw new Error(`This call has produced an error on the server.
             Please contact info@nostack.net if you think it shouldn't have.
             The error type is ${lastError.errorType}.
             The error message is ${lastError.message}.
             The error path is ${lastError.path}.
             Here's some info about the server error: ${JSON.stringify(lastError, null, 2)}`)
+      }
+      throw err
     }
   })
 

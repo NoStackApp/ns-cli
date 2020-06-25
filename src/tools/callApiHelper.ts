@@ -5,7 +5,9 @@ import {genericApiCall} from './genericApiCall'
 const fs = require('fs-extra')
 
 export async function callApiHelper(queryFile: string, userInfo: UserInfo, variablesFile: string) {
+  // console.log('in callApiHelper...')
   const query = await fs.readFile(queryFile, 'utf8')
+  // console.log(`in callApiHelper,  query=${query}`)
   const variables = await fs.readJson(variablesFile)
   // console.log(`in callApiHelper,  variables=${JSON.stringify(variables)}`)
   // console.log(`in callApiHelper,  userInfo=${JSON.stringify(userInfo, null, 2)}`)
