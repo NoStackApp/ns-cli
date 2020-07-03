@@ -21,7 +21,7 @@ export async function refreshAccessToken(userInfo: UserInfo) {
   const embeddableExecutionParameters = JSON.stringify(executionParameters).replace(/"/g, '\\"')
   // console.log('embeddableExecutionParameters=', embeddableExecutionParameters)
   const query = `mutation {
-        ExecuteAction(actionId: "${REFRESH_ACTION_ID}",
+        Execute(actionId: "${REFRESH_ACTION_ID}",
         executionParameters: "${embeddableExecutionParameters}",
         unrestricted: true)
       }
@@ -30,14 +30,16 @@ export async function refreshAccessToken(userInfo: UserInfo) {
     headers: {},
   })
 
-  // console.log('query=', query)
+  console.log('query=', query)
   // eslint-disable-next-line require-atomic-updates
   userInfo.accessToken = await client.request(query).then(data => {
-    // console.log(data)
-    const ExecuteAction = JSON.parse(data.ExecuteAction)  // .AuthenticationResult // AccessToken
-    return (ExecuteAction.AuthenticationResult.AccessToken)
+    console.log(`data: ${JSON.stringify(data)}`)
+    const Execute = JSON.parse(data.Execute)  // .AuthenticationResult // AccessToken
+    console.log(`Execute=${JSON.stringify(Execute, null, 2)}`)
+    return (Execute.AuthenticationResult.AccessToken)
     // console.log(`newAccessToken=${newAccessToken}`)
   })
+  console.log(`userInfo.accessToken=${userInfo.accessToken}`)
   // .catch(refreshError => {
   //   console.log(`error With refresh: ${refreshError.response.errors[0]}`)
   // })

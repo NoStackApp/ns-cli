@@ -59,7 +59,7 @@ export async function loginUser(userInfo: UserInfo) {
   const embeddableExecutionParameters = JSON.stringify(executionParameters).replace(/"/g, '\\"')
   // console.log('embeddableExecutionParameters=', embeddableExecutionParameters)
   const query = `mutation {
-        ExecuteAction(actionId: "${LOGIN_ACTION_ID}",
+        Execute(actionId: "${LOGIN_ACTION_ID}",
         executionParameters: "${embeddableExecutionParameters}",
         unrestricted: true)
       }
@@ -71,10 +71,10 @@ export async function loginUser(userInfo: UserInfo) {
   // console.log('query=', query)
   await client.request(query).then(async data => {
     // console.log(data)
-    const ExecuteAction = JSON.parse(data.ExecuteAction)  // .AuthenticationResult // AccessToken
-    userInfo.accessToken = ExecuteAction.AuthenticationResult.AccessToken
-    userInfo.refreshToken = ExecuteAction.AuthenticationResult.RefreshToken
-    // userInfo.name = ExecuteAction.userName
+    const Execute = JSON.parse(data.Execute)  // .AuthenticationResult // AccessToken
+    userInfo.accessToken = Execute.AuthenticationResult.AccessToken
+    userInfo.refreshToken = Execute.AuthenticationResult.RefreshToken
+    // userInfo.name = Execute.userName
 
     // console.log(`userInfo=${JSON.stringify(userInfo)}`)
     await setUserInfo(userInfo)
