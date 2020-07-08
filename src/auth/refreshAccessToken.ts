@@ -1,8 +1,10 @@
 import {GraphQLClient} from 'graphql-request'
 import * as path from 'path'
 
-import {liveServer} from '../constants'
+import {liveServer, standardActionIds} from '../constants'
 import {UserInfo} from '../constants/types'
+
+const REFRESH_TOKEN_ACTION_ID = standardActionIds.REFRESH_TOKEN
 
 require('dotenv').config({path: path.join(__dirname, '/./../.env')})
 
@@ -13,7 +15,6 @@ const server: string = isDev ? process.env.LOCAL_SERVER as string : liveServer
 // console.log(`server=${server}`)
 
 export async function refreshAccessToken(userInfo: UserInfo) {
-  const REFRESH_ACTION_ID = '9039e9c4-5b88-4575-8ed4-1fa1b27dc7a7'
   const executionParameters = {
     refreshToken: userInfo.refreshToken,
     platformId: userInfo.stackId,
@@ -21,7 +22,7 @@ export async function refreshAccessToken(userInfo: UserInfo) {
   const embeddableExecutionParameters = JSON.stringify(executionParameters).replace(/"/g, '\\"')
   // console.log('embeddableExecutionParameters=', embeddableExecutionParameters)
   const query = `mutation {
-        Execute(actionId: "${REFRESH_ACTION_ID}",
+        Execute(actionId: "${REFRESH_TOKEN_ACTION_ID}",
         executionParameters: "${embeddableExecutionParameters}",
         unrestricted: true)
       }

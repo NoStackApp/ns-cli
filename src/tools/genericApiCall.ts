@@ -41,16 +41,16 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
       console.log(`server time out: ${err}`)
     }
 
-    console.log(`err.response=${JSON.stringify(err.response, null, 1)}.
-    This really should go on to refresh the token...`)
+    // console.log(`err=${JSON.stringify(err, null, 1)}.
+    // This really should go on to refresh the token...`)
     // console.log(`err.response.errors[0].message=${err.response.errors[0].message}.
     // This really should go on to refresh the token...`)
 
     if (err.code === 103 || (err.response &&
       err.response.errors && (
-      err.response.errors[0].code === 103 ||
+      err.response.errors[0].extensions.code === 'UNAUTHENTICATED' ||
         err.response.errors[0].message.includes('Access Token has expired') ||
-      err.response.errors[0].message.includes('Invalid Access Token')
+        err.response.errors[0].message.includes('Invalid Access Token')
     )
     )) {
       console.log('now we\'re going to refresh the token...')
