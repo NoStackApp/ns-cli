@@ -23,15 +23,15 @@ export default class Newapp extends Command {
 
   async run() {
     const {flags} = this.parse(Newapp)
-    const appDir = await getAppDir(flags.appDir) || ''
+    const appDir = flags.appDir // await getAppDir(flags.appDir) || ''
     if (!appDir) isRequired('appDir', 'newapp', '-a')
     let baseApp = flags.baseApp || ''
     if (baseApp.length > 0) baseApp = await getBaseApp(baseApp)
 
     const newAppTasks = await createNoStackApp(appDir, baseApp)
-    await newAppTasks.run().catch((err: any) => {
-      console.error(err)
-    })
+    // await newAppTasks.run().catch((err: any) => {
+    //   console.error(err)
+    // })
     // shell.exec(`/home/yisrael/projects/ns-cli/bin/create-no-stack-app "${appDir}"`)
   }
 }

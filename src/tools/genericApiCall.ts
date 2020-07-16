@@ -48,7 +48,9 @@ export async function genericApiCall(query: string, userInfo: UserInfo, variable
 
     if (err.code === 103 || (err.response &&
       err.response.errors && (
-      err.response.errors[0].extensions.code === 'UNAUTHENTICATED' ||
+      (err.response.errors[0].extensions &&
+          err.response.errors[0].extensions.code === 'UNAUTHENTICATED'
+      ) ||
         err.response.errors[0].message.includes('Access Token has expired') ||
         err.response.errors[0].message.includes('Invalid Access Token')
     )

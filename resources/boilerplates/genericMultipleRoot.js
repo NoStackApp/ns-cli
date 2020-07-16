@@ -1,3 +1,28 @@
+/*
+
+  This file contains generated code, with some locations for adding modifications.
+  This file will occasionally be replaced as needed when a stack changes.  But,
+  you are allowed to add code in certain locations.  You may also create additional
+  files and include them here.
+
+  IMPORTANT:
+    (1) don't ever delete comment lines beginning `// ns__added`.
+    (2) don't modify the code except between matching comment lines `// ns__added_start`
+    and `// ns__added_end`
+    (3) if you need to modify code outside of those areas, please contact
+    info@pivotate.com and send the file with a request.  We can always generate
+    new `ns__added` lines to accommodate you.
+
+ */
+
+// ns__added_start unit: appSpec, comp: Apps, loc: beforeImports
+'use strict';
+/*
+    This is a location for anything at the top of your code.  By default,
+    `use strict` is shown.
+ */
+// ns__added_end unit: appSpec, comp: Apps, loc: beforeImports
+
 import React, { Component, createRef } from 'react';
 import { Unit } from '@nostack/no-stack';
 import styled from 'styled-components';
@@ -11,9 +36,17 @@ import {{SingularName}} from '../{{SingularName}}';
 import { {{SOURCE_ID_CONSTANT}} } from '../../../config';
 import { {{RELATIONSHIPS_NAME}}, {{SOURCE_QUERY_NAME}} } from '../../source-props/{{SingularSourceLowercase}}';
 
-// ns__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: styling
+// ns__added_start unit: appSpec, comp: Apps, loc: addedImports
+/*
+    Put any additional import statements here.
+ */
+// ns__added_end unit: appSpec, comp: Apps, loc: addedImports
 
-// add styling here
+// ns__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: styling
+/*
+  This section is for styling.  The default below is just a sample and can be replaced.
+ */
+
 const {{PluralName}}StyleWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -77,6 +110,8 @@ class {{PluralName}} extends Component {
 
           const {{PluralNameLowercase}} = data.unitData.map(el => flattenData(el));
 
+      // ns__added_start unit: appSpec, comp: Apps, loc: beforeReturn
+      // ns__added_end unit: appSpec, comp: Apps, loc: beforeReturn
           return (
             <>
               <{{SingularName}}CreationForm  {{SingularParentName}}Id={ {{SingularParentName}}Id } refetchQueries={refetchQueries}/>

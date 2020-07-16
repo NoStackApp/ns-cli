@@ -75,7 +75,7 @@ export async function createHighestLevelFiles(
   // flattenData file
   await fs.copy(
     `${boilerplateDir}/flattenData.js`,
-    `${srcDir}/flattenData/index.js`,
+    `${appDir}/flattenData/index.js`,
   )
 
   // index.js

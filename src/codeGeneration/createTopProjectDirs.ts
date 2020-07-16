@@ -20,6 +20,7 @@ export async function createTopProjectDirs(currentStack: StackInfo, appDir: stri
   dirList.push(`${appDir}/docs`)
   dirList.push(`${compDir}/NavBar`)
   dirList.push(`${srcDir}/config`)
+  dirList.push(`${srcDir}/custom`)
   dirList.push(`${srcDir}/client`)
   dirList.push(sourcePropsDir)
   dirList.push(compDir)
