@@ -6,22 +6,22 @@
   files and include them here.
 
   IMPORTANT:
-    (1) don't ever delete comment lines beginning `// ns__added`.
-    (2) don't modify the code except between matching comment lines `// ns__added_start`
-    and `// ns__added_end`
+    (1) don't ever delete comment lines beginning `// ns__custom`.
+    (2) don't modify the code except between matching comment lines `// ns__custom_start`
+    and `// ns__custom_end`
     (3) if you need to modify code outside of those areas, please contact
     info@pivotate.com and send the file with a request.  We can always generate
-    new `ns__added` lines to accommodate you.
+    new `ns__custom` lines to accommodate you.
 
  */
 
-// ns__added_start unit: appSpec, comp: Apps, loc: beforeImports
+// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: beforeImports
 'use strict';
 /*
     This is a location for anything at the top of your code.  By default,
     `use strict` is shown.
  */
-// ns__added_end unit: appSpec, comp: Apps, loc: beforeImports
+// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: beforeImports
 
 import React, { Component, createRef } from 'react';
 import { Unit } from '@nostack/no-stack';
@@ -36,13 +36,13 @@ import {{SingularName}} from '../{{SingularName}}';
 import { {{SOURCE_ID_CONSTANT}} } from '../../../config';
 import { {{RELATIONSHIPS_NAME}}, {{SOURCE_QUERY_NAME}} } from '../../source-props/{{SingularSourceLowercase}}';
 
-// ns__added_start unit: appSpec, comp: Apps, loc: addedImports
+// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedImports
 /*
     Put any additional import statements here.
  */
-// ns__added_end unit: appSpec, comp: Apps, loc: addedImports
+// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedImports
 
-// ns__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: styling
+// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: styling
 /*
   This section is for styling.  The default below is just a sample and can be replaced.
  */
@@ -52,11 +52,15 @@ const {{PluralName}}StyleWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
 `;
-// ns__added_end unit: {{Unit}}, comp: {{PluralName}}, loc: styling
+// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: styling
 
 class {{PluralName}} extends Component {
-// ns__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: beginning
-// ns__added_end unit: {{Unit}}, comp: {{PluralName}}, loc: beginning
+// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: beginning
+  /*
+      This is a location for anything at the top of your code.  By default,
+      `use strict` is shown.
+   */
+// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: beginning
   state = {
     selected{{SingularName}}Id: null,
   };
@@ -110,10 +114,12 @@ class {{PluralName}} extends Component {
 
           const {{PluralNameLowercase}} = data.unitData.map(el => flattenData(el));
 
-      // ns__added_start unit: appSpec, comp: Apps, loc: beforeReturn
-      // ns__added_end unit: appSpec, comp: Apps, loc: beforeReturn
+      // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: beforeReturn
+      // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: beforeReturn
           return (
             <>
+            {/*// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: creationForm*/}
+            {/*// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: creationForm*/}
               <{{SingularName}}CreationForm  {{SingularParentName}}Id={ {{SingularParentName}}Id } refetchQueries={refetchQueries}/>
               <{{PluralName}}StyleWrapper ref={this.wrapperRef} onClick={this.handleClick}>
                 { {{PluralNameLowercase}} && {{PluralNameLowercase}}.map({{SingularNameLowercase}} => (
@@ -127,8 +133,8 @@ class {{PluralName}} extends Component {
                   />
                 )) }
               </{{PluralName}}StyleWrapper>
-                {/* ns__added_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
-                {/* ns__added_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
+                {/* ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
+                {/* ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
             </>
           );
         }}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
-import { withNoStack, EXECUTE } from '@nostack/no-stack';
+import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
 import { CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ACTION_IDS_FOR_SINGLE_CHILDREN}}{{TYPE_IDS_FOR_SINGLE_CHILDREN}} } from '../../../config';
@@ -54,7 +54,7 @@ function {{SingularName}}CreationForm({ {{SingularParentName}}Id, create{{Singul
       },{{UPDATE_ON_ADD_LINE}}
     });
 
-    const new{{SingularName}}Data = JSON.parse(create{{SingularName}}Response.data.Execute);
+    // const new{{SingularName}}Data = JSON.parse(create{{SingularName}}Response.data.Execute);
 
     {{{SINGLE_CHILDREN_CREATION_CODE}}}
 

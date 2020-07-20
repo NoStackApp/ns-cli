@@ -74,7 +74,10 @@ export default class Quickstarter extends Command {
     const userClass = flags.userClass || isRequired('userClass', 'quickstarter', '-c')
 
     const userInfo: UserInfo = {
-      name: user,
+      name: us    // await newAppTasks.run().catch((err: any) => {
+    //   console.error(err)
+    // })
+er,
       stack,
       password,
       email,

@@ -4,6 +4,7 @@ import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
+import PropTypes from 'prop-types';
 import {
   UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
   DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ChildrenTypeList}},
@@ -13,6 +14,10 @@ import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 {{{CHILDREN_IMPORT_LIST}}}
+
+// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: additionalImports
+// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: additionalImports
+
 
 // add styling here
 const {{SingularName}}StyleWrapper = styled.div(({
@@ -176,3 +181,19 @@ export default compose(
   graphql(EXECUTE, { name: 'updateInstance' }),
   graphql(EXECUTE, { name: 'deleteInstance' })
 )({{SingularName}});
+
+
+{{SingularName}}.propTypes = {
+  {{SingularNameLowercase}}: PropTypes.object,
+  parentId: PropTypes.string,
+  selected: PropTypes.bool,
+  updateInstance: PropTypes.func,
+  deleteInstance: PropTypes.func,
+  refetchQueries: PropTypes.array,
+  {{SingularNameLowercase}}: PropTypes.shape({
+    children: PropTypes.array,
+    id: PropTypes.string
+  })
+  // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: addedPropTypes
+  // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: addedPropTypes
+}

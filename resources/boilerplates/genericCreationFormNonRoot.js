@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
-import { withNoStack, EXECUTE } from '@nostack/no-stack';
+import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
 import { CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ACTION_IDS_FOR_SINGLE_CHILDREN}}{{TYPE_IDS_FOR_SINGLE_CHILDREN}} } from '../../../config';
 
-// ns__added_start unit: {{Unit}}, comp: {{PluralName}}_Creation, loc: styling
+// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}_Creation, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -15,7 +15,7 @@ const Form = styled.div`
   border-radius: 5px;
   background-color: #F5F5F5;
 `;
-// ns__added_end unit: {{Unit}}, comp: {{PluralName}}_Creation, loc: styling
+// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}_Creation, loc: styling
 
 const Button = styled.button`
   margin-left: 1em;

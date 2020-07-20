@@ -29,9 +29,9 @@ export default class Newapp extends Command {
     if (baseApp.length > 0) baseApp = await getBaseApp(baseApp)
 
     const newAppTasks = await createNoStackApp(appDir, baseApp)
-    // await newAppTasks.run().catch((err: any) => {
-    //   console.error(err)
-    // })
+    await newAppTasks.run().catch((err: any) => {
+      console.error(err)
+    })
     // shell.exec(`/home/yisrael/projects/ns-cli/bin/create-no-stack-app "${appDir}"`)
   }
 }
