@@ -34,7 +34,7 @@ const validationSchema = Yup.object().shape({
   .label('password')
   .matches(/(?=.*\d)/, 'Must have at least one numerical character')
   .matches(
-    /(?=.*[#?!@$%^&*-.,:;'"><[\]{}()_|\\/~])/,
+    /(?=.*[#?!@$%^&*-.,:;''><[\]{}()_|\\/~])/,
     'Must have at least one special character.',
   )
   .min(8, 'Must be at least 8 characters.')

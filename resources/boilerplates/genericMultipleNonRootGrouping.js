@@ -14,7 +14,7 @@ function {{PluralName}}({ {{SingularNameLowercase}}s, {{SingularParentName}}Id, 
         refetchQueries={refetchQueries}
       />
 
-      { {{SingularNameLowercase}}s.map({{SingularNameLowercase}} => (
+      { {{SingularNameLowercase}}s.map(({{SingularNameLowercase}}) => (
         <{{SingularName}}
           key={ {{SingularNameLowercase}}.id}
           {{SingularNameLowercase}}={ {{SingularNameLowercase}} }

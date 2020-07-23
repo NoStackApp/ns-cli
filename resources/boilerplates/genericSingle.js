@@ -15,10 +15,10 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 {{{CHILDREN_IMPORT_LIST}}}
 
-// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: additionalImports
-// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: additionalImports
+// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: addedImports
+// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: addedImports
 
-
+// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: styling
 // add styling here
 const {{SingularName}}StyleWrapper = styled.div(({
   selected,
@@ -36,6 +36,7 @@ const {{SingularName}}StyleWrapper = styled.div(({
     border: 1px solid aquamarine;
   }
 `);
+// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: styling
 
 const Button = styled.button`
   background: none;
@@ -46,7 +47,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -64,6 +65,8 @@ function {{SingularName}}({
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
+  // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: beginning
+  // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: beginning
 
   {{{CHILDREN_CONSTANT_DECLARATIONS}}}
 
@@ -106,7 +109,7 @@ function {{SingularName}}({
       <{{SingularName}}StyleWrapper>
         <EditInstanceForm
           id={ {{SingularNameLowercase}}.id }
-          label="{{SingularName}} Value:"
+          label='{{SingularName}} Value:'
           value={ {{SingularNameLowercase}}Value }
           onChange={handle{{SingularName}}ValueChange}
           onSave={handle{{SingularName}}ValueSave}
@@ -129,7 +132,7 @@ function {{SingularName}}({
             instanceId: {{SingularNameLowercase}}.id,
           }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -159,16 +162,10 @@ function {{SingularName}}({
   return (
     <{{SingularName}}StyleWrapper selected={selected}>
       { {{SingularNameLowercase}}Value }
-      <Button
-        type="button"
-        onClick={() => updateIsEditMode(true)}
-      >
+      <Button type='button'   onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button
-        type="button"
-        onClick={() => updateIsDeleteMode(true)}
-      >
+      <Button type='button'   onClick={() => updateIsDeleteMode(true)}>
         &#128465;
       </Button>
 
@@ -184,16 +181,16 @@ export default compose(
 
 
 {{SingularName}}.propTypes = {
-  {{SingularNameLowercase}}: PropTypes.object,
+{{SingularNameLowercase}}: PropTypes.object,
   parentId: PropTypes.string,
   selected: PropTypes.bool,
   updateInstance: PropTypes.func,
   deleteInstance: PropTypes.func,
   refetchQueries: PropTypes.array,
-  {{SingularNameLowercase}}: PropTypes.shape({
+  app: PropTypes.shape({
     children: PropTypes.array,
-    id: PropTypes.string
-  })
+    id: PropTypes.string,
+  }),
   // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: addedPropTypes
   // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: addedPropTypes
-}
+};

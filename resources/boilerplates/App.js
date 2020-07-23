@@ -25,7 +25,7 @@ const LoginWrapper = styled.div`
 const App = () => (
   <>
     <NavBar />
-    <Wrapper className="App">
+    <Wrapper className='App'>
       <NoStackConsumer>
         {({ loading, currentUser }) => {
           if (loading) return null;

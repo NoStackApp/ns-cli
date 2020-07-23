@@ -1,5 +1,6 @@
+// ns__file_info unit: {{Unit}}, comp: {{PluralName}}
+// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: beforeImports
 /*
-
   This file contains generated code, with some locations for adding modifications.
   This file will occasionally be replaced as needed when a stack changes.  But,
   you are allowed to add code in certain locations.  You may also create additional
@@ -7,18 +8,16 @@
 
   IMPORTANT:
     (1) don't ever delete comment lines beginning `// ns__custom`.
-    (2) don't modify the code except between matching comment lines `// ns__custom_start`
-    and `// ns__custom_end`
+    (2) don't modify the code except between matching comment lines `// ns__custom` with `start`
+    and `// ns__custom` with `end`
     (3) if you need to modify code outside of those areas, please contact
     info@pivotate.com and send the file with a request.  We can always generate
     new `ns__custom` lines to accommodate you.
-
  */
 
-// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: beforeImports
 'use strict';
 /*
-    This is a location for anything at the top of your code.  By default,
+    This is a location for any custom code at the top of the file.  By default,
     `use strict` is shown.
  */
 // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: beforeImports
@@ -33,8 +32,8 @@ import {{SingularName}} from '../{{SingularName}}';
 
 import { {{SOURCE_ID_CONSTANT}} } from '../../../config';
 import {
-import {getDescriptionChild} from "../../../../temp/pivotateraw/src/custom/getDescriptionChild";
-import FirstTimeAppCreationForm from "../../../../temp/pivotateraw/src/components/AppSpec/FirstTimeAppCreationForm"; {{RELATIONSHIPS_NAME}}, {{SOURCE_QUERY_NAME}} } from '../../source-props/{{SingularSourceLowercase}}';
+import {getDescriptionChild} from '../../../../temp/pivotateraw/src/custom/getDescriptionChild';
+import FirstTimeAppCreationForm from '../../../../temp/pivotateraw/src/components/AppSpec/FirstTimeAppCreationForm'; {{RELATIONSHIPS_NAME}}, {{SOURCE_QUERY_NAME}} } from '../../source-props/{{SingularSourceLowercase}}';
 
 // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedImports
 // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedImports
@@ -82,7 +81,7 @@ function {{PluralName}}({ {{SingularParentName}}Id }) {
 
     <{{PluralName}}StyleWrapper>
             {
-              {{PluralNameLowercase}} && {{PluralNameLowercase}}.map({{SingularNameLowercase}} => (
+              {{PluralNameLowercase}} && {{PluralNameLowercase}}.map(({{SingularNameLowercase}}) => (
                 <{{SingularName}}
                   key={ {{SingularNameLowercase}}.id }
                   parentId={ {{SingularParentName}}Id }

@@ -63,18 +63,18 @@ function {{SingularName}}CreationForm({ {{SingularParentName}}Id, create{{Singul
 
   return (
     <Form>
-      <label htmlFor="{{SingularNameLowercase}}-value">
+      <label htmlFor='{{SingularNameLowercase}}-value'>
         {{SingularName}}:
         <input
-          id="{{SingularNameLowercase}}-value"
-          type="text"
+          id='{{SingularNameLowercase}}-value'
+          type='text'
           onChange={handleChange}
           onKeyPress={handleKeyPress}
           value={ {{SingularNameLowercase}}Value }
           disabled={loading}
         />
       </label>
-      <Button type="submit"  disabled={loading}  onClick={handleSubmit}>
+      <Button type='submit'  disabled={loading}  onClick={handleSubmit}>
         {
           loading
             ? 'Creating {{SingularName}}...'

@@ -49,7 +49,7 @@ function {{SingularName}}Select({ id, onSubmit, disabled }) {
 
         const {{PluralNameLowercase}} = data.unitData.map(el => flattenData(el));
 
-        const options = {{PluralNameLowercase}}.map({{SingularNameLowercase}} => ({
+        const options = {{PluralNameLowercase}}.map(({{SingularNameLowercase}}) => ({
           value: {{SingularNameLowercase}}.id,
           label: {{SingularNameLowercase}}.value,
         }));

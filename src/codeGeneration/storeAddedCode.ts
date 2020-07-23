@@ -16,7 +16,7 @@ export const storeAddedCode = async (rootDir: string) => {
   const existsComponents = await fs.pathExists(compsDir)
   if (!existsComponents) return
 
-  const files = readdir.sync(compsDir, {deep: true, filter: '**/*.js'})
+  const files = readdir.sync(compsDir, {deep: true, filter: '**/*.{js,jsx}'})
   // console.log(`files: ${JSON.stringify(files, null, 2)}`)
 
   const addedCode: AddedCode = {}

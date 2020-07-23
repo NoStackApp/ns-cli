@@ -24,7 +24,7 @@ const {{ActionName}} = ({ parentId, execute }) => {
   const variables = {
     actionId: {{ActionIdAllCaps}},
     executionParameters: JSON.stringify({
-      finalText: "Some Text",
+      finalText: 'Some Text',
       parentInstanceId: parentId,
     }),
     unrestricted: false,
@@ -53,7 +53,7 @@ const {{ActionName}} = ({ parentId, execute }) => {
   return (
     <Wrapper>
       <Button
-        type="button"
+        type='button'
         onClick={handleSubmit}
         disabled={loading}
       >

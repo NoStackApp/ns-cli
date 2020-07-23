@@ -35,14 +35,14 @@ const childrenBodyTemplate = Handlebars.compile(`
 < {{childComponent}}
               {{childPlural}} = { {{childPlural}} }
               {{type}}Id = { {{type}}.id }
-              label="{{childSingular}}?"
+              label='{{childSingular}}?'
               refetchQueries={refetchQueries}
       />
 {{else}}
 < {{childComponent}}
               {{child}} = { {{child}} }
               {{type}}Id = { {{type}}.id }
-              label="{{childComponent}}?"
+              label='{{childComponent}}?'
               refetchQueries={refetchQueries}
       />
 {{/if}}

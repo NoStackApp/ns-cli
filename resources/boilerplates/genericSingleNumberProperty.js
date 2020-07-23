@@ -30,7 +30,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -74,23 +74,23 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance,
               {{SingularName}} Value:
               <input
                 id={ {{SingularNameLowercase}}.id}
-                type="number"
+                type='number'
                 value={ {{SingularNameLowercase}}Value}
                 onChange={handle{{SingularName}}ValueChange}
                 disabled={isSaving}
               />
             </label>
             <Button
-              type="button"
-              hoverColor="#00FF00"
+              type='button'
+              hoverColor='#00FF00'
               onClick={handle{{SingularName}}ValueSave}
               disabled={isSaving}
             >
               &#10003;
             </Button>
             <Button
-              type="button"
-              hoverColor="#FF0000"
+              type='button'
+              hoverColor='#FF0000'
               onClick={() => updateIsEditMode(false)}
               disabled={isSaving}
             >
@@ -102,10 +102,7 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance,
           <>
             {{SingularName}} Value:
             { {{SingularNameLowercase}}Value}
-            <Button
-              type="button"
-              onClick={() => updateIsEditMode(true)}
-            >
+            <Button type='button'   onClick={() => updateIsEditMode(true)}>
               &#9998;
             </Button>
 

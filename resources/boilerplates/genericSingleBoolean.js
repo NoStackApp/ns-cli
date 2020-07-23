@@ -40,7 +40,7 @@ function {{SingularName}}({ {{SingularNameLowercase}}, label, updateInstance, re
         {label}
         <input
           id={ {{SingularNameLowercase}}.id }
-          type="checkbox"
+          type='checkbox'
           checked={ {{SingularNameLowercase}}Value === 'true' }
           onChange={handle{{SingularName}}ValueChange}
           disabled={disabled}

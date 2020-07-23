@@ -45,7 +45,7 @@ function {{SingularName}}CreationForm({ parentId, create{{SingularName}}{{SINGLE
         }),
         unrestricted: false,
       },
-      refetchQueries
+      refetchQueries,
     });
 
     const new{{SingularName}}Data = JSON.parse(create{{SingularName}}Response.data.Execute);
@@ -64,18 +64,18 @@ function {{SingularName}}CreationForm({ parentId, create{{SingularName}}{{SINGLE
 
   return (
     <Form>
-      <label htmlFor="{{SingularNameLowercase}}-value">
+      <label htmlFor='{{SingularNameLowercase}}-value'>
         {{SingularName}}:
         <input
-          id="{{SingularNameLowercase}}-value"
-          type="text"
+          id='{{SingularNameLowercase}}-value'
+          type='text'
           onChange={handleChange}
           onKeyPress={handleKeyPress}
           value={ {{SingularNameLowercase}}Value}
           disabled={loading}
         />
       </label>
-      <Button type="submit"  disabled={loading}  onClick={handleSubmit}>
+      <Button type='submit'  disabled={loading}  onClick={handleSubmit}>
         {
           loading
             ? 'Creating {{SingularName}}...'

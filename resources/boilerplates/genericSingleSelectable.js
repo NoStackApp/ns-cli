@@ -28,7 +28,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -57,7 +57,7 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance,
         childInstanceId: {{SingularNameLowercase}}.id,
     }),
     },
-      refetchQueries
+      refetchQueries,
     });
     } catch (e) {
       updateIsDeleting(false);
@@ -73,16 +73,16 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance,
     <DeleteMenu>
       Delete?
       <Button
-        type="button"
-        hoverColor="#00FF00"
+        type='button'
+        hoverColor='#00FF00'
         onClick={handleDelete}
         disabled={isDeleting}
       >
         &#10003;
       </Button>
       <Button
-        type="button"
-        hoverColor="#FF0000"
+        type='button'
+        hoverColor='#FF0000'
         onClick={() => updateIsDeleteMode(false)}
         disabled={isDeleting}
       >
@@ -91,10 +91,7 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, updateInstance,
     </DeleteMenu>
   ) :
   (
-    <Button
-      type="button"
-      onClick={() => updateIsDeleteMode(true)}
-    >
+    <Button type='button'   onClick={() => updateIsDeleteMode(true)}>
       &#128465;
     </Button>
   )

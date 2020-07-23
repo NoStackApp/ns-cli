@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ResetPasswordForm = ({ onSubmit, onCancel, disabled, error }) =>{
+const ResetPasswordForm = ({ onSubmit, onCancel, disabled, error }) => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [code, setCode] = useState('');
@@ -55,10 +55,10 @@ const ResetPasswordForm = ({ onSubmit, onCancel, disabled, error }) =>{
       </div>
       <div>
         Confirm Password:
-        <input 
+        <input
           type="password"
-          onChange={handlePasswordConfirmChange} 
-          disabled={disabled} 
+          onChange={handlePasswordConfirmChange}
+          disabled={disabled}
         />
       </div>
       <div>
