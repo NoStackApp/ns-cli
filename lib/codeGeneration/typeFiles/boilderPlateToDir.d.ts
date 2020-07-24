@@ -1,1 +1,1 @@
-export declare const boilerPlateToDir: (type: string, formType: string) => any;
+export declare const boilerPlateToDir: (type: string, formType: string) => any

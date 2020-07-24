@@ -11,11 +11,12 @@ const testPassword = async (password: string) => {
   if (!upperCaseCheck.test(password))
     return 'The password must contain at least one capital letter'
 
-  const digitCheck = /(.*[0-9].*)/
+  const digitCheck = /(.*\d.*)/
   if (!digitCheck.test(password))
     return 'The password must contain at least one digit from 0 to 9'
 
-  const specialCharacterCheck = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
+  // const specialCharacterCheck = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
+  const specialCharacterCheck = /[ !@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/
   if (!specialCharacterCheck.test(password))
     return 'The password must contain at least one special character'
 
@@ -34,6 +35,6 @@ export async function getPassword(password: string | undefined) {
     'password',
     promptTypes.PASSWORD,
     prompt,
-    testPassword
+    testPassword,
   )
 }

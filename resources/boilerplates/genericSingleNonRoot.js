@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { EXECUTE_ACTION } from '@nostack/no-stack';
+import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import { graphql } from '@apollo/react-hoc';
 
+import PropTypes from 'prop-types';
 import {
   UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
   DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ChildrenTypeList}},
@@ -14,6 +15,11 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
 {{{CHILDREN_IMPORT_LIST}}}
 
+// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: addedImports
+// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: addedImports
+
+
+// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: styling
 // add styling here
 const {{SingularName}}StyleWrapper = styled.div(({
   selected,
@@ -31,6 +37,7 @@ const {{SingularName}}StyleWrapper = styled.div(({
     border: 1px solid aquamarine;
   }
 `);
+// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: styling
 
 const Button = styled.button`
   background: none;
@@ -41,7 +48,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -53,14 +60,21 @@ function {{SingularName}}({
   deleteInstance,
   refetchQueries,
   onSelect,
+  // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: addedProps
+  // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: addedProps
 }) {
   const [{{SingularNameLowercase}}Value, update{{SingularName}}Value] = useState({{SingularNameLowercase}}.value);
   const [isEditMode, updateIsEditMode] = useState(false);
   const [isSaving, updateIsSaving] = useState(false);
   const [isDeleteMode, updateIsDeleteMode] = useState(false);
   const [isDeleting, updateIsDeleting] = useState(false);
+  // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: beginning
+  // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: beginning
 
   {{{CHILDREN_CONSTANT_DECLARATIONS}}}
+
+  // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: beforeReturn
+  // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: beforeReturn
 
   if (!selected) {
     return (
@@ -101,7 +115,7 @@ function {{SingularName}}({
       <{{SingularName}}StyleWrapper>
         <EditInstanceForm
           id={ {{SingularNameLowercase}}.id }
-          label="{{SingularName}} Value:"
+          label='{{SingularName}} Value:'
           value={ {{SingularNameLowercase}}Value }
           onChange={handle{{SingularName}}ValueChange}
           onSave={handle{{SingularName}}ValueSave}
@@ -124,7 +138,7 @@ function {{SingularName}}({
             instanceId: {{SingularNameLowercase}}.id,
           }),
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       updateIsDeleting(false);
@@ -137,10 +151,7 @@ function {{SingularName}}({
 
   if (isDeleteMode) {
     return (
-      <{{SingularName}}StyleWrapper
-        selected={selected}
-        isDeleting={isDeleting}
-      >
+      <{{SingularName}}StyleWrapper selected={selected} isDeleting={isDeleting}>
         { {{SingularNameLowercase}}Value }
         <DeleteInstanceMenu
           onDelete={handleDelete}
@@ -154,25 +165,44 @@ function {{SingularName}}({
   return (
     <{{SingularName}}StyleWrapper selected={selected}>
       { {{SingularNameLowercase}}Value }
-      <Button
-        type="button"
-        onClick={() => updateIsEditMode(true)}
-      >
+      <Button type='button'   onClick={() => updateIsEditMode(true)}>
         &#9998;
       </Button>
-      <Button
-        type="button"
-        onClick={() => updateIsDeleteMode(true)}
-      >
+      <Button type='button'   onClick={() => updateIsDeleteMode(true)}>
         &#128465;
       </Button>
 
       {{{CHILDREN_BODY_LIST}}}
-    </{{SingularName}}StyleWrapper>
+
+      {/* ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: renderEnding */}
+      {/* ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: renderEnding */}
+
+</{{SingularName}}StyleWrapper>
   );
 }
 
 export default compose(
-  graphql(EXECUTE_ACTION, { name: 'updateInstance' }),
-  graphql(EXECUTE_ACTION, { name: 'deleteInstance' })
+  graphql(EXECUTE, { name: 'updateInstance' }),
+  graphql(EXECUTE, { name: 'deleteInstance' })
 )({{SingularName}});
+
+{{SingularName}}.propTypes = {
+{{SingularNameLowercase}}: PropTypes.object,
+  parentId: PropTypes.string,
+  selected: PropTypes.bool,
+  updateInstance: PropTypes.func,
+  deleteInstance: PropTypes.func,
+  refetchQueries: PropTypes.array,
+  onSelect: PropTypes.func,
+  {{SingularNameLowercase}}: PropTypes.shape({
+    children: PropTypes.array,
+    id: PropTypes.string,
+  }),
+  {{SingularNameLowercase}}: PropTypes.shape({
+    value: PropTypes.string,
+    id: PropTypes.string,
+  }),
+  // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: addedPropTypes
+  // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: addedPropTypes
+};
+

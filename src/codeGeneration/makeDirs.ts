@@ -1,7 +1,7 @@
 const fs = require('fs-extra')
 // const desiredMode = 0o2775
 const options = {
-  mode: 0o2775
+  mode: 0o2775,
 }
 
 async function makeDir(dirName: string) {

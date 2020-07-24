@@ -38,7 +38,7 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
   const handleEmailSubmit = async userNameOrEmail => {
     setError('');
     setSubmitting(true);
-    
+
     try {
       await getPasswordResetCode({
         variables: {
@@ -62,7 +62,7 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
     try {
       await resetPassword({
         variables: {
-          userNameOrEmail, 
+          userNameOrEmail,
           password,
           code,
           stackId: platformId,
@@ -87,12 +87,12 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
 
   if (!userNameOrEmail) {
     return (
-      <SendCodeForm 
+      <SendCodeForm
         onSubmit={handleEmailSubmit}
-        onCancel={hideForm} 
+        onCancel={hideForm}
         disabled={submitting}
         error={error}
-      /> 
+      />
     );
   }
 
@@ -100,7 +100,7 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
     return (
       <ResetPasswordForm
         onSubmit={handlePasswordSubmit}
-        onCancel={hideForm} 
+        onCancel={hideForm}
         disabled={submitting}
         error={error}
       />

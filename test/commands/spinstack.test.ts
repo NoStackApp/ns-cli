@@ -1,8 +1,9 @@
 import {expect, test} from '@oclif/test'
+import * as path from 'path'
 
 import {appName, testModerator, testStack} from '../testConstants'
 
-require('dotenv').config({path: __dirname + '/./../../.env'})
+require('dotenv').config({path: path.join(__dirname, '/./../../.env')})
 
 const appFlow = `${__dirname}/../testFlowSpec.txt`
 const email = process.env.EMAIL as string
@@ -13,17 +14,21 @@ const fs = require('fs-extra')
 describe('spinstack', function () {
   this.timeout(0)
   test
-    .stdout()
-    .command(['spinstack',
-      '-u', testModerator,
-      '-s', testStack,
-      '-j', sampleStackJson,
-      '-t', appFlow,
-      '-e', email,
-    ])
-    .it('creates the stack', async function () {
-      expect(fs.pathExistsSync(fileName))
-    })
+  .stdout()
+  .command(['spinstack',
+    '-u',
+    testModerator,
+    '-s',
+    testStack,
+    '-j',
+    sampleStackJson,
+    '-t',
+    appFlow,
+    '-e',
+    email])
+  .it('creates the stack', async function () {
+    expect(fs.pathExistsSync(fileName))
+  })
 
   // test
   //   .stdout()

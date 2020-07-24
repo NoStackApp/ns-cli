@@ -22,7 +22,7 @@ export async function generateTypeFile(type: string, source: string, boilerPlate
 
   const path = `${compDir}/${singularName(source)}/${dir}`
   const dirList = [
-    path
+    path,
   ]
 
   const tags = replacementTags(type, source, currentStack)
@@ -35,7 +35,7 @@ export async function generateTypeFile(type: string, source: string, boilerPlate
 
   try {
     const template = Handlebars.compile(await fs.readFile(`${boilerplateDir}/${boilerPlate}.js`, 'utf-8'))
-    await fs.outputFile(`${path}/index.js`, template(tags))
+    await fs.outputFile(`${path}/index.jsx`, template(tags))
   } catch (err) {
     console.error(err)
     throw new Error(`error with generateFromBoilerPlate: ${err}`)

@@ -9,7 +9,7 @@ let compDir: string
 let sourcePropsDir: string
 
 export async function createTopProjectDirs(currentStack: StackInfo, appDir: string) {
-  let dirList: string[] = []
+  const dirList: string[] = []
   srcDir = `${appDir}/src`
   compDir = `${srcDir}/components`
   sourcePropsDir = `${compDir}/source-props`
@@ -20,6 +20,7 @@ export async function createTopProjectDirs(currentStack: StackInfo, appDir: stri
   dirList.push(`${appDir}/docs`)
   dirList.push(`${compDir}/NavBar`)
   dirList.push(`${srcDir}/config`)
+  dirList.push(`${srcDir}/custom`)
   dirList.push(`${srcDir}/client`)
   dirList.push(sourcePropsDir)
   dirList.push(compDir)

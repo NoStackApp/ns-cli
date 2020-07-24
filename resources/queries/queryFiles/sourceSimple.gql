@@ -1,3 +1,0 @@
-query SOURCE($id: ID!) {
-  Source(id: $id) { id name }
-}

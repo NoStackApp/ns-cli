@@ -1,4 +1,5 @@
 import chalk from 'chalk'
+import {createDotFiles} from '../codeGeneration/createDotFiles'
 
 import {getAppDir} from '../inputs/getAppDir'
 import {errorMessage} from '../tools/errorMessage'
@@ -36,6 +37,22 @@ const installationList = [
   '@nostack/no-stack@alpha',
 ]
 
+const devInstallationList = [
+  'prettier',
+  'eslint-config-prettier',
+  'eslint-plugin-prettier',
+  'eslint-config-airbnb',
+  'eslint-plugin-react',
+  'eslint-plugin-import',
+  'husky',
+  'lint-staged',
+  'pretty-quick',
+]
+
+/*
+npm install --save-dev babel-eslint eslint
+ */
+
 export async function createNoStackApp(appDir: string, baseApp: string) {
   if (baseApp) {
     const tasksCopyFromBaseApp = new Listr([
@@ -47,7 +64,7 @@ export async function createNoStackApp(appDir: string, baseApp: string) {
           if (!isBaseApp) {
             throw new Error(errorMessage(`the folder for ${baseApp} does not exist. Please confirm it or create it separately`))
           }
-        }
+        },
       },
       {
         title: 'Copy directory to new app directory',
@@ -56,14 +73,14 @@ export async function createNoStackApp(appDir: string, baseApp: string) {
 
           await execa(
             'cp',
-            ['-r', baseApp, finalAppDir]
+            ['-r', baseApp, finalAppDir],
           ).catch(
             (error: any) => {
               throw new Error(`${chalk.red(`error copying over from ${baseApp}.`)} Here is the error reported:\n${error}`)
-            }
+            },
           )
         },
-      }
+      },
     ])
     return tasksCopyFromBaseApp
   }
@@ -87,13 +104,13 @@ export async function createNoStackApp(appDir: string, baseApp: string) {
 
         await execa(
           'npx',
-          ['create-react-app', appDir, `>> ${LOGFILE}`]
+          ['create-react-app', appDir, `>> ${LOGFILE}`],
         ).catch(
           (error: any) => {
             throw new Error(`${chalk.red('error running create-react-app.')} You may try calling 'create-react-app ${appDir}' directly and see what messages are reported. Here is the error reported:\n${error}`)
-          }
+          },
         )
-      }
+      },
     },
     {
       title: 'Confirm CRA Installation',
@@ -111,28 +128,59 @@ export async function createNoStackApp(appDir: string, baseApp: string) {
 
         // const scriptsFound = await findInFiles.find('scripts:', appDir, 'project.json')
         // throw new Error(`scriptsFound=${JSON.stringify(scriptsFound)}`)
-      }
+      },
     },
     {
       title: 'Install Additional Packages Locally...',
-      task:  async () => {
+      task: async () => {
         return new Listr(installationList.map((item: string) => {
           return {
             title: item,
             task: async () => {
               await execa(
                 'npm',
-                ['install', '--prefix', appDir, '--save', item]
+                ['install', '--prefix', appDir, '--save', item],
               ).catch(
                 (error: any) => {
                   throw new Error(`${chalk.red(`error installing ${item}.`)} You may try installing ${item} directly by running 'npm install --save ${item}' directly and see what messages are reported. Here is the error reported:\n${error}`)
-                }
+                },
               )
             },
           }
-        }
+        },
         ))
-      }
+      },
+    },
+    {
+      title: 'Install Linting Packages Locally...',
+      task: async () => {
+        return new Listr(devInstallationList.map((item: string) => {
+          return {
+            title: item,
+            task: async () => {
+              await execa(
+                'npm',
+                ['install', '--prefix', appDir, '--save-dev', item],
+              ).catch(
+                (error: any) => {
+                  throw new Error(`${chalk.red(`error installing ${item}.`)} You may try installing ${item} directly by running 'npm install --save ${item}' directly and see what messages are reported. Here is the error reported:\n${error}`)
+                },
+              )
+            },
+          }
+        },
+        ))
+      },
+    },
+    {
+      title: 'Add Linting Dot Files',
+      task: async () => {
+        try {
+          await createDotFiles(appDir)
+        } catch (err) {
+          throw new Error('error in creating a NoStack app')
+        }
+      },
     },
     {
       title: 'Confirm Installation',
@@ -145,8 +193,7 @@ export async function createNoStackApp(appDir: string, baseApp: string) {
         if (!isNoStackFile) {
           throw new Error(errorMessage('no-stack did not install properly.'))
         }
-
-      }
+      },
     },
 
   ])

@@ -1,6 +1,0 @@
-{
-  "actionType": "CONTACT",
-  "actionName": "ContactUser2",
-  "userClassId": "2a5dab68-c74c-4a5c-be2e-f68c85fe18f7",
-  "actionParameters": "{\"typeId\":\"2a5dab68-c74c-4a5c-be2e-f68c85fe18f7\",\"channelName\":\"Mock5\",\"fromEmail\":\"rlj613@gmail.com\",\"subject\":\"Testing\"}"
-}

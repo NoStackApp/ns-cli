@@ -1,6 +1,0 @@
-{
-  "actionType": "ADD_INSTANCE_ASSN",
-  "actionName": "AssignUser",
-  "userClassId": "e9ec902a-891d-48be-8ed6-71f40f00711d",
-  "actionParameters": "{\"typeId\":\"e9ec902a-891d-48be-8ed6-71f40f00711d\", \"parentTypeId\":\"7a94dda8-4122-4650-84dc-64db20879c15\",\"assnId\": \"8f350136-136c-45c6-99bf-82b551125c93\"}"
-}

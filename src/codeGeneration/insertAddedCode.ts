@@ -7,7 +7,7 @@
 
 // const recursive = require('recursive-readdir')
 
-                                      //rootDir: string
+// rootDir: string
 import chalk from 'chalk'
 import execa = require('execa')
 import * as path from 'path'
@@ -20,7 +20,12 @@ export const insertAddedCode = async (appDir: string) => {
   const docsDir = appDir + '/docs/'
   const addedCodeJsonFile = docsDir + 'addedCode.json'
 
+  console.log(`gruntDir=${gruntDir}`)
+  console.log(`appDir=${baseDir}`)
+  console.log(`addedCodeJsonFile=${addedCodeJsonFile}`)
+
   const existsComponents = await fs.pathExists(addedCodeJsonFile)
+  console.log(`existsComponents=${existsComponents}`)
 
   let addedCode = {}
   if (!existsComponents) {
@@ -28,20 +33,18 @@ export const insertAddedCode = async (appDir: string) => {
     return
   }
 
-  addedCode = fs.readJson(addedCodeJsonFile)
+  addedCode = await fs.readJson(addedCodeJsonFile)
+  console.log(`addedCode=${JSON.stringify(addedCode, null, 1)}`)
   if (Object.keys(addedCode).length === 0) {
     // no added code to add
     return
   }
-
   await execa(
     `${gruntDir}/node_modules/.bin/grunt`,
-    ['--appDir=' + baseDir, `--base=${gruntDir}`]
+    ['--appDir=' + baseDir, `--base=${gruntDir}`],
   ).catch(
     (error: any) => {
       throw new Error(`${chalk.red('error inserting added code.')} Here is the error reported:\n${error}`)
-    }
+    },
   )
-
-  // console.log(`gruntDir=${gruntDir}`)
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { graphql } from '@apollo/react-hoc';
-import { EXECUTE_ACTION } from '@nostack/no-stack';
+import { EXECUTE } from '@nostack/no-stack';
 
 import {UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID} from '../../../config';
 
@@ -40,7 +40,7 @@ function {{SingularName}}({ {{SingularNameLowercase}}, label, updateInstance, re
         {label}
         <input
           id={ {{SingularNameLowercase}}.id }
-          type="checkbox"
+          type='checkbox'
           checked={ {{SingularNameLowercase}}Value === 'true' }
           onChange={handle{{SingularName}}ValueChange}
           disabled={disabled}
@@ -50,4 +50,4 @@ function {{SingularName}}({ {{SingularNameLowercase}}, label, updateInstance, re
   );
 }
 
-export default graphql(EXECUTE_ACTION, { name: 'updateInstance' })({{SingularName}});
+export default graphql(EXECUTE, { name: 'updateInstance' })({{SingularName}});

@@ -1,4 +1,5 @@
 import {GraphQLClient} from 'graphql-request'
+import * as path from 'path'
 
 import {liveServer} from '../constants'
 import {UserInfo} from '../constants/types'
@@ -6,7 +7,7 @@ import {genericApiCall} from '../tools/genericApiCall'
 
 import {setUserInfo} from './setUserInfo'
 
-require('dotenv').config({path: __dirname + '/./../../.env'})
+require('dotenv').config({path: path.join(__dirname, '/./../../.env')})
 
 const prompts = require('prompts')
 
@@ -21,15 +22,16 @@ export async function loginUser(userInfo: UserInfo) {
 
   let response = {
     password: '',
-    stackId: ''
+    stackId: '',
   }
-  //
+
   if (!userInfo.password) {
     response = await prompts({
       type: 'password',
       name: 'password',
-      message: `User ${userInfo.name} is not logged in. What is their password?`
+      message: `User ${userInfo.name} is not logged in. What is their password?`,
     })
+    // eslint-disable-next-line require-atomic-updates
     userInfo.password = response.password
   }
 
@@ -39,6 +41,7 @@ export async function loginUser(userInfo: UserInfo) {
     const returnedData = await genericApiCall(query, userInfo)
     // console.log(`returnedData=${JSON.stringify(returnedData, null, 2)}`)
 
+    // eslint-disable-next-line require-atomic-updates
     userInfo.stackId = returnedData.stackId
 
     // response = await prompts({
@@ -51,38 +54,38 @@ export async function loginUser(userInfo: UserInfo) {
   const executionParameters = {
     userName: userInfo.name,
     password: userInfo.password,
-    platformId: userInfo.stackId
+    platformId: userInfo.stackId,
   }
   const embeddableExecutionParameters = JSON.stringify(executionParameters).replace(/"/g, '\\"')
   // console.log('embeddableExecutionParameters=', embeddableExecutionParameters)
   const query = `mutation {
-        ExecuteAction(actionId: "${LOGIN_ACTION_ID}",
+        Execute(actionId: "${LOGIN_ACTION_ID}",
         executionParameters: "${embeddableExecutionParameters}",
         unrestricted: true)
       }
   `
   const client = new GraphQLClient(server, {
-    headers: {}
+    headers: {},
   })
 
   // console.log('query=', query)
   await client.request(query).then(async data => {
     // console.log(data)
-    const ExecuteAction = JSON.parse(data.ExecuteAction)  // .AuthenticationResult // AccessToken
-    userInfo.accessToken = ExecuteAction.AuthenticationResult.AccessToken
-    userInfo.refreshToken = ExecuteAction.AuthenticationResult.RefreshToken
-    // userInfo.name = ExecuteAction.userName
+    const Execute = JSON.parse(data.Execute)  // .AuthenticationResult // AccessToken
+    userInfo.accessToken = Execute.AuthenticationResult.AccessToken
+    userInfo.refreshToken = Execute.AuthenticationResult.RefreshToken
+    // userInfo.name = Execute.userName
 
     // console.log(`userInfo=${JSON.stringify(userInfo)}`)
     await setUserInfo(userInfo)
 
     // console.log(`newAccessToken=${newAccessToken}`)
   })
-    .catch(err => {
-      // console.log(err.response.errors) // GraphQL response errors
-      // console.log(err.response.data) // Response data if available
-      throw new Error(err)
-    })
+  .catch(err => {
+    // console.log(err.response.errors) // GraphQL response errors
+    // console.log(err.response.data) // Response data if available
+    throw new Error(err)
+  })
 
   /*
   EXECUTE_ACTION_OUTPUT="$(echo ${RESULTS_OBJECT} | npx jq -r '.data.ExecuteAction  | fromjson')"

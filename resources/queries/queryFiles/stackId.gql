@@ -1,1 +1,0 @@
-query  stackId($stackName: String!) {stackId(stackName:$stackName)}
