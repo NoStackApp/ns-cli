@@ -55,6 +55,8 @@ class {{PluralName}} extends Component {
 // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: beginning
   state = {
     selected{{SingularName}}Id: null,
+      // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedState
+      // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedState
   };
 
   wrapperRef = createRef();
