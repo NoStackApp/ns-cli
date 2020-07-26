@@ -172,6 +172,12 @@ export interface CompInfo {
 export interface UnitInfo {
   [comp: string]: CompInfo;
 }
-export interface AddedCode {
+export interface CustomCodeCollection {
   [unit: string]: UnitInfo;
+}
+
+export interface CustomCodeRepository {
+  addedCode: CustomCodeCollection;
+  replacedCode: CustomCodeCollection;
+  removedCode: CustomCodeCollection;
 }

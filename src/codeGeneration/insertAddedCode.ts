@@ -20,12 +20,12 @@ export const insertAddedCode = async (appDir: string) => {
   const docsDir = appDir + '/docs/'
   const addedCodeJsonFile = docsDir + 'addedCode.json'
 
-  console.log(`gruntDir=${gruntDir}`)
-  console.log(`appDir=${baseDir}`)
-  console.log(`addedCodeJsonFile=${addedCodeJsonFile}`)
+  // console.log(`gruntDir=${gruntDir}`)
+  // console.log(`appDir=${baseDir}`)
+  // console.log(`addedCodeJsonFile=${addedCodeJsonFile}`)
 
   const existsComponents = await fs.pathExists(addedCodeJsonFile)
-  console.log(`existsComponents=${existsComponents}`)
+  // console.log(`existsComponents=${existsComponents}`)
 
   let addedCode = {}
   if (!existsComponents) {
@@ -34,7 +34,7 @@ export const insertAddedCode = async (appDir: string) => {
   }
 
   addedCode = await fs.readJson(addedCodeJsonFile)
-  console.log(`addedCode=${JSON.stringify(addedCode, null, 1)}`)
+  // console.log(`addedCode=${JSON.stringify(addedCode, null, 1)}`)
   if (Object.keys(addedCode).length === 0) {
     // no added code to add
     return

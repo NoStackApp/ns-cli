@@ -11,6 +11,14 @@
     "no-process-exit": 0,
     "unicorn/no-process-exit": 0,
     "object-curly-spacing": "off",
-    "semi": "off"
+    "semi": "off",
+    "quotes": [2, "single", { "avoidEscape": true }],
+    "no-underscore-dangle": "off",
+    "no-octal-escape": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jasmine": true
   }
 }

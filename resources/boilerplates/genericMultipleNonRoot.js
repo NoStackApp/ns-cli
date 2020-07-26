@@ -1,3 +1,4 @@
+// ns__file unit: {{Unit}}, comp: {{PluralName}}
 // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: beforeImports
 /*
 
@@ -63,10 +64,14 @@ class {{PluralName}} extends Component {
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: componentDidMount
+    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: componentDidMount
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: componentWillUnmount
+    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: componentWillUnmount
   }
 
   handleClick = (e) => {
@@ -83,8 +88,8 @@ class {{PluralName}} extends Component {
     const { {{SingularParentName}}Id, {{PluralNameLowercase}}, refetchQueries, onUpdate } = this.props;
     const { selected{{SingularName}}Id } = this.state;
 
-    {/* ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning */}
-    {/* ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning */}
+    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning
+    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning
 
     return (
       <{{PluralName}}StyleWrapper
@@ -94,6 +99,8 @@ class {{PluralName}} extends Component {
         <{{SingularName}}CreationForm
           parentId={ {{SingularParentName}}Id }
           refetchQueries={refetchQueries}
+          // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForCreationForm
+          // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForCreationForm
         />
 
         { {{PluralNameLowercase}}.map(({{SingularNameLowercase}}) => (
@@ -105,6 +112,8 @@ class {{PluralName}} extends Component {
             parentId={ {{SingularParentName}}Id }
             refetchQueries={refetchQueries}
             onSelect={this.handleSelect}
+            // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForChildren
+            // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForChildren
           />
         )) }
   {/* ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}

@@ -76,8 +76,12 @@ function {{PluralName}}({ {{SingularParentName}}Id }) {
 
         return (
           <>
-          {/*// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: creationForm*/}
-          {/*// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: creationForm*/}
+          <{{SingularName}}CreationForm
+          {{SingularParentName}}Id={ {{SingularParentName}}Id }
+          refetchQueries={refetchQueries}
+          // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForCreationForm
+          // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForCreationForm
+          />
 
     <{{PluralName}}StyleWrapper>
             {

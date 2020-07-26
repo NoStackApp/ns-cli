@@ -71,15 +71,15 @@ class {{PluralName}} extends Component {
   wrapperRef = createRef();
 
   componentDidMount() {
-    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: didMount
-    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: didMount
     document.addEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: componentDidMount
+    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: componentDidMount
   }
 
   componentWillUnmount() {
-    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: willUnmount
-    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: willUnmount
     document.removeEventListener('mousedown', this.handleClick);
+    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: componentWillUnmount
+    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: componentWillUnmount
   }
 
   handleClick = (e) => {
@@ -99,8 +99,8 @@ class {{PluralName}} extends Component {
       {{CONSTRAINT_VALUE}}: {{SingularParentName}}Id,
     };
 
-    {/* ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning */}
-    {/* ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning */}
+    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning
+    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning
 
     return (
       <Unit
@@ -123,9 +123,12 @@ class {{PluralName}} extends Component {
       // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: beforeReturn
           return (
             <>
-            {/*// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: creationForm*/}
-            {/*// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: creationForm*/}
-              <{{SingularName}}CreationForm  {{SingularParentName}}Id={ {{SingularParentName}}Id } refetchQueries={refetchQueries}/>
+              <{{SingularName}}CreationForm
+                  {{SingularParentName}}Id={ {{SingularParentName}}Id }
+                  refetchQueries={refetchQueries}
+                  // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForCreationForm
+                  // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForCreationForm
+              />
               <{{PluralName}}StyleWrapper
                 ref={this.wrapperRef}
                 onClick={this.handleClick}
@@ -139,6 +142,8 @@ class {{PluralName}} extends Component {
                     selected={ {{SingularNameLowercase}}.id === selected{{SingularName}}Id }
                     refetchQueries={refetchQueries}
                     onSelect={this.handleSelect}
+                    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForChildren
+                    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForChildren
                   />
                 )) }
               </{{PluralName}}StyleWrapper>

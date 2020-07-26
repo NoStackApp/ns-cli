@@ -63,12 +63,12 @@ const LoginForm = ({ loading, currentUser, login }) => {
     <Wrapper>
       <form onSubmit={handleSubmit}>
         <Row>
-          <label htmlFor="nostack-username">
+          <label htmlFor='nostack-username'>
             Username:
             <input
-              id="nostack-username"
-              type="text"
-              name="username"
+              id='nostack-username'
+              type='text'
+              name='username'
               disabled={isSubmitting}
               value={username}
               onChange={e => setUsername(e.target.value)}
@@ -76,12 +76,12 @@ const LoginForm = ({ loading, currentUser, login }) => {
           </label>
         </Row>
         <Row>
-          <label htmlFor="nostack-password">
+          <label htmlFor='nostack-password'>
             Password:
             <input
-              id="nostack-password"
-              type="password"
-              name="password"
+              id='nostack-password'
+              type='password'
+              name='password'
               disabled={isSubmitting}
               value={password}
               onChange={e => setPassword(e.target.value)}
@@ -90,7 +90,7 @@ const LoginForm = ({ loading, currentUser, login }) => {
         </Row>
         <Row>
           <button
-            type="submit"
+            type='submit'
             disabled={isSubmitting || !username || !password}
           >
             Log In
