@@ -1,7 +1,7 @@
 // const findInFiles = require('find-in-files')
-import {regExAddedCodeSection} from '../constants/regExAddedCodeSection'
-import {regExFileInfo} from '../constants/regExFileInfo'
-import {regExReplacedCodeSection} from '../constants/regExReplacedCodeSection'
+import {regExAddedCodeSection} from '../constants/Regex/regExAddedCodeSection'
+import {regExFileInfo} from '../constants/Regex/regExFileInfo'
+import {regExReplacedCodeSection} from '../constants/Regex/regExReplacedCodeSection'
 import {CustomCodeRepository} from '../constants/types'
 
 const fs = require('fs-extra')
@@ -13,6 +13,7 @@ const readdir = require('@mrmlnc/readdir-enhanced')
 async function storeCustomCodeForFile(file: string, customCode: CustomCodeRepository) {
   const {addedCode, replacedCode} = customCode
 
+  console.log(`in storeCustomCodeForFile for file ${file}`);
   const fileText = await fs.readFile(file, 'utf-8')
   let fileUnit = '';
   let fileComponent = '';
@@ -52,7 +53,7 @@ async function storeCustomCodeForFile(file: string, customCode: CustomCodeReposi
     let contents = match[4]
     if (!contents || contents === '') contents = ' '
     // console.log(`match found: unit: ${unit} component: ${component} location: ${location} contents: ${contents}`)
-    // console.log(`match found: unit: ${unit} component: ${component} location: ${location}`)
+    console.log(`match found in ${file}: unit: ${unit} component: ${component} location: ${location}`)
     if (!replacedCode[unit]) replacedCode[unit] = {}
     if (!replacedCode[unit][component])
       replacedCode[unit][component] = {}
@@ -69,7 +70,7 @@ export const storeAddedCode = async (rootDir: string) => {
   if (!existsComponents) return
 
   const files = readdir.sync(compsDir, {deep: true, filter: '**/*.{js,jsx}'})
-  // console.log(`files: ${JSON.stringify(files, null, 2)}`)
+  console.log(`files: ${JSON.stringify(files, null, 2)}`)
 
   const customCode: CustomCodeRepository = {
     addedCode: {},

@@ -1,3 +1,5 @@
+// ns__file unit: {{Unit}}, comp: {{PluralName}}
+
 // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: beforeImports
 /*
 
@@ -8,7 +10,7 @@
 
   IMPORTANT:
     (1) don't ever delete comment lines beginning `// ns__custom`.
-    (2) don't modify the code except between matching comment lines `// ns__custom` with `start`
+    (2) don't modify the code except between matching comment lines `// ns__custom` with`start`
     and `// ns__custom` with `end`
     (3) if you need to modify code outside of those areas, please contact
     info@pivotate.com and send the file with a request.  We can always generate

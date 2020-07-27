@@ -1,3 +1,4 @@
+// ns__file unit: {{Unit}}, comp: {{SingularName}}CreationForm
 // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: beforeImports
 /*
 
@@ -74,13 +75,6 @@ function {{SingularName}}CreationForm({
 
     updateLoading(true);
 
-
-
-
-
-
-
-
     const create{{SingularName}}Response = await create{{SingularName}}({
       variables: {
         actionId: CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
@@ -108,6 +102,8 @@ function {{SingularName}}CreationForm({
 
   // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: beforeReturn
   // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: beforeReturn
+
+  // ns__start_section unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: return
   return (
     <Form>
       <label htmlFor='{{SingularNameLowercase}}-value'>
@@ -130,6 +126,8 @@ function {{SingularName}}CreationForm({
       </Button>
     </Form>
   );
+  // ns__end_section unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: return
+
 }
 
 export default compose(

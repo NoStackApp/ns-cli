@@ -60,6 +60,6 @@ export default class Makecode extends Command {
     })
 
     console.log(`about to insertAddedCode(${appDir})`)
-    await insertAddedCode(appDir)
+    // await insertAddedCode(appDir)
   }
 }
