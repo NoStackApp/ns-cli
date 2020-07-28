@@ -13,7 +13,7 @@ const readdir = require('@mrmlnc/readdir-enhanced')
 async function storeCustomCodeForFile(file: string, customCode: CustomCodeRepository) {
   const {addedCode, replacedCode} = customCode
 
-  console.log(`in storeCustomCodeForFile for file ${file}`);
+  console.log(`for file ${file}`);
   const fileText = await fs.readFile(file, 'utf-8')
   let fileUnit = '';
   let fileComponent = '';
@@ -22,7 +22,9 @@ async function storeCustomCodeForFile(file: string, customCode: CustomCodeReposi
   if (fileInfoMatch) {
     fileUnit = fileInfoMatch[1]
     fileComponent = fileInfoMatch[2]
-    console.log(`file=${file}: fileUnit=${fileUnit}, fileComponent=${fileComponent}`)
+    // console.log(`file=${file}: fileUnit=${fileUnit}, fileComponent=${fileComponent}`)
+  } else {
+    console.log('DIDN\'T WORK!')
   }
   // console.log(`fileText: ${fileText}`)
 
@@ -53,7 +55,8 @@ async function storeCustomCodeForFile(file: string, customCode: CustomCodeReposi
     let contents = match[4]
     if (!contents || contents === '') contents = ' '
     // console.log(`match found: unit: ${unit} component: ${component} location: ${location} contents: ${contents}`)
-    console.log(`match found in ${file}: unit: ${unit} component: ${component} location: ${location}`)
+    console.log(`**MATCH FOUND** in ${file}: unit: ${unit} component: ${component} location: ${location}`)
+    console.log(`first chars of fileText = ${JSON.stringify(fileText.slice(0, 80))}`);
     if (!replacedCode[unit]) replacedCode[unit] = {}
     if (!replacedCode[unit][component])
       replacedCode[unit][component] = {}

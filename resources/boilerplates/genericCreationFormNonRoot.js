@@ -1,4 +1,5 @@
-// ns__file unit: {{Unit}}, comp: {{SingularName}}CreationForm
+{{START_OF_FILE}}
+
 // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: beforeImports
 /*
 

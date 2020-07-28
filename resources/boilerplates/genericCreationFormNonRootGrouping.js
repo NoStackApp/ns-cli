@@ -1,3 +1,5 @@
+{{START_OF_FILE}}
+
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';

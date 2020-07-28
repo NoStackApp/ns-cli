@@ -1,4 +1,4 @@
-import {associationTypes} from '../constants'
+import {associationTypes, BoilerPlateInfoType, formTypes} from '../constants'
 import {StackInfo, TreeTypeChildrenList} from '../constants/types'
 import {
   allCaps,
@@ -10,6 +10,32 @@ import {
 } from '../tools/inflections'
 
 const Handlebars = require('handlebars')
+
+// Handlebars.registerHelper('escape', function (variable: string) {
+//   return variable.replace(/(['"])/g, '\\$1');
+// });
+
+const componentName = (type: string, componentType: string) => {
+  if (componentType === formTypes.CREATION) return singularName(type) + 'CreationForm'
+  if (componentType === formTypes.LIST) return pluralName(type)
+  return singularName(type)
+};
+
+const fileInfo = Handlebars.compile('unit: {{unitName}}, comp: {{component}}')
+
+const beginningOfFile = Handlebars.compile(`
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file {{fileInfo}}
+
+// ns__custom_start {{fileInfo}}, loc: beforeImports
+{{ defaultContent }}
+// ns__custom_end {{fileInfo}}, loc: beforeImports
+
+`)
 
 const singleChildCreationCodeTemplate = Handlebars.compile(`
 {{#children}}
@@ -97,7 +123,12 @@ import {{childComponent}} from '../../{{singularConnected}}/{{childComponent}}';
 {{/connectedChildren}}
 `)
 
-export const replacementTags = (type: string, source: string, currentStack: StackInfo) => {
+export const replacementTags = (
+  type: string,
+  source: string,
+  currentStack: StackInfo,
+  boilerPlateInfo: BoilerPlateInfoType,
+) => {
   // we set children and connectedChildren, then derive all of the tag values to pass to the boilerplate templates.
   const sourceInfo = currentStack.sources[source]
   const typeSourceInfo = currentStack.types[type].sources[source]
@@ -272,6 +303,13 @@ export const replacementTags = (type: string, source: string, currentStack: Stac
     SelectionSource: typeSourceInfo.sourceUnit ?
       singularName(typeSourceInfo.sourceUnit) :
       null,
+    START_OF_FILE: beginningOfFile({
+      fileInfo: fileInfo({
+        unitName: singularName(source),
+        component: componentName(source, boilerPlateInfo.formType),
+        defaultContent: '\'use strict\';',
+      }),
+    }),
   }
 
   return tags
