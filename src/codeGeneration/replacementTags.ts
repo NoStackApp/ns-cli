@@ -32,9 +32,8 @@ const beginningOfFile = Handlebars.compile(`
 // ns__file {{fileInfo}}
 
 // ns__custom_start {{fileInfo}}, loc: beforeImports
-{{ defaultContent }}
+{{{ defaultContent }}}
 // ns__custom_end {{fileInfo}}, loc: beforeImports
-
 `)
 
 const singleChildCreationCodeTemplate = Handlebars.compile(`
@@ -305,10 +304,10 @@ export const replacementTags = (
       null,
     START_OF_FILE: beginningOfFile({
       fileInfo: fileInfo({
-        unitName: singularName(source),
-        component: componentName(source, boilerPlateInfo.formType),
-        defaultContent: '\'use strict\';',
+        unitName: source,
+        component: componentName(type, boilerPlateInfo.formType),
       }),
+      defaultContent: '\'use strict\';',
     }),
   }
 

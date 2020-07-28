@@ -35,6 +35,7 @@ export async function generateTypeFile(type: string, source: string, boilerPlate
 
   try {
     const template = Handlebars.compile(await fs.readFile(`${boilerplateDir}/${boilerPlate}.js`, 'utf-8'))
+    console.log(`tags.START_OF_FILE=${tags.START_OF_FILE}`)
     await fs.outputFile(`${path}/index.jsx`, template(tags))
   } catch (err) {
     console.error(err)
