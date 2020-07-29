@@ -1,3 +1,14 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: general, comp: ForgotPasswordButton
+
+// ns__custom_start unit: general, comp: ForgotPasswordButton, loc: beforeImports
+'use strict';
+// ns__custom_end unit: general, comp: ForgotPasswordButton, loc: beforeImports
+
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import compose from '@shopify/react-compose';
@@ -79,7 +90,7 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
 
   if (!formVisible) {
     return (
-      <Button type='button' onClick={showForm}>
+      <Button type="button" onClick={showForm}>
         Forgot Password?
       </Button>
     );
@@ -110,7 +121,7 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
   return (
     <p>
       Your password has been reset. You may now login.
-      <Button type='button' onClick={hideForm}>Ok.</Button>
+      <Button type="button" onClick={hideForm}>Ok.</Button>
     </p>
   );
 };

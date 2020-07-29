@@ -17,14 +17,20 @@ async function storeCustomCodeForFile(file: string, customCode: CustomCodeReposi
   const fileText = await fs.readFile(file, 'utf-8')
   let fileUnit = '';
   let fileComponent = '';
-  const fileInfoMatch = regExFileInfo.exec(fileText);
+
+  // temp
+  const regexTextTest = '\\/\\/ ns__file unit: (\\w*), comp: (\\w*)'
+  const regExFileInfoTest = new RegExp(regexTextTest, 'g')
+
+  const fileInfoMatch = regExFileInfoTest.exec(fileText);
+  console.log(`fileInfoMatch: ${JSON.stringify(fileInfoMatch)}`);
 
   if (fileInfoMatch) {
     fileUnit = fileInfoMatch[1]
     fileComponent = fileInfoMatch[2]
     // console.log(`file=${file}: fileUnit=${fileUnit}, fileComponent=${fileComponent}`)
   } else {
-    console.log('DIDN\'T WORK!')
+    console.log(`DIDN'T WORK! regExFileInfoTest.exec(fileText)=${JSON.stringify(regExFileInfoTest.exec(fileText))}`)
   }
   // console.log(`fileText: ${fileText}`)
 

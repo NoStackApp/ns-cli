@@ -1,3 +1,14 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: general, comp: RegistrationForm
+
+// ns__custom_start unit: general, comp: RegistrationForm, loc: beforeImports
+'use strict';
+// ns__custom_end unit: general, comp: RegistrationForm, loc: beforeImports
+
 import React, {useState} from 'react'
 import {Formik, Form} from 'formik'
 import {useMutation} from '@apollo/react-hooks'
@@ -106,31 +117,31 @@ const RegistrationForm = ({
       >
         {({isSubmitting, isValid, dirty, isValidating}) => (
           <Form>
-            <RegistrationField fieldLabel='Username:' type='text' name='name' />
+            <RegistrationField fieldLabel="Username:" type="text" name="name" />
             <RegistrationField
-              fieldLabel='First Name:'
-              type='text'
-              name='firstName'
+              fieldLabel="First Name:"
+              type="text"
+              name="firstName"
             />
             <RegistrationField
-              fieldLabel='Last Name:'
-              type='text'
-              name='lastName'
+              fieldLabel="Last Name:"
+              type="text"
+              name="lastName"
             />
-            <RegistrationField fieldLabel='Email:' type='email' name='email' />
+            <RegistrationField fieldLabel="Email:" type="email" name="email" />
             <RegistrationField
-              fieldLabel='Password:'
-              type='password'
-              name='password'
+              fieldLabel="Password:"
+              type="password"
+              name="password"
             />
             <RegistrationField
-              fieldLabel='Confirm Password:'
-              type='password'
-              name='passwordConfirmation'
+              fieldLabel="Confirm Password:"
+              type="password"
+              name="passwordConfirmation"
             />
             <Row>
               <button
-                type='submit'
+                type="submit"
                 disabled={isSubmitting || !isValid || isValidating || !dirty}
               >
                 Sign Up!

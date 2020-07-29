@@ -1,3 +1,4 @@
+{{{START_OF_FILE}}}
 {{START_OF_FILE}}
 
 import React, { useState } from 'react';

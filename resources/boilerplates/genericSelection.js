@@ -1,3 +1,4 @@
+{{{START_OF_FILE}}}
 import React, { useState } from 'react';
 import { Unit } from '@nostack/no-stack';
 import styled from 'styled-components';

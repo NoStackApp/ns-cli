@@ -126,9 +126,9 @@ module.exports = function (grunt) {
                   return lines.join('\n');
                 }
 
-                const stringToInsert = `// ns__start_section ${location}\n` +
+                const stringToInsert = `// ns__start_replacement ${location}\n` +
                   replacedCodeObject[unit][component][location] +
-                  `// ns__end_section ${location}\n`;
+                  `// ns__end_replacement ${location}\n`;
                 console.log(`stringToInsert: ${stringToInsert}`);
                 return stringToInsert;
               }

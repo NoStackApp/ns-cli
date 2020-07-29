@@ -1,3 +1,14 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+ */
+// ns__file unit: general, comp: AuthTabs
+
+// ns__custom_start unit: general, comp: AuthTabs, loc: beforeImports
+'use strict';
+// ns__custom_end unit: general, comp: AuthTabs, loc: beforeImports
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -51,7 +62,7 @@ const AuthTabs = ({ menuTitles, children }) => {
           }
 
           return (
-            <div className='test'>{child}</div>
+            <div className="test">{child}</div>
           );
         })}
       </div>
