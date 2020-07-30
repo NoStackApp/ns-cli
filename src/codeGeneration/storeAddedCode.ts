@@ -21,6 +21,8 @@ async function storeCustomCodeForFile(file: string, customCode: CustomCodeReposi
   // temp
   const regexTextTest = '\\/\\/ ns__file unit: (\\w*), comp: (\\w*)'
   const regExFileInfoTest = new RegExp(regexTextTest, 'g')
+  const regexRemovedTest = '\\/\\/ ns__removed_import (\\w*)'
+  const regExRemoved = new RegExp(regexRemovedTest, 'g')
 
   const fileInfoMatch = regExFileInfoTest.exec(fileText);
   console.log(`fileInfoMatch: ${JSON.stringify(fileInfoMatch)}`);
