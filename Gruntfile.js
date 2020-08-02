@@ -17,6 +17,7 @@ const fs = require('fs-extra');
 let customCodeObject = {};
 let addedCodeObject = {};
 let replacedCodeObject = {};
+// let removedCodeObject = {};
 
 // the following should not be here.  Should be exported from constants/regExAddedCodeSections.
 // but grunt isn't set up to import from external ts files.
@@ -37,7 +38,9 @@ const genFirstLineBody = `${commentOpen} ns__start_section unit: ${locationSpec}
 const genFullRegExBody = `${genFirstLineBody}${content}${commentOpen} ns__end_section unit: ${locationRepetition}`
 const regExGeneratedCodeSection = new RegExp(genFullRegExBody, 'g')
 const genRegExForFirstLine = new RegExp(genFirstLineBody);
-// const regExAddedCodeSection = /\/\/ np__added_start unit: (\w*), comp: (\w*), loc: (\w*)\n((.|\n)*?)\/\/ np__added_end/g;
+
+// const removeImport = `^(\\s)*import (${locationSpec})`
+// const regExRemoveImport = new RegExp(removeImport, 'g')
 
 module.exports = function (grunt) {
   // console.log(untildify(grunt.option('appDir')) + '/src/components/**/*.js');
@@ -138,6 +141,26 @@ module.exports = function (grunt) {
         ],
       },
 
+      // removedCode: {
+      //   src: [grunt.option('appDir') + '/src/components/**/*.jsx', grunt.option('appDir') +
+      //   '/src/components/**/*.js'],
+      //   overwrite: true,             // destination directory or file
+      //   replacements: [
+      //     {
+      //       from: regExRemoveImport,
+      //       to: function (matchedWord, index, fullText, regexMatches) {   // callback replacement
+      //         if (removedCodeObject[unit] &&
+      //           removedCodeObject[unit][component] &&
+      //           removedCodeObject[unit][component][location]
+      //         ) {
+      //           return `\n${regexMatches[0]}// removed_${regexMatches[1]}`
+      //         }
+      //         return matchedWord
+      //       },
+      //     },
+      //   ],
+      // },
+
     },
   });
 
@@ -160,6 +183,7 @@ module.exports = function (grunt) {
       customCodeObject = await fs.readJson(addedCodeJsonFile);
       addedCodeObject = customCodeObject.addedCode;
       replacedCodeObject = customCodeObject.replacedCode;
+      // removedCodeObject = customCodeObject.removedCode;
       console.log(`content = ${JSON.stringify(customCodeObject, null, 2)}`);
     } catch (err) {
       grunt.fatal(`ERROR loading the added code: ${err}`);

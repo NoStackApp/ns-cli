@@ -11,7 +11,7 @@ const readdir = require('@mrmlnc/readdir-enhanced')
 // const regEx = /(\/\/|{\/\*) np__added_start unit: (\w*), comp: (\w*), loc: (\w*)( \*\/\}\n|\n)((.|\n)*?)(\/\/|{\/\*) np__added_end/g
 
 async function storeCustomCodeForFile(file: string, customCode: CustomCodeRepository) {
-  const {addedCode, replacedCode} = customCode
+  const {addedCode, replacedCode, removedCode} = customCode
 
   console.log(`for file ${file}`);
   const fileText = await fs.readFile(file, 'utf-8')
@@ -21,7 +21,7 @@ async function storeCustomCodeForFile(file: string, customCode: CustomCodeReposi
   // temp
   const regexTextTest = '\\/\\/ ns__file unit: (\\w*), comp: (\\w*)'
   const regExFileInfoTest = new RegExp(regexTextTest, 'g')
-  const regexRemovedTest = '\\/\\/ ns__removed_import (\\w*)'
+  const regexRemovedTest = '\\/\\/ ns__remove_import (\\w*)'
   const regExRemoved = new RegExp(regexRemovedTest, 'g')
 
   const fileInfoMatch = regExFileInfoTest.exec(fileText);
@@ -62,13 +62,27 @@ async function storeCustomCodeForFile(file: string, customCode: CustomCodeReposi
     // const firstLineEnding = match[5]
     let contents = match[4]
     if (!contents || contents === '') contents = ' '
+    // const firstLineEnding = match[5]
+
     // console.log(`match found: unit: ${unit} component: ${component} location: ${location} contents: ${contents}`)
-    console.log(`**MATCH FOUND** in ${file}: unit: ${unit} component: ${component} location: ${location}`)
-    console.log(`first chars of fileText = ${JSON.stringify(fileText.slice(0, 80))}`);
+    console.log(`**MATCH FOUND** for replace in ${file}: unit: ${unit} component: ${component} location: ${location}`)
     if (!replacedCode[unit]) replacedCode[unit] = {}
     if (!replacedCode[unit][component])
       replacedCode[unit][component] = {}
     replacedCode[unit][component][location] = contents
+  }
+
+  // eslint-disable-next-line no-cond-assign
+  while (match = regExRemoved.exec(fileText)) {
+    // if (!output[match[1]])
+    const unit = fileUnit
+    const component = fileComponent
+    const location = match[1]
+    console.log(`**MATCH FOUND** for remove in ${file}: unit: ${unit} component: ${component} location: ${location}`)
+    if (!removedCode[unit]) removedCode[unit] = {}
+    if (!removedCode[unit][component])
+      removedCode[unit][component] = {}
+    removedCode[unit][component][location] = 'true'
   }
 }
 
