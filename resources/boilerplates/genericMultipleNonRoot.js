@@ -78,7 +78,8 @@ class {{PluralName}} extends Component {
           // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForCreationForm
         />
 
-        { {{PluralNameLowercase}}.map(({{SingularNameLowercase}}) => (
+  {/* ns__start_section listElements */}
+  { {{PluralNameLowercase}}.map(({{SingularNameLowercase}}) => (
           <{{SingularName}}
             key={v4()}
             {{SingularNameLowercase}}={ {{SingularNameLowercase}} }
@@ -91,6 +92,8 @@ class {{PluralName}} extends Component {
             // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForChildren
           />
         )) }
+  {/* ns__end_section listElements */}
+
   {/* ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
   {/* ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
 

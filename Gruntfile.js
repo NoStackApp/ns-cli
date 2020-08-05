@@ -117,7 +117,7 @@ module.exports = function (grunt) {
                 console.log(`match found: unit: ${unit} component: ${component} location: ${location}`);
                 // console.log(`content = ${JSON.stringify(addedCodeObject,null,2)}`);
 
-                if (!replacedCodeObject[unit]);
+                // if (!replacedCodeObject[unit]);
                 // if (!replacedCodeObject[unit][component]) grunt.fatal(`ERROR adding the code: component '${component}' for unit '${unit}' not found`);
                 if (!replacedCodeObject[unit] ||
                   !replacedCodeObject[unit][component] ||

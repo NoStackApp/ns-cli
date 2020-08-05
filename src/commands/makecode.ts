@@ -52,11 +52,13 @@ export default class Makecode extends Command {
     }
 
     // store added code before generating new code.
+    console.log(`about to call storeAddedCode(${appDir})`)
     await storeAddedCode(appDir)
 
+    console.log(`about generateAppCode(${appDir})`)
     const generateAppTasks = await generateAppCode(appDir, userClass, jsonPath)
     await generateAppTasks.run().catch((err: any) => {
-      console.error(err)
+      throw err
     })
 
     console.log(`about to insertAddedCode(${appDir})`)

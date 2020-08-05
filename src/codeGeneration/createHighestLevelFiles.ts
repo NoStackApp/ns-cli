@@ -13,6 +13,8 @@ export async function createHighestLevelFiles(
   appDir: string,
   userClass: string,
 ) {
+  console.log(`In createHighestLevelFiles... appDir=${appDir}`)
+
   // DeleteInstanceMenu
   await fs.copy(
     `${boilerplateDir}/DeleteInstanceMenu.js`,
