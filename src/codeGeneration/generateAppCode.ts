@@ -53,7 +53,8 @@ export async function generateCodeFiles(appDir: string, userClass: string, jsonP
   try {
     await generateAppTypeFiles(sources, userClass, currentStack)
   } catch (err) {
-    throw new Error('error in creating app component files')
+    console.log('error in creating app component files:')
+    throw err
   }
 }
 

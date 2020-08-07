@@ -1,5 +1,5 @@
-import {associationTypes, BoilerPlateInfoType, formTypes} from '../constants'
-import {StackInfo, TreeTypeChildrenList} from '../constants/types'
+import {associationTypes, BoilerPlateInfoType, formTypes} from '../../constants'
+import {StackInfo, TreeTypeChildrenList} from '../../constants/types'
 import {
   allCaps,
   pluralLowercaseName,
@@ -7,7 +7,10 @@ import {
   queryForSource,
   relationshipsForSource,
   singularName,
-} from '../tools/inflections'
+} from '../../tools/inflections'
+import {beginningOfFile} from './beginningOfFile'
+import {compose} from './compose'
+import {styling} from './styling'
 
 const Handlebars = require('handlebars')
 
@@ -21,20 +24,9 @@ const componentName = (type: string, componentType: string) => {
   return singularName(type)
 };
 
+const isCreationType = (componentType: string) => componentType === formTypes.CREATION;
+
 const fileInfo = Handlebars.compile('unit: {{unitName}}, comp: {{component}}')
-
-const beginningOfFile = Handlebars.compile(`
-/*
-  This file has been partially generated!
-  To permit updates to the generated portions of this code in the future,
-  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
- */
-// ns__file {{fileInfo}}
-
-// ns__custom_start {{fileInfo}}, loc: beforeImports
-{{{ defaultContent }}}
-// ns__custom_end {{fileInfo}}, loc: beforeImports
-`)
 
 const singleChildCreationCodeTemplate = Handlebars.compile(`
 {{#children}}
@@ -92,11 +84,7 @@ const typeIdsForSingleChildrenTemplate = Handlebars.compile(
 const singleChildrenParamsTemplate = Handlebars.compile(
   '{{#children}}{{#if property}}, create{{childSingular}}{{/if}}{{/children}}')
 const singleChildrenComposeStatementsTemplate = Handlebars.compile(
-  `
-  {{#children}}
-  {{#if property}}  graphql(EXECUTE_ACTION, { name: 'create{{childSingular}}' }),{{/if}}
-  {{/children}}
-  `)
+  '{{#children}}{{#if property}}, graphql(EXECUTE_ACTION, { name: \'create{{childSingular}}\' }){{/if}}{{#if notIsLast}}, {{/if}}{{/children}}')
 
 const childrenImportsTemplate = Handlebars.compile(`
 {{#children}}
@@ -128,6 +116,7 @@ export const replacementTags = (
   currentStack: StackInfo,
   boilerPlateInfo: BoilerPlateInfoType,
 ) => {
+  console.log(`in replacementTags for type ${type}, form type ${boilerPlateInfo.formType}`)
   // we set children and connectedChildren, then derive all of the tag values to pass to the boilerplate templates.
   const sourceInfo = currentStack.sources[source]
   const typeSourceInfo = currentStack.types[type].sources[source]
@@ -282,14 +271,14 @@ export const replacementTags = (
           }
       }),
     }),
-    SINGLE_CHILDREN_COMPOSE_STATEMENTS: singleChildrenComposeStatementsTemplate({
-      children: children.map(child => {
-        const childInfo = currentStack.types[child]
-        const assnInfo = childInfo.sources[source]
-        if (assnInfo.assnType === associationTypes.SINGLE_REQUIRED)
-          return {property: true, childSingular: singularName(child)}
-      }),
-    }),
+    // SINGLE_CHILDREN_COMPOSE_STATEMENTS: singleChildrenComposeStatementsTemplate({
+    //   children: children.map(child => {
+    //     const childInfo = currentStack.types[child]
+    //     const assnInfo = childInfo.sources[source]
+    //     if (assnInfo.assnType === associationTypes.SINGLE_REQUIRED)
+    //       return {property: true, childSingular: singularName(child)}
+    //   }),
+    // }),
     SINGLE_CHILDREN_PARAMS: singleChildrenParamsTemplate({
       children: children.map(child => {
         const childInfo = currentStack.types[child]
@@ -308,6 +297,28 @@ export const replacementTags = (
         component: componentName(type, boilerPlateInfo.formType),
       }),
       defaultContent: '\'use strict\';',
+    }),
+    COMPOSE_CLAUSE: compose({
+      // isCreationForm: isCreationType(boilerPlateInfo.formType),
+      formType: boilerPlateInfo.formType,
+      SingularName: singularName(type),
+      SINGLE_CHILDREN_COMPOSE_STATEMENTS: singleChildrenComposeStatementsTemplate({
+        children: children.map((child, index) => {
+          const childInfo = currentStack.types[child]
+          const assnInfo = childInfo.sources[source]
+          // const isNotLast: boolean = numberOfChildren > index + 1
+          // console.log(`for type ${type}, for child ${child}, isNotLast=${isNotLast}`)
+          // if (assnInfo.assnType === associationTypes.SINGLE_REQUIRED)
+          //   return {property: true, childSingular: singularName(child), isNotLast}
+
+          if (assnInfo.assnType === associationTypes.SINGLE_REQUIRED)
+            return {property: true, childSingular: singularName(child)}
+        }),
+      }),
+    }),
+    STYLING_SECTION: styling({
+      // isCreationForm: isCreationType(boilerPlateInfo.formType),
+      formType: boilerPlateInfo.formType,
     }),
   }
 

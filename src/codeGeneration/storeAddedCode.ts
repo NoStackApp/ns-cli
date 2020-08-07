@@ -1,6 +1,6 @@
 // const findInFiles = require('find-in-files')
 import {regExAddedCodeSection} from '../constants/Regex/regExAddedCodeSection'
-import {regExFileInfo} from '../constants/Regex/regExFileInfo'
+// import {regExFileInfo} from '../constants/Regex/regExFileInfo'
 import {regExReplacedCodeSection} from '../constants/Regex/regExReplacedCodeSection'
 import {CustomCodeRepository} from '../constants/types'
 
@@ -13,7 +13,7 @@ const readdir = require('@mrmlnc/readdir-enhanced')
 async function storeCustomCodeForFile(file: string, customCode: CustomCodeRepository) {
   const {addedCode, replacedCode, removedCode} = customCode
 
-  console.log(`for file ${file}`);
+  // console.log(`for file ${file}`);
   const fileText = await fs.readFile(file, 'utf-8')
   let fileUnit = '';
   let fileComponent = '';
@@ -25,14 +25,14 @@ async function storeCustomCodeForFile(file: string, customCode: CustomCodeReposi
   const regExRemoved = new RegExp(regexRemovedTest, 'g')
 
   const fileInfoMatch = regExFileInfoTest.exec(fileText);
-  console.log(`fileInfoMatch: ${JSON.stringify(fileInfoMatch)}`);
+  // console.log(`fileInfoMatch: ${JSON.stringify(fileInfoMatch)}`);
 
   if (fileInfoMatch) {
     fileUnit = fileInfoMatch[1]
     fileComponent = fileInfoMatch[2]
     // console.log(`file=${file}: fileUnit=${fileUnit}, fileComponent=${fileComponent}`)
   } else {
-    console.log(`DIDN'T WORK! regExFileInfoTest.exec(fileText)=${JSON.stringify(regExFileInfoTest.exec(fileText))}`)
+    // console.log(`DIDN'T WORK! regExFileInfoTest.exec(fileText)=${JSON.stringify(regExFileInfoTest.exec(fileText))}`)
   }
   // console.log(`fileText: ${fileText}`)
 
@@ -65,7 +65,7 @@ async function storeCustomCodeForFile(file: string, customCode: CustomCodeReposi
     // const firstLineEnding = match[5]
 
     // console.log(`match found: unit: ${unit} component: ${component} location: ${location} contents: ${contents}`)
-    console.log(`**MATCH FOUND** for replace in ${file}: unit: ${unit} component: ${component} location: ${location}`)
+    // console.log(`**MATCH FOUND** for replace in ${file}: unit: ${unit} component: ${component} location: ${location}`)
     if (!replacedCode[unit]) replacedCode[unit] = {}
     if (!replacedCode[unit][component])
       replacedCode[unit][component] = {}
@@ -78,7 +78,7 @@ async function storeCustomCodeForFile(file: string, customCode: CustomCodeReposi
     const unit = fileUnit
     const component = fileComponent
     const location = match[1]
-    console.log(`**MATCH FOUND** for remove in ${file}: unit: ${unit} component: ${component} location: ${location}`)
+    // console.log(`**MATCH FOUND** for remove in ${file}: unit: ${unit} component: ${component} location: ${location}`)
     if (!removedCode[unit]) removedCode[unit] = {}
     if (!removedCode[unit][component])
       removedCode[unit][component] = {}
@@ -95,7 +95,7 @@ export const storeAddedCode = async (rootDir: string) => {
   if (!existsComponents) return
 
   const files = readdir.sync(compsDir, {deep: true, filter: '**/*.{js,jsx}'})
-  console.log(`files: ${JSON.stringify(files, null, 2)}`)
+  // console.log(`files: ${JSON.stringify(files, null, 2)}`)
 
   const customCode: CustomCodeRepository = {
     addedCode: {},

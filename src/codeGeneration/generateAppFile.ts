@@ -25,7 +25,7 @@ export async function generateAppFile(currentStack: StackInfo, userClass: string
     throw (err)
   }
 
-  console.log(`currentStack.sources[source]=${JSON.stringify(currentStack.sources[source])}`)
+  // console.log(`currentStack.sources[source]=${JSON.stringify(currentStack.sources[source])}`)
 
   const highestLevel = 'highestLevel'
   const sourceInfo = currentStack.sources[source]

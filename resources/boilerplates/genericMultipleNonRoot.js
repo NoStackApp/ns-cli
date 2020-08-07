@@ -17,13 +17,14 @@ import {{SingularName}} from '../{{SingularName}}';
   This section is for styling.  The default below is just a sample and can be replaced.
  */
 
-const {{PluralName}}StyleWrapper = styled.div``;
+const {{PluralName}}StyleWrapper = styled.div`
+`;
+// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: styling
 
 const Button = styled.button`
   display: block;
   margin: 0 auto;
 `;
-// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: styling
 
 class {{PluralName}} extends Component {
 // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: beginning

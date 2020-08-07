@@ -175,11 +175,7 @@ function {{SingularName}}({
   );
 }
 
-export default compose(
-  graphql(EXECUTE, { name: 'updateInstance' }),
-  graphql(EXECUTE, { name: 'deleteInstance' })
-)({{SingularName}});
-
+{{{COMPOSE_CLAUSE}}}
 
 {{SingularName}}.propTypes = {
 {{SingularNameLowercase}}: PropTypes.object,

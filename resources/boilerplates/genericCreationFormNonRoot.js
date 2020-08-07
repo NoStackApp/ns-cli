@@ -10,16 +10,7 @@ import { CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ACTION_IDS_FOR_SIN
 // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: addedImports
 // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: addedImports
 
-// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: styling
-// change styling here
-const Form = styled.div`
-  margin: 2em;
-  padding: 1.5em;
-  border: none;
-  border-radius: 5px;
-  background-color: #F5F5F5;
-`;
-// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: styling
+{{{STYLING_SECTION}}}
 
 const Button = styled.button`
   margin-left: 1em;
@@ -101,9 +92,7 @@ function {{SingularName}}CreationForm({
 
 }
 
-export default compose(graphql(EXECUTE, { name: 'create{{SingularName}}' }),{{{SINGLE_CHILDREN_COMPOSE_STATEMENTS}}})(
-  {{SingularName}}CreationForm
-);
+{{{COMPOSE_CLAUSE}}}
 
 {{SingularName}}CreationForm.propTypes = {
   parentId: PropTypes.string,

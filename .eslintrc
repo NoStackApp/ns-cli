@@ -14,7 +14,8 @@
     "semi": "off",
     "quotes": [2, "single", { "avoidEscape": true }],
     "no-underscore-dangle": "off",
-    "no-octal-escape": "off"
+    "no-octal-escape": "off",
+    "arrow-parens": "off",
   },
   "env": {
     "browser": true,

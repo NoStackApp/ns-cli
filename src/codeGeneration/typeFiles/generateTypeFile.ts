@@ -3,7 +3,7 @@ import {StackInfo} from '../../constants/types'
 import {singularName} from '../../tools/inflections'
 import {compDir} from '../createTopProjectDirs'
 import {makeDirs} from '../makeDirs'
-import {replacementTags} from '../replacementTags'
+import {replacementTags} from '../tags/replacementTags'
 
 import {boilerPlateToDir} from './boilderPlateToDir'
 
@@ -14,9 +14,9 @@ const boilerPlateFromInfo = (boilerPlateInfo: BoilerPlateInfoType) =>
   boilerPlates[boilerPlateInfo.formType + boilerPlateInfo.dataType + boilerPlateInfo.nodeType]
 
 export async function generateTypeFile(type: string, source: string, boilerPlateInfo: BoilerPlateInfoType, currentStack: StackInfo) {
-  // console.log(`in generateTypeFile, type=${type}, boilerPlateInfo=${JSON.stringify(boilerPlateInfo)}`)
+  console.log(`in generateTypeFile, type=${type}, boilerPlateInfo=${JSON.stringify(boilerPlateInfo)}`)
   const boilerPlate = boilerPlateFromInfo(boilerPlateInfo)
-  // console.log(`in generateTypeFile, typeName=${typeName}, boilerPlate=${boilerPlate}`)
+  console.log(`... boilerPlate=${boilerPlate}`)
   const dir = boilerPlateToDir(type, boilerPlateInfo.formType)
   // console.log(`in generateTypeFile, dir=${dir}`)
 
