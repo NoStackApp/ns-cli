@@ -318,7 +318,7 @@ export const replacementTags = (
     }),
     STYLING_SECTION: styling({
       // isCreationForm: isCreationType(boilerPlateInfo.formType),
-      formType: boilerPlateInfo.formType,
+      boilerPlateInfo,
     }),
   }
 

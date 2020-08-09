@@ -73,13 +73,9 @@ module.exports = function (grunt) {
               // console.log(`match found: unit: ${unit} component: ${component} location: ${location}`);
               // console.log(`content = ${JSON.stringify(addedCodeObject,null,2)}`);
 
-              if (!addedCodeObject[unit]) grunt.fatal(`ERROR adding the code: unit '${unit}' not found`);
-              // if (!addedCodeObject[unit][component]) grunt.fatal(`ERROR adding the code: component '${component}' for unit '${unit}' not found`);
-              if (!addedCodeObject[unit][component])  {
-                return firstLine + '\n' + lastLine.trimLeft();
-              }
-              // if (!addedCodeObject[unit][component][location]) grunt.fatal(`ERROR adding the code: location '${location}' in component '${component}' for unit '${unit}' not found`);
-              if (!addedCodeObject[unit][component][location]) {
+              if (!addedCodeObject[unit] ||
+                !addedCodeObject[unit][component] ||
+                !addedCodeObject[unit][component][location]) {
                 return firstLine + '\n' + lastLine.trimLeft();
               }
 

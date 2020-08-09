@@ -14,17 +14,6 @@ export default compose(graphql(EXECUTE, { name: 'create{{SingularName}}' }),{{{S
 )({{SingularName}});
  */
 
-export const compose = Handlebars.compile(`
-{{#if (eq formType '${formTypes.CREATION}') }}
-export default compose(graphql(EXECUTE, { name: 'create{{SingularName}}' }){{{SINGLE_CHILDREN_COMPOSE_STATEMENTS}}})({{SingularName}}CreationForm);
-{{/if}}
-{{#if (eq formType '${formTypes.SINGLE_INSTANCE}') }}
-export default compose(
-  graphql(EXECUTE, { name: 'updateInstance' }),
-  graphql(EXECUTE, { name: 'deleteInstance' })
-)({{SingularName}})
-{{/if}}`)
-
 /*
 // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: styling
 // change styling here
@@ -40,9 +29,11 @@ const Form = styled.div`
  */
 
 export const styling = Handlebars.compile(`
-// ns__custom_start styling
+{{=<% %>=}}
+// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, styling
+<%={{ }}=%>
 // change styling here
-{{#if (eq formType '${formTypes.CREATION}') }}
+{{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
 const Form = styled.div\`
   margin: 2em;
   padding: 1.5em;
@@ -51,7 +42,7 @@ const Form = styled.div\`
   background-color: #F5F5F5;
 \`;
 {{/if}}
-{{#if (eq formType '${formTypes.LIST}') }}
+{{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
 const {{PluralName}}StyleWrapper = styled.div\`
 \`;
 {{/if}}
