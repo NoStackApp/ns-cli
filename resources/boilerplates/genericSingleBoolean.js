@@ -6,13 +6,7 @@ import { EXECUTE } from '@nostack/no-stack';
 
 import {UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID} from '../../../config';
 
-// add styling here
-const {{SingularName}}StyleWrapper = styled.span`
-  margin-left: 1.5em;
-  display: inline-block;
-  border: 1px solid #eeeeee;
-  padding: 0.5em;
-`;
+{{{STYLING_SECTION}}}
 
 function {{SingularName}}({ {{SingularNameLowercase}}, label, updateInstance, refetchQueries, disabled = false }) {
   const [ {{SingularNameLowercase}}Value, update{{SingularName}}Value ] = useState({{SingularNameLowercase}}.value);

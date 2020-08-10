@@ -19,25 +19,7 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: addedImports
 // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: addedImports
 
-// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: styling
-// add styling here
-const {{SingularName}}StyleWrapper = styled.div(({
-  selected,
-  isDeleting,
-}) => `
-  margin: 2em 1em;
-  padding: 1.5em;
-  border: ${selected ? '1px solid aquamarine': '1px solid white'};
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px #888888;
-  background-color: ${isDeleting && 'tomato'};
-  cursor: ${selected ? 'auto' : 'pointer'};
-
-  &:hover {
-    border: 1px solid aquamarine;
-  }
-`);
-// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: styling
+{{{STYLING_SECTION}}}
 
 const Button = styled.button`
   background: none;
@@ -146,10 +128,7 @@ function {{SingularName}}({
 
   if (isDeleteMode) {
     return (
-      <{{SingularName}}StyleWrapper
-        selected={selected}
-        isDeleting={isDeleting}
-      >
+      <{{SingularName}}StyleWrapper selected={selected} isDeleting={isDeleting}>
         { {{SingularNameLowercase}}Value }
         <DeleteInstanceMenu
           onDelete={handleDelete}
@@ -176,18 +155,4 @@ function {{SingularName}}({
 }
 
 {{{COMPOSE_CLAUSE}}}
-
-{{SingularName}}.propTypes = {
-{{SingularNameLowercase}}: PropTypes.object,
-  parentId: PropTypes.string,
-  selected: PropTypes.bool,
-  updateInstance: PropTypes.func,
-  deleteInstance: PropTypes.func,
-  refetchQueries: PropTypes.array,
-  app: PropTypes.shape({
-    children: PropTypes.array,
-    id: PropTypes.string,
-  }),
-  // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: addedPropTypes
-  // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: addedPropTypes
-};
+{{{PROP_TYPES_SECTION}}}

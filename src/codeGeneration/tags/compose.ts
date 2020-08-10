@@ -38,6 +38,6 @@ export default compose(graphql(EXECUTE, { name: 'create{{SingularName}}' }){{{SI
 export default compose(
   graphql(EXECUTE, { name: 'updateInstance' }),
   graphql(EXECUTE, { name: 'deleteInstance' })
-)({{SingularName}})
+)({{SingularName}});
 {{/if}}`)
 

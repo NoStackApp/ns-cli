@@ -1,4 +1,4 @@
-import {formTypes} from '../../constants'
+import {formTypes, dataTypes} from '../../constants'
 
 const Handlebars = require('handlebars')
 const H = require('just-handlebars-helpers');
@@ -29,9 +29,7 @@ const Form = styled.div`
  */
 
 export const styling = Handlebars.compile(`
-{{=<% %>=}}
-// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, styling
-<%={{ }}=%>
+// ns__custom_start {{tempDetails}} styling
 // change styling here
 {{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
 const Form = styled.div\`
@@ -46,6 +44,32 @@ const Form = styled.div\`
 const {{PluralName}}StyleWrapper = styled.div\`
 \`;
 {{/if}}
-// ns__custom_end styling
+{{#if (and (eq boilerPlateInfo.formType '${formTypes.SINGLE_INSTANCE}') (eq boilerPlateInfo.dataType '${dataTypes.STRING}')) }}
+const {{SingularName}}StyleWrapper = styled.div(({
+  selected,
+  isDeleting,
+}) => \`
+  margin: 2em 1em;
+  padding: 1.5em;
+  border: \${selected ? '1px solid aquamarine' : '1px solid white'};
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #888888;
+  background-color: \${isDeleting && 'tomato'};
+  cursor: \${selected ? 'auto' : 'pointer'};
+
+  &:hover {
+    border: 1px solid aquamarine;
+  }
+\`);
+{{/if}}
+{{#if (and (eq boilerPlateInfo.formType '${formTypes.SINGLE_INSTANCE}') (eq boilerPlateInfo.dataType '${dataTypes.BOOLEAN}')) }}
+const {{SingularName}}StyleWrapper = styled.span\`
+  margin-left: 1.5em;
+  display: inline-block;
+  border: 1px solid #eeeeee;
+  padding: 0.5em;
+\`;
+{{/if}}
+// ns__custom_end {{tempDetails}} styling
 `)
 

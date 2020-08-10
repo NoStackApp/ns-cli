@@ -10,6 +10,7 @@ import {
 } from '../../tools/inflections'
 import {beginningOfFile} from './beginningOfFile'
 import {compose} from './compose'
+import {proptypes} from './propTypes'
 import {styling} from './styling'
 
 const Handlebars = require('handlebars')
@@ -154,6 +155,11 @@ export const replacementTags = (
       }
     }
   })
+
+  const tempDetails = fileInfo({
+    unitName: source,
+    component: componentName(type, boilerPlateInfo.formType),
+  }) + ', loc:'
 
   const tags = {
     Unit: source,
@@ -317,8 +323,12 @@ export const replacementTags = (
       }),
     }),
     STYLING_SECTION: styling({
-      // isCreationForm: isCreationType(boilerPlateInfo.formType),
       boilerPlateInfo,
+      tempDetails,
+    }),
+    PROP_TYPES_SECTION: proptypes({
+      boilerPlateInfo,
+      tempDetails,
     }),
   }
 
