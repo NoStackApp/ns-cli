@@ -12,20 +12,32 @@ import {beginningOfFile} from './beginningOfFile'
 import {compose} from './compose'
 import {proptypes} from './propTypes'
 import {styling} from './styling'
+import {imports} from './imports'
 
 const Handlebars = require('handlebars')
+const inflection = require('inflection')
 
 // Handlebars.registerHelper('escape', function (variable: string) {
 //   return variable.replace(/(['"])/g, '\\$1');
 // });
 
-const componentName = (type: string, componentType: string) => {
-  if (componentType === formTypes.CREATION) return singularName(type) + 'CreationForm'
-  if (componentType === formTypes.LIST) return pluralName(type)
-  return singularName(type)
+const getLowercaseComponentName = (type: string, componentType: string) => {
+  if (componentType === formTypes.CREATION) return type + 'CreationForm'
+  if (componentType === formTypes.LIST) return pluralLowercaseName(type)
+  return type
 };
 
-const isCreationType = (componentType: string) => componentType === formTypes.CREATION;
+const getComponentName = (type: string, componentType: string) => {
+  return inflection.camelize(getLowercaseComponentName(type, componentType))
+};
+
+// const componentName = (type: string, componentType: string) => {
+//   if (componentType === formTypes.CREATION) return singularName(type) + 'CreationForm'
+//   if (componentType === formTypes.LIST) return pluralName(type)
+//   return singularName(type)
+// };
+
+// const isCreationType = (componentType: string) => componentType === formTypes.CREATION;
 
 const fileInfo = Handlebars.compile('unit: {{unitName}}, comp: {{component}}')
 
@@ -158,9 +170,11 @@ export const replacementTags = (
 
   const tempDetails = fileInfo({
     unitName: source,
-    component: componentName(type, boilerPlateInfo.formType),
+    component: getComponentName(type, boilerPlateInfo.formType),
   }) + ', loc:'
 
+  const component = getComponentName(type, boilerPlateInfo.formType)
+  const instance = getLowercaseComponentName(type, boilerPlateInfo.formType)
   const tags = {
     Unit: source,
     SingularName: singularName(type),
@@ -300,7 +314,7 @@ export const replacementTags = (
     START_OF_FILE: beginningOfFile({
       fileInfo: fileInfo({
         unitName: source,
-        component: componentName(type, boilerPlateInfo.formType),
+        component: getComponentName(type, boilerPlateInfo.formType),
       }),
       defaultContent: '\'use strict\';',
     }),
@@ -328,7 +342,16 @@ export const replacementTags = (
     }),
     PROP_TYPES_SECTION: proptypes({
       boilerPlateInfo,
+      component,
+      instance,
       tempDetails,
+    }),
+    IMPORTS_SECTION: imports({
+      boilerPlateInfo,
+      component,
+      instance,
+      tempDetails,
+      CHILDREN_IMPORT_LIST,
     }),
   }
 

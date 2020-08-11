@@ -93,11 +93,4 @@ function {{SingularName}}CreationForm({
 }
 
 {{{COMPOSE_CLAUSE}}}
-
-{{SingularName}}CreationForm.propTypes = {
-  parentId: PropTypes.string,
-  refetchQueries: PropTypes.array,
-  create{{SingularName}}: PropTypes.func,
-  // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: addedPropTypes
-  // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: addedPropTypes
-};
+{{{PROP_TYPES_SECTION}}}

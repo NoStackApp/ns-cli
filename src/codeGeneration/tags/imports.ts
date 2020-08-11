@@ -28,34 +28,33 @@ const Form = styled.div`
 
  */
 
-export const proptypes = Handlebars.compile(`
+export const imports = Handlebars.compile(`
 
-{{component}}.propTypes = {
 {{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
-  parentId: PropTypes.string,
-  refetchQueries: PropTypes.array,
-  create{{SingularName}}: PropTypes.func,
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.SINGLE_INSTANCE}') }}
-{{instance}}: PropTypes.object,
-  parentId: PropTypes.string,
-  selected: PropTypes.bool,
-  updateInstance: PropTypes.func,
-  deleteInstance: PropTypes.func,
-  refetchQueries: PropTypes.array,
-  {{instance}}: PropTypes.shape({
-    children: PropTypes.array,
-    id: PropTypes.string,
-  }),
-  {{instance}}: PropTypes.shape({
-    value: PropTypes.string,
-    id: PropTypes.string,
-  }),
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { EXECUTE } from '@nostack/no-stack';
+import compose from '@shopify/react-compose';
+import { graphql } from '@apollo/react-hoc';
+
+import PropTypes from 'prop-types';
+import {
+  UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
+  DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ChildrenTypeList}},
+} from '../../../config';
+
+import EditInstanceForm from '../../EditInstanceForm';
+import DeleteInstanceMenu from '../../DeleteInstanceMenu';
+
+{{{CHILDREN_IMPORT_LIST}}}
 {{/if}}
-  // ns__custom_start {{tempDetails}} addedPropTypes
-  // ns__custom_end {{tempDetails}} addedPropTypes
 };
+
+// ns__custom_start unit: {{tempDetails}} addedImports
+// ns__custom_end unit: {{tempDetails}} addedImports
 `)
 
