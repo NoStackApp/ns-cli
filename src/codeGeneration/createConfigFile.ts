@@ -4,15 +4,17 @@ import {StackInfo} from '../constants/types'
 const Handlebars = require('handlebars')
 
 const fileExplanation = Handlebars.compile(`/*
-  This file was generated automatically by nostack 'makecode' for the app '{{appName}}'.
+  This file was generated automatically by nostack 'makecode'
+  for the app '{{appName}}'.
   If you build a new stack from a template, this version will probably need to change.
 
   For instance, it will update if you run 'makecode' again. Fair warning, that will
   change a lot of your code. If you modify your current stack to add actions, sources,
   or types, it would make sense to add constants here.
 
-  But, you should *not* add permanent, separate configuration material or other material that is not directly
-  'managed by NoStack, because this will will be replaced with every call to 'makecode'.
+  But, you should *not* add permanent, separate configuration material
+  or other material that is not directly managed by NoStack,
+  because this will will be replaced with every call to 'makecode'.
  */
 `)
 

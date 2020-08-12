@@ -62,23 +62,23 @@ const ResetPasswordForm = ({ onSubmit, onCancel, disabled, error }) => {
       <p>A password reset code has been sent to your email. Enter the code below.</p>
       <div>
         New Password:
-        <input type="password" onChange={handlePasswordChange} disabled={disabled} />
+        <input type='password' onChange={handlePasswordChange} disabled={disabled} />
       </div>
       <div>
         Confirm Password:
         <input
-          type="password"
+          type='password'
           onChange={handlePasswordConfirmChange}
           disabled={disabled}
         />
       </div>
       <div>
         Password Reset Code:
-        <input type="password" onChange={handleCodeChange} disabled={disabled} />
+        <input type='password' onChange={handleCodeChange} disabled={disabled} />
       </div>
       <div>
-        <button type="submit" disabled={disabled || formIncomplete}>Change Password</button>
-        <button type="button" onClick={handleCancel} disabled={disabled}>Cancel</button>
+        <button type='submit' disabled={disabled || formIncomplete}>Change Password</button>
+        <button type='button' onClick={handleCancel} disabled={disabled}>Cancel</button>
       </div>
       {error && <div>{error}</div>}
       {formError && <div>{formError}</div>}

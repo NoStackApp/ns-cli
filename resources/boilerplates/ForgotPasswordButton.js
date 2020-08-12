@@ -90,7 +90,7 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
 
   if (!formVisible) {
     return (
-      <Button type="button" onClick={showForm}>
+      <Button type='button' onClick={showForm}>
         Forgot Password?
       </Button>
     );
@@ -121,7 +121,7 @@ const ForgotPasswordButton = ({ getPasswordResetCode, resetPassword, platformId 
   return (
     <p>
       Your password has been reset. You may now login.
-      <Button type="button" onClick={hideForm}>Ok.</Button>
+      <Button type='button' onClick={hideForm}>Ok.</Button>
     </p>
   );
 };

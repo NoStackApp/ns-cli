@@ -16,7 +16,12 @@ export const appNameFromPath = (appDir: string) => {
   return path.basename(appDir) // appDir.match(/([^\/]*)\/*$/)![1].substring(2)
 }
 
-export async function generateCodeFiles(appDir: string, userClass: string, jsonPath: string) {
+export async function generateCodeFiles(
+  appDir: string,
+  userClass: string,
+  jsonPath: string,
+  appName: string,
+) {
   // console.log(`stacklocation=${appDir}/stack.json`)
   const currentStack: StackInfo = await fs.readJSON(jsonPath) // await generateJSON.bind(this)(template, appDir)
 
@@ -27,13 +32,13 @@ export async function generateCodeFiles(appDir: string, userClass: string, jsonP
   }
 
   // console.log(`appDir=${appDir}`)
-  const appName = appNameFromPath(appDir)
+  // const appName = appNameFromPath(appDir)
   const configText = await createConfigFile(currentStack, appName)
   // console.log(`configText=${configText}`)
   fs.outputFile(`${srcDir}/config/index.js`, configText)
 
   try {
-    await createHighestLevelFiles(currentStack, appDir, userClass)
+    await createHighestLevelFiles(currentStack, appDir, userClass, appName)
   } catch (err) {
     throw new Error('error in creating highest level files')
   }
@@ -58,13 +63,18 @@ export async function generateCodeFiles(appDir: string, userClass: string, jsonP
   }
 }
 
-export async function generateAppCode(appDir: string, userClass: string, jsonPath: string) {
+export async function generateAppCode(
+  appDir: string,
+  userClass: string,
+  jsonPath: string,
+  appName: string,
+) {
   const tasks = new Listr([
     {
       title: 'Generate the Code Files',
       task: async () => {
         try {
-          await generateCodeFiles(appDir, userClass, jsonPath)
+          await generateCodeFiles(appDir, userClass, jsonPath, appName)
         } catch (err) {
           console.log(`git error when attempting to generate the code: ${err}`)
           throw new Error(err)

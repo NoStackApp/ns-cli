@@ -12,10 +12,11 @@
     "unicorn/no-process-exit": 0,
     "object-curly-spacing": "off",
     "semi": "off",
-    "quotes": [2, "single", { "avoidEscape": true }],
+//    "quotes": [2, "single", { "avoidEscape": true }],
     "no-underscore-dangle": "off",
     "no-octal-escape": "off",
     "arrow-parens": "off",
+    "quotes": "off"
   },
   "env": {
     "browser": true,

@@ -62,7 +62,7 @@ const AuthTabs = ({ menuTitles, children }) => {
           }
 
           return (
-            <div className="test">{child}</div>
+            <div className='test'>{child}</div>
           );
         })}
       </div>

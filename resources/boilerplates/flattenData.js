@@ -6,6 +6,7 @@ export function flattenChildData(element) {
 
   if (element.instances && element.instances.length > 0) {
     flatData.instances = element.instances.filter((child) => Boolean(child)).map(
+      // eslint-disable-next-line no-use-before-define
       instance => flattenData(instance),
     );
   }

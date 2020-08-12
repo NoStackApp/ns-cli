@@ -50,7 +50,7 @@ import {
 import EditInstanceForm from '../../EditInstanceForm';
 import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 
-{{{CHILDREN_IMPORT_LIST}}}
+{{{childrenImportList}}}
 {{/if}}
 };
 

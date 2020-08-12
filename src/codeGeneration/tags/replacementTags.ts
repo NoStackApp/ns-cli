@@ -175,6 +175,55 @@ export const replacementTags = (
 
   const component = getComponentName(type, boilerPlateInfo.formType)
   const instance = getLowercaseComponentName(type, boilerPlateInfo.formType)
+
+  const childrenBodyList = childrenBodyTemplate({
+    children: children.map(child => {
+      const childInfo = currentStack.types[child]
+      const assnInfo = childInfo.sources[source]
+      if (assnInfo.assnType !== associationTypes.SINGLE_REQUIRED)
+        return {
+          nonProperty: true,
+          childComponent: pluralName(child),
+          childPlural: pluralLowercaseName(child),
+          childSingular: singularName(child),
+          type,
+        }
+      return {
+        nonProperty: false,
+        childComponent: singularName(child),
+        child,
+        type,
+      }
+    }),
+  }) + connectedChildrenBodyTemplate(
+    {
+      connectedChildren: Object.keys(connectedChildren).map((child: string) => {
+        if (connectedChildren[child] !== associationTypes.SINGLE_REQUIRED)
+          return {childComponent: pluralName(child), type}
+        return {childComponent: singularName(child), type}
+      }),
+    },
+  )
+
+  const childrenImportList = childrenImportsTemplate({
+    children: children.map(child => {
+      const childInfo = currentStack.types[child]
+      const assnInfo = childInfo.sources[source]
+      if (assnInfo.assnType !== associationTypes.SINGLE_REQUIRED)
+        return {childComponent: pluralName(child)}
+      return {childComponent: singularName(child)}
+    }),
+  }) + connectedChildrenImportsTemplate(
+    {
+      connectedChildren: Object.keys(connectedChildren).map((child: string) => {
+        const singularConnected = singularName(connectedSource)
+        if (connectedChildren[child] !== associationTypes.SINGLE_REQUIRED)
+          return {childComponent: pluralName(child), singularConnected}
+        return {childComponent: singularName(child), singularConnected}
+      }),
+    },
+  )
+
   const tags = {
     Unit: source,
     SingularName: singularName(type),
@@ -187,57 +236,13 @@ export const replacementTags = (
     SOURCE_QUERY_NAME: queryForSource(source),
     SingularNameAllCaps: allCaps(type),
     SingularForRelationshipAllCaps: `${allCaps(type)}_FOR_${allCaps(source)}`,
-    CHILDREN_IMPORT_LIST: childrenImportsTemplate({
-      children: children.map(child => {
-        const childInfo = currentStack.types[child]
-        const assnInfo = childInfo.sources[source]
-        if (assnInfo.assnType !== associationTypes.SINGLE_REQUIRED)
-          return {childComponent: pluralName(child)}
-        return {childComponent: singularName(child)}
-      }),
-    }) + connectedChildrenImportsTemplate(
-      {
-        connectedChildren: Object.keys(connectedChildren).map((child: string) => {
-          const singularConnected = singularName(connectedSource)
-          if (connectedChildren[child] !== associationTypes.SINGLE_REQUIRED)
-            return {childComponent: pluralName(child), singularConnected}
-          return {childComponent: singularName(child), singularConnected}
-        }),
-      },
-    ),
+    CHILDREN_IMPORT_LIST: childrenImportList,
     ChildrenTypeList: childrenTypeListTemplate({
       children: children.map(child => {
         return {childAllCaps: allCaps(child)}
       }),
     }),
-    CHILDREN_BODY_LIST: childrenBodyTemplate({
-      children: children.map(child => {
-        const childInfo = currentStack.types[child]
-        const assnInfo = childInfo.sources[source]
-        if (assnInfo.assnType !== associationTypes.SINGLE_REQUIRED)
-          return {
-            nonProperty: true,
-            childComponent: pluralName(child),
-            childPlural: pluralLowercaseName(child),
-            childSingular: singularName(child),
-            type,
-          }
-        return {
-          nonProperty: false,
-          childComponent: singularName(child),
-          child,
-          type,
-        }
-      }),
-    }) + connectedChildrenBodyTemplate(
-      {
-        connectedChildren: Object.keys(connectedChildren).map((child: string) => {
-          if (connectedChildren[child] !== associationTypes.SINGLE_REQUIRED)
-            return {childComponent: pluralName(child), type}
-          return {childComponent: singularName(child), type}
-        }),
-      },
-    ),
+    CHILDREN_BODY_LIST: childrenBodyList,
     CHILDREN_CONSTANT_DECLARATIONS: childrenConstantDeclarationsTemplate({
       children: children.map(child => {
         const childInfo = currentStack.types[child]
@@ -323,7 +328,7 @@ export const replacementTags = (
       formType: boilerPlateInfo.formType,
       SingularName: singularName(type),
       SINGLE_CHILDREN_COMPOSE_STATEMENTS: singleChildrenComposeStatementsTemplate({
-        children: children.map((child, index) => {
+        children: children.map((child) => {
           const childInfo = currentStack.types[child]
           const assnInfo = childInfo.sources[source]
           // const isNotLast: boolean = numberOfChildren > index + 1
@@ -351,7 +356,7 @@ export const replacementTags = (
       component,
       instance,
       tempDetails,
-      CHILDREN_IMPORT_LIST,
+      childrenImportList,
     }),
   }
 

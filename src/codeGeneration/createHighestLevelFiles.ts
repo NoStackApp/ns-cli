@@ -2,7 +2,7 @@ import {boilerplateDir} from '../constants'
 import {StackInfo} from '../constants/types'
 
 import {compDir, srcDir} from './createTopProjectDirs'
-import {appNameFromPath} from './generateAppCode'
+// import {appNameFromPath} from './generateAppCode'
 import {generateAppFile} from './generateAppFile'
 
 const fs = require('fs-extra')
@@ -12,6 +12,7 @@ export async function createHighestLevelFiles(
   currentStack: StackInfo,
   appDir: string,
   userClass: string,
+  appName: string,
 ) {
   console.log(`In createHighestLevelFiles... appDir=${appDir}`)
 
@@ -89,7 +90,7 @@ export async function createHighestLevelFiles(
   )
   await fs.outputFile(
     `${compDir}/NavBar/index.js`,
-    navBar({appName: appNameFromPath(appDir)}),
+    navBar({appName}),
   )
 
   // App file

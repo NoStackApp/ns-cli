@@ -24,6 +24,7 @@ export default class Makecode extends Command {
     userClass: flags.string({char: 'c', description: 'user class for which to generate an app'}),
     appDir: flags.string({char: 'a', description: 'application directory'}),
     jsonPath: flags.string({char: 'j', description: 'path and filename for the stack json file.  The file tells you about your server and gets used to generate code for front end apps.'}),
+    appName: flags.string({char: 'n', description: 'name of the app. Not currently so important, but shows up in generated code.'}),
     help: flags.help({char: 'h'}),
   }
 
@@ -34,6 +35,7 @@ export default class Makecode extends Command {
     const {flags} = this.parse(Makecode)
 
     const appDir = flags.appDir || isRequired('appDir', 'makecode', 'a')
+    const appName = flags.appName || appDir
     const jsonPath = flags.jsonPath || isRequired('jsonPath', 'makecode', '-j')
     let userClass = flags.userClass
 
@@ -56,7 +58,7 @@ export default class Makecode extends Command {
     await storeAddedCode(appDir)
 
     console.log(`about generateAppCode(${appDir})`)
-    const generateAppTasks = await generateAppCode(appDir, userClass, jsonPath)
+    const generateAppTasks = await generateAppCode(appDir, userClass, jsonPath, appName)
     await generateAppTasks.run().catch((err: any) => {
       throw err
     })
