@@ -25,6 +25,7 @@ export async function generateTypeFile(type: string, source: string, boilerPlate
     path,
   ]
 
+  console.log(`about to call replacementTags(${type}, ${source}, ${currentStack}, ${boilerPlateInfo})`)
   const tags = replacementTags(type, source, currentStack, boilerPlateInfo)
 
   // if (boilerPlate === 'genericCreationFormRoot') {
