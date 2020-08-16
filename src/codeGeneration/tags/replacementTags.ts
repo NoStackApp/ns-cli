@@ -10,9 +10,11 @@ import {
 } from '../../tools/inflections'
 import {beginningOfFile} from './beginningOfFile'
 import {compose} from './compose'
+import {handlers} from './handlers'
 import {proptypes} from './propTypes'
 import {styling} from './styling'
 import {imports} from './imports'
+import {button} from './button'
 
 const Handlebars = require('handlebars')
 const inflection = require('inflection')
@@ -224,10 +226,13 @@ export const replacementTags = (
     },
   )
 
+  const SingularName = singularName(type);
+  const PluralName = pluralName(type);
+  const typeSpecifier = allCaps(`${type}_for_${source}`);
   const tags = {
     Unit: source,
-    SingularName: singularName(type),
-    PluralName: pluralName(type),
+    SingularName,
+    PluralName,
     PluralNameLowercase: pluralLowercaseName(type),
     SingularNameLowercase: type,
     SingularSourceLowercase: source,
@@ -235,7 +240,7 @@ export const replacementTags = (
     RELATIONSHIPS_NAME: relationshipsForSource(source),
     SOURCE_QUERY_NAME: queryForSource(source),
     SingularNameAllCaps: allCaps(type),
-    SingularForRelationshipAllCaps: `${allCaps(type)}_FOR_${allCaps(source)}`,
+    SingularForRelationshipAllCaps: allCaps(`${type}_for_${source}`),
     CHILDREN_IMPORT_LIST: childrenImportList,
     ChildrenTypeList: childrenTypeListTemplate({
       children: children.map(child => {
@@ -357,6 +362,41 @@ export const replacementTags = (
       instance,
       tempDetails,
       childrenImportList,
+      typeSpecifier,
+      childrenTypeList: childrenTypeListTemplate({
+        children: children.map(child => {
+          return {childAllCaps: allCaps(child)}
+        }),
+      }),
+    }),
+    BUTTON_SECTION: button({
+      boilerPlateInfo,
+      component,
+      instance,
+      tempDetails,
+    }),
+    HANDLERS_SECTION: handlers({
+      boilerPlateInfo,
+      component,
+      instance,
+      tempDetails,
+      SingularName,
+      typeSpecifier,
+      SingularNameLowercase: type,
+      SINGLE_CHILDREN_CREATION_CODE: singleChildCreationCodeTemplate({
+        children: children.map(child => {
+          const childInfo = currentStack.types[child]
+          const assnInfo = childInfo.sources[source]
+          if (assnInfo.assnType === associationTypes.SINGLE_REQUIRED)
+            return {
+              property: true,
+              singularChild: singularName(child),
+              childAllCaps: allCaps(child),
+              sourceAllCaps: allCaps(source),
+              singularParent: singularName(type),
+            }
+        }),
+      }),
     }),
   }
 

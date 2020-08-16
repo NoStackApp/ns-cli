@@ -1,7 +1,7 @@
 /*
   This file has been partially generated!
   To permit updates to the generated portions of this code in the future,
-  please follow all rules at https://docs.google.com/document/d/1vYGEyX2Gnvd_VwAcWGv6Ie37oa2vXNL7wtl7oUyyJcw/edit?usp=sharing
+  please follow all rules at https://bit.ly/nsFrontEndRules
  */
 // ns__file unit: general, comp: AuthTabs
 
@@ -49,8 +49,8 @@ const AuthTabs = ({ menuTitles, children }) => {
               e.preventDefault();
 
               setSelectedTab(index);
-            }
-            }>
+            }}
+          >
             {title}
           </Button>
         ))}

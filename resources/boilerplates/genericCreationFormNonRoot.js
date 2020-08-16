@@ -29,47 +29,12 @@ function {{SingularName}}CreationForm({
   /* any special declarations etc. */
 // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: beginning
 
-  function handleChange(e) {
-    update{{SingularName}}Value(e.target.value);
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    if (!{{SingularNameLowercase}}Value) {
-      return;
-    }
-
-    updateLoading(true);
-
-    const create{{SingularName}}Response = await create{{SingularName}}({
-      variables: {
-        actionId: CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
-        executionParameters: JSON.stringify({
-          parentInstanceId: parentId,
-          value: {{{SingularNameLowercase}}}Value,
-        }),
-        unrestricted: false,
-      },
-      refetchQueries,
-    });
-
-    {{{SINGLE_CHILDREN_CREATION_CODE}}}
-
-    update{{SingularName}}Value('');
-    updateLoading(false);
-  }
-
-  function handleKeyPress(e) {
-    if (e.charCode === 13) {
-      handleSubmit(e);
-    }
-  }
+  {{{HANDLERS_SECTION}}}
 
   // ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: beforeReturn
   // ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: beforeReturn
 
-  // ns__start_section unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: return
+  // ns__start_section return
   return (
     <Form>
       <label htmlFor='{{SingularNameLowercase}}-value'>
@@ -88,7 +53,7 @@ function {{SingularName}}CreationForm({
       </Button>
     </Form>
   );
-  // ns__end_section unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: return
+  // ns__end_section return
 
 }
 

@@ -1,38 +1,7 @@
 {{{START_OF_FILE}}}
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { EXECUTE } from '@nostack/no-stack';
-import compose from '@shopify/react-compose';
-import { graphql } from '@apollo/react-hoc';
-
-import PropTypes from 'prop-types';
-import {
-  UPDATE_{{SingularForRelationshipAllCaps}}_ACTION_ID,
-  DELETE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ChildrenTypeList}},
-} from '../../../config';
-
-import EditInstanceForm from '../../EditInstanceForm';
-import DeleteInstanceMenu from '../../DeleteInstanceMenu';
-
-{{{CHILDREN_IMPORT_LIST}}}
-
-// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}, loc: addedImports
-// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}, loc: addedImports
-
+{{{IMPORTS_SECTION}}}
 {{{STYLING_SECTION}}}
-
-const Button = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.25rem;
-  padding: 0;
-  color: #bbbbbb;
-  transition: color 0.5s ease;
-  &:hover {
-    color: ${(props) => props.hoverColor || '#000000'};
-  }
-`;
+{{{BUTTON_SECTION}}}
 
 function {{SingularName}}({
   {{SingularNameLowercase}},

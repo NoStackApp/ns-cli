@@ -28,33 +28,27 @@ const Form = styled.div`
 
  */
 
-export const imports = Handlebars.compile(`
+export const button = Handlebars.compile(`
 
-// ns__start_section imports
+// ns__start_section button
 {{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.SINGLE_INSTANCE}') }}
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { EXECUTE } from '@nostack/no-stack';
-import compose from '@shopify/react-compose';
-import { graphql } from '@apollo/react-hoc';
-
-import PropTypes from 'prop-types';
-import {
-  UPDATE_{{typeSpecifier}}_ACTION_ID,
-  DELETE_{{typeSpecifier}}_ACTION_ID{{childrenTypeList}},
-} from '../../../config';
-
-import EditInstanceForm from '../../EditInstanceForm';
-import DeleteInstanceMenu from '../../DeleteInstanceMenu';
-
-{{{childrenImportList}}}
+const Button = styled.button\`
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0;
+  color: #bbbbbb;
+  transition: color 0.5s ease;
+  &:hover {
+    color: \${(props) => props.hoverColor || '#000000'};
+  }
+\`;
 {{/if}}
-// ns__custom_start {{tempDetails}} addedImports
-// ns__custom_end {{tempDetails}} addedImports
-// ns__end_section imports
+// ns__end_section button
 `)
 

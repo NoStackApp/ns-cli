@@ -1,19 +1,7 @@
 {{{START_OF_FILE}}}
 {{{IMPORTS_SECTION}}}
 {{{STYLING_SECTION}}}
-
-const Button = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.25rem;
-  padding: 0;
-  color: #bbbbbb;
-  transition: color 0.5s ease;
-  &:hover {
-    color: ${(props) => props.hoverColor || '#000000'};
-  }
-`;
+{{{BUTTON_SECTION}}}
 
 function {{SingularName}}({
   {{SingularNameLowercase}},
