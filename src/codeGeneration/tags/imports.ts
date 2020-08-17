@@ -32,6 +32,17 @@ export const imports = Handlebars.compile(`
 
 // ns__start_section imports
 {{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
+import React, { useState } from 'react';
+import { graphql } from '@apollo/react-hoc';
+import styled from 'styled-components';
+import { EXECUTE } from '@nostack/no-stack';
+import compose from '@shopify/react-compose';
+
+import { CREATE_{{typeSpecifier}}_ACTION_ID{{actionIdsForSingleChildren}}{{typeIdsForSingleChildren}} } from '../../../config';
+
+// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: addedImports
+// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: addedImports
+
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
 {{/if}}

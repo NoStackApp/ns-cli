@@ -56,7 +56,7 @@ export const handlers = Handlebars.compile(`
         }),
         unrestricted: false,
       },
-      refetchQueries,
+      {{refreshQueriesLine}}
     });
 
     {{{SINGLE_CHILDREN_CREATION_CODE}}}
@@ -79,5 +79,9 @@ export const handlers = Handlebars.compile(`
 {{#if (eq boilerPlateInfo.formType '${formTypes.SINGLE_INSTANCE}') }}
 {{{childrenImportList}}}
 {{/if}}
+
+// ns__custom_start {{tempDetails}} addedHandlers
+// ns__custom_end {{tempDetails}} addedHandlers
+
 `)
 

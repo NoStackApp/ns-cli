@@ -49,10 +49,6 @@ export const proptypes = Handlebars.compile(`
     children: PropTypes.array,
     id: PropTypes.string,
   }),
-  {{instance}}: PropTypes.shape({
-    value: PropTypes.string,
-    id: PropTypes.string,
-  }),
 {{/if}}
   // ns__custom_start {{tempDetails}} addedPropTypes
   // ns__custom_end {{tempDetails}} addedPropTypes

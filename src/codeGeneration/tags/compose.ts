@@ -31,13 +31,19 @@ H.registerHelpers(Handlebars);
 // {{/if}}`)
 
 export const compose = Handlebars.compile(`
+
+// ns__start_section {{tempDetails}} compose
 {{#if (eq formType '${formTypes.CREATION}') }}
-export default compose(graphql(EXECUTE, { name: 'create{{SingularName}}' }){{{SINGLE_CHILDREN_COMPOSE_STATEMENTS}}})({{SingularName}}CreationForm);
+export default compose(graphql(EXECUTE, { name: 'create{{SingularName}}' }){{{SINGLE_CHILDREN_COMPOSE_STATEMENTS}}})(
+  {{SingularName}}CreationForm
+);
 {{/if}}
 {{#if (eq formType '${formTypes.SINGLE_INSTANCE}') }}
 export default compose(
   graphql(EXECUTE, { name: 'updateInstance' }),
   graphql(EXECUTE, { name: 'deleteInstance' })
 )({{SingularName}});
-{{/if}}`)
+{{/if}}
+// ns__end_section {{tempDetails}} compose
+`)
 

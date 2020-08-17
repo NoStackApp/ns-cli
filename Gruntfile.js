@@ -34,10 +34,18 @@ const fullRegExBody = `${firstLineBody}${content}${commentOpen} ns__custom_end`;
 const regExAddedCodeSection = new RegExp(fullRegExBody, 'g');
 const regExForFirstLine = new RegExp(firstLineBody);
 
-const genFirstLineBody = `${commentOpen} ns__start_section unit: ${locationSpec}${endOfFirstLine}`
-const genFullRegExBody = `${genFirstLineBody}${content}${commentOpen} ns__end_section unit: ${locationRepetition}`
-const regExGeneratedCodeSection = new RegExp(genFullRegExBody, 'g')
-const genRegExForFirstLine = new RegExp(genFirstLineBody);
+const replaceFindFirstLineBody = `${commentOpen} ns__start_section unit: ${locationSpec}${endOfFirstLine}`
+const replaceFindFullRegExBody = `${replaceFindFirstLineBody}`
+const regExreplaceFindCodeSection = new RegExp(replaceFindFullRegExBody, 'g')
+const replaceFindRegExForFirstLine = new RegExp(replaceFindFirstLineBody);
+
+const replacementFirstLineBody = `${commentOpen} ns__start_replacement unit: ${locationSpec}${endOfFirstLine}`
+const replacementFullRegExBody = `${replacementFirstLineBody}${content}${commentOpen} ns__end_section unit: ${locationRepetition}`
+const regExReplacementCodeSection = new RegExp(replacementFullRegExBody, 'g')
+const regExForReplacementFirstLine = new RegExp(replacementFirstLineBody);
+
+const delimiter = `${commentOpen} ns__(start|end)_section unit: ${locationSpec}${endOfFirstLine}`
+const regExCleanUp = new RegExp(delimiter, 'g')
 
 // const removeImport = `^(\\s)*import (${locationSpec})`
 // const regExRemoveImport = new RegExp(removeImport, 'g')
@@ -87,13 +95,53 @@ module.exports = function (grunt) {
         ],
       },
 
+      FindReplacedCode: {
+        src: [grunt.option('appDir') + '/src/components/**/*.jsx', grunt.option('appDir') +
+        '/src/components/**/*.js'],
+        overwrite: true,             // destination directory or file
+        replacements: [
+          {
+            from: regExreplaceFindCodeSection,
+            to: function (matchedWord) {   // callback replacement
+              grunt.log.write(`found to replace = ${matchedWord}\n`);
+
+              const match = replaceFindRegExForFirstLine.exec(matchedWord + '\n');
+              if (match) {
+                console.log(`gen match found: ${JSON.stringify(match, null, 2)}\n`);
+                // const firstLineOpening = match[1];
+                const unit = match[2];
+                const component = match[3];
+                const location = match[4];
+                // const firstLineEnding = match[5];
+                console.log(`match found: unit: ${unit} component: ${component} location: ${location}`);
+                // console.log(`content = ${JSON.stringify(addedCodeObject,null,2)}`);
+
+                // if (!replacedCodeObject[unit]);
+                // if (!replacedCodeObject[unit][component]) grunt.fatal(`ERROR adding the code: component '${component}' for unit '${unit}' not found`);
+                if (!replacedCodeObject[unit] ||
+                  !replacedCodeObject[unit][component] ||
+                  !replacedCodeObject[unit][component][location]
+                )  {
+                  console.log('no replacement code.')
+                  return matchedWord;
+                }
+
+                const stringToInsert = matchedWord.replace('ns__start_section', 'ns__start_replacement'); // `// ns__start_replacement unit: ${unit} component: ${component} loc: ${location}\n`;
+                return stringToInsert;
+              }
+              grunt.log.write('no match found in gen\n');
+            },
+          },
+        ],
+      },
+
       replacedCode: {
         src: [grunt.option('appDir') + '/src/components/**/*.jsx', grunt.option('appDir') +
         '/src/components/**/*.js'],
         overwrite: true,             // destination directory or file
         replacements: [
           {
-            from: regExGeneratedCodeSection,
+            from: regExReplacementCodeSection,
             to: function (matchedWord) {   // callback replacement
               const lines = matchedWord.split('\n');
               const firstLine = lines[0];
@@ -102,7 +150,7 @@ module.exports = function (grunt) {
               // grunt.log.write(`lines of gen = ${JSON.stringify(lines, null, 2)}\n`);
               grunt.log.write(`firstLine of gen = ${firstLine}\n`);
 
-              const match = genRegExForFirstLine.exec(firstLine + '\n');
+              const match = regExForReplacementFirstLine.exec(firstLine + '\n');
               if (match) {
                 console.log(`gen match found: ${JSON.stringify(match, null, 2)}\n`);
                 // const firstLineOpening = match[1];
@@ -132,6 +180,26 @@ module.exports = function (grunt) {
                 return stringToInsert;
               }
               grunt.log.write('no match found in gen\n');
+            },
+          },
+        ],
+      },
+
+      cleanUp: {
+        src: [grunt.option('appDir') + '/src/components/**/*.jsx', grunt.option('appDir') +
+        '/src/components/**/*.js'],
+        overwrite: true,             // destination directory or file
+        replacements: [
+          {
+            from: regExCleanUp,
+            to: function (matchedWord, index, fullText, regexMatches) {   // callback replacement
+              grunt.log.write(`found to clean up = ${matchedWord}. regexMatches=${JSON.stringify(regexMatches)} `);
+
+              const prefix = regexMatches[1];
+              const location = regexMatches[4];
+
+              const stringToInsert = `// ns__${prefix}_section ${location}\n`;
+              return stringToInsert;
             },
           },
         ],

@@ -67,6 +67,9 @@ export const insertAddedCode = async (appDir: string) => {
     })
   })
 
+  console.log(`about to call grunt:
+     $ ${gruntDir}/node_modules/.bin/grunt --appDir=${baseDir} --base=${gruntDir}
+  `)
   await execa(
     `${gruntDir}/node_modules/.bin/grunt`,
     ['--appDir=' + baseDir, `--base=${gruntDir}`],
