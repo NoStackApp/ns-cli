@@ -1,42 +1,36 @@
-import {formTypes} from '../../constants'
+import {formTypes, nodeTypes} from '../../constants'
 
 const Handlebars = require('handlebars')
 const H = require('just-handlebars-helpers');
 
 H.registerHelpers(Handlebars);
 
-// const helpers = require('handlebars-helpers');
+const startCustomStyling = `// ns__custom_start {{tempDetails}} buttonStyling`;
 
-/*
-export default compose(graphql(EXECUTE, { name: 'create{{SingularName}}' }),{{{SINGLE_CHILDREN_COMPOSE_STATEMENTS}}})(
-  {{SingularName}}CreationForm
-);
-)({{SingularName}});
- */
-
-/*
-// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: styling
-// change styling here
-const Form = styled.div`
-  margin: 2em;
-  padding: 1.5em;
-  border: none;
-  border-radius: 5px;
-  background-color: #F5F5F5;
-`;
-// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: styling
-
- */
+const endCustomStyling = `// ns__custom_end {{tempDetails}} buttonStyling`
 
 export const button = Handlebars.compile(`
 
-// ns__start_section button
+// ns__start_section {{tempDetails}} button
 {{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
+const Button = styled.button\`
+  ${startCustomStyling}
+  margin-left: 1em;
+  ${endCustomStyling}
+\`;
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
-{{/if}}
+{{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
+const Button = styled.button\`
+  ${startCustomStyling}
+  display: block;
+  margin: 0 auto;
+  ${endCustomStyling}
+\`;
+{{/if}}{{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.SINGLE_INSTANCE}') }}
 const Button = styled.button\`
+  ${startCustomStyling}
   background: none;
   border: none;
   cursor: pointer;
@@ -47,8 +41,9 @@ const Button = styled.button\`
   &:hover {
     color: \${(props) => props.hoverColor || '#000000'};
   }
+  ${endCustomStyling}
 \`;
 {{/if}}
-// ns__end_section button
+// ns__end_section {{tempDetails}} button
 `)
 

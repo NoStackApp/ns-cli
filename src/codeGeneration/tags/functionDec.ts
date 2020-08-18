@@ -1,4 +1,4 @@
-import {formTypes} from '../../constants'
+import {formTypes, nodeTypes} from '../../constants'
 
 const Handlebars = require('handlebars')
 const H = require('just-handlebars-helpers');
@@ -12,14 +12,14 @@ export const functionDec = Handlebars.compile(`
 
 // ns__start_section {{tempDetails}} function
 {{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
-function {{SingularName}}CreationForm({
-  {{SingularParentName}}Id,
-  create{{SingularName}}{{SINGLE_CHILDREN_PARAMS}},
+function {{names.singular}}CreationForm({
+  {{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}parentId{{/if}}{{#if (eq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}{{names.parent}}Id{{/if}},
+  create{{names.singular}}{{SINGLE_CHILDREN_PARAMS}},
   refetchQueries,
   // ns__custom_start {{tempDetails}} addedProps
   // ns__custom_end {{tempDetails}} addedProps
 }) {
-  const [ {{instance}}Value, update{{SingularName}}Value ] = useState('');
+  const [ {{instance}}Value, update{{names.singular}}Value ] = useState('');
   const [ loading, updateLoading ] = useState(false);
 // ns__custom_start {{tempDetails}} beginning
   /* any special declarations etc. */
@@ -27,7 +27,7 @@ function {{SingularName}}CreationForm({
 
     // ns__start_section handleChange
   function handleChange(e) {
-    update{{SingularName}}Value(e.target.value);
+    update{{names.singular}}Value(e.target.value);
   }
   // ns__end_section handleChange
 
@@ -41,11 +41,11 @@ function {{SingularName}}CreationForm({
 
     updateLoading(true);
 
-    const create{{SingularName}}Response = await create{{SingularName}}({
+    const create{{names.singular}}Response = await create{{names.singular}}({
       variables: {
         actionId: CREATE_{{typeSpecifier}}_ACTION_ID,
         executionParameters: JSON.stringify({
-          parentInstanceId: {{SingularParentName}}Id,
+          parentInstanceId: {{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}parentId{{/if}}{{#if (eq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}{{names.parent}}Id{{/if}},
           value: {{{instance}}}Value,
         }),
         unrestricted: false,
@@ -55,7 +55,7 @@ function {{SingularName}}CreationForm({
 
     {{{SINGLE_CHILDREN_CREATION_CODE}}}
 
-    update{{SingularName}}Value('');
+    update{{names.singular}}Value('');
     updateLoading(false);
   }
   // ns__end_section handleSubmit
@@ -72,11 +72,11 @@ function {{SingularName}}CreationForm({
   // ns__custom_start {{tempDetails}} beforeReturn
   // ns__custom_end {{tempDetails}} beforeReturn
 
-  // ns__start_section return
+  // ns__start_section {{tempDetails}} return
   return (
     < Form>
           <label htmlFor='{{instance}}-value'>
-        {{SingularName}}:
+        {{names.singular}}:
         <input
           id='{{instance}}-value'
           type='text'
@@ -87,93 +87,167 @@ function {{SingularName}}CreationForm({
         />
       </label>
       <Button type='submit'  disabled={loading}  onClick={handleSubmit}>
-        {loading ? 'Creating {{SingularName}}...' : 'Create {{SingularName}}'}
+        {loading ? 'Creating {{names.singular}}...' : 'Create {{names.singular}}'}
       </Button>
     </Form>
   );
-  // ns__end_section return
+  // ns__end_section {{tempDetails}} return
 
 }
 
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
-class {{PluralName}} extends Component {
-// ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: beginning
+class {{component}} extends Component {
+// ns__custom_start {{tempDetails}} beginning
   /* any special declarations etc. */
-// ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: beginning
+// ns__custom_end {{tempDetails}} beginning
   state = {
-    selected{{SingularName}}Id: null,
-      // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedState
-      // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedState
+    selected{{names.singular}}Id: null,
+      // ns__custom_start {{tempDetails}} addedState
+      // ns__custom_end {{tempDetails}} addedState
   };
 
   wrapperRef = createRef();
 
+  // ns__start_section {{tempDetails}} didMount
   componentDidMount() {
+    // ns__custom_start {{tempDetails}} componentDidMount
+    // ns__custom_end {{tempDetails}} componentDidMount
     document.addEventListener('mousedown', this.handleClick);
-    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: componentDidMount
-    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: componentDidMount
   }
+  // ns__end_section {{tempDetails}} didMount
 
+  // ns__start_section {{tempDetails}} willMount
   componentWillUnmount() {
+    // ns__custom_start {{tempDetails}} componentWillUnmount
+    // ns__custom_end {{tempDetails}} componentWillUnmount
     document.removeEventListener('mousedown', this.handleClick);
-    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: componentWillUnmount
-    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: componentWillUnmount
   }
+  // ns__end_section {{tempDetails}} willMount
 
+  // ns__start_section {{tempDetails}} handleClick
   handleClick = (e) => {
     const node = this.wrapperRef.current;
 
     if (node && node !== e.target && !node.contains(e.target)) {
-      this.setState({ selected{{SingularName}}Id: null });
+      this.setState({ selected{{names.singular}}Id: null });
     }
   };
+  // ns__end_section {{tempDetails}} handleClick
 
-  handleSelect = (id) => this.setState({ selected{{SingularName}}Id: id });
+  // ns__start_section {{tempDetails}} handleSelect
+  handleSelect = (id) => this.setState({ selected{{names.singular}}Id: id });
+  // ns__end_section {{tempDetails}} handleSelect
 
-  render () {
-    const { {{SingularParentName}}Id, {{PluralNameLowercase}}, refetchQueries, onUpdate } = this.props;
-    const { selected{{SingularName}}Id } = this.state;
+  // ns__start_section {{tempDetails}} render
+  render() {
+    {{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
+    const { {{names.parent}}Id, {{names.pluralLowercase}}, refetchQueries, onUpdate } = this.props;
+    {{/if}}
+    {{#if (eq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
+    const { {{names.parent}}Id } = this.props;
+    {{/if}}
 
-    // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning
-    // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderBeginning
+    const { selected{{names.singular}}Id } = this.state;
+    {{#if (eq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
+    const parameters = {
+      {{constraintValue}}: {{names.parent}}Id,
+    };
+    {{/if}}
+    // ns__custom_start {{tempDetails}} renderBeginning
+    // ns__custom_end {{tempDetails}} renderBeginning
 
+    // ns__start_section {{tempDetails}} renderReturn
     return (
-      <{{PluralName}}StyleWrapper
+      {{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
+      <{{component}}StyleWrapper
         ref={this.wrapperRef}
         onClick={this.handleClick}
       >
-        <{{SingularName}}CreationForm
-          parentId={ {{SingularParentName}}Id }
+        <{{names.singular}}CreationForm
+          parentId={ {{names.parent}}Id }
           refetchQueries={refetchQueries}
-          // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForCreationForm
-          // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForCreationForm
+          // ns__custom_start {{tempDetails}} addedPropsForCreationForm
+          // ns__custom_end {{tempDetails}} addedPropsForCreationForm
         />
 
-  {/* ns__start_section listElements */}
-  { {{PluralNameLowercase}}.map(({{SingularNameLowercase}}) => (
-          <{{SingularName}}
+      {/* ns__start_section {{tempDetails}} listElements */}
+      { {{names.pluralLowercase}}.map(({{names.singularLowercase}}) => (
+          <{{names.singular}}
             key={v4()}
-            {{SingularNameLowercase}}={ {{SingularNameLowercase}} }
-            selected={ {{SingularNameLowercase}}.id === selected{{SingularName}}Id }
+            {{names.singularLowercase}}={ {{names.singularLowercase}} }
+            selected={ {{names.singularLowercase}}.id === selected{{names.singular}}Id }
             onUpdate={onUpdate}
-            parentId={ {{SingularParentName}}Id }
+            parentId={ {{names.parent}}Id }
             refetchQueries={refetchQueries}
             onSelect={this.handleSelect}
-            // ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForChildren
-            // ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: addedPropsForChildren
+            // ns__custom_start {{tempDetails}} addedPropsForChildren
+            // ns__custom_end {{tempDetails}} addedPropsForChildren
           />
         )) }
-  {/* ns__end_section listElements */}
+      {/* ns__end_section {{tempDetails}} listElements */}
 
-  {/* ns__custom_start unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
-  {/* ns__custom_end unit: {{Unit}}, comp: {{PluralName}}, loc: renderEnding */}
+      {/* ns__custom_start {{tempDetails}} renderEnding */}
+      {/* ns__custom_end {{tempDetails}} renderEnding */}
+      </{{component}}StyleWrapper>
+      {{/if}}
+      {{#if (eq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
+            <Unit
+        id={ {{names.source.constant}} }
+        typeRelationships={ {{names.source.relationships}} }
+        query={ {{names.source.query}} }
+        parameters={parameters}
+      >
+        {({loading, error, data, refetchQueries}) => {
+          if (loading) return 'Loading...';
 
-  </{{PluralName}}StyleWrapper>
+          if (error) {
+            console.error(error);
+            return \`Error: \${error.graphQLErrors}\`;
+          }
+
+          const {{names.pluralLowercase}} = data.unitData.map((el) => flattenData(el));
+
+      // ns__custom_start {{tempDetails}} beforeReturn
+      // ns__custom_end {{tempDetails}} beforeReturn
+          return (
+            <>
+              <{{names.singular}}CreationForm
+                  {{names.parent}}Id={ {{names.parent}}Id }
+                  refetchQueries={refetchQueries}
+                  // ns__custom_start {{tempDetails}} addedPropsForCreationForm
+                  // ns__custom_end {{tempDetails}} addedPropsForCreationForm
+              />
+              <{{names.plural}}StyleWrapper
+                ref={this.wrapperRef}
+                onClick={this.handleClick}
+              >
+                { {{names.pluralLowercase}} &&
+                  {{names.pluralLowercase}}.map(({{names.singularLowercase}}) => (
+                  <{{names.singular}}
+                    key={v4()}
+                    parentId={ {{names.parent}}Id }
+                    {{names.singularLowercase}}={ {{names.singularLowercase}} }
+                    selected={ {{names.singularLowercase}}.id === selected{{names.singular}}Id }
+                    refetchQueries={refetchQueries}
+                    onSelect={this.handleSelect}
+                    // ns__custom_start {{tempDetails}} addedPropsForChildren
+                    // ns__custom_end {{tempDetails}} addedPropsForChildren
+                  />
+                )) }
+              </{{names.plural}}StyleWrapper>
+                {/* ns__custom_start {{tempDetails}} renderEnding */}
+                {/* ns__custom_end {{tempDetails}} renderEnding */}
+            </>
+          );
+        }}
+      </Unit>
+      {{/if}}
   );
+  // ns__end_section {{tempDetails}} renderReturn
   }
+  // ns__end_section {{tempDetails}} render
 }
-
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.SINGLE_INSTANCE}') }}
 function {{component}}({

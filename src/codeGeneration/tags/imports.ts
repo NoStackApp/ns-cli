@@ -1,50 +1,45 @@
-import {formTypes} from '../../constants'
+import {formTypes, nodeTypes} from '../../constants'
 
 const Handlebars = require('handlebars')
 const H = require('just-handlebars-helpers');
 
 H.registerHelpers(Handlebars);
 
-// const helpers = require('handlebars-helpers');
-
-/*
-export default compose(graphql(EXECUTE, { name: 'create{{SingularName}}' }),{{{SINGLE_CHILDREN_COMPOSE_STATEMENTS}}})(
-  {{SingularName}}CreationForm
-);
-)({{SingularName}});
- */
-
-/*
-// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: styling
-// change styling here
-const Form = styled.div`
-  margin: 2em;
-  padding: 1.5em;
-  border: none;
-  border-radius: 5px;
-  background-color: #F5F5F5;
-`;
-// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: styling
-
- */
-
 export const imports = Handlebars.compile(`
 
-// ns__start_section imports
+// ns__start_section {{tempDetails}} imports
 {{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
-import styled from 'styled-components';
+import styled{{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}, { keyframes }{{/if}} from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
+import PropTypes from 'prop-types';
+
 import { CREATE_{{typeSpecifier}}_ACTION_ID{{actionIdsForSingleChildren}}{{typeIdsForSingleChildren}} } from '../../../config';
-
-// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: addedImports
-// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: addedImports
-
 {{/if}}
-{{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
+  {{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
+import React, { Component, createRef } from 'react';
+{{#if (eq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
+import { Unit } from '@nostack/no-stack';
+{{/if}}
+import styled from 'styled-components';
+import { v4 } from 'uuid';
+{{#if (eq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
+import { flattenData } from '../../../flattenData';
+{{/if}}
+
+import {{names.singular}}CreationForm from '../{{names.singular}}CreationForm';
+import {{names.singular}} from '../{{names.singular}}';
+{{#if (eq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
+
+import { {{names.source.constant}} } from '../../../config';
+import {
+  {{names.source.relationships}},
+  {{names.source.query}},
+} from '../../source-props/{{names.source.name}}';
+{{/if}}
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.SINGLE_INSTANCE}') }}
 import React, { useState } from 'react';
@@ -66,6 +61,6 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 {{/if}}
 // ns__custom_start {{tempDetails}} addedImports
 // ns__custom_end {{tempDetails}} addedImports
-// ns__end_section imports
+// ns__end_section {{tempDetails}} imports
 `)
 

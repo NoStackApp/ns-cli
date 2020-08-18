@@ -1,11 +1,7 @@
 {{{START_OF_FILE}}}
 {{{IMPORTS_SECTION}}}
 {{{STYLING_SECTION}}}
-
-const Button = styled.button`
-  margin-left: 1em;
-`;
-
+{{{BUTTON_SECTION}}}
 {{{FUNCTION_SECTION}}}
 {{{COMPOSE_CLAUSE}}}
 {{{PROP_TYPES_SECTION}}}

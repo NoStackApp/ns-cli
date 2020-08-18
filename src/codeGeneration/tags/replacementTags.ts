@@ -263,6 +263,21 @@ export const replacementTags = (
     }),
   });
 
+  const names = {
+    singular: SingularName,
+    singularLowercase: type,
+    plural: PluralName,
+    pluralLowercase: pluralLowercaseName(type),
+    parent: parentType,
+    source: {
+      name: source,
+      allCaps: allCaps(source),
+      constant: `SOURCE_${allCaps(source)}_ID`,
+      relationships: relationshipsForSource(source),
+      query: queryForSource(source),
+    },
+  };
+
   const tags = {
     Unit: source,
     SingularName,
@@ -362,6 +377,7 @@ export const replacementTags = (
     STYLING_SECTION: styling({
       boilerPlateInfo,
       tempDetails,
+      names,
     }),
     PROP_TYPES_SECTION: proptypes({
       boilerPlateInfo,
@@ -374,6 +390,7 @@ export const replacementTags = (
       component,
       instance,
       tempDetails,
+      names,
       childrenImportList,
       typeSpecifier,
       childrenTypeList: childrenTypeListTemplate({
@@ -419,12 +436,12 @@ export const replacementTags = (
       component,
       instance,
       tempDetails,
-      SingularName,
+      names,
       typeSpecifier,
       CHILDREN_BODY_LIST: childrenBodyList,
       singleChildrenParams,
-      SingularParentName: parentType,
       refetchQueriesLine,
+      constraintValue,
     }),
   }
 

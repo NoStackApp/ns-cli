@@ -15,6 +15,7 @@ const link = ApolloLink.from([authLink, httpLink]);
 export default new ApolloClient({
   link,
   cache: new InMemoryCache({
+    // eslint-disable-next-line no-underscore-dangle
     dataIdFromObject: object => object.id ? object.id + object.__typename : v4(),
   }),
 });

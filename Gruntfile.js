@@ -34,13 +34,13 @@ const fullRegExBody = `${firstLineBody}${content}${commentOpen} ns__custom_end`;
 const regExAddedCodeSection = new RegExp(fullRegExBody, 'g');
 const regExForFirstLine = new RegExp(firstLineBody);
 
-const replaceFindFirstLineBody = `${commentOpen} ns__start_section unit: ${locationSpec}${endOfFirstLine}`
+const replaceFindFirstLineBody = `${commentOpen} ns__start_section unit: ${locationSpec}\\n`
 const replaceFindFullRegExBody = `${replaceFindFirstLineBody}`
 const regExreplaceFindCodeSection = new RegExp(replaceFindFullRegExBody, 'g')
 const replaceFindRegExForFirstLine = new RegExp(replaceFindFirstLineBody);
 
 const replacementFirstLineBody = `${commentOpen} ns__start_replacement unit: ${locationSpec}${endOfFirstLine}`
-const replacementFullRegExBody = `${replacementFirstLineBody}${content}${commentOpen} ns__end_section unit: ${locationRepetition}`
+const replacementFullRegExBody = `${replacementFirstLineBody}${content}${commentOpen} ns__end_section unit: ${locationRepetition}\\n`
 const regExReplacementCodeSection = new RegExp(replacementFullRegExBody, 'g')
 const regExForReplacementFirstLine = new RegExp(replacementFirstLineBody);
 
@@ -193,7 +193,7 @@ module.exports = function (grunt) {
           {
             from: regExCleanUp,
             to: function (matchedWord, index, fullText, regexMatches) {   // callback replacement
-              grunt.log.write(`found to clean up = ${matchedWord}. regexMatches=${JSON.stringify(regexMatches)} `);
+              // grunt.log.write(`found to clean up = ${matchedWord}. regexMatches=${JSON.stringify(regexMatches)} `);
 
               const prefix = regexMatches[1];
               const location = regexMatches[4];
