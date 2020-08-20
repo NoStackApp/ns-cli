@@ -31,13 +31,13 @@ const Form = styled.div`
 export const handlers = Handlebars.compile(`
 
 {{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
-  // ns__start_section handleChange
+  // ns__start_section {{tempDetails}} handleChange
   function handleChange(e) {
     update{{SingularName}}Value(e.target.value);
   }
-  // ns__end_section handleChange
+  // ns__end_section {{tempDetails}} handleChange
 
-  // ns__start_section handleSubmit
+  // ns__start_section {{tempDetails}} handleSubmit
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -64,15 +64,15 @@ export const handlers = Handlebars.compile(`
     update{{SingularName}}Value('');
     updateLoading(false);
   }
-  // ns__end_section handleSubmit
+  // ns__end_section {{tempDetails}} handleSubmit
 
-  // ns__start_section handleKeyPress
+  // ns__start_section {{tempDetails}} handleKeyPress
   function handleKeyPress(e) {
     if (e.charCode === 13) {
       handleSubmit(e);
     }
   }
-  // ns__end_section handleKeyPress
+  // ns__end_section {{tempDetails}} handleKeyPress
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
 {{/if}}

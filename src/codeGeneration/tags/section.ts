@@ -30,7 +30,7 @@ const Form = styled.div`
 
 export const section = Handlebars.compile(`
 
-// ns__start_section {{sectionName}}
+// ns__start_section {{tempDetails}} {{sectionName}}
 {{{sectionContents}}}
-// ns__end_section button
+// ns__end_section {{tempDetails}} button
 `)

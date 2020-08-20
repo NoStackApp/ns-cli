@@ -5,32 +5,31 @@ const H = require('just-handlebars-helpers');
 
 H.registerHelpers(Handlebars);
 
-const startCustomStyling = `// ns__custom_start {{tempDetails}} buttonStyling`;
-
-const endCustomStyling = `// ns__custom_end {{tempDetails}} buttonStyling`
-
-export const button = Handlebars.compile(`
+const startButton = `
 
 // ns__start_section {{tempDetails}} button
-{{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
 const Button = styled.button\`
-  ${startCustomStyling}
-  margin-left: 1em;
-  ${endCustomStyling}
+// ns__custom_start {{tempDetails}} buttonStyling`;
+
+const endButton = `// ns__custom_end {{tempDetails}} buttonStyling
 \`;
+// ns__end_section {{tempDetails}} button`
+
+export const button = Handlebars.compile(`
+{{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
+  ${startButton}
+  margin-left: 1em;
+  ${endButton}
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
 {{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
-const Button = styled.button\`
-  ${startCustomStyling}
+  ${startButton}
   display: block;
   margin: 0 auto;
-  ${endCustomStyling}
-\`;
+  ${endButton}
 {{/if}}{{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.SINGLE_INSTANCE}') }}
-const Button = styled.button\`
-  ${startCustomStyling}
+  ${startButton}
   background: none;
   border: none;
   cursor: pointer;
@@ -41,9 +40,7 @@ const Button = styled.button\`
   &:hover {
     color: \${(props) => props.hoverColor || '#000000'};
   }
-  ${endCustomStyling}
-\`;
+  ${endButton}
 {{/if}}
-// ns__end_section {{tempDetails}} button
 `)
 

@@ -384,6 +384,7 @@ export const replacementTags = (
       component,
       instance,
       tempDetails,
+      names,
     }),
     IMPORTS_SECTION: imports({
       boilerPlateInfo,

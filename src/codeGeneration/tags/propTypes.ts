@@ -1,4 +1,4 @@
-import {formTypes} from '../../constants'
+import {formTypes, nodeTypes} from '../../constants'
 
 const Handlebars = require('handlebars')
 const H = require('just-handlebars-helpers');
@@ -12,7 +12,7 @@ export const proptypes = Handlebars.compile(`
 {{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
   parentId: PropTypes.string,
   refetchQueries: PropTypes.array,
-  create{{SingularName}}: PropTypes.func,
+  create{{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}{{names.singular}}{{/if}}: PropTypes.func,
 {{/if}}
 {{#if (eq boilerPlateInfo.formType '${formTypes.LIST}') }}
 {{/if}}
@@ -22,7 +22,9 @@ export const proptypes = Handlebars.compile(`
   updateInstance: PropTypes.func,
   deleteInstance: PropTypes.func,
   refetchQueries: PropTypes.array,
+  {{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
   onSelect: PropTypes.func,
+  {{/if}}
   {{instance}}: PropTypes.shape({
     children: PropTypes.array,
     id: PropTypes.string,

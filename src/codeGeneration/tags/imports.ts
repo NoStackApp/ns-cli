@@ -4,6 +4,9 @@ const Handlebars = require('handlebars')
 const H = require('just-handlebars-helpers');
 
 H.registerHelpers(Handlebars);
+/*
+import styled{{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}, { keyframes }{{/if}} from 'styled-components';
+ */
 
 export const imports = Handlebars.compile(`
 
@@ -11,7 +14,7 @@ export const imports = Handlebars.compile(`
 {{#if (eq boilerPlateInfo.formType '${formTypes.CREATION}') }}
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
-import styled{{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}, { keyframes }{{/if}} from 'styled-components';
+import styled from 'styled-components';
 import { EXECUTE } from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 
@@ -60,6 +63,8 @@ import DeleteInstanceMenu from '../../DeleteInstanceMenu';
 {{{childrenImportList}}}
 {{/if}}
 // ns__custom_start {{tempDetails}} addedImports
+// <!-- prettier-ignore-start -->
+// <!-- prettier-ignore-end -->
 // ns__custom_end {{tempDetails}} addedImports
 // ns__end_section {{tempDetails}} imports
 `)

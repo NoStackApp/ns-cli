@@ -25,13 +25,13 @@ function {{names.singular}}CreationForm({
   /* any special declarations etc. */
 // ns__custom_end {{tempDetails}} beginning
 
-    // ns__start_section handleChange
+    // ns__start_section {{tempDetails}} handleChange
   function handleChange(e) {
     update{{names.singular}}Value(e.target.value);
   }
-  // ns__end_section handleChange
+  // ns__end_section {{tempDetails}} handleChange
 
-  // ns__start_section handleSubmit
+  // ns__start_section {{tempDetails}} handleSubmit
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -41,7 +41,7 @@ function {{names.singular}}CreationForm({
 
     updateLoading(true);
 
-    const create{{names.singular}}Response = await create{{names.singular}}({
+    await create{{names.singular}}({
       variables: {
         actionId: CREATE_{{typeSpecifier}}_ACTION_ID,
         executionParameters: JSON.stringify({
@@ -58,15 +58,15 @@ function {{names.singular}}CreationForm({
     update{{names.singular}}Value('');
     updateLoading(false);
   }
-  // ns__end_section handleSubmit
+  // ns__end_section {{tempDetails}} handleSubmit
 
-  // ns__start_section handleKeyPress
+  // ns__start_section {{tempDetails}} handleKeyPress
   function handleKeyPress(e) {
     if (e.charCode === 13) {
       handleSubmit(e);
     }
   }
-  // ns__end_section handleKeyPress
+  // ns__end_section {{tempDetails}} handleKeyPress
 
 
   // ns__custom_start {{tempDetails}} beforeReturn
@@ -139,6 +139,9 @@ class {{component}} extends Component {
   handleSelect = (id) => this.setState({ selected{{names.singular}}Id: id });
   // ns__end_section {{tempDetails}} handleSelect
 
+  // ns__custom_start {{tempDetails}} beforeRender
+  // ns__custom_end {{tempDetails}} beforeRender
+
   // ns__start_section {{tempDetails}} render
   render() {
     {{#if (neq boilerPlateInfo.nodeType '${nodeTypes.ROOT}') }}
@@ -154,6 +157,7 @@ class {{component}} extends Component {
       {{constraintValue}}: {{names.parent}}Id,
     };
     {{/if}}
+
     // ns__custom_start {{tempDetails}} renderBeginning
     // ns__custom_end {{tempDetails}} renderBeginning
 
@@ -379,6 +383,7 @@ function {{component}}({
   // ns__start_section {{tempDetails}} functionReturn
   return (
     <{{component}}StyleWrapper selected={selected}>
+      {/* ns__start_section {{tempDetails}} instanceValue */}
       { {{instance}}Value }
       <Button type='button'   onClick={() => updateIsEditMode(true)}>
         &#9998;
@@ -386,8 +391,11 @@ function {{component}}({
       <Button type='button'   onClick={() => updateIsDeleteMode(true)}>
         &#128465;
       </Button>
+      {/* ns__end_section {{tempDetails}} instanceValue */}
 
+      {/* ns__start_section {{tempDetails}} childrenList */}
       {{{CHILDREN_BODY_LIST}}}
+      {/* ns__end_section {{tempDetails}} childrenList */}
 
       {/* ns__custom_start {{tempDetails}} renderEnding */}
       {/* ns__custom_end {{tempDetails}} renderEnding */}
