@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 
 import {createNoStackApp} from '../apps/createNoStackApp'
-import {getAppDir} from '../inputs/getAppDir'
+// import {getAppDir} from '../inputs/getAppDir'
 import {getBaseApp} from '../inputs/getBaseApp'
 import {isRequired} from '../inputs/isRequired'
 
