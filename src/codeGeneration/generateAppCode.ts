@@ -4,7 +4,7 @@ import {createConfigFile} from './createConfigFile'
 import {createHighestLevelFiles} from './createHighestLevelFiles'
 import {createQueryFile} from './createQueryFile'
 import {createTopProjectDirs, srcDir} from './createTopProjectDirs'
-import {createTypeFiles} from './typeFiles/createTypeFiles'
+import {generateAppTypeFiles} from './typeFiles/generateAppTypeFiles'
 
 const execa = require('execa')
 const fs = require('fs-extra')
@@ -16,51 +16,78 @@ export const appNameFromPath = (appDir: string) => {
   return path.basename(appDir) // appDir.match(/([^\/]*)\/*$/)![1].substring(2)
 }
 
-export async function generateCodeFiles(appDir: string, userClass: string, jsonPath: string) {
+export async function generateCodeFiles(
+  appDir: string,
+  userClass: string,
+  jsonPath: string,
+  appName: string,
+) {
   // console.log(`stacklocation=${appDir}/stack.json`)
   const currentStack: StackInfo = await fs.readJSON(jsonPath) // await generateJSON.bind(this)(template, appDir)
 
-  await createTopProjectDirs(currentStack, appDir)
+  try {
+    await createTopProjectDirs(currentStack, appDir)
+  } catch (err) {
+    throw new Error('error in creating top project directories')
+  }
+
   // console.log(`appDir=${appDir}`)
-  const appName = appNameFromPath(appDir)
+  // const appName = appNameFromPath(appDir)
   const configText = await createConfigFile(currentStack, appName)
   // console.log(`configText=${configText}`)
   fs.outputFile(`${srcDir}/config/index.js`, configText)
 
-  await createHighestLevelFiles(currentStack, appDir, userClass)
+  try {
+    await createHighestLevelFiles(currentStack, appDir, userClass, appName)
+  } catch (err) {
+    throw new Error('error in creating highest level files')
+  }
 
   const sources = currentStack.sources
 
-  //mapObject
+  // mapObject
 
-  await Promise.all(Object.keys(sources).map(async source => {
-    await createQueryFile(currentStack, source)
-  }))
+  try {
+    await Promise.all(Object.keys(sources).map(async source => {
+      await createQueryFile(currentStack, source)
+    }))
+  } catch (err) {
+    throw new Error('error in creating top project directories')
+  }
 
-  await createTypeFiles(sources, userClass, currentStack)
+  try {
+    await generateAppTypeFiles(sources, userClass, currentStack)
+  } catch (err) {
+    console.log('error in creating app component files:')
+    throw err
+  }
 }
 
-export async function generateAppCode(appDir: string, userClass: string, jsonPath: string) {
+export async function generateAppCode(
+  appDir: string,
+  userClass: string,
+  jsonPath: string,
+  appName: string,
+) {
   const tasks = new Listr([
     {
       title: 'Generate the Code Files',
       task: async () => {
         try {
-          await generateCodeFiles(appDir, userClass, jsonPath)
+          await generateCodeFiles(appDir, userClass, jsonPath, appName)
         } catch (err) {
           console.log(`git error when attempting to generate the code: ${err}`)
           throw new Error(err)
         }
-        return
-      }
+      },
     },
     {
-      title: 'Make First Git Commit',
+      title: 'Make Git Commit',
       task: async () => {
         try {
           await execa(
             'git',
-            ['-C', appDir, 'add', '.']
+            ['-C', appDir, 'add', '.'],
           )
         } catch (err) {
           console.log(`git error when adding changed files.  Perhaps your generated code didn't change?: ${err}`)
@@ -70,16 +97,14 @@ export async function generateAppCode(appDir: string, userClass: string, jsonPat
         try {
           await execa(
             'git',
-            ['-C', appDir, 'commit', '-m', 'generated no-stack code :tada:']
+            ['-C', appDir, 'commit', '-m', 'generated no-stack code using make-code :tada:'],
           )
         } catch (err) {
           console.log(`git error when attempting to commit the generation of code.  Perhaps your generated code didn't change? ${err}`)
-          return
         }
       },
     },
   ])
 
   return tasks
-
 }

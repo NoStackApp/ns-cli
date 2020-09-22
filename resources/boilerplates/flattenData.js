@@ -1,29 +1,32 @@
 export function flattenChildData(element) {
-  const flatData ={
+  const flatData = {
     typeId: element.typeId,
-    instances: []
+    instances: [],
   };
 
   if (element.instances && element.instances.length > 0) {
-    flatData.instances = element.instances.filter(child => !!child).map(
-      instance => flattenData(instance)
-    );
+    flatData.instances = element.instances
+      .filter((child) => Boolean(child))
+      .map(
+        // eslint-disable-next-line no-use-before-define
+        (instance) => flattenData(instance)
+      );
   }
 
   return flatData;
-};
+}
 
 export function flattenData(element) {
   const flatData = {
     ...element.instance,
-    children: []
+    children: [],
   };
 
   if (element.children && element.children.length > 0) {
-    flatData.children = element.children.filter(child => !!child).map(
-      child => flattenChildData(child)
-    );
+    flatData.children = element.children
+      .filter((child) => !!child)
+      .map((child) => flattenChildData(child));
   }
 
   return flatData;
-};
+}

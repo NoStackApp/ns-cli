@@ -10,10 +10,9 @@ export async function deleteStackAndModerator(userInfo: UserInfo) {
       title: 'Delete the Stack',
       task: async () => {
         await deleteStackQuery(userInfo)
-      }
+      },
     },
   ])
 
   return tasks
-
 }

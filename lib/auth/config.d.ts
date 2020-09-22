@@ -1,1 +1,1 @@
-export declare const secureDirectory: any;
+export declare const secureDirectory: any

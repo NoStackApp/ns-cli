@@ -1,7 +1,8 @@
+{{{START_OF_FILE}}}
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
-import { EXECUTE_ACTION } from '@nostack/no-stack';
+import { EXECUTE } from '@nostack/no-stack';
 
 // import { CONTACT_USER_FOR_TASK_INFO_ACTION_ID } from '../../../config';
 import { {{ActionIdAllCaps}} } from '../../../config';
@@ -16,7 +17,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const {{ActionName}} = ({ parentId, executeAction }) => {
+const {{ActionName}} = ({ parentId, execute }) => {
   const [ loading, updateLoading ] = useState(false);
   const [ success, updateSuccess ] = useState(false);
   const [ error, updateError ] = useState('');
@@ -24,7 +25,7 @@ const {{ActionName}} = ({ parentId, executeAction }) => {
   const variables = {
     actionId: {{ActionIdAllCaps}},
     executionParameters: JSON.stringify({
-      finalText: "Some Text",
+      finalText: 'Some Text',
       parentInstanceId: parentId,
     }),
     unrestricted: false,
@@ -36,7 +37,7 @@ const {{ActionName}} = ({ parentId, executeAction }) => {
     updateError('');
 
     try {
-      await executeAction({
+      await execute({
         variables
       });
 
@@ -52,8 +53,8 @@ const {{ActionName}} = ({ parentId, executeAction }) => {
 
   return (
     <Wrapper>
-      <Button 
-        type="button"
+      <Button
+        type='button'
         onClick={handleSubmit}
         disabled={loading}
       >
@@ -65,4 +66,4 @@ const {{ActionName}} = ({ parentId, executeAction }) => {
   );
 };
 
-export default graphql(EXECUTE_ACTION, { name: 'executeAction' })({{ActionName}});
+export default graphql(EXECUTE, { name: 'execute' })({{ActionName}});

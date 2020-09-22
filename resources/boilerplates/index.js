@@ -1,3 +1,4 @@
+{{{START_OF_FILE}}}
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { NoStackProvider } from '@nostack/no-stack';

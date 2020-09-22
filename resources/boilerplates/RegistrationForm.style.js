@@ -1,3 +1,14 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://bit.ly/nsFrontEndRules
+ */
+// ns__file unit: general, comp: RegistrationFormStyle
+
+// ns__custom_start unit: general, comp: RegistrationFormStyle, loc: beforeImports
+'use strict';
+// ns__custom_end unit: general, comp: RegistrationFormStyle, loc: beforeImports
+
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`

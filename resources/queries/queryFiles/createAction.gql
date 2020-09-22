@@ -1,1 +1,0 @@
-mutation createAction($actionName: String, $userClassId: ID!, $actionType: ActionType, $actionParameters: String) { CreateAction(name: $actionName,   userClassId: $userClassId,   actionType: $actionType,   actionParameters: $actionParameters ) {id, name, actionType}}

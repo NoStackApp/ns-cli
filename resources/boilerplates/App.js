@@ -1,3 +1,4 @@
+{{{START_OF_FILE}}}
 import React from 'react';
 import styled from 'styled-components';
 import './App.css';
@@ -25,7 +26,7 @@ const LoginWrapper = styled.div`
 const App = () => (
   <>
     <NavBar />
-    <Wrapper className="App">
+    <Wrapper className='App'>
       <NoStackConsumer>
         {({ loading, currentUser }) => {
           if (loading) return null;

@@ -6,11 +6,11 @@ import {Command, flags} from '@oclif/command'
 import {generateAppCode} from '../codeGeneration/generateAppCode'
 import {insertAddedCode} from '../codeGeneration/insertAddedCode'
 import {storeAddedCode} from '../codeGeneration/storeAddedCode'
-import {AddedCode, StackInfo} from '../constants/types'
+import {StackInfo} from '../constants/types'
 // import {getAppName} from '../inputs/getAppName'
 import {isRequired} from '../inputs/isRequired'
 
-export const noNameError = errorEx('noNameError')
+export const NoNameError = errorEx('noNameError')
 
 export default class Makecode extends Command {
   static description = 'generates a starter app from a json provided by NoStack'
@@ -24,6 +24,7 @@ export default class Makecode extends Command {
     userClass: flags.string({char: 'c', description: 'user class for which to generate an app'}),
     appDir: flags.string({char: 'a', description: 'application directory'}),
     jsonPath: flags.string({char: 'j', description: 'path and filename for the stack json file.  The file tells you about your server and gets used to generate code for front end apps.'}),
+    appName: flags.string({char: 'n', description: 'name of the app. Not currently so important, but shows up in generated code.'}),
     help: flags.help({char: 'h'}),
   }
 
@@ -34,6 +35,7 @@ export default class Makecode extends Command {
     const {flags} = this.parse(Makecode)
 
     const appDir = flags.appDir || isRequired('appDir', 'makecode', 'a')
+    const appName = flags.appName || appDir
     const jsonPath = flags.jsonPath || isRequired('jsonPath', 'makecode', '-j')
     let userClass = flags.userClass
 
@@ -42,33 +44,26 @@ export default class Makecode extends Command {
       const userClasses = stack.userClasses
       const userClassNames = Object.keys(userClasses)
       if (userClassNames.length !== 1) {
-        this.log(`error calling makecode: you did not specify a user class with '--userClass' or '-c'.
-        Your options for user classes in the stack of this app are:\n\t\t${userClassNames.join('\n\t\t')}`)
-        process.exit(1)
+        const errMessage = `error calling makecode: you did not specify a user class with '--userClass' or '-c'.
+        Your options for user classes in the stack of this app are:\n\t\t${userClassNames.join('\n\t\t')}`
+        this.log(errMessage)
+        throw new Error(errMessage)
       }
       userClass = userClassNames[0]
       // this.log(`userClass has been set to ${userClass}`)
     }
 
     // store added code before generating new code.
-    try {
-      await storeAddedCode(appDir)
-    } catch (err) {
-      throw err
-    }
+    console.log(`about to call storeAddedCode(${appDir})`)
+    await storeAddedCode(appDir)
 
-    const generateAppTasks = await generateAppCode(appDir, userClass, jsonPath)
+    console.log(`about generateAppCode(${appDir})`)
+    const generateAppTasks = await generateAppCode(appDir, userClass, jsonPath, appName)
     await generateAppTasks.run().catch((err: any) => {
-      console.error(err)
+      throw err
     })
 
-    try {
-      // const rootDir = '/home/yisroel/projects/temp/taskManager2/'
-                            // appDir
-      await insertAddedCode(appDir)
-    } catch (err) {
-      throw err
-    }
-
+    console.log(`about to insertAddedCode(${appDir})`)
+    await insertAddedCode(appDir)
   }
 }

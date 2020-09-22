@@ -15,7 +15,7 @@ export default class Createstack extends Command {
   static description = 'Creates a new moderator and stack.  Also logs in the moderator locally.'
 
   static examples = [
-    '$ nostack createstack -u mod -s tempstack, -e franky+mod@gmail.com -w franky12$ -w letMeIn0! -l licensed2Kill'
+    '$ nostack createstack -u mod -s tempstack, -e franky+mod@gmail.com -w letMeIn0! -l licensed2Kill',
   ]
 
   static flags = {
@@ -48,7 +48,7 @@ export default class Createstack extends Command {
     const licenseId = await getLicenseId(flags.licenseId)
     if (!licenseId) isRequired('licenseId', 'createstack', '-l')
 
-    let userInfo: UserInfo = {
+    const userInfo: UserInfo = {
       name: user,
       stack,
       password,

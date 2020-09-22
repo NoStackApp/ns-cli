@@ -1,4 +1,4 @@
-import {noNameError} from '../commands/makecode'
+import {NoNameError} from '../commands/makecode'
 import {associationTypes, boilerplateDir} from '../constants'
 import {StackInfo} from '../constants/types'
 import {allCaps, pluralName, singularName} from '../tools/inflections'
@@ -9,24 +9,28 @@ const fs = require('fs-extra')
 const Handlebars = require('handlebars')
 
 export async function generateAppFile(currentStack: StackInfo, userClass: string) {
-    // App
+  console.log('In generateAppFile...')
+
+  // App
   if (!currentStack.userClasses[userClass]) {
-    const err = (new noNameError())
+    const err = (new NoNameError())
     err.message = `template contains no userClass '${userClass}'`
-    throw(err)
+    throw (err)
   }
 
   const source: string = currentStack.userClasses[userClass].topSource
   if (!source) {
-    const err = (new noNameError())
+    const err = (new NoNameError())
     err.message = 'template contains no sources'
-    throw(err)
+    throw (err)
   }
+
+  // console.log(`currentStack.sources[source]=${JSON.stringify(currentStack.sources[source])}`)
 
   const highestLevel = 'highestLevel'
   const sourceInfo = currentStack.sources[source]
   const highestLevelList = sourceInfo.selectedTree[highestLevel]
-    // console.log(`highestLevelList for ${source}=${JSON.stringify(highestLevelList)}`)
+  console.log(`highestLevelList for ${source}=${JSON.stringify(highestLevelList)}`)
 
   let topComponentType: string = sourceInfo.root
   let topComponent = singularName(topComponentType)
@@ -35,29 +39,32 @@ export async function generateAppFile(currentStack: StackInfo, userClass: string
   if (highestLevelList.length === 1) {
     topComponentType = highestLevelList[0]
     topComponent = pluralName(topComponentType)
-        // topComponentSetting = `${userClass}Id={ currentUser.id }`
+    // topComponentSetting = `${userClass}Id={ currentUser.id }`
   }
 
-    // todo: remove this
+  // todo: remove this
   if (!topComponentType) {
-    const err = (new noNameError())
+    const err = (new NoNameError())
     err.message = `source ${source} contains no selected items`
-    throw(err)
+    throw (err)
   }
 
+  console.log('In generateAppFile... setting assnType')
   if (currentStack.types[topComponentType].sources[source].assnType === associationTypes.SINGLE_REQUIRED) {
     topComponent = singularName(topComponentType)
   }
 
+  console.log('In generateAppFile... about to do boilerplate')
   const appFile = Handlebars.compile(await fs.readFile(`${boilerplateDir}/App.js`, 'utf-8'))
 
   const appFileContents = appFile({
     sourceName: singularName(source),
     topComponentName: topComponent,
     topComponentPropSetting: topComponentSetting,
-    userTypeId: `TYPE_${allCaps(userClass)}_ID`
+    userTypeId: `TYPE_${allCaps(userClass)}_ID`,
   })
 
-    // console.log(appFileContents)
+  // console.log(appFileContents)
   await fs.outputFile(`${srcDir}/App.js`, appFileContents)
+  console.log('In generateAppFile... done')
 }

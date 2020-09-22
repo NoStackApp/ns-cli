@@ -3,7 +3,7 @@ import {StackInfo} from '../../constants/types'
 import {singularName} from '../../tools/inflections'
 import {compDir} from '../createTopProjectDirs'
 import {makeDirs} from '../makeDirs'
-import {replacementTags} from '../replacementTags'
+import {replacementTags} from '../tags/replacementTags'
 
 import {boilerPlateToDir} from './boilderPlateToDir'
 
@@ -16,16 +16,17 @@ const boilerPlateFromInfo = (boilerPlateInfo: BoilerPlateInfoType) =>
 export async function generateTypeFile(type: string, source: string, boilerPlateInfo: BoilerPlateInfoType, currentStack: StackInfo) {
   console.log(`in generateTypeFile, type=${type}, boilerPlateInfo=${JSON.stringify(boilerPlateInfo)}`)
   const boilerPlate = boilerPlateFromInfo(boilerPlateInfo)
-  // console.log(`in generateTypeFile, typeName=${typeName}, boilerPlate=${boilerPlate}`)
+  console.log(`... boilerPlate=${boilerPlate}`)
   const dir = boilerPlateToDir(type, boilerPlateInfo.formType)
   // console.log(`in generateTypeFile, dir=${dir}`)
 
   const path = `${compDir}/${singularName(source)}/${dir}`
   const dirList = [
-    path
+    path,
   ]
 
-  const tags = replacementTags(type, source, currentStack)
+  console.log(`about to call replacementTags(${type}, ${source}, ${currentStack}, ${boilerPlateInfo})`)
+  const tags = replacementTags(type, source, currentStack, boilerPlateInfo)
 
   // if (boilerPlate === 'genericCreationFormRoot') {
   //   console.log(`tags = ${JSON.stringify(tags, null, 2)}`)
@@ -35,7 +36,8 @@ export async function generateTypeFile(type: string, source: string, boilerPlate
 
   try {
     const template = Handlebars.compile(await fs.readFile(`${boilerplateDir}/${boilerPlate}.js`, 'utf-8'))
-    await fs.outputFile(`${path}/index.js`, template(tags))
+    // console.log(`tags.START_OF_FILE=${tags.START_OF_FILE}`)
+    await fs.outputFile(`${path}/index.jsx`, template(tags))
   } catch (err) {
     console.error(err)
     throw new Error(`error with generateFromBoilerPlate: ${err}`)

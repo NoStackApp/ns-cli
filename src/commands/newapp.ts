@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 
 import {createNoStackApp} from '../apps/createNoStackApp'
-import {getAppDir} from '../inputs/getAppDir'
+// import {getAppDir} from '../inputs/getAppDir'
 import {getBaseApp} from '../inputs/getBaseApp'
 import {isRequired} from '../inputs/isRequired'
 
@@ -23,7 +23,7 @@ export default class Newapp extends Command {
 
   async run() {
     const {flags} = this.parse(Newapp)
-    const appDir = await getAppDir(flags.appDir) || ''
+    const appDir = flags.appDir // await getAppDir(flags.appDir) || ''
     if (!appDir) isRequired('appDir', 'newapp', '-a')
     let baseApp = flags.baseApp || ''
     if (baseApp.length > 0) baseApp = await getBaseApp(baseApp)
@@ -33,6 +33,5 @@ export default class Newapp extends Command {
       console.error(err)
     })
     // shell.exec(`/home/yisrael/projects/ns-cli/bin/create-no-stack-app "${appDir}"`)
-
   }
 }

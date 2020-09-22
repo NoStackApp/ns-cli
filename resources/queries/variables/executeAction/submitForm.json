@@ -1,5 +1,0 @@
-{
-  "actionId": "form-submission-add-version-9d2dd0e7-2aca-4212-88bc-59f8bf74e992",
-  "executionParameters": "{\"parentInstanceId\":\"54a00595-ea3e-4411-9c2a-f3b479e120a2\",\"values\":{\"app\":\"Fooble2\",\"description\":\"Dooble2\",\"creditCardNumber\":\"2324\",\"expirationDate\":\"2143\",\"csv\":\"355\"}}",
-  "unrestricted": false
-}

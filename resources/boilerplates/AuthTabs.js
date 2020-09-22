@@ -1,3 +1,14 @@
+/*
+  This file has been partially generated!
+  To permit updates to the generated portions of this code in the future,
+  please follow all rules at https://bit.ly/nsFrontEndRules
+ */
+// ns__file unit: general, comp: AuthTabs
+
+// ns__custom_start unit: general, comp: AuthTabs, loc: beforeImports
+'use strict';
+// ns__custom_end unit: general, comp: AuthTabs, loc: beforeImports
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -32,14 +43,14 @@ const AuthTabs = ({ menuTitles, children }) => {
     <div>
       <MenuContainer>
         {menuTitles.map((title, index) => (
-          <Button 
+          <Button
             selected={index === selectedTab}
             onClick={e => {
               e.preventDefault();
 
               setSelectedTab(index);
-            }
-          }>
+            }}
+          >
             {title}
           </Button>
         ))}
@@ -51,7 +62,7 @@ const AuthTabs = ({ menuTitles, children }) => {
           }
 
           return (
-            <div class="test">{child}</div>
+            <div className='test'>{child}</div>
           );
         })}
       </div>

@@ -24,6 +24,6 @@ export async function getFlowSpec(flowSpec: string | undefined) {
     'flowSpec',
     promptTypes.TEXT,
     prompt,
-    testFlowSpec
+    testFlowSpec,
   )
 }

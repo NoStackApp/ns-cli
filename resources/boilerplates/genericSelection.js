@@ -1,3 +1,4 @@
+{{{START_OF_FILE}}}
 import React, { useState } from 'react';
 import { Unit } from '@nostack/no-stack';
 import styled from 'styled-components';
@@ -49,7 +50,7 @@ function {{SingularName}}Select({ id, onSubmit, disabled }) {
 
         const {{PluralNameLowercase}} = data.unitData.map(el => flattenData(el));
 
-        const options = {{PluralNameLowercase}}.map({{SingularNameLowercase}} => ({
+        const options = {{PluralNameLowercase}}.map(({{SingularNameLowercase}}) => ({
           value: {{SingularNameLowercase}}.id,
           label: {{SingularNameLowercase}}.value,
         }));

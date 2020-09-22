@@ -1,11 +1,16 @@
+{{{START_OF_FILE}}}
 import React, { useState } from 'react';
 import { graphql } from '@apollo/react-hoc';
 import styled from 'styled-components';
-import { withNoStack, EXECUTE_ACTION } from '@nostack/no-stack';
+import { withNoStack, EXECUTE } from '@nostack/no-stack';
 
 import {{SingularName}}Select from '../../{{SelectionSource}}/{{SingularName}}Select';
 import { CREATE_{{SingularForRelationshipAllCaps}}_ACTION_ID{{ACTION_IDS_FOR_SINGLE_CHILDREN}}{{TYPE_IDS_FOR_SINGLE_CHILDREN}} } from '../../../config';
 
+// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: addedImports
+// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: addedImports
+
+// ns__custom_start unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: styling
 // change styling here
 const Form = styled.div`
   margin: 2em;
@@ -14,6 +19,7 @@ const Form = styled.div`
   border-radius: 5px;
   background-color: #F5F5F5;
 `;
+// ns__custom_end unit: {{Unit}}, comp: {{SingularName}}CreationForm, loc: styling
 
 function {{SingularName}}CreationForm({ parentId, create{{SingularName}}{{SINGLE_CHILDREN_PARAMS}}, refetchQueries }) {
   const [ loading, updateLoading ] = useState(false);
@@ -35,7 +41,7 @@ function {{SingularName}}CreationForm({ parentId, create{{SingularName}}{{SINGLE
           }),
           unrestricted: false,
         },
-        refetchQueries
+        refetchQueries,
       });
     } catch (e) {
       console.log(e);
@@ -60,4 +66,4 @@ function {{SingularName}}CreationForm({ parentId, create{{SingularName}}{{SINGLE
   );
 }
 
-export default graphql(EXECUTE_ACTION, { name: 'create{{SingularName}}' })({{SingularName}}CreationForm);
+export default graphql(EXECUTE, { name: 'create{{SingularName}}' })({{SingularName}}CreationForm);

@@ -1,6 +1,7 @@
+{{{START_OF_FILE}}}
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {EXECUTE_ACTION} from '@nostack/no-stack';
+import {EXECUTE} from '@nostack/no-stack';
 import compose from '@shopify/react-compose';
 import {graphql} from '@apollo/react-hoc';
 
@@ -26,7 +27,7 @@ const Button = styled.button`
   color: #bbbbbb;
   transition: color 0.5s ease;
   &:hover {
-    color: ${props => props.hoverColor || '#000000'};
+    color: ${(props) => props.hoverColor || '#000000'};
   }
 `;
 
@@ -69,16 +70,16 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, deleteInstance,
           <DeleteMenu>
             Delete?
             <Button
-              type="button"
-              hoverColor="#00FF00"
+              type='button'
+              hoverColor='#00FF00'
               onClick={handleDelete}
               disabled={isDeleting}
             >
               &#10003;
             </Button>
             <Button
-              type="button"
-              hoverColor="#FF0000"
+              type='button'
+              hoverColor='#FF0000'
               onClick={() => updateIsDeleteMode(false)}
               disabled={isDeleting}
             >
@@ -87,10 +88,7 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, deleteInstance,
           </DeleteMenu>
         ) :
         (
-          <Button
-            type="button"
-            onClick={() => updateIsDeleteMode(true)}
-          >
+          <Button type='button'   onClick={() => updateIsDeleteMode(true)}>
             &#128465;
           </Button>
         )
@@ -101,5 +99,5 @@ function {{SingularName}}({ {{SingularNameLowercase}}, parentId, deleteInstance,
 }
 
 export default compose(
-  graphql(EXECUTE_ACTION, { name: 'deleteInstance' })
+  graphql(EXECUTE, { name: 'deleteInstance' })
 )({{SingularName}});

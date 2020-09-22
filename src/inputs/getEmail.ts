@@ -1,6 +1,6 @@
 import {promptTypes, promptUser} from './promptUser'
 
-let Isemail = require('isemail')
+const Isemail = require('isemail')
 
 const testEmail = async (email: string) => {
   if (!Isemail.validate(email))
@@ -20,6 +20,6 @@ export async function getEmail(email: string | undefined) {
     'email',
     promptTypes.TEXT,
     prompt,
-    testEmail
+    testEmail,
   )
 }

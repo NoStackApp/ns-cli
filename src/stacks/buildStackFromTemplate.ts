@@ -8,10 +8,9 @@ export async function buildStackFromTemplate(templateFile: string, userInfo: Use
   let templateString = ''
   try {
     templateString = await fs.readFile(templateFile, 'utf8')
-
-  } catch (err) {
-    console.error(err)
-    throw new Error(`error building stack from template: ${err}`)
+  } catch (error) {
+    console.error(error)
+    throw new Error(`error building stack from template: ${error}`)
   }
 
   const query = `mutation {

@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "oclif",
+    "oclif-typescript"
+  ],
+  "rules": {
+    "unicorn/filename-case": 0,
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "unicorn/catch-error-name": 0,
+    "array-callback-return": 0,
+    "no-process-exit": 0,
+    "unicorn/no-process-exit": 0,
+    "object-curly-spacing": "off",
+    "semi": "off",
+//    "quotes": [2, "single", { "avoidEscape": true }],
+    "no-underscore-dangle": "off",
+    "no-octal-escape": "off",
+    "arrow-parens": "off",
+    "quotes": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jasmine": true
+  }
+}
